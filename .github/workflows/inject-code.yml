@@ -24,7 +24,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: dhruv99968/bga_app_copy
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PIPELINE_TOKEN }}
           path: flutter-src
 
       - name: Verify Flutter Source
