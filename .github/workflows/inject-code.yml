@@ -20,9 +20,6 @@ jobs:
         with:
           path: docs-repo
 
-      - name: Check PRIVATE_REPO_TOKEN
-        run: echo "PRIVATE_REPO_TOKEN is set"
-
       - name: Checkout FLUTTER repo
         uses: actions/checkout@v4
         with:
