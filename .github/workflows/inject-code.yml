@@ -22,7 +22,6 @@ jobs:
 
       - name: Check PRIVATE_REPO_TOKEN
         run: echo "PRIVATE_REPO_TOKEN is set"
-        if: ${{ secrets.PRIVATE_REPO_TOKEN != '' }}
 
       - name: Checkout FLUTTER repo
         uses: actions/checkout@v4
