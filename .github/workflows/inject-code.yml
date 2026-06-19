@@ -1,12 +1,9 @@
 name: Inject Source Code & Deploy Docs
 
 on:
-  # Fired remotely by the Flutter repo's notify-docs.yml via repository_dispatch
   repository_dispatch:
     types: [flutter-code-updated]
-  # Lets you click "Run workflow" manually from the Actions tab
   workflow_dispatch:
-  # Optional: also run on every push to this docs repo
   push:
     branches: [main]
 
@@ -16,18 +13,35 @@ permissions:
 jobs:
   inject:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout DOCS repo
         uses: actions/checkout@v4
         with:
           path: docs-repo
 
-      - name: Checkout FLUTTER repo (private)
+      - name: Debug Secrets
+        run: |
+          echo "Checking secrets..."
+
+          if [ -z "${{ secrets.PRIVATE_REPO_TOKEN }}" ]; then
+            echo "ERROR: PRIVATE_REPO_TOKEN is missing"
+            exit 1
+          fi
+
+          echo "PRIVATE_REPO_TOKEN exists"
+
+      - name: Checkout FLUTTER repo
         uses: actions/checkout@v4
         with:
-          repository: ${{ secrets.FLUTTER_REPO }}
+          repository: dhruv99968/bga_app_copy
           token: ${{ secrets.PRIVATE_REPO_TOKEN }}
           path: flutter-src
+
+      - name: Verify Flutter Source
+        run: |
+          echo "Checking Flutter repo contents..."
+          ls -la flutter-src
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -45,6 +59,7 @@ jobs:
           cd docs-repo
           git config user.name "bga-pipeline-bot"
           git config user.email "actions@github.com"
+
           if git diff --quiet index.html; then
             echo "No code changes detected — skipping commit."
           else
