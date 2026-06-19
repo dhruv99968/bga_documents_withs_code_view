@@ -20,16 +20,9 @@ jobs:
         with:
           path: docs-repo
 
-      - name: Debug Secrets
-        run: |
-          echo "Checking secrets..."
-
-          if [ -z "${{ secrets.PRIVATE_REPO_TOKEN }}" ]; then
-            echo "ERROR: PRIVATE_REPO_TOKEN is missing"
-            exit 1
-          fi
-
-          echo "PRIVATE_REPO_TOKEN exists"
+      - name: Check PRIVATE_REPO_TOKEN
+        run: echo "PRIVATE_REPO_TOKEN is set"
+        if: ${{ secrets.PRIVATE_REPO_TOKEN != '' }}
 
       - name: Checkout FLUTTER repo
         uses: actions/checkout@v4

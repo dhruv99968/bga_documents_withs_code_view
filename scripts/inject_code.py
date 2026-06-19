@@ -18,7 +18,6 @@ import sys
 
 DOCS_HTML_PATH = os.environ.get("DOCS_HTML_PATH", "index.html")
 FLUTTER_SRC_PATH = os.environ.get("FLUTTER_SRC_PATH", "flutter-src")
-LARAVEL_SRC_PATH = os.environ.get("LARAVEL_SRC_PATH", "laravel-src")  # optional, only if you wire a 2nd backend repo
 
 # ──────────────────────────────────────────────────────────────────────────
 # FILE_MAP
@@ -39,51 +38,27 @@ LARAVEL_SRC_PATH = os.environ.get("LARAVEL_SRC_PATH", "laravel-src")  # optional
 FILE_MAP = [
     # ── Step 01 — Account Details ──
     dict(key="sslide-0", stack="flutter", file="signup_screen.dart",
-         src="lib/views/auth_screen/signup_screen.dart"),
+         src="lib/views/auth/signup_screen.dart"),
     dict(key="sslide-0", stack="flutter", file="signup_controller.dart",
          src="lib/controllers/auth_controller/signup_controller.dart"),
-    dict(key="sslide-0", stack="laravel", file="AuthController.php",
-         src="app/Http/Controllers/AuthController.php", repo="laravel"),
-    dict(key="sslide-0", stack="laravel", file="RegisterRequest.php",
-         src="app/Http/Requests/RegisterRequest.php", repo="laravel"),
-    dict(key="sslide-0", stack="laravel", file="routes/api.php",
-         src="routes/api.php", repo="laravel"),
 
     # ── Step 02 — OTP Verify ──
     dict(key="sslide-1", stack="flutter", file="otp_screen.dart",
-         src="lib/views/auth_screen/otp_screen.dart"),
+         src="lib/views/auth/otp_screen.dart"),
     dict(key="sslide-1", stack="flutter", file="otp_controller.dart",
          src="lib/controllers/auth_controller/otp_controller.dart"),
-    dict(key="sslide-1", stack="laravel", file="OtpController.php",
-         src="app/Http/Controllers/OtpController.php", repo="laravel"),
-    dict(key="sslide-1", stack="laravel", file="VerifyOtpRequest.php",
-         src="app/Http/Requests/VerifyOtpRequest.php", repo="laravel"),
-    dict(key="sslide-1", stack="laravel", file="routes/api.php",
-         src="routes/api.php", repo="laravel"),
 
     # ── Step 03 — Set Password ──
     dict(key="sslide-2", stack="flutter", file="change_password_screen.dart",
-         src="lib/views/auth_screen/change_password_screen.dart"),
+         src="lib/views/auth/change_password_screen.dart"),
     dict(key="sslide-2", stack="flutter", file="change_password_controller.dart",
          src="lib/controllers/auth_controller/change_password_controller.dart"),
-    dict(key="sslide-2", stack="laravel", file="PasswordController.php",
-         src="app/Http/Controllers/PasswordController.php", repo="laravel"),
-    dict(key="sslide-2", stack="laravel", file="SetPasswordRequest.php",
-         src="app/Http/Requests/SetPasswordRequest.php", repo="laravel"),
-    dict(key="sslide-2", stack="laravel", file="routes/api.php",
-         src="routes/api.php", repo="laravel"),
 
     # ── Step 04 — Home Course ──
-    dict(key="sslide-3", stack="flutter", file="course_screen.dart",
-         src="lib/views/course/course_screen.dart"),
+    dict(key="sslide-3", stack="flutter", file="courses_screen.dart",
+         src="lib/views/course/courses_screen.dart"),
     dict(key="sslide-3", stack="flutter", file="course_controller.dart",
          src="lib/controllers/course_controller/course_controller.dart"),
-    dict(key="sslide-3", stack="laravel", file="CourseController.php",
-         src="app/Http/Controllers/CourseController.php", repo="laravel"),
-    dict(key="sslide-3", stack="laravel", file="User.php",
-         src="app/Models/User.php", repo="laravel"),
-    dict(key="sslide-3", stack="laravel", file="routes/api.php",
-         src="routes/api.php", repo="laravel"),
 
     # ── Add more wizard steps here following the same pattern ──
     # dict(key="cgslide-0", stack="flutter", file="create_game.dart",
@@ -91,13 +66,8 @@ FILE_MAP = [
 ]
 
 
-def source_root(entry):
-    return LARAVEL_SRC_PATH if entry.get("repo") == "laravel" else FLUTTER_SRC_PATH
-
-
 def read_source(entry):
-    root = source_root(entry)
-    path = os.path.join(root, entry["src"])
+    path = os.path.join(FLUTTER_SRC_PATH, entry["src"])
     if not os.path.isfile(path):
         print(f"  ⚠️  SKIP  {entry['key']} / {entry['file']} — not found at {path}")
         return None
