@@ -4058,6 +4058,38 @@ Route::prefix('v1/auth')->group(function () {
 });
 </script>
 
+<script type="text/x-code" data-key="sslide-0" data-stack="apis" data-file="userRegister">
+// POST /api/register
+// Controller: signup_controller.dart → apiService.userRegister()
+
+Dart Method:
+  apiService.userRegister({
+    fullName: String,
+    email:    String,
+    password: String,
+    role:     String,    // "player" | "organizer"
+    phone:    String
+  }) → Future&lt;DefaultModel&gt;
+
+HTTP Request:
+  POST {{baseUrl}}/api/register
+  Content-Type: application/json
+
+Request Body:
+  {
+    "full_name": "John Doe",
+    "email":     "john@example.com",
+    "role":      "player",
+    "phone":     "+91XXXXXXXXXX"
+  }
+
+Response (DefaultModel):
+  {
+    "error":   false,
+    "message": "Registration successful! Please verify your email."
+  }
+</script>
+
 <!-- ===== sslide-1 : OTP Verify ===== -->
 <script type="text/x-code" data-key="sslide-1" data-stack="flutter" data-file="otp_screen.dart">
 
@@ -4386,6 +4418,58 @@ Route::prefix('v1/auth')->group(function () {
     Route::post('/verify-otp', [OtpController::class, 'verify']);
     Route::post('/resend-otp', [OtpController::class, 'resend']);
 });
+</script>
+
+<script type="text/x-code" data-key="sslide-1" data-stack="apis" data-file="verifyEmail">
+// POST /api/email_verify
+// Controller: otp_controller.dart → apiService.verifyEmail()
+
+Dart Method:
+  apiService.verifyEmail({
+    email: String,
+    otp:   String    // 6-digit OTP code
+  }) → Future&lt;DefaultModel&gt;
+
+HTTP Request:
+  POST {{baseUrl}}/api/email_verify
+  Content-Type: application/json
+
+Request Body:
+  {
+    "email": "john@example.com",
+    "otp":   "123456"
+  }
+
+Response (DefaultModel):
+  {
+    "error":   false,
+    "message": "OTP verified successfully."
+  }
+</script>
+
+<script type="text/x-code" data-key="sslide-1" data-stack="apis" data-file="resendOtp">
+// POST /api/email_verify/resend
+// Controller: otp_controller.dart → apiService.resendOtp()
+
+Dart Method:
+  apiService.resendOtp({
+    email: String
+  }) → Future&lt;DefaultModel&gt;
+
+HTTP Request:
+  POST {{baseUrl}}/api/email_verify/resend
+  Content-Type: application/json
+
+Request Body:
+  {
+    "email": "john@example.com"
+  }
+
+Response (DefaultModel):
+  {
+    "error":   false,
+    "message": "OTP resent to your email."
+  }
 </script>
 
 <!-- ===== sslide-2 : Set Password ===== -->
@@ -4859,6 +4943,127 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('v1/auth')->group(function () {
     Route::post('/set-password', [PasswordController::class, 'setPassword']);
 });
+</script>
+
+<script type="text/x-code" data-key="sslide-2" data-stack="apis" data-file="createPassword">
+// POST /api/password/create
+// Controller: change_password_controller.dart → apiService.createPassword()
+
+Dart Method:
+  apiService.createPassword({
+    email:    String,
+    password: String
+  }) → Future&lt;DefaultModel&gt;
+
+HTTP Request:
+  POST {{baseUrl}}/api/password/create
+  Content-Type: application/json
+
+Request Body:
+  {
+    "email":    "john@example.com",
+    "password": "userNewPassword123"
+  }
+
+Response (DefaultModel):
+  {
+    "error":   false,
+    "message": "Password created successfully."
+  }
+</script>
+
+<script type="text/x-code" data-key="sslide-2" data-stack="apis" data-file="loginUser">
+// POST {{loginUrl}}/realms/users/protocol/openid-connect/token
+// Controller: change_password_controller.dart → apiService.loginUser()
+//             (called automatically after createPassword)
+
+Dart Method:
+  apiService.loginUser({
+    email:    String,
+    password: String
+  }) → Future&lt;LoginModel?&gt;
+
+HTTP Request:
+  POST {{loginUrl}}/realms/users/protocol/openid-connect/token
+  Content-Type: application/x-www-form-urlencoded
+
+Request Body (form-encoded):
+  username=john@example.com
+  password=userNewPassword123
+  client_id=android-app
+  grant_type=password
+
+Response (LoginModel):
+  {
+    "access_token":       "eyJhbGci...",
+    "expires_in":         300,
+    "refresh_expires_in": 1800,
+    "refresh_token":      "eyJ...",
+    "token_type":         "Bearer",
+    "not-before-policy":  0,
+    "session_state":      "...",
+    "error":              null,
+    "error_description":  null
+  }
+</script>
+
+<script type="text/x-code" data-key="sslide-2" data-stack="apis" data-file="getUserProfile">
+// GET /api/profile
+// Controller: change_password_controller.dart → apiService.getUserProfile()
+//             (called during auto-login after password creation)
+
+Dart Method:
+  apiService.getUserProfile() → Future&lt;ProfileData&gt;
+
+HTTP Request:
+  GET {{baseUrl}}/api/profile
+  Authorization: Bearer {{accessToken}}
+  X-Organization-Id: all
+
+Response (ProfileData):
+  {
+    "error": false,
+    "message": null,
+    "data": {
+      "id":              "user-uuid",
+      "firstName":       "John",
+      "lastName":        "Doe",
+      "email":           "john@example.com",
+      "role":            "player",
+      "phoneNumber":     "+91XXXXXXXXXX",
+      "profilePicture":  "https://...",
+      "gender":          "male",
+      "age":             30,
+      "profession":      "Engineer",
+      "createdAt":       "2024-01-01T00:00:00.000Z"
+    }
+  }
+</script>
+
+<script type="text/x-code" data-key="sslide-2" data-stack="apis" data-file="getBio">
+// GET /api/profile/bio
+// Controller: change_password_controller.dart → apiService.getBio()
+//             (called during auto-login after password creation)
+
+Dart Method:
+  apiService.getBio() → Future&lt;GetBioModel&gt;
+
+HTTP Request:
+  GET {{baseUrl}}/api/profile/bio
+  Authorization: Bearer {{accessToken}}
+  X-Organization-Id: all
+
+Response (GetBioModel):
+  {
+    "handicap":        12.5,
+    "bestScore":       72,
+    "bgaHandicap":     11.2,
+    "avgScore":        78,
+    "jacket":          2,
+    "sweater":         1,
+    "rookieOfTheYear": 0,
+    "rank":            15
+  }
 </script>
 
 <!-- ===== sslide-3 : Home Course ===== -->
@@ -19592,7 +19797,8 @@ Route::middleware('auth:sanctum')->prefix('v1')->group(function () {
       };
       var STACKS = [
         { id:'flutter', label:'Flutter / Dart', cls:'cp-flutter', svg:'<svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path fill="#02569B" d="M14.314 0L2.3 12 6 15.7 21.684.013h-7.357zm.014 11.072L7.857 17.53l6.47 6.47H21.7l-6.46-6.468 6.46-6.46h-7.37z"/></svg>', dot:'#02569B' },
-        { id:'laravel', label:'Laravel / PHP',  cls:'cp-laravel', svg:'<svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path fill="#FF2D20" d="M23.642 5.43a.364.364 0 01.014.1v5.149c0 .135-.073.26-.189.326l-4.323 2.49v4.934a.378.378 0 01-.188.326L9.93 23.949a.316.316 0 01-.066.027c-.008.002-.016.008-.024.01a.348.348 0 01-.192 0c-.011-.002-.02-.008-.03-.012-.02-.008-.042-.014-.062-.025L.533 18.755a.376.376 0 01-.189-.326V2.974c0-.033.005-.066.014-.098.003-.012.01-.02.014-.032a.369.369 0 01.023-.058c.004-.013.015-.022.023-.033l.033-.045c.012-.01.025-.018.037-.027.014-.012.027-.024.041-.034H.53L5.043.05a.375.375 0 01.375 0L9.93 2.647h.002c.015.01.027.021.04.033l.038.027c.013.014.02.03.033.045.008.011.02.021.025.033.01.02.017.038.024.058.003.011.01.021.013.032.01.031.014.064.014.098v9.652l3.76-2.164V5.527c0-.033.004-.066.013-.098.003-.01.01-.02.013-.032a.487.487 0 01.024-.059c.007-.012.018-.02.025-.033.012-.015.021-.03.033-.043.012-.012.025-.02.037-.028.014-.01.026-.023.041-.032h.001l4.513-2.598a.375.375 0 01.375 0l4.513 2.598c.016.01.027.021.042.031.012.01.025.018.036.028.013.014.022.03.034.044.008.012.019.021.024.033.011.02.018.04.024.06.006.01.012.021.015.032zm-.74 5.032V6.179l-1.578.908-2.182 1.256v4.283zm-4.51 7.75v-4.287l-2.147 1.225-6.126 3.498v4.325zM1.093 3.624v14.588l8.273 4.761v-4.325l-4.322-2.445-.002-.003H5.04c-.014-.01-.025-.021-.04-.031-.011-.01-.024-.018-.035-.027l-.001-.002c-.013-.012-.021-.025-.031-.04-.01-.011-.021-.022-.028-.036h-.002c-.008-.014-.013-.031-.02-.047-.006-.016-.014-.027-.018-.043a.49.49 0 01-.008-.057c-.002-.014-.006-.027-.006-.041V5.789l-2.18-1.257zM5.23.81L1.47 2.974l3.76 2.164 3.758-2.164zm1.956 13.505l2.182-1.256V3.624l-1.58.91-2.182 1.255v9.435zm11.581-10.95l-3.76 2.163 3.76 2.163 3.759-2.164zm-.376 4.978L16.21 7.087 14.63 6.18v4.283l2.182 1.256 1.58.908zm-8.65 9.654l5.514-3.148 2.756-1.572-3.757-2.163-4.323 2.489-3.941 2.27z"/></svg>', dot:'#FF2D20' }
+        { id:'laravel', label:'Laravel / PHP',  cls:'cp-laravel', svg:'<svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path fill="#FF2D20" d="M23.642 5.43a.364.364 0 01.014.1v5.149c0 .135-.073.26-.189.326l-4.323 2.49v4.934a.378.378 0 01-.188.326L9.93 23.949a.316.316 0 01-.066.027c-.008.002-.016.008-.024.01a.348.348 0 01-.192 0c-.011-.002-.02-.008-.03-.012-.02-.008-.042-.014-.062-.025L.533 18.755a.376.376 0 01-.189-.326V2.974c0-.033.005-.066.014-.098.003-.012.01-.02.014-.032a.369.369 0 01.023-.058c.004-.013.015-.022.023-.033l.033-.045c.012-.01.025-.018.037-.027.014-.012.027-.024.041-.034H.53L5.043.05a.375.375 0 01.375 0L9.93 2.647h.002c.015.01.027.021.04.033l.038.027c.013.014.02.03.033.045.008.011.02.021.025.033.01.02.017.038.024.058.003.011.01.021.013.032.01.031.014.064.014.098v9.652l3.76-2.164V5.527c0-.033.004-.066.013-.098.003-.01.01-.02.013-.032a.487.487 0 01.024-.059c.007-.012.018-.02.025-.033.012-.015.021-.03.033-.043.012-.012.025-.02.037-.028.014-.01.026-.023.041-.032h.001l4.513-2.598a.375.375 0 01.375 0l4.513 2.598c.016.01.027.021.042.031.012.01.025.018.036.028.013.014.022.03.034.044.008.012.019.021.024.033.011.02.018.04.024.06.006.01.012.021.015.032zm-.74 5.032V6.179l-1.578.908-2.182 1.256v4.283zm-4.51 7.75v-4.287l-2.147 1.225-6.126 3.498v4.325zM1.093 3.624v14.588l8.273 4.761v-4.325l-4.322-2.445-.002-.003H5.04c-.014-.01-.025-.021-.04-.031-.011-.01-.024-.018-.035-.027l-.001-.002c-.013-.012-.021-.025-.031-.04-.01-.011-.021-.022-.028-.036h-.002c-.008-.014-.013-.031-.02-.047-.006-.016-.014-.027-.018-.043a.49.49 0 01-.008-.057c-.002-.014-.006-.027-.006-.041V5.789l-2.18-1.257zM5.23.81L1.47 2.974l3.76 2.164 3.758-2.164zm1.956 13.505l2.182-1.256V3.624l-1.58.91-2.182 1.255v9.435zm11.581-10.95l-3.76 2.163 3.76 2.163 3.759-2.164zm-.376 4.978L16.21 7.087 14.63 6.18v4.283l2.182 1.256 1.58.908zm-8.65 9.654l5.514-3.148 2.756-1.572-3.757-2.163-4.323 2.489-3.941 2.27z"/></svg>', dot:'#FF2D20' },
+        { id:'apis', label:'APIs', cls:'cp-api', svg:'<svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path fill="#10b981" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>', dot:'#10b981' }
       ];
 
       // Collect code from the inline source blocks: data[key][stack] = [{name, code}, ...]
@@ -19747,7 +19953,7 @@ Route::middleware('auth:sanctum')->prefix('v1')->group(function () {
 
         // ── state + rendering ──
         var state = { view:'design', stack: (files.flutter ? 'flutter' : Object.keys(files)[0]), fileIdx:0, theme:'island-light' };
-        var LANG = { flutter:'dart', laravel:'php' };
+        var LANG = { flutter:'dart', laravel:'php', apis:'json' };
 
         function renderFiles(){
           var list = files[state.stack] || [];
@@ -19781,7 +19987,7 @@ Route::middleware('auth:sanctum')->prefix('v1')->group(function () {
         function renderTitle(){
           var type = state.view === 'design'
             ? 'App Screen'
-            : (state.stack === 'flutter' ? 'Dart' : (state.stack === 'laravel' ? 'PHP' : state.stack));
+            : (state.stack === 'flutter' ? 'Dart' : (state.stack === 'laravel' ? 'PHP' : (state.stack === 'apis' ? 'API' : state.stack)));
           titleEl.innerHTML =
             '<span class="cp-title-name">' + screenTitle + '</span>' +
             '<span class="cp-title-sep">·</span>' +
