@@ -5935,6 +5935,67 @@ Route::prefix('v1')->group(function () {
     });
 });
 </script>
+
+<script type="text/x-code" data-key="sslide-3" data-stack="apis" data-file="getCourseList">
+// GET /api/course
+// Controller: course_controller.dart → apiService.getCourseList()
+
+Dart Method:
+  apiService.getCourseList() → Future&lt;CourseListModel&gt;
+
+HTTP Request:
+  GET {{baseUrl}}/api/course
+  Authorization: Bearer {{accessToken}}
+  X-Organization-Id: all
+
+Response (CourseListModel):
+  {
+    "error": false,
+    "data": [
+      {
+        "id":          "course-uuid",
+        "name":        "Pebble Beach Golf Links",
+        "city":        "Pebble Beach",
+        "state":       "CA",
+        "country":     "US",
+        "holes":       18,
+        "par":         72,
+        "slope":       144,
+        "rating":      74.3,
+        "image":       "https://..."
+      }
+    ]
+  }
+</script>
+
+<script type="text/x-code" data-key="sslide-3" data-stack="apis" data-file="addPlayerCourse">
+// POST /api/new-user/create/ecg
+// Controller: course_controller.dart → apiService.addPlayerCourse()
+//             (called when player selects and confirms their home course)
+
+Dart Method:
+  apiService.addPlayerCourse({
+    courseId: String
+  }) → Future&lt;DefaultModel&gt;
+
+HTTP Request:
+  POST {{baseUrl}}/api/new-user/create/ecg
+  Authorization: Bearer {{accessToken}}
+  X-Organization-Id: all
+  Content-Type: application/json
+
+Request Body:
+  {
+    "course_id": "course-uuid"
+  }
+
+Response (DefaultModel):
+  {
+    "error":   false,
+    "message": "Home course set successfully."
+  }
+</script>
+
 <!-- ========== END CODE SOURCES ========== -->
 
 <!-- ===== cgslide-0 : Create Game Wizard (Step 1 - Event) ===== -->
