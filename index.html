@@ -3640,7 +3640,6 @@
 
 <!-- ===== sslide-0 : Account Details ===== -->
 <script type="text/x-code" data-key="sslide-0" data-stack="flutter" data-file="signup_screen.dart">
-//
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
@@ -4000,9 +3999,6 @@ class SignUpController extends GetxController {
 
   void changePassword() async{
     if(formStateKey.currentState!.validate()){
-
-      // var loginEmail=GetStorageManager.getValue(prefLoginEmail, "");
-
       try {
         showProgressDialog.show();
         var response = await apiService.createPassword(email: email,password: confirmPasswordController.text.trim(),);
@@ -4041,149 +4037,6 @@ class SignUpController extends GetxController {
     }
   }
 
-  String _decodeBase64(String str) {
-    String normalized = base64Url.normalize(str);
-    return utf8.decode(base64Url.decode(normalized));
-  }
-
-  Future<void> login() async {
-    // hideKeyboard();
-
-
-    // isWrong.value = false;
-    // debugPrint("email--${emailController.text.toString()}");
-    // debugPrint("password-${passwordController.text.toString()}");
-
-    // var loginEmail=GetStorageManager.getValue(prefLoginEmail, "");
-
-
-    if(email!="" && confirmPasswordController.text.isNotEmpty){
-      try {
-        // showProgressDialog.show();
-        var loginResponse = await apiService.loginUser(email: email, password: confirmPasswordController.text.trim());
-        if (loginResponse!.error == null && loginResponse.accessToken != null) {
-          final parts = loginResponse.accessToken!.split('.');
-          if (parts.length != 3) {
-            // throw Exception('Invalid token');
-            ToastMessage.success(message: "Invalid token");
-            return;
-          }
-
-          final payload = _decodeBase64(parts[1]);
-          final decodedPayload = json.decode(payload);
-          debugPrint('Decoded Payload: $decodedPayload');
-          print("user verified ==> ${decodedPayload['user_verified']}");
-
-          var verified = decodedPayload.containsKey('user_verified') ? decodedPayload['user_verified'] == "true" : true;
-          print("user  ==> $verified");
-
-          if (verified) {
-            GetStorageManager.setValue(prefIsLogin, true);
-            GetStorageManager.setValue(prefAccessToken, loginResponse.accessToken ?? "");
-            GetStorageManager.setValue(prefExpiresIn, loginResponse.expiresIn ?? 0);
-            GetStorageManager.setValue(prefRefreshExpiresIn, loginResponse.refreshExpiresIn ?? 0);
-            GetStorageManager.setValue(prefRefreshToken, loginResponse.refreshToken ?? "");
-            GetStorageManager.setValue(prefTokenType, loginResponse.tokenType ?? "");
-            GetStorageManager.setValue(prefNotBeforePolicy, loginResponse.notbeforepolicy ?? "");
-            GetStorageManager.setValue(prefSessionState, loginResponse.sessionState ?? "");
-            GetStorageManager.setValue(notificationOffOn, true);
-
-            if(isRemember.value==true){
-              GetStorageManager.setValue(prefIsRemember, isRemember.value);
-              GetStorageManager.setValue(prefLoginEmail, email);
-              GetStorageManager.setValue(prefLoginPassword, confirmPasswordController.text);
-
-              print("email => ${GetStorageManager.getValue(prefLoginEmail, "")}");
-              print("password => ${GetStorageManager.getValue(prefLoginPassword, "")}");
-              print("is remember => ${GetStorageManager.getValue(prefIsRemember, false)}");
-            }
-            else{
-              GetStorageManager.setValue(prefIsRemember,false);
-            }
-            await getBio();
-            showProgressDialog.hide();
-
-            // emailController.clear();
-            // passwordController.clear();
-            PaymentUtils().setUpStripeKey();
-            if(viewType=="forgotPassword"){
-              Get.offAllNamed(RoutsNames.mainScreen);
-            }
-            else{
-              Get.offAllNamed(RoutsNames.course,arguments: {"viewType":"playerCourse"});
-            }
-
-            ToastMessage.success(message: "Login Successfully");
-
-            print('User is verified.');
-          }
-          else {
-            ToastMessage.error(message: "Your sign in request is not approved yet");
-
-            print('User is not verified yet.');
-            showProgressDialog.hide();
-          }
-          showProgressDialog.hide();
-
-          // ToastMessage.success(message: "Login Successfully");
-          // decodeTokenManually(GetStorageManager.getValue(prefAccessToken, ""));
-        } else {
-          showProgressDialog.hide();
-          ToastMessage.error(message: loginResponse.errorDescription);
-        }
-      } catch (error) {
-        showProgressDialog.hide();
-        print("error login => $error ");
-
-        ToastMessage.error(message: "$error");
-      }
-    }
-  }
-
-  Future<void> getBio() async {
-    try {
-      showProgressDialog.show();
-      var getData = await apiService.getUserProfile();
-      var getBio = await apiService.getBio();
-      showProgressDialog.hide();
-      if (!getData.error!) {
-        GetStorageManager.setValue(prefUserID, getData.data?.id ?? "");
-        GetStorageManager.setValue(prefEmail, getData.data?.email ?? "");
-        GetStorageManager.setValue(prefUserRole, getData.data?.role ?? "");
-        GetStorageManager.setValue(prefName, getData.data?.firstName ?? "");
-        GetStorageManager.setValue(prefProfile, getData.data?.profilePicture ?? "");
-        GetStorageManager.setValue(prefPhone, getData.data?.phoneNumber ?? "");
-        GetStorageManager.setValue(prefGender, getData.data?.gender ?? "");
-        GetStorageManager.setValue(prefAge, getData.data?.age ?? "");
-        GetStorageManager.setValue(prefProfession, getData.data?.profession ?? "");
-
-        GetStorageManager.setValue(prefHandicap, getBio.data?.handicap ?? "");
-        GetStorageManager.setValue(prefBestScore, getBio.data?.bestScore ?? "");
-        GetStorageManager.setValue(prefBgaHandicap, getBio.data?.bgaHandicap ?? "");
-        GetStorageManager.setValue(prefAvgScore, getBio.data?.avgScore ?? "");
-        GetStorageManager.setValue(prefJacket, getBio.data?.jacket ?? "");
-        GetStorageManager.setValue(prefSweater, getBio.data?.sweater ?? "");
-        GetStorageManager.setValue(prefRookieOfTheYear, getBio.data?.rookieOfTheYear ?? "");
-        GetStorageManager.setValue(prefRank, getBio.data?.rank ?? "");
-
-        debugPrint("get user role : ${getData.data?.role}");
-        debugPrint("dimg==${getData.data?.email}");
-        // print("name--${profileData?.data?.email}");
-      } else {
-        ToastMessage.error(message: getData.message);
-        // ToastMessage.error(message: getData.message);
-      }
-    } catch (e) {
-      showProgressDialog.hide();
-      debugPrint('$e');
-      // ToastMessage.error(message: "Something Went Wrong.");
-      // ToastMessage.error(message: "Something Went Wrong.");
-    } finally {
-      showProgressDialog.hide();
-      update();
-    }
-  }
- 
 }
 </script>
 
