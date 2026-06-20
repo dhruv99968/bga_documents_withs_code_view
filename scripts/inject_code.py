@@ -36,33 +36,123 @@ FLUTTER_SRC_PATH = os.environ.get("FLUTTER_SRC_PATH", "flutter-src")
 # (Step 6 in the setup guide) — update any that don't match.
 # ──────────────────────────────────────────────────────────────────────────
 FILE_MAP = [
-    # ── Step 01 — Account Details ──
+    # ── Signup Flow — 4 Steps ──
+    # Step 01 — Account Details
     dict(key="sslide-0", stack="flutter", file="signup_screen.dart",
          src="lib/views/auth/signup_screen.dart"),
     dict(key="sslide-0", stack="flutter", file="signup_controller.dart",
          src="lib/controllers/auth_controller/signup_controller.dart"),
 
-    # ── Step 02 — OTP Verify ──
+    # Step 02 — OTP Verify
     dict(key="sslide-1", stack="flutter", file="otp_screen.dart",
          src="lib/views/auth/otp_screen.dart"),
     dict(key="sslide-1", stack="flutter", file="otp_controller.dart",
          src="lib/controllers/auth_controller/otp_controller.dart"),
 
-    # ── Step 03 — Set Password ──
+    # Step 03 — Set Password
     dict(key="sslide-2", stack="flutter", file="change_password_screen.dart",
          src="lib/views/auth/change_password_screen.dart"),
     dict(key="sslide-2", stack="flutter", file="change_password_controller.dart",
          src="lib/controllers/auth_controller/change_password_controller.dart"),
 
-    # ── Step 04 — Home Course ──
-    dict(key="sslide-3", stack="flutter", file="courses_screen.dart",
+    # Step 04 — Home Course
+    dict(key="sslide-3", stack="flutter", file="course_screen.dart",
          src="lib/views/course/courses_screen.dart"),
     dict(key="sslide-3", stack="flutter", file="course_controller.dart",
          src="lib/controllers/course_controller/course_controller.dart"),
 
-    # ── Add more wizard steps here following the same pattern ──
-    # dict(key="cgslide-0", stack="flutter", file="create_game.dart",
-    #      src="lib/views/create_game/create_game_screen.dart"),
+    # ── Welcome / Intro ──
+    dict(key="wslide-0", stack="flutter", file="welcome_screen.dart",
+         src="lib/views/auth/welcome_screen.dart"),
+    dict(key="wslide-0", stack="flutter", file="welcome_controller.dart",
+         src="lib/controllers/auth_controller/welcome_controller.dart"),
+
+    # ── Welcome Detail ──
+    dict(key="welcome-detail", stack="flutter", file="welcome_screen.dart",
+         src="lib/views/auth/welcome_screen.dart"),
+    dict(key="welcome-detail", stack="flutter", file="welcome_controller.dart",
+         src="lib/controllers/auth_controller/welcome_controller.dart"),
+
+    # ── Agenda Detail ──
+    dict(key="agenda-detail", stack="flutter", file="home_screen.dart",
+         src="lib/views/home/home_screen.dart"),
+    dict(key="agenda-detail", stack="flutter", file="home_controller.dart",
+         src="lib/controllers/home/home_controller.dart"),
+
+    # ── Home Dashboard Detail ──
+    dict(key="home-detail", stack="flutter", file="home_screen.dart",
+         src="lib/views/home/home_screen.dart"),
+    dict(key="home-detail", stack="flutter", file="home_controller.dart",
+         src="lib/controllers/home/home_controller.dart"),
+    dict(key="home-detail", stack="flutter", file="home_general_item.dart",
+         src="lib/views/home/home_general_item.dart"),
+
+    # ── View Game Detail ──
+    dict(key="viewgame-detail", stack="flutter", file="game_details_screen.dart",
+         src="lib/views/games/game_details_screen.dart"),
+    dict(key="viewgame-detail", stack="flutter", file="game_details_controller.dart",
+         src="lib/controllers/games/game_details_controller.dart"),
+
+    # ── Add Bets Detail ──
+    dict(key="addbets-detail", stack="flutter", file="add_bet_bottom_sheet.dart",
+         src="lib/views/bottem_sheets/add_bet_bottom_sheet.dart"),
+    dict(key="addbets-detail", stack="flutter", file="add_bet_bottom_sheet_controller.dart",
+         src="lib/controllers/bets/add_bet_bottom_sheet_controller.dart"),
+
+    # ── Results Flow (vrslide-0 .. vrslide-3) ──
+    dict(key="vrslide-0", stack="flutter", file="game_details_screen.dart",
+         src="lib/views/games/game_details_screen.dart"),
+    dict(key="vrslide-0", stack="flutter", file="game_details_controller.dart",
+         src="lib/controllers/games/game_details_controller.dart"),
+    dict(key="vrslide-1", stack="flutter", file="game_details_screen.dart",
+         src="lib/views/games/game_details_screen.dart"),
+    dict(key="vrslide-1", stack="flutter", file="game_details_controller.dart",
+         src="lib/controllers/games/game_details_controller.dart"),
+    dict(key="vrslide-2", stack="flutter", file="game_details_screen.dart",
+         src="lib/views/games/game_details_screen.dart"),
+    dict(key="vrslide-2", stack="flutter", file="game_details_controller.dart",
+         src="lib/controllers/games/game_details_controller.dart"),
+    dict(key="vrslide-3", stack="flutter", file="game_details_screen.dart",
+         src="lib/views/games/game_details_screen.dart"),
+    dict(key="vrslide-3", stack="flutter", file="game_details_controller.dart",
+         src="lib/controllers/games/game_details_controller.dart"),
+
+    # ── Ledger Flow (vlslide-0 .. vlslide-4) ──
+    dict(key="vlslide-0", stack="flutter", file="game_details_screen.dart",
+         src="lib/views/games/game_details_screen.dart"),
+    dict(key="vlslide-0", stack="flutter", file="game_details_controller.dart",
+         src="lib/controllers/games/game_details_controller.dart"),
+    dict(key="vlslide-1", stack="flutter", file="game_details_screen.dart",
+         src="lib/views/games/game_details_screen.dart"),
+    dict(key="vlslide-1", stack="flutter", file="game_details_controller.dart",
+         src="lib/controllers/games/game_details_controller.dart"),
+    dict(key="vlslide-1", stack="flutter", file="organizer_ledger_bottom_Sheet.dart",
+         src="lib/views/bottem_sheets/organizer_ledger_bottom_sheet.dart"),
+    dict(key="vlslide-1", stack="flutter", file="organizer_ledger_bottom_controller.dart",
+         src="lib/controllers/bottom_sheets_controller/organizer_ledger_bottom_controller.dart"),
+    dict(key="vlslide-2", stack="flutter", file="game_details_screen.dart",
+         src="lib/views/games/game_details_screen.dart"),
+    dict(key="vlslide-2", stack="flutter", file="game_details_controller.dart",
+         src="lib/controllers/games/game_details_controller.dart"),
+    dict(key="vlslide-2", stack="flutter", file="organizer_ledger_bottom_Sheet.dart",
+         src="lib/views/bottem_sheets/organizer_ledger_bottom_sheet.dart"),
+    dict(key="vlslide-2", stack="flutter", file="organizer_ledger_bottom_controller.dart",
+         src="lib/controllers/bottom_sheets_controller/organizer_ledger_bottom_controller.dart"),
+    dict(key="vlslide-3", stack="flutter", file="organizer_ledger_bottom_Sheet.dart",
+         src="lib/views/bottem_sheets/organizer_ledger_bottom_sheet.dart"),
+    dict(key="vlslide-3", stack="flutter", file="organizer_ledger_bottom_controller.dart",
+         src="lib/controllers/bottom_sheets_controller/organizer_ledger_bottom_controller.dart"),
+    dict(key="vlslide-4", stack="flutter", file="game_details_screen.dart",
+         src="lib/views/games/game_details_screen.dart"),
+    dict(key="vlslide-4", stack="flutter", file="game_details_controller.dart",
+         src="lib/controllers/games/game_details_controller.dart"),
+    dict(key="vlslide-4", stack="flutter", file="organizer_ledger_bottom_Sheet.dart",
+         src="lib/views/bottem_sheets/organizer_ledger_bottom_sheet.dart"),
+    dict(key="vlslide-4", stack="flutter", file="organizer_ledger_bottom_controller.dart",
+         src="lib/controllers/bottom_sheets_controller/organizer_ledger_bottom_controller.dart"),
+
+    # NOTE: cgslide-* (Quick Start Wizard) and asslide-* (Score Entry Flow)
+    # are intentionally omitted — they use shared/generated code stubs.
 ]
 
 
