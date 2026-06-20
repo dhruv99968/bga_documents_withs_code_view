@@ -417,14 +417,26 @@ def build_api_controller_map():
     return result
 
 
+# Keys that should always show API docs, even without an existing block.
+# These come from the screens the project has opted in for.
+ALWAYS_OPT_IN_KEYS = {
+    "sslide-0", "sslide-1", "sslide-2", "sslide-3",
+    "wslide-0", "welcome-detail",
+    "agenda-detail", "home-detail",
+    "viewgame-detail", "addbets-detail",
+    "vrslide-0", "vrslide-1", "vrslide-2", "vrslide-3",
+    "vlslide-0", "vlslide-1", "vlslide-2", "vlslide-3", "vlslide-4",
+}
+
+
 def process_api_controllers(html, api_code):
     """
     Auto-discover controllers from FILE_MAP, scan each for apiService calls,
     look up definitions in api_services.dart, update matching API blocks,
     and auto-insert blocks for newly discovered methods.
 
-    Only auto-inserts for keys that already have at least one 'apis' block
-    (i.e., the user has opted in to API docs for that screen).
+    Auto-inserts for keys that already have at least one 'apis' block
+    OR are listed in ALWAYS_OPT_IN_KEYS.
     """
     if api_code is None:
         print("  SKIP  API doc generation (api_services.dart not available)")
@@ -435,10 +447,12 @@ def process_api_controllers(html, api_code):
         print("  SKIP  No controllers auto-discovered from FILE_MAP")
         return html, 0
 
-    # Find which keys already have at least one 'apis' block (opted in)
+    # Keys already opted in via an existing block
     opted_in = set()
     for m in re.finditer(r'data-key="([^"]+)" data-stack="apis"', html):
         opted_in.add(m.group(1))
+    # Also force-opt-in the defined set of keys
+    opted_in.update(ALWAYS_OPT_IN_KEYS)
 
     updated = 0
 
