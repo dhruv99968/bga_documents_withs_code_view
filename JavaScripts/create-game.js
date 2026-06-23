@@ -6641,6 +6641,20 @@
                  var showAddScoreMatchSlide123 = document.getElementById('showAddScoreMatchSlide123');
                  if (showAddScoreMatchSlide123) {
                      showAddScoreMatchSlide123.innerHTML = d.showAddScoreMatchSlide123 || '';
+                     if (window.buildCodePreview) {
+                         var asSlides = showAddScoreMatchSlide123.querySelectorAll('.wizard-slide');
+                         asSlides.forEach(function(slide, i) {
+                             var imgDiv = slide.querySelector('.wizard-slide-img');
+                             if (imgDiv) {
+                                 var mount = document.createElement('div');
+                                 mount.className = 'code-preview-mount';
+                                 mount.setAttribute('data-key', 'asslide-' + type + '-' + i);
+                                 imgDiv.parentNode.replaceChild(mount, imgDiv);
+                             }
+                             var mounts = slide.querySelectorAll('.code-preview-mount');
+                             mounts.forEach(window.buildCodePreview);
+                         });
+                     }
                  }
 
 

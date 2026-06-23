@@ -142,8 +142,180 @@ FILE_MAP = [
     dict(key="vlslide-4", stack="flutter", file="organizer_ledger_bottom_controller.dart",
          src="lib/controllers/bottom_sheets_controller/organizer_ledger_bottom_controller.dart"),
 
-    # NOTE: cgslide-* (Quick Start Wizard) and asslide-* (Score Entry Flow)
-    # are intentionally omitted — they use shared/generated code stubs.
+    # ── Quick Start Wizard — wslide-1 … wslide-9 ──
+    dict(key="wslide-1", stack="flutter", file="signup_screen.dart",
+         src="lib/views/auth/signup_screen.dart"),
+    dict(key="wslide-1", stack="flutter", file="signup_controller.dart",
+         src="lib/controllers/auth_controller/signup_controller.dart"),
+
+    dict(key="wslide-2", stack="flutter", file="course_screen.dart",
+         src="lib/views/course/courses_screen.dart"),
+    dict(key="wslide-2", stack="flutter", file="course_controller.dart",
+         src="lib/controllers/course_controller/course_controller.dart"),
+
+    dict(key="wslide-3", stack="flutter", file="home_screen.dart",
+         src="lib/views/home/home_screen.dart"),
+    dict(key="wslide-3", stack="flutter", file="home_general_item.dart",
+         src="lib/views/home/home_general_item.dart"),
+    dict(key="wslide-3", stack="flutter", file="home_controller.dart",
+         src="lib/controllers/home/home_controller.dart"),
+
+    dict(key="wslide-4", stack="flutter", file="games_and_events.dart",
+         src="lib/views/games/games_and_events.dart"),
+    dict(key="wslide-4", stack="flutter", file="games_and_events_controller.dart",
+         src="lib/controllers/games/games_and_events_controller.dart"),
+
+    dict(key="wslide-5", stack="flutter", file="create_game.dart",
+         src="lib/views/games/create_game.dart"),
+    dict(key="wslide-5", stack="flutter", file="create_game_controller.dart",
+         src="lib/controllers/games/create_game_controller.dart"),
+
+    dict(key="wslide-6", stack="flutter", file="game_details_screen.dart",
+         src="lib/views/games/game_details_screen.dart"),
+    dict(key="wslide-6", stack="flutter", file="game_details_controller.dart",
+         src="lib/controllers/games/game_details_controller.dart"),
+
+    dict(key="wslide-7", stack="flutter", file="add_bet_bottom_sheet.dart",
+         src="lib/views/bottem_sheets/add_bet_bottom_sheet.dart"),
+    dict(key="wslide-7", stack="flutter", file="add_bet_bottom_sheet_controller.dart",
+         src="lib/controllers/bets/add_bet_bottom_sheet_controller.dart"),
+
+    dict(key="wslide-8", stack="flutter", file="add_score.dart",
+         src="lib/views/add_score/add_score.dart"),
+    dict(key="wslide-8", stack="flutter", file="add_score_controller.dart",
+         src="lib/controllers/add_score/add_score_controller.dart"),
+
+    dict(key="wslide-9", stack="flutter", file="input_score.dart",
+         src="lib/views/add_score/input_score.dart"),
+    dict(key="wslide-9", stack="flutter", file="input_score_controller.dart",
+         src="lib/controllers/add_score/input_score_controller.dart"),
+
+    # ── Add Score Flow — asslide-0 … asslide-11 (all game types) ──
+    dict(key="asslide-0", stack="flutter", file="add_score.dart",
+         src="lib/views/add_score/add_score.dart"),
+    dict(key="asslide-0", stack="flutter", file="add_score_controller.dart",
+         src="lib/controllers/add_score/add_score_controller.dart"),
+
+    dict(key="asslide-1", stack="flutter", file="foursome_bottom.dart",
+         src="lib/views/bottem_sheets/foursome_bottom.dart"),
+    dict(key="asslide-1", stack="flutter", file="foursome_bottom_controller.dart",
+         src="lib/controllers/bottom_sheets_controller/foursome_bottom_controller.dart"),
+
+    dict(key="asslide-2", stack="flutter", file="vegas_match_config_bottom.dart",
+         src="lib/views/bottem_sheets/vegas_match_config_bottom.dart"),
+    dict(key="asslide-2", stack="flutter", file="vegas_match_config_bottom_controller.dart",
+         src="lib/controllers/bottom_sheets_controller/vegas_match_config_bottom_controller.dart"),
+    dict(key="asslide-2", stack="flutter", file="foursome_override_2v2_bottom.dart",
+         src="lib/views/bottem_sheets/foursome_override_2v2_bottom.dart"),
+    dict(key="asslide-2", stack="flutter", file="foursome_override_2v2_bottom_controller.dart",
+         src="lib/controllers/bottom_sheets_controller/foursome_override_2v2_bottom_controller.dart"),
+
+    dict(key="asslide-3", stack="flutter", file="add_score.dart",
+         src="lib/views/add_score/add_score.dart"),
+    dict(key="asslide-3", stack="flutter", file="add_score_controller.dart",
+         src="lib/controllers/add_score/add_score_controller.dart"),
+
+    dict(key="asslide-4", stack="flutter", file="foursome_bet_bottom_sheet.dart",
+         src="lib/views/bottem_sheets/foursome_bet_bottom_sheet.dart"),
+    dict(key="asslide-4", stack="flutter", file="foursome_bet_bottom_controller.dart",
+         src="lib/controllers/bottom_sheets_controller/foursome_bet_bottom_controller.dart"),
+    dict(key="asslide-4", stack="flutter", file="bet_wolf_bottom_sheet.dart",
+         src="lib/views/bottem_sheets/bet_wolf_bottom_sheet.dart"),
+    dict(key="asslide-4", stack="flutter", file="bet_wolf_bottom_controller.dart",
+         src="lib/controllers/bottom_sheets_controller/bet_wolf_bottom_controller.dart"),
+
+    dict(key="asslide-5", stack="flutter", file="add_score.dart",
+         src="lib/views/add_score/add_score.dart"),
+    dict(key="asslide-5", stack="flutter", file="add_score_controller.dart",
+         src="lib/controllers/add_score/add_score_controller.dart"),
+
+    dict(key="asslide-6", stack="flutter", file="add_score.dart",
+         src="lib/views/add_score/add_score.dart"),
+    dict(key="asslide-6", stack="flutter", file="add_score_controller.dart",
+         src="lib/controllers/add_score/add_score_controller.dart"),
+
+    dict(key="asslide-7", stack="flutter", file="input_score.dart",
+         src="lib/views/add_score/input_score.dart"),
+    dict(key="asslide-7", stack="flutter", file="input_score_controller.dart",
+         src="lib/controllers/add_score/input_score_controller.dart"),
+
+    dict(key="asslide-8", stack="flutter", file="input_score.dart",
+         src="lib/views/add_score/input_score.dart"),
+    dict(key="asslide-8", stack="flutter", file="input_score_controller.dart",
+         src="lib/controllers/add_score/input_score_controller.dart"),
+
+    dict(key="asslide-9", stack="flutter", file="leader_board_screen.dart",
+         src="lib/views/games/leader_board_screen.dart"),
+    dict(key="asslide-9", stack="flutter", file="leader_board_screen_controller.dart",
+         src="lib/controllers/games/leader_board_screen_controller.dart"),
+
+    dict(key="asslide-10", stack="flutter", file="add_score.dart",
+         src="lib/views/add_score/add_score.dart"),
+    dict(key="asslide-10", stack="flutter", file="add_score_controller.dart",
+         src="lib/controllers/add_score/add_score_controller.dart"),
+
+    dict(key="asslide-11", stack="flutter", file="add_score.dart",
+         src="lib/views/add_score/add_score.dart"),
+    dict(key="asslide-11", stack="flutter", file="add_score_controller.dart",
+         src="lib/controllers/add_score/add_score_controller.dart"),
+
+    # ── Add Score — Calcutta unique steps ──
+    dict(key="asslide-calcutta-1", stack="flutter", file="calcutta_round_one_bottom_sheet.dart",
+         src="lib/views/bottem_sheets/calcutta_round_one_bottom_sheet.dart"),
+    dict(key="asslide-calcutta-1", stack="flutter", file="calcutta_round_one_bottom_sheet_controller.dart",
+         src="lib/controllers/bottom_sheets_controller/calcutta_round_one_bottom_sheet_controller.dart"),
+
+    dict(key="asslide-calcutta-2", stack="flutter", file="calcutta_round_select_player_bottom_sheet.dart",
+         src="lib/views/bottem_sheets/calcutta_round_select_player_bottom_sheet.dart"),
+    dict(key="asslide-calcutta-2", stack="flutter", file="calcutta_round_select_player_bottom_sheet_controller.dart",
+         src="lib/controllers/bottom_sheets_controller/calcutta_round_select_player_bottom_sheet_controller.dart"),
+
+    dict(key="asslide-calcutta-5", stack="flutter", file="calcutta_select_player_bottom_sheet.dart",
+         src="lib/views/bottem_sheets/calcutta_select_player_bottom_sheet.dart"),
+    dict(key="asslide-calcutta-5", stack="flutter", file="calcutta_player_select_bottom_controller.dart",
+         src="lib/controllers/bottom_sheets_controller/calcutta_player_select_bottom_controller.dart"),
+
+    dict(key="asslide-calcutta-6", stack="flutter", file="shuffle_cards_bottom_sheet.dart",
+         src="lib/views/bottem_sheets/shuffle_cards_bottom_sheet.dart"),
+    dict(key="asslide-calcutta-6", stack="flutter", file="shuffle_cards_bottom_controller.dart",
+         src="lib/controllers/bottom_sheets_controller/shuffle_cards_bottom_controller.dart"),
+
+    dict(key="asslide-calcutta-7", stack="flutter", file="Calcutta_foursome_match_config_bottom_sheet.dart",
+         src="lib/views/bottem_sheets/Calcutta_foursome_match_config_bottom_sheet.dart"),
+    dict(key="asslide-calcutta-7", stack="flutter", file="Calcutta_foursome_match_config_bottom_sheet_controller.dart",
+         src="lib/controllers/bottom_sheets_controller/Calcutta_foursome_match_config_bottom_sheet_controller.dart"),
+
+    dict(key="asslide-calcutta-8", stack="flutter", file="calcutta_generate_match_config_bottom_sheet.dart",
+         src="lib/views/bottem_sheets/calcutta_generate_match_config_bottom_sheet.dart"),
+    dict(key="asslide-calcutta-8", stack="flutter", file="calcutta_generate_match_config_bottom_controller.dart",
+         src="lib/controllers/bottom_sheets_controller/calcutta_generate_match_config_bottom_controller.dart"),
+
+    # ── Add Score — Ryder Cup unique steps ──
+    dict(key="asslide-ryder_cup-2", stack="flutter", file="pick_player_bottom_sheet.dart",
+         src="lib/views/bottem_sheets/pick_player_bottom_sheet.dart"),
+    dict(key="asslide-ryder_cup-2", stack="flutter", file="pick_bottom_sheet_controller.dart",
+         src="lib/controllers/bottom_sheets_controller/pick_bottom_sheet_controller.dart"),
+
+    dict(key="asslide-ryder_cup-4", stack="flutter", file="select_single_player_bottom_sheet.dart",
+         src="lib/views/bottem_sheets/select_single_player_bottom_sheet.dart"),
+    dict(key="asslide-ryder_cup-4", stack="flutter", file="single_player_select_bottom_controller.dart",
+         src="lib/controllers/bottom_sheets_controller/single_player_select_bottom_controller.dart"),
+
+    dict(key="asslide-ryder_cup-8", stack="flutter", file="ryder_cup_custom_match_bottom.dart",
+         src="lib/views/bottem_sheets/ryder_cup_custom_match_bottom.dart"),
+    dict(key="asslide-ryder_cup-8", stack="flutter", file="ryder_custom_match_bottom_controller.dart",
+         src="lib/controllers/bottom_sheets_controller/ryder_custom_match_bottom_controller.dart"),
+
+    # ── Add Score — Horse Race unique steps ──
+    dict(key="asslide-horse_race-1", stack="flutter", file="horse_acrrosse_select_team_bottom.dart",
+         src="lib/views/bottem_sheets/horse_acrrosse_select_team_bottom.dart"),
+    dict(key="asslide-horse_race-1", stack="flutter", file="horse_across_select_bottom_controller.dart",
+         src="lib/controllers/bottom_sheets_controller/horse_across_select_bottom_controller.dart"),
+
+    dict(key="asslide-horse_race-2", stack="flutter", file="horse_race_group_team_bottom.dart",
+         src="lib/views/bottem_sheets/horse_race_group_team_bottom.dart"),
+    dict(key="asslide-horse_race-2", stack="flutter", file="horse_race_group_team_bottom_controller.dart",
+         src="lib/controllers/bottom_sheets_controller/horse_race_group_team_bottom_controller.dart"),
 ]
 
 
@@ -418,14 +590,39 @@ def build_api_controller_map():
 
 
 # Keys that should always show API docs, even without an existing block.
-# These come from the screens the project has opted in for.
 ALWAYS_OPT_IN_KEYS = {
+    # Sign-up flow
     "sslide-0", "sslide-1", "sslide-2", "sslide-3",
-    "wslide-0", "welcome-detail",
+    # Quick Start Wizard (all steps)
+    "wslide-0", "wslide-1", "wslide-2", "wslide-3", "wslide-4",
+    "wslide-5", "wslide-6", "wslide-7", "wslide-8", "wslide-9",
+    "welcome-detail",
+    # Home / misc
     "agenda-detail", "home-detail",
     "viewgame-detail", "addbets-detail",
+    # View Results
     "vrslide-0", "vrslide-1", "vrslide-2", "vrslide-3",
+    # View Ledger
     "vlslide-0", "vlslide-1", "vlslide-2", "vlslide-3", "vlslide-4",
+    # Add Score — common steps (all game types)
+    "asslide-0",  "asslide-1",  "asslide-2",  "asslide-3",
+    "asslide-4",  "asslide-5",  "asslide-6",  "asslide-7",
+    "asslide-8",  "asslide-9",  "asslide-10", "asslide-11",
+    # Add Score — Calcutta unique steps
+    "asslide-calcutta-0",  "asslide-calcutta-1",  "asslide-calcutta-2",
+    "asslide-calcutta-3",  "asslide-calcutta-4",  "asslide-calcutta-5",
+    "asslide-calcutta-6",  "asslide-calcutta-7",  "asslide-calcutta-8",
+    "asslide-calcutta-9",  "asslide-calcutta-10", "asslide-calcutta-11",
+    "asslide-calcutta-12", "asslide-calcutta-13", "asslide-calcutta-14",
+    "asslide-calcutta-15", "asslide-calcutta-16", "asslide-calcutta-17",
+    # Add Score — Ryder Cup unique steps
+    "asslide-ryder_cup-0", "asslide-ryder_cup-1", "asslide-ryder_cup-2",
+    "asslide-ryder_cup-3", "asslide-ryder_cup-4", "asslide-ryder_cup-5",
+    "asslide-ryder_cup-6", "asslide-ryder_cup-7", "asslide-ryder_cup-8",
+    "asslide-ryder_cup-9",
+    # Add Score — Horse Race unique steps
+    "asslide-horse_race-0", "asslide-horse_race-1",
+    "asslide-horse_race-2", "asslide-horse_race-3",
 }
 
 
