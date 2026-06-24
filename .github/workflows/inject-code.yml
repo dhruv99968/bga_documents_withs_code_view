@@ -49,10 +49,10 @@ jobs:
           git config user.name "bga-pipeline-bot"
           git config user.email "actions@github.com"
 
-          if git diff --quiet index.html; then
+          git add -A
+          if git diff --cached --quiet; then
             echo "No code changes detected — skipping commit."
           else
-            git add index.html
             git commit -m "chore: auto-inject latest Flutter source code [skip ci]"
             git push
           fi
