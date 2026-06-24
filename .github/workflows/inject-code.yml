@@ -43,16 +43,16 @@ jobs:
           DOCS_HTML_PATH: docs-repo/index.html
           FLUTTER_SRC_PATH: flutter-src
 
-      - name: Commit updated files
+      - name: Commit updated index.html
         run: |
           cd docs-repo
           git config user.name "bga-pipeline-bot"
           git config user.email "actions@github.com"
 
-          git add -A
-          if git diff --cached --quiet; then
+          if git diff --quiet index.html; then
             echo "No code changes detected — skipping commit."
           else
+            git add index.html
             git commit -m "chore: auto-inject latest Flutter source code [skip ci]"
             git push
           fi
@@ -60,6 +60,6 @@ jobs:
       - name: Deploy to GitHub Pages (gh-pages)
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.PIPELINE_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: docs-repo
           publish_branch: gh-pages
