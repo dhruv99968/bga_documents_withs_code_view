@@ -2828,4 +2828,831 @@ class AddBetBottomSheet extends GetView<AddBetBottomSheetController> {
   }
 }
 `);
+
+  add("addbets-detail", "flutter", "add_bet_bottom_sheet_controller.dart", `
+import 'package:bga_flutter_app/apis/api_services.dart';
+import 'package:bga_flutter_app/model/game_models/game_details.dart';
+import 'package:bga_flutter_app/utils/show_progress_dialog.dart';
+import 'package:bga_flutter_app/utils/static_data.dart';
+import 'package:bga_flutter_app/utils/toast_message.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../../model/game_models/not_started_game_model.dart';
+
+class AddBetBottomSheetController extends GetxController {
+  final GlobalKey<FormState> formStateKeyWager = GlobalKey<FormState>();
+
+  RxString categoryDropdownKey = UniqueKey().toString().obs;
+  //for category selection
+  RxString selectedCategory = ''.obs;
+  final RxBool isselectedCategory = false.obs;
+  Map<String, String> categoryTypeMapList = {
+    'win_loss': 'Win/Loss',
+    'over_under': 'Over/Under',
+  };
+  //unused
+  RxList<FourSomes> foursomeList = <FourSomes>[].obs;
+  Rx<Game>? gameData = Game().obs;
+  RxList<Players> playerList = <Players>[].obs;
+  HolePars holePars = HolePars();
+  List<Players> gamePlayer = <Players>[].obs;
+  String gameId = "";
+  String teesheetId = "";
+
+  String gameType = "";
+  String tabValue = "";
+  RxString gameHole = "".obs;
+  RxString selectedGameType = "".obs;
+
+  //upcomming game list
+  RxList<LatestUpcomingGame> gameList = <LatestUpcomingGame>[].obs;
+  Rx<LatestUpcomingGame?> selectedItem = Rx<LatestUpcomingGame?>(null);
+
+  String? gameName;
+  String selected = ""; //for game name dynamic
+  int selectedGameId = 0;
+  int selectedOrganizerId = 0;
+  final RxBool isselectedGame = false.obs;
+
+  RxString betTypeDropdownKey = UniqueKey().toString().obs;
+  RxString selectedBetType = ''.obs;
+  final RxBool isselectedBetType = true.obs;
+  var apiService = ApiServices();
+  var progressDialog = ShowProgressDialog();
+  Map<String, String> winloseBetTypeMapList = {};
+
+  RxBool intialvalue = true.obs;
+  TextEditingController maxBetController = TextEditingController(text: "0");
+  final RxBool isMaxBet = false.obs;
+  final RxInt counter = 0.obs;
+
+  //un used for hole
+  RxString holeDropdownKey = UniqueKey().toString().obs;
+  RxString selectedHole = ''.obs;
+  RxList<String> holeStringList = <String>["Hole 1", "Hole 2", "Hole 3"].obs;
+  //used for hole
+  TextEditingController holeController = TextEditingController(text: "0");
+  final RxInt holeCounter = 0.obs;
+  final RxBool isholeController = false.obs;
+
+  RxInt isBetOn = 0.obs; // 1 for Winning and 2 for Losing
+
+  RxInt isPlayerORTeam = 1.obs;
+  RxString chooseSelection = "player".obs;
+  RxString isIndividualOrAccross = "individual".obs;
+  // 1 for player and 2 for team
+
+  final RxBool isplayerORTeamError = true.obs;
+
+  RxList<String> PlayerList = <String>["1", "2", "3", "4"].obs;
+  RxList<int> selectedPlayerListIndex = <int>[].obs;
+  RxBool isSelectedPlayer = false.obs;
+
+  //un used now
+  RxString selectedPlayerName = "".obs;
+  //used
+  RxBool selectedPlayerError = false.obs;
+
+  RxInt forIndividual_AcrossAllGroup =
+      1.obs; // 1 for Individual and 2 for Across All Group
+  RxString selectedIndividual_AcrossAllGroup = "".obs;
+  final RxBool isIndividual = false.obs;
+  final RxBool isAcrossAllGroup = false.obs;
+  final RxBool isforIndividual_AcrossAllGroup = true.obs;
+
+  TextEditingController thresholdController =
+      TextEditingController(text: "1.5");
+  final RxDouble thresholdCounter = 1.5.obs;
+  final RxBool isThresholdController = false.obs;
+
+  RxInt betOnOverUnder = 1.obs; // 1 for Over and 0 for under
+  RxString selectedBetOnOverUnder = "".obs;
+  final RxBool isOver = false.obs;
+  final RxBool isUnder = false.obs;
+  final RxBool isBetsErrorOnOverUnder = true.obs;
+
+  TextEditingController wafgerAmoutController = TextEditingController();
+
+  RxBool intialAmountValue = true.obs;
+
+  RxList<int> selectedMatch = <int>[].obs;
+
+  //un used now
+  RxString selectedTeam = "".obs;
+  final RxBool isTeamSelected = true.obs;
+  //used
+  final RxBool teamSelectederror = false.obs;
+
+// select player and team bothh
+  RxString selectedTeamAndPlayerName = "".obs;
+  RxString selectedPlayerId = "".obs;
+  RxString selectedMatchId = "".obs;
+  RxString selectedTeamId = "".obs;
+  RxString selectedTeamFoursomeId = "0".obs;
+  RxString selectedMatchAndPlayerId = "0".obs;
+  RxList<bool> collapsedList = <bool>[].obs;
+
+  @override
+  void onReady() {
+    // TODO: implement onReady
+    super.onReady();
+
+    getUpcomingGames();
+  }
+
+  //reset allValues()
+  void resetAllValues() {
+    //for select game
+
+    if (gameId.isEmpty && gameName == null && selectedGameId != 0) {
+      isselectedGame.value = false;
+      selectedItem = Rx<LatestUpcomingGame?>(null);
+      selectedGameId = 0;
+    }
+    //category selected = null
+    selectedCategory.value = '';
+    isselectedCategory.value = false;
+
+    //bet type selected = null
+    selectedBetType.value = '';
+    isselectedBetType.value = true;
+
+    //team selected = null
+    selectedTeamAndPlayerName.value = '';
+    teamSelectederror.value = false;
+
+    //choose team or player
+    isPlayerORTeam.value = 1;
+    chooseSelection.value = "player";
+    selectedPlayerId.value = '';
+    selectedMatchId.value = '';
+    selectedTeamId.value = '';
+
+    //player selected = null
+    selectedTeamAndPlayerName.value = '';
+    selectedPlayerError.value = false;
+    selectedPlayerListIndex.clear();
+    isSelectedPlayer.value = false;
+
+    maxBetController.text = '0';
+    counter.value = 0;
+    isMaxBet.value = false;
+
+    holeController.text = '0';
+    isholeController.value = false;
+
+    //Set Threshold = 0
+    thresholdController.text = '1.5';
+    isThresholdController.value = false;
+
+    wafgerAmoutController.text = '';
+
+    //close all drawers
+    intialvalue.value = true;
+  }
+
+  // reset resetCategory()
+  void resetCategory() {
+    //for bet type reset
+    selectedBetType.value = '';
+    print("reset -> Bet Type");
+
+    // reset team value and reset player value
+    if (selectedCategory.value == "win_loss") {
+      //team selected = null
+      selectedTeamAndPlayerName.value = '';
+      teamSelectederror.value = false;
+
+      //choose team or player
+      isPlayerORTeam.value = 1;
+      chooseSelection.value = "player";
+      selectedPlayerId.value = '';
+      selectedMatchId.value = '';
+      selectedTeamId.value = '';
+
+      //player selected = null
+      selectedTeamAndPlayerName.value = '';
+      selectedPlayerError.value = false;
+      selectedPlayerListIndex.clear();
+      isSelectedPlayer.value = false;
+      print("reset -> Team");
+      print("reset -> Player");
+    }
+    if (selectedCategory.value == "over_under") {
+      //reset the for Individual and Across All Group
+      forIndividual_AcrossAllGroup.value =
+          1; // 1 for Individual and 0 for Across All Group
+      print("reset -> Indivial and across all group choice");
+      selectedTeamAndPlayerName.value = '';
+      teamSelectederror.value = false;
+
+      //choose team or player
+      isPlayerORTeam.value = 1;
+      chooseSelection.value = "player";
+      selectedPlayerId.value = '';
+      selectedMatchId.value = '';
+      selectedTeamId.value = '';
+
+      //player selected = null
+      selectedTeamAndPlayerName.value = '';
+      selectedPlayerError.value = false;
+      selectedPlayerListIndex.clear();
+      isSelectedPlayer.value = false;
+      print("player is unselected");
+      selectedPlayerError.value = false;
+      // for team selection
+      teamSelectederror.value = false;
+      print("reset -> Team");
+      print("reset -> Player");
+    }
+
+    //for max bet allowed reset
+    maxBetController.text = "0";
+    counter.value = 0;
+    print("reset -> Max bet");
+
+    //amount reset
+    wafgerAmoutController.text = '';
+    print("reset -> Amount");
+
+    //for bet on winning or losing
+    isBetOn.value = 0; // 0 for Winning and 1 for Losing
+    print("reset -> Bet on(Winning OR Losing)");
+
+    //for threshold reset
+    thresholdController.text = "1.5";
+    thresholdCounter.value = 1.5;
+    print("reset -> Set threshold");
+
+    //drop down reset for Team or Player if any one is opened
+    intialvalue.value = true;
+    print("reset -> Team And Player Drop-Down");
+
+    //hole reset
+    holeController.text = '0';
+    holeCounter.value = 0;
+    print("reset -> Hole");
+
+    // 1 for Over and 0 for under
+    betOnOverUnder.value = 1;
+    print("reset -> Bet on(Over OR Under)");
+  }
+
+  //for hole
+  void dHoleCounter() {
+    if (holeCounter.value > 0) {
+      holeCounter.value -= 1;
+      holeController.text = holeCounter.value.toString();
+      holeCounter.value = int.parse(holeController.text);
+      print("hold DCounter ${holeCounter.value}");
+    }
+    if (holeController.text == '0' || holeCounter.value == 0) {
+      isholeController.value = true;
+    } else {
+      isholeController.value = false;
+    }
+  }
+
+  void iHoleCounter() {
+    if (selectedGameType.value == 'horse_race' && holeCounter.value < 27) {
+      holeCounter.value += 1;
+      holeController.text = holeCounter.value.toString();
+      holeCounter.value = int.parse(holeController.text); // Increment by 0.5
+      print("hold ICounter ${holeCounter.value}");
+    } else if (selectedGameType.value != 'horse_race' &&
+        holeCounter.value < 18) {
+      holeCounter.value += 1;
+      holeController.text = holeCounter.value.toString();
+      holeCounter.value = int.parse(holeController.text); // Increment by 0.5
+      print("hold ICounter ${holeCounter.value}");
+    }
+    if (holeController.text == '0' || holeCounter.value == 0) {
+      isholeController.value = true;
+    } else {
+      isholeController.value = false;
+    }
+  }
+
+  //for max bet value
+  void decrementCounter() {
+    if (counter.value > 0) {
+      counter.value -= 1;
+      maxBetController.text = counter.value.toString();
+      counter.value = int.parse(maxBetController.text);
+      if (maxBetController.text == '0' || counter.value == 0) {
+        isMaxBet.value = true;
+      } else {
+        isMaxBet.value = false;
+      }
+    }
+  }
+
+  void incrementCounter() {
+    counter.value += 1;
+    maxBetController.text = counter.value.toString();
+    counter.value = int.parse(maxBetController.text);
+
+    if (maxBetController.text == '0' || counter.value == 0) {
+      isMaxBet.value = true;
+    } else {
+      isMaxBet.value = false;
+    }
+  }
+
+  // for Threshold
+  void dCounter() {
+    if (thresholdCounter.value > 1.5) {
+      thresholdCounter.value -= 1;
+      thresholdController.text = thresholdCounter.value.toString();
+      thresholdCounter.value = double.parse(thresholdController.text);
+      print("threshold Counter ${thresholdCounter.value}");
+    }
+    if (thresholdController.text == '0' || thresholdCounter.value == 0.0) {
+      isThresholdController.value = true;
+    } else {
+      isThresholdController.value = false;
+    }
+  }
+
+  void iCounter() {
+    thresholdCounter.value += 1;
+    thresholdController.text = thresholdCounter.value.toString();
+    thresholdCounter.value = double.parse(thresholdController.text);
+    print("threshold Counter ${thresholdCounter.value}");
+
+    if (thresholdController.text == '0' || thresholdCounter.value == 0) {
+      isThresholdController.value = true;
+    } else {
+      isThresholdController.value = false;
+    }
+  }
+
+  // for player
+  void selectPlayer(int index, String playeName, String playerId) {
+    if (isSelectedPlayer.value == true &&
+        selectedTeamAndPlayerName.value == playeName) {
+      if (selectedPlayerListIndex.contains(index)) {
+        selectedTeamAndPlayerName.value = '';
+        selectedPlayerId.value = '';
+        selectedPlayerListIndex.remove(index);
+        isSelectedPlayer.value = false;
+        selectedPlayerError.value = true;
+      }
+      selectedTeamAndPlayerName.value = '';
+      selectedPlayerId.value = '';
+      print("player is unselected");
+      isSelectedPlayer.value = false;
+      selectedPlayerError.value = true;
+      // for team selection
+      teamSelectederror.value = true;
+    } else {
+      selectedPlayerListIndex.clear();
+      selectedPlayerListIndex.add(index);
+      selectedTeamAndPlayerName.value = playeName;
+      selectedPlayerId.value = playerId;
+      print("${selectedTeamAndPlayerName.value}");
+      print("player is selected, id -> ${selectedPlayerId.value}");
+      isSelectedPlayer.value = true;
+      selectedPlayerError.value = false;
+    }
+    //hide drop down
+  }
+
+  //for team
+  void selectTeam(String cardteam, String gameMatchId, String matchTeamNo) {
+
+    //hide drop down
+    //for null value
+    if (selectedTeamAndPlayerName.value == '') {
+      selectedTeamAndPlayerName.value = cardteam;
+      selectedMatchId.value = gameMatchId;
+      selectedTeamId.value = matchTeamNo; //team no
+
+      print("team is selected");
+      isTeamSelected.value = true;
+      teamSelectederror.value = false;
+    } else if (selectedTeamAndPlayerName.value != '' &&
+        selectedTeamAndPlayerName.value != cardteam) {
+      selectedTeamAndPlayerName.value = cardteam;
+      selectedMatchId.value = gameMatchId;
+      selectedTeamId.value = matchTeamNo; //team no
+      print("team is selected");
+      isTeamSelected.value = true;
+      teamSelectederror.value = false;
+    }
+  }
+
+  Widget formatCardText(String card) {
+    String suit;
+    Color color;
+
+    // Extract suit and value from the card string
+    if (card.length == 3) {
+      // Handle cases where the card has a two-character value, like "10"
+// Extract "10", "11", etc.
+      suit = card[0];
+    } else {
+      // Handle single-character values, like "A", "K", "Q"
+      suit = card[0];
+    }
+
+    // Map suit to readable symbols and set color
+    switch (suit) {
+      case 'H':
+        suit = '♥';
+        color = Colors.red;
+        break;
+      case 'D':
+        suit = '♦';
+        color = Colors.red;
+        break;
+      case 'C':
+        suit = '♣';
+        color = Colors.black;
+        break;
+      case 'S':
+        suit = '♠';
+        color = Colors.black;
+        break;
+      default:
+        color = Colors.black; // Default color if suit is unknown
+    }
+
+    // Return a Text widget with formatted card text and color
+    return Text(
+      suit,
+      style: TextStyle(
+        color: color,
+        fontSize: 14,
+        fontWeight: FontWeight.w700,
+        fontFamily: 'Inter',
+      ),
+    );
+  }
+
+  String formatHoles(List<String> holes) {
+    if (holes.isEmpty) return '';
+
+    // Convert the list of strings to integers
+    List<int> intHoles = holes.map(int.parse).toList();
+
+    // Sort the list just in case
+    intHoles.sort();
+
+    List<List<int>> groupedHoles = [];
+    List<int> currentGroup = [intHoles[0]];
+
+    for (int i = 1; i < intHoles.length; i++) {
+      if (intHoles[i] == intHoles[i - 1] + 1) {
+        currentGroup.add(intHoles[i]);
+      } else {
+        groupedHoles.add(currentGroup);
+        currentGroup = [intHoles[i]];
+      }
+    }
+    // Add the last group
+    groupedHoles.add(currentGroup);
+
+    // Convert each group to the desired format and join with " | "
+    return groupedHoles.map((group) => group.join("-")).join(" | ");
+  }
+
+  Future<void> save() async {
+    try {
+      bool AllDone = true;
+
+      if (gameId.isEmpty && gameName == null && selectedGameId == 0) {
+        isselectedGame.value = true;
+        AllDone = false;
+      }
+      //category selected = null
+      if (selectedCategory.value == '') {
+        isselectedCategory.value = true;
+        AllDone = false;
+      }
+      //bet type selected = null
+      if (selectedBetType.value == '') {
+        isselectedBetType.value = false;
+        AllDone = false;
+      }
+      //team selected = null
+      if (chooseSelection.value == "team" &&
+          selectedTeamAndPlayerName.value == '') {
+        teamSelectederror.value = true;
+        AllDone = false;
+      }
+      //player selected = null
+      if (chooseSelection.value == "player" &&
+          selectedTeamAndPlayerName.value == '') {
+        selectedPlayerError.value = true;
+        AllDone = false;
+      }
+      if (selectedTeamAndPlayerName.value == '') {
+        teamSelectederror.value = true;
+        selectedPlayerError.value = true;
+        AllDone = false;
+      }
+      if (maxBetController.text == '0' || counter.value == 0) {
+        isMaxBet.value = true;
+        AllDone = false;
+      }
+      if (selectedBetType.value == "bet_on_hole" &&
+          holeController.text == '0') {
+        isholeController.value = true;
+        AllDone = false;
+      }
+      //selectedCategory ==> Over/Under
+      if (selectedCategory.value == "over_under") {
+        //Set Threshold = 0
+        if (thresholdController.text == '0' && thresholdCounter.value == 0) {
+          isThresholdController.value = true;
+          AllDone = false;
+        }
+        //Set Threshold = ""
+        if (thresholdController.text == '') {
+          isThresholdController.value = true;
+          AllDone = false;
+        }
+        //Set Threshold = ""
+        if (thresholdController.text == '0.5') {
+          isThresholdController.value = true;
+          AllDone = false;
+        }
+      }
+
+      // formstate
+      if (formStateKeyWager.currentState?.validate() == true &&
+          AllDone == true) {
+        print("gameId : ${gameId != "" ? gameId : selectedGameId.toString()}");
+        print("category : ${selectedCategory.value}");
+        print("bettiong : ${selectedBetType.value}");
+        print("player or team selection : ${chooseSelection.value}");
+        print("match id: ${selectedMatchId.value}");
+        print("team id: ${selectedTeamId.value}");
+        print("amount : ${wafgerAmoutController.value}");
+        print("max bet: ${maxBetController.text.trim()}");
+        print("bet on selection: ${isBetOn.value == 0 ? "winning" : "losing"}");
+
+        progressDialog.show();
+        var response = await apiService.addBet(
+          gameId: gameId != "" ? gameId : selectedGameId.toString(),
+          // Category -> Win/Lose
+          category: selectedCategory.value, // category
+
+          type: selectedBetType.value, // bettiong
+          betOn: selectedCategory.value == "win_loss"
+              ? chooseSelection.value
+              : isIndividualOrAccross.value, // player or team selection
+          gameMatchId: selectedMatchId.value, // team-> matchId
+          holeNo:
+              selectedBetType.value == "bet_on_hole" ? holeController.text : '',
+          playerId: selectedPlayerId.value,
+          // player-> playerId
+          amount: wafgerAmoutController.text.trim(), // amount
+          //change for opposite side
+          betPrediction: selectedCategory.value == "win_loss"
+              ? isBetOn.value == 0
+                  ? "win"
+                  : "loss"
+              : selectedCategory.value == "over_under"
+                  ? betOnOverUnder.value == 1
+                      ? "over"
+                      : "under"
+                  : "", // bet on selection
+          maxBets: maxBetController.text.trim(), //max bet
+          teamNo: selectedTeamId.value,
+
+          // Category -> Over/Under
+
+          thresholdLine: selectedCategory.value == "win_loss"
+              ? ""
+              : selectedCategory.value == "over_under"
+                  ? thresholdController.text.trim()
+                  : "",
+          organizationId: selectedOrganizerId.toString(),
+          // For individual or across all group
+          // set threshold
+          // over or under selection
+        );
+        progressDialog.hide();
+        if (response.error == false) {
+          ToastMessage.success(message: response.message);
+          Get.back(result: tabValue == "overview" ? "overview" : "My Bets");
+        } else {
+          ToastMessage.error(message: response.message);
+        }
+      } else {
+        ToastMessage.error(message: "Please Fill All Required Field");
+      }
+    } catch (e) {
+      progressDialog.hide();
+      print("On Save Error : $e");
+      ToastMessage.error(message: "Please Fill All Required Field");
+    }
+  }
+
+  String formatHolesToPlay(List<num> holesToPlay) {
+    if (holesToPlay.isEmpty) return '';
+
+    int length = holesToPlay.length;
+
+    // For short lists, return the whole range joined by hyphens
+    if (length <= 3) {
+      return holesToPlay.join('-');
+    }
+
+    // For longer lists, return first 2 and last 1 with ellipsis in between
+    return "${holesToPlay.take(2).join('-')} ... -${holesToPlay.last}";
+  }
+
+  void toggleCollapsed(int index) {
+    if (index >= 0 && index < collapsedList.length) {
+      collapsedList[index] = !collapsedList[index];
+    }
+  }
+
+  //add upcomming game list
+  String? getGameNameById(String gameId, List<LatestUpcomingGame> gameList) {
+    try {
+      final match = gameList.firstWhere((item) => item.id.toString() == gameId
+          );
+      gameId = match.id.toString();
+      return match.gameName;
+    } catch (e) {
+      return null; // ID not found
+    }
+  }
+
+  Future<void> getUpcomingGames({bool showProgress = true}) async {
+    try {
+      if (showProgress) {
+        progressDialog.show();
+      }
+
+      var response = await apiService.notStartedGameList();
+      gameList.clear();
+      print(".......${response.toJson()}");
+      if (showProgress) {
+        progressDialog.hide();
+      }
+
+      if (response.error == false) {
+        gameList.assignAll(response.latestUpcomingGame ?? []);
+        print("${gameList}list lenth");
+        if (gameId != "") {
+          gameName = getGameNameById(gameId, gameList);
+          getGameDetails(int.parse(gameId));
+          print("Game name: $gameName");
+        }
+      } else {
+        ToastMessage.error(message: response.message);
+      }
+    } catch (error) {
+      if (showProgress) {
+        progressDialog.hide();
+      }
+      debugPrint("getUpcomingGames : $error");
+      ToastMessage.error(message: "$error");
+    }
+  }
+
+  //Player list
+  Future<void> getGameDetails(int? num) async {
+    print("${num},,,,,,,,,,,,num");
+
+    try {
+      progressDialog.show();
+
+      var response = await apiService.getGameDetails(gameId: num ?? 0);
+
+      foursomeList.clear();
+      playerList.clear();
+
+      if (response.error == false) {
+        gamePlayer.assignAll(playerList);
+        foursomeList.assignAll(response.data!.fourSomes ?? []);
+        print("$foursomeList...............forsome");
+        collapsedList.value = List.generate(foursomeList.length, (_) => false);
+        print("${playerList}......................player lisst");
+        gameHole.value = response.data!.course!.noOfHoles.toString();
+        print("${gameHole}......................gameHole");
+        selectedGameType.value = response.data!.gameType.toString();
+        if(response.data!.selectedGroupId != null ){
+          teesheetId = response.data!.selectedGroupId!;
+        }
+        getTeeSheetPlayerDetails(teesheetId);
+        if (selectedGameType.value == "wolf") {
+          winloseBetTypeMapList.clear();
+          winloseBetTypeMapList.addAll(StaticData.winloseBetTypeMapList2);
+          winloseBetTypeMapList.remove('most_skins');
+          print("${winloseBetTypeMapList}...............value");
+        }
+        if (selectedGameType.value == "stableford") {
+          winloseBetTypeMapList.clear();
+          winloseBetTypeMapList.addAll(StaticData.winloseBetTypeMapList);
+          winloseBetTypeMapList.remove('on_match');
+          print("${winloseBetTypeMapList}.......stableford........value");
+        }
+        if (selectedGameType.value == "stroke_play") {
+          winloseBetTypeMapList.clear();
+          winloseBetTypeMapList.addAll(StaticData.winloseBetTypeMapList);
+          winloseBetTypeMapList.remove('on_match');
+          print("${winloseBetTypeMapList}.......stableford........value");
+        }
+        if (selectedGameType.value == "progressive_skins" ||
+            selectedGameType.value == "regular_skins" ||
+            selectedGameType.value == "wolf") {
+          //reset the player id
+          selectedTeamAndPlayerName.value = '';
+          selectedTeamId.value = '';
+          selectedMatchId.value = '';
+          selectedPlayerListIndex.clear();
+          isPlayerORTeam.value = 1;
+          chooseSelection.value = "player";
+          print(
+              "GameType :${selectedGameType.value} for select only players also default as team");
+        } else {
+          //reset the player id
+          //choose team or player
+          isPlayerORTeam.value = 1;
+          chooseSelection.value = "player";
+          selectedPlayerId.value = '';
+          selectedMatchId.value = '';
+          selectedTeamId.value = '';
+          print(
+              "GameType :${selectedGameType.value} for select default as player");
+        }
+        print("${selectedGameType}......................gameType");
+
+        debugPrint("isParticipant => ${gameData!.value.isParticipant}");
+        progressDialog.hide();
+      } else {
+        ToastMessage.error(message: response.message);
+        progressDialog.hide();
+      }
+    } catch (error) {
+      progressDialog.hide();
+      debugPrint("getGameDetails : $error");
+      ToastMessage.error(message: "$error");
+    }
+  }
+
+  Future<void> getTeeSheetPlayerDetails(String teesheetId) async {
+    print("${num},,,,,,,,,,,,num");
+
+    try {
+
+      var response = await apiService.getBetTeeSheetPlayer(teesheetId);
+
+      playerList.clear();
+      List<Players> tempPlayerList = [];
+      print("index 0 name ${response.data![0].teamPlayers?[0].name}");
+      print("index 0 id ${response.data![0].teamPlayers?[0].id}");
+      print("index 0 email ${response.data![0].teamPlayers?[0].email}");
+      print("index 0 handicap ${response.data![0].teamPlayers?[0].handicap}");
+      print(
+          "index 0 profilePicture ${response.data![0].teamPlayers?[0].profilePicture}");
+
+      if (response.error == false) {
+        for (var d = 0; d < response.data!.length; d++) {
+          // 🔥 Loop all data[]
+          final teamPlayers = response.data![d].teamPlayers ?? [];
+
+          for (var i = 0; i < teamPlayers.length; i++) {
+            // 🔥 Loop teamPlayers inside each data
+            final p = teamPlayers[i];
+
+            tempPlayerList.add(
+              Players(
+                id: p.id,
+                name: p.name,
+                email: p.email,
+                bgaHcp: p.handicap,
+                profilePicture: p.profilePicture,
+              ),
+            );
+
+            // Debug print
+            print("data index $d - player index $i - name ${p.name}");
+          }
+        }
+
+        gamePlayer.assignAll(playerList);
+        print("${playerList}......................player lisst");
+        print("${tempPlayerList}......................player lisst");
+
+        /// ADD ALL AT ONE TIME → correct place
+        playerList.addAll(tempPlayerList);
+        print("${playerList}......................player lisst");
+        playerList.refresh();
+      } else {
+        ToastMessage.error(message: response.message);
+      }
+    } catch (error) {
+      debugPrint("getGameDetails : $error");
+      ToastMessage.error(message: "$error");
+    }
+  }
+}
+`);
 })();

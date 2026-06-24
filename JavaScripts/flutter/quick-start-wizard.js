@@ -225,7 +225,7 @@ class WelcomeScreen extends GetView<WelcomeController>  {
 
   // -- wslide-1 : Sign Up (Main Wizard) -- (2 files)
   add("wslide-1", "flutter", "signup_screen.dart", `
-dhruv
+//dhruv
 import 'package:flutter/material.dart';
 
 import 'package:flutter/services.dart';
@@ -51541,4 +51541,975 @@ class InputScoreController extends GetxController {
 }
 `);
 
+
+  add("wslide-0", "flutter", "welcome_controller.dart", `
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../resources/tables_keys_values.dart';
+import '../../utils/get_storage_manager.dart';
+
+class WelcomeController extends GetxController{
+
+  int currentYear=0;
+
+  @override
+  void onReady() {
+    currentYear = DateTime.now().year;
+
+    // Store the current year in a string
+    String currentYearString = currentYear.toString();
+    GetStorageManager.setValue(prefYear, currentYearString);
+    debugPrint("year---$currentYearString");
+  }
+
+
+}
+`);
+
+  add("wslide-4", "flutter", "games_and_events.dart", `
+import 'package:bga_flutter_app/controllers/home/games_and_events_controller.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:get/get_state_manager/src/simple/get_view.dart';
+
+import '../../main.dart';
+import '../../resources/color_code.dart';
+import '../../resources/custom_button.dart';
+import '../../resources/custom_style.dart';
+import '../../resources/ripple_click.dart';
+import '../../resources/tables_keys_values.dart';
+import '../../router/routs_names.dart';
+import '../../utils/get_storage_manager.dart';
+import '../../utils/utils_methods.dart';
+import '../../voice_control/draggable_mic_view.dart';
+import '../common_views/drawer_screen.dart';
+
+import '../common_views/menu_icon_view.dart';
+import '../common_views/no_data_view.dart';
+import '../events/event_item.dart';
+import '../games/game_item.dart';
+
+class GamesAndEvents extends GetView<GamesAndEventsController> {
+  final Function(bool) onDrawerSelected;
+  final int tabIndex;
+
+  const GamesAndEvents({super.key, required this.onDrawerSelected, required this.tabIndex});
+
+  @override
+  Widget build(BuildContext context) {
+    var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery.of(context).size.height;
+
+    return GetBuilder<GamesAndEventsController>(builder: (controller) {
+      return WillPopScope(
+        onWillPop: () async {
+          if (tabIndex == 0) {
+            Get.offAllNamed(RoutsNames.mainScreen, arguments: {'index': 2});
+            return false;
+          }
+          return false;
+        },
+        child: Row(
+          children: [
+            if (isWebScreen()) DrawerScreen(),
+            Expanded(
+              child: Stack(
+                children: [
+                  Scaffold(
+                    body: Column(
+                      children: [
+                        SizedBox(
+                          height: (GetStorageManager.getValue(prefUserRole, "role") == "Guest") ? height * 0.50 : height * 0.2,
+                          width: width,
+                          child: Container(
+                            color: ColorCode.bgColor,
+                            child: Stack(
+                              children: [
+                                Center(
+                                  child: Image.asset(
+                                    "assets/images/golf_ball_flag.png",
+                                    height: (GetStorageManager.getValue(prefUserRole, "role") == "Guest") ? height * 0.05 : height * 0.2,
+                                    width: width,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                                Container(
+                                  height: (GetStorageManager.getValue(prefUserRole, "role") == "Guest") ? height * 0.05 : height * 0.2,
+                                  width: width,
+                                  decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                      colors: [Colors.black.withOpacity(0.5), Colors.transparent],
+                                      begin: Alignment.bottomCenter,
+                                      end: Alignment.topCenter,
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(vertical: height * 0.06, horizontal: 15.0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      if (!isWebScreen() && GetStorageManager.getValue(prefUserRole, "role") != "Guest") MenuIconView(size: 45, onTap: () => onDrawerSelected(true)),
+                                      if (!isWebScreen() && GetStorageManager.getValue(prefUserRole, "role") == "Guest")
+                                        RippleClick(
+                                          onTap: () {
+                                            onDrawerSelected(true);
+                                          },
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            children: [
+                                              SizedBox(
+                                                width: 44,
+                                                height: 44,
+                                                child: ClipOval(
+                                                  child: Image.asset(
+                                                    "assets/images/menu_person.png",
+                                                    width: 40, // Set the width of the image
+                                                    height: 40, // Set the height of the image
+                                                    fit: BoxFit.cover, // Ensure the image covers the circular area
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      if (!isWebScreen())
+                                        InkWell(
+                                          onTap: () {
+                                            Get.toNamed(RoutsNames.profile);
+                                          },
+                                          child: Container(
+                                            width: 42,
+                                            height: 42,
+                                            decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              border: Border.all(
+                                                color: ColorCode.menuBorderColor, // Border color
+                                                width: 2, // Border width
+                                              ),
+                                            ),
+                                            child: ClipOval(
+                                              child: customCacheImage(
+                                                url: "${GetStorageManager.getValue(prefProfile, "")}",
+                                                width: 50,
+                                                height: 50,
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                    ],
+                                  ),
+                                ),
+                                if (GetStorageManager.getValue(prefUserRole, "role") != "Guest")
+                                  Positioned(
+                                      bottom: 0,
+                                      child: Container(
+                                        color: Colors.black.withOpacity(0.25),
+                                        child: Row(
+                                          children: [
+                                            Obx(
+                                              () => CustomButtonNew(
+                                                height: height * 0.06,
+                                                width: isWebScreen() ? width * 0.35 : width * 0.5,
+                                                borderWidth: 0.5,
+                                                radius: 0,
+                                                backgroundColor: controller.tab.value == "game" ? Colors.white.withOpacity(0.15) : Colors.white.withOpacity(0.01),
+                                                borderColor: ColorCode.btnBorderColor,
+                                                style: controller.tab.value == "game" ? CustomStyle.whiteTabWithUnderlineStyle : CustomStyle.whiteTabWithoutUnderlineStyle,
+                                                text: "Games",
+                                                onPressed: () {
+                                                  controller.tab.value = "game";
+                                                  GetStorageManager.setValue(prefGETab, "game");
+                                                  controller.getGames();
+                                                  debugPrint("tab--${controller.tab.value}");
+                                                },
+                                              ),
+                                            ),
+                                            Obx(
+                                              () => CustomButtonNew(
+                                                height: height * 0.06,
+                                                width: isWebScreen() ? width * 0.35 : width * 0.5,
+                                                borderWidth: 0.5,
+                                                radius: 0,
+                                                backgroundColor: controller.tab.value == "event" ? Colors.white.withOpacity(0.15) : Colors.white.withOpacity(0.01),
+                                                borderColor: ColorCode.btnBorderColor,
+                                                style: controller.tab.value == "event" ? CustomStyle.whiteTabWithUnderlineStyle : CustomStyle.whiteTabWithoutUnderlineStyle,
+                                                text: "Events",
+                                                onPressed: () {
+                                                  controller.tab.value = "event";
+                                                  GetStorageManager.setValue(prefGETab, "event");
+                                                  controller.getEvents();
+                                                  debugPrint("tab--${controller.tab.value}");
+                                                },
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      )),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Obx(
+                          () => Visibility(
+                            visible: controller.tab.value == "event",
+                            child: Flexible(
+                              child: Padding(
+                                padding: const EdgeInsets.only(top: 10.0, left: 17.0, right: 17.0),
+                                child: SingleChildScrollView(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                            top: controller.myEventList.isNotEmpty && GetStorageManager.getValue(prefUserRole, "role") == "Organizer" ? 10.0 : 0, left: 2, right: 2),
+                                        child: Row(
+                                          mainAxisAlignment: controller.myEventList.isNotEmpty ?
+                                          MainAxisAlignment.start : MainAxisAlignment.end,
+                                          children: [
+                                            if (controller.myEventList.isNotEmpty) Text("My Events", style: CustomStyle.heading4Style),
+                                            SizedBox(width: 5,),
+                                            RippleClick(
+                                              onTap: () async {
+                                                Get.offNamed(
+                                                    RoutsNames.globalSearch,
+                                                    arguments: {"options":"Event"}
+
+                                                );
+                                              },
+                                              child: Container(
+                                                width: 35,
+                                                height: 35,
+                                                decoration: BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                  color: Colors.white,
+                                                  border: Border.all(
+                                                    color: ColorCode.menuBorderColor,
+                                                    // Border color
+                                                    width: 2, // Border width
+                                                  ),
+                                                ),
+                                                child: Container(
+                                                  width: 25,
+                                                  height: 25,
+                                                  alignment: Alignment.center,
+                                                  child: SvgPicture.asset(
+                                                    "assets/icons/search.svg",
+                                                    width: 20,
+                                                    height: 20,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            Spacer(),
+
+                                            if (GetStorageManager.getValue(prefUserRole, "role") == "Organizer" || GetStorageManager.getValue(prefUserRole, "role") == "Player")
+                                              RippleClick(
+                                                onTap: () {
+                                                  Get.toNamed(RoutsNames.navigateToCreateGame, arguments: {"viewType": "Create Event Wizard",'eventTab': true});
+                                                },
+                                                child: Row(
+                                                  children: [
+                                                    const Icon(
+                                                      Icons.add_rounded,
+                                                      size: 30,
+                                                      color: ColorCode.buttonBgColor,
+                                                    ),
+                                                    Text("CREATE EVENT", style: CustomStyle.hyperLinkGreenStyle),
+                                                  ],
+                                                ),
+                                              ),
+                                          ],
+                                        ),
+                                      ),
+                                      if (controller.myEventList.isNotEmpty)
+                                        GridView.builder(
+                                          itemCount: controller.myEventList.length,
+                                          padding: EdgeInsets.zero,
+                                          physics: const NeverScrollableScrollPhysics(),
+                                          shrinkWrap: true,
+                                          itemBuilder: (context, index) {
+                                            return EventGridItem(
+                                              eventDataItem: controller.myEventList[index],
+                                              onDelete: () => controller.myDeleteEvent(id:controller.myEventList[index].id.toString(),index:  index,organizationId: controller.myEventList[index].organizationId.toString()),
+                                            );
+                                          },
+                                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                              childAspectRatio: 0.75, crossAxisCount: isWebScreen() ? 3 : 2, crossAxisSpacing: 16, mainAxisSpacing: 5),
+                                        ),
+                                      if (controller.upcomingEventList.isNotEmpty)
+                                        Padding(
+                                          padding: const EdgeInsets.only(top: 10.0, left: 2, right: 2),
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Text("Upcoming Events", style: CustomStyle.heading4Style),
+                                              SizedBox(width: 5,),
+                                              RippleClick(
+                                                onTap: () async {
+                                                  Get.offNamed(
+                                                      RoutsNames.globalSearch,
+                                                      arguments: {"options":"Event"}
+
+                                                  );
+                                                },
+                                                child: Container(
+                                                  width: 35,
+                                                  height: 35,
+                                                  decoration: BoxDecoration(
+                                                    shape: BoxShape.circle,
+                                                    color: Colors.white,
+                                                    border: Border.all(
+                                                      color: ColorCode.menuBorderColor,
+                                                      // Border color
+                                                      width: 2, // Border width
+                                                    ),
+                                                  ),
+                                                  child: Container(
+                                                    width: 25,
+                                                    height: 25,
+                                                    alignment: Alignment.center,
+                                                    child: SvgPicture.asset(
+                                                      "assets/icons/search.svg",
+                                                      width: 20,
+                                                      height: 20,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              Spacer(),
+                                              RippleClick(
+                                                onTap: () {
+                                                  Get.toNamed(RoutsNames.eventList, arguments: {"viewType": "Upcoming Events"});
+                                                },
+                                                child: Text("VIEW ALL", style: CustomStyle.hyperLinkGreenStyle),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      if (controller.upcomingEventList.isNotEmpty)
+                                        GridView.builder(
+                                          itemCount: controller.upcomingEventList.length > 4 ? 4 : controller.upcomingEventList.length,
+                                          padding: EdgeInsets.zero,
+                                          physics: const NeverScrollableScrollPhysics(),
+                                          shrinkWrap: true,
+                                          itemBuilder: (context, index) {
+                                            return EventGridItem(
+                                              eventDataItem: controller.upcomingEventList[index],
+                                              onDelete: () => controller.upcomingDeleteEvent(id: controller.upcomingEventList[index].id.toString(),index:  index,organizationId: controller.upcomingEventList[index].organizationId.toString()),
+                                            );
+                                          },
+                                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                            childAspectRatio: 0.75,
+                                            crossAxisCount: isWebScreen() ? 3 : 2,
+                                            crossAxisSpacing: 10,
+                                            mainAxisSpacing: 1,
+                                          ),
+                                        ),
+                                      if (controller.pastEventList.isNotEmpty)
+                                        Padding(
+                                          padding: const EdgeInsets.only(top: 10.0, left: 2, right: 2),
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Text("Past Events", style: CustomStyle.heading4Style),
+                                              RippleClick(
+                                                onTap: () {
+                                                  Get.toNamed(RoutsNames.eventList, arguments: {"viewType": "Past Events"});
+                                                },
+                                                child: Text("VIEW ALL", style: CustomStyle.hyperLinkGreenStyle),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      if (controller.pastEventList.isNotEmpty)
+                                        GridView.builder(
+                                          itemCount: controller.pastEventList.length > 4 ? 4 : controller.pastEventList.length,
+                                          padding: EdgeInsets.zero,
+                                          physics: const NeverScrollableScrollPhysics(),
+                                          shrinkWrap: true,
+                                          itemBuilder: (context, index) {
+                                            return EventGridItem(
+                                              eventDataItem: controller.pastEventList[index],
+                                              onDelete: () => controller.pastDeleteEvent(id:controller.pastEventList[index].id.toString(),index:index, organizationId: controller.pastEventList[index].organizationId.toString()),
+                                            );
+                                          },
+                                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                            childAspectRatio: 0.75,
+                                            crossAxisCount: isWebScreen() ? 3 : 2,
+                                            crossAxisSpacing: 10,
+                                            mainAxisSpacing: 1,
+                                          ),
+                                        ),
+                                      if ((controller.myEventList.isEmpty && controller.upcomingEventList.isEmpty && controller.pastEventList.isEmpty)
+                                          && (GetStorageManager.getValue(prefUserRole, "role") == "Organizer" || GetStorageManager.getValue(prefUserRole, "role") == "Player"))
+                                        InkWell(
+                                          onTap:(){
+                                            Get.toNamed(RoutsNames.navigateToCreateGame, arguments: {"viewType": "Create Event Wizard",'eventTab': true});
+                                          },
+                                          child: SizedBox(
+                                            // height: Get.height*0.4,
+                                            height: height * 0.65,
+                                            child: Center(
+                                              child: Column(
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                    "Create Event",
+                                                    style: CustomStyle.columnTitle.copyWith(fontSize: appFontSize.value + 30,color: ColorCode.mainColor,fontWeight:FontWeight.w800  ),
+                                                  ),
+                                                  Icon(Icons.add_circle_outline_rounded,size:50 ,color: ColorCode.mainColor,),
+                                                ],),
+                                            ),
+                                          ),
+                                        ),
+                                        /*SizedBox(
+                                            height: height * 0.65,
+                                            child: NoDataView())*/
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Obx(
+                          () => Visibility(
+                            visible: controller.tab.value == "game",
+                            child: Flexible(
+                              child: Padding(
+                                padding: const EdgeInsets.only(top: 10.0, left: 17.0, right: 17.0),
+                                child: SingleChildScrollView(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                            top: controller.myGameList.isNotEmpty && GetStorageManager.getValue(prefUserRole, "role") == "Organizer" ? 10.0 : 0, left: 2, right: 2),
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          children: [
+                                            if (controller.myGameList.isNotEmpty)
+                                              Text("My Games", style: CustomStyle.heading4Style),
+                                            SizedBox(width: 8,),
+                                            if (controller.myGameList.isNotEmpty)
+                                            RippleClick(
+                                              onTap: () async {
+                                                Get.offNamed(
+                                                  RoutsNames.globalSearch,
+                                                  arguments: {"options":"Games"}
+
+                                                );
+                                              },
+                                              child: Container(
+                                                width: 35,
+                                                height: 35,
+                                                decoration: BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                  color: Colors.white,
+                                                  border: Border.all(
+                                                    color: ColorCode.menuBorderColor,
+                                                    // Border color
+                                                    width: 2, // Border width
+                                                  ),
+                                                ),
+                                                child: Container(
+                                                  width: 25,
+                                                  height: 25,
+                                                  alignment: Alignment.center,
+                                                  child: SvgPicture.asset(
+                                                    "assets/icons/search.svg",
+                                                    width: 20,
+                                                    height: 20,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            Spacer(),
+                                            if ((GetStorageManager.getValue(prefUserRole, "role") == "Organizer" || GetStorageManager.getValue(prefUserRole, "role") == "Player" )&&  controller.myGameList.isNotEmpty)
+                                              RippleClick(
+                                                onTap: () {
+                                                  Get.toNamed(RoutsNames.navigateToCreateGame, arguments: {"viewType": "Create Game Wizard"});
+                                                },
+                                                child: Row(
+                                                  children: [
+                                                    const Icon(
+                                                      Icons.add_rounded,
+                                                      size: 30,
+                                                      color: ColorCode.buttonBgColor,
+                                                    ),
+                                                    Text("CREATE GAME", style: CustomStyle.hyperLinkGreenStyle),
+                                                  ],
+                                                ),
+                                              ),
+                                          ],
+                                        ),
+                                      ),
+                                      GridView.builder(
+                                        itemCount: controller.myGameList.length,
+                                        padding: EdgeInsets.zero,
+                                        physics: const NeverScrollableScrollPhysics(),
+                                        shrinkWrap: true,
+                                        itemBuilder: (context, index) {
+                                          print("game image => ${controller.myGameList[index].logo}");
+                                          return GameGridItem(
+                                            gameDataItem: controller.myGameList[index],
+                                            onDelete: () => controller.myDeleteGame(id:controller.myGameList[index].id.toString(),index: index, organizationId: controller.myGameList[index].organizationId.toString() ),
+                                          );
+                                        },
+                                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                            childAspectRatio: 0.75, crossAxisCount: isWebScreen() ? 3 : 2, crossAxisSpacing: 16, mainAxisSpacing: 5),
+                                      ),
+                                      if (controller.upcomingGameList.isNotEmpty)
+                                        Padding(
+                                          padding: const EdgeInsets.only(top: 10.0, left: 2, right: 2),
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            children: [
+                                              Text("Upcoming Games", style: CustomStyle.number2Style.copyWith(color: ColorCode.vs, fontSize: appFontSize.value + 20)),
+                                              SizedBox(width: 5,),
+                                              RippleClick(
+                                                onTap: () async {
+                                                  Get.offNamed(
+                                                      RoutsNames.globalSearch,
+                                                      arguments: {"options":"Games"}
+
+                                                  );
+                                                },
+                                                child: Container(
+                                                  width: 35,
+                                                  height: 35,
+                                                  decoration: BoxDecoration(
+                                                    shape: BoxShape.circle,
+                                                    color: Colors.white,
+                                                    border: Border.all(
+                                                      color: ColorCode.menuBorderColor,
+                                                      // Border color
+                                                      width: 2, // Border width
+                                                    ),
+                                                  ),
+                                                  child: Container(
+                                                    width: 25,
+                                                    height: 25,
+                                                    alignment: Alignment.center,
+                                                    child: SvgPicture.asset(
+                                                      "assets/icons/search.svg",
+                                                      width: 20,
+                                                      height: 20,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+
+                                              Spacer(),
+                                              RippleClick(
+                                                onTap: () {
+                                                  Get.toNamed(RoutsNames.gameGrid, arguments: {"viewType": "Upcoming Games"});
+                                                },
+                                                child: Text("VIEW ALL", style: CustomStyle.hyperLinkGreenStyle),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      if (controller.upcomingGameList.isNotEmpty)
+                                        GridView.builder(
+                                          itemCount: controller.upcomingGameList.length > 4 ? 4 : controller.upcomingGameList.length,
+                                          padding: EdgeInsets.zero,
+                                          physics: const NeverScrollableScrollPhysics(),
+                                          shrinkWrap: true,
+                                          itemBuilder: (context, index) {
+                                            return GameGridItem(
+                                              gameDataItem: controller.upcomingGameList[index],
+                                              onDelete: () => controller.upcomingDeleteGame(id:controller.upcomingGameList[index].id.toString(),index:  index,organizationId: controller.upcomingGameList[index].organizationId.toString()),
+                                            );
+                                          },
+                                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                              childAspectRatio: 0.75, crossAxisCount: isWebScreen() ? 3 : 2, crossAxisSpacing: 16, mainAxisSpacing: 5),
+                                        ),
+                                      if (controller.pastGameList.isNotEmpty)
+                                        Padding(
+                                          padding: const EdgeInsets.only(top: 10.0, left: 2, right: 2),
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            children: [
+                                              Text("Past Games", style: CustomStyle.number2Style.copyWith(color: ColorCode.vs, fontSize: appFontSize.value + 20)),
+                                              SizedBox(width: 5,),
+                                              RippleClick(
+                                                onTap: () async {
+                                                  Get.offNamed(
+                                                      RoutsNames.globalSearch,
+                                                      arguments: {"options":"Games"}
+
+                                                  );
+                                                },
+                                                child: Container(
+                                                  width: 35,
+                                                  height: 35,
+                                                  decoration: BoxDecoration(
+                                                    shape: BoxShape.circle,
+                                                    color: Colors.white,
+                                                    border: Border.all(
+                                                      color: ColorCode.menuBorderColor,
+                                                      // Border color
+                                                      width: 2, // Border width
+                                                    ),
+                                                  ),
+                                                  child: Container(
+                                                    width: 25,
+                                                    height: 25,
+                                                    alignment: Alignment.center,
+                                                    child: SvgPicture.asset(
+                                                      "assets/icons/search.svg",
+                                                      width: 20,
+                                                      height: 20,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              Spacer(),
+                                              RippleClick(
+                                                onTap: () {
+                                                  Get.toNamed(RoutsNames.gameGrid, arguments: {"viewType": "Past Games"});
+                                                },
+                                                child: Text("VIEW ALL", style: CustomStyle.hyperLinkGreenStyle),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      if (controller.pastGameList.isNotEmpty)
+                                        GridView.builder(
+                                          itemCount: controller.pastGameList.length > 4 ? 4 : controller.pastGameList.length,
+                                          padding: EdgeInsets.zero,
+                                          physics: const NeverScrollableScrollPhysics(),
+                                          shrinkWrap: true,
+                                          itemBuilder: (context, index) {
+                                            return GameGridItem(
+                                              gameDataItem: controller.pastGameList[index],
+                                              onDelete: () => controller.pastDeleteGame(id:controller.pastGameList[index].id.toString(), index: index,organizationId:controller.pastGameList[index].organizationId.toString() ),
+                                            );
+                                          },
+                                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                              childAspectRatio: 0.75, crossAxisCount: isWebScreen() ? 3 : 2, crossAxisSpacing: 16, mainAxisSpacing: 5),
+                                        ),
+                                      if (controller.myGameList.isEmpty && controller.upcomingGameList.isEmpty && controller.pastGameList.isEmpty)
+                                        SizedBox(
+                                            height: height * 0.65,
+                                            child: NoDataView())
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  DraggableMicView(controller: controller)
+                ],
+              ),
+            ),
+          ],
+        ),
+      );
+    });
+  }
+}
+`);
+
+  add("wslide-4", "flutter", "games_and_events_controller.dart", `
+import 'package:bga_flutter_app/resources/tables_keys_values.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../apis/api_services.dart';
+import '../../model/event_models/event_list_model.dart';
+import '../../model/game_list_model.dart';
+import '../../router/routs_names.dart';
+import '../../utils/get_storage_manager.dart';
+import '../../utils/show_progress_dialog.dart';
+import '../../utils/toast_message.dart';
+
+
+class GamesAndEventsController extends GetxController {
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  var tabIndex=1.obs;
+  final role = ''.obs;
+  RxString tab = "game".obs;
+
+  var progressDialog = ShowProgressDialog();
+  var apiService = ApiServices();
+
+  RxList<EventDataItem> upcomingEventList = <EventDataItem>[].obs;
+  RxList<EventDataItem> pastEventList = <EventDataItem>[].obs;
+  RxList<EventDataItem> myEventList = <EventDataItem>[].obs;
+  RxList<GameDataItem> myGameList = <GameDataItem>[].obs;
+  RxList<GameDataItem> upcomingGameList = <GameDataItem>[].obs;
+  RxList<GameDataItem> pastGameList = <GameDataItem>[].obs;
+
+
+  void changeTabIndex(int index) {
+    debugPrint("changeTabIndex : $index");
+    tabIndex.value = index;
+    Get.offAllNamed(RoutsNames.mainScreen, arguments: {'index' : index});
+  }
+  void onDrawerSelected(bool drawerOpen) {
+    if (drawerOpen) {
+      scaffoldKey.currentState?.openDrawer();
+    } else {
+      scaffoldKey.currentState?.openEndDrawer();
+    }
+  }
+
+
+  @override
+  void onReady() {
+    // var data = Get.arguments;
+    tab.value = GetStorageManager.getValue(prefGETab, "game");
+    if(tab.value=="game"){
+      getGames();
+    }else{
+      getEvents();
+    }
+  }
+
+  getAllEvents({bool showProgress = true}) async {
+    if(showProgress) {
+      progressDialog.show();
+    }
+    if(GetStorageManager.getValue(prefUserRole, "role") != "Guest"){
+      await getUpcomingGames();
+      await getMyGames();
+     await getMyEvents();
+    }
+   await getUpcomingEvents();
+    if(showProgress) {
+    progressDialog.hide();
+    }
+  }
+
+  getEvents({bool showProgress = true}) async {
+    if(showProgress) {
+      progressDialog.show();
+    }
+    await getMyEvents();
+    await getUpcomingEvents();
+    if(showProgress) {
+      progressDialog.hide();
+    }
+  }
+
+  getGames({bool showProgress = true}) async {
+    if(showProgress) {
+      progressDialog.show();
+    }
+    await getUpcomingGames();
+    await getMyGames();
+    if(showProgress) {
+      progressDialog.hide();
+    }
+  }
+
+  Future<void> getMyEvents() async {
+    try {
+      var response = await apiService.getMyEventList();
+      myEventList.clear();
+      pastEventList.clear();
+
+      if (response.error == false) {
+        myEventList.addAll(response.myEvents ?? []);
+        pastEventList.addAll(response.pastEvents ?? []);
+      } else {
+        debugPrint("getMyEvents : ${response.message}");
+      }
+    } catch (error) {
+      debugPrint("getMyEvents : $error");
+    }
+  }
+  Future<void> getMyGames() async {
+    try {
+      var response = await apiService.getMyGameList();
+      myGameList.clear();
+      if (response.error == false) {
+        myGameList.addAll(response.upcomingGames ?? []);
+      } else {
+        debugPrint("getMyGames : ${response.message}");
+      }
+    } catch (error) {
+      debugPrint("getMyGames : $error");
+    }
+  }
+  Future<void> getUpcomingGames() async {
+    try {
+      var response = await apiService.getUpcomingGameList();
+      upcomingGameList.clear();
+      pastGameList.clear();
+      if (response.error == false) {
+        upcomingGameList.addAll(response.upcomingGames ?? []);
+        pastGameList.addAll(response.pastGames ?? []);
+      } else {
+        debugPrint("getUpcomingGames : ${response.message}");
+      }
+    } catch (error) {
+      debugPrint("getUpcomingGames : $error");
+    }
+  }
+
+  Future<void> getUpcomingEvents() async {
+    try {
+      var response = await apiService.upcomingEventList();
+
+      upcomingEventList.clear();
+      if (response.error == false) {
+        upcomingEventList.addAll(response.upcomingEvents ?? []);
+      } else {
+        debugPrint("getUpcomingEvents : ${response.message}");
+      }
+    } catch (error) {
+      debugPrint("getUpcomingEvents : $error");
+    }
+  }
+
+  Future<void> upcomingDeleteEvent({required String id ,required int index, required String organizationId,}) async{
+    try {
+      progressDialog.show();
+      var response = await apiService.deleteEvent(id: id,organizationId: organizationId);
+
+      if (response.error == false) {
+        ToastMessage.success(message: response.message);
+        int myEventIndex = myEventList.indexWhere((event) => event.id == int.parse(id));
+
+        if (myEventIndex != -1) {
+          myEventList.removeAt(myEventIndex);
+        }
+        upcomingEventList.removeAt(index);
+        progressDialog.hide();
+
+      } else {
+        ToastMessage.error(message: response.message);
+        progressDialog.hide();
+      }
+    } catch (error) {
+      debugPrint("getMyEvents : $error");
+      progressDialog.hide();
+    }
+  }
+  Future<void> myDeleteEvent({required String id ,required int index, required String organizationId,}) async{
+    try {
+      progressDialog.show();
+      var response = await apiService.deleteEvent(id: id,organizationId: organizationId);
+
+      if (response.error == false) {
+        ToastMessage.success(message: response.message);
+
+        int myEventIndex = upcomingEventList.indexWhere((event) => event.id == int.parse(id));
+
+        if (myEventIndex != -1) {
+          upcomingEventList.removeAt(myEventIndex);
+        }
+        myEventList.removeAt(index);
+        progressDialog.hide();
+      } else {
+        ToastMessage.error(message: response.message);
+        progressDialog.hide();
+      }
+    } catch (error) {
+      debugPrint("getMyEvents : $error");
+      progressDialog.hide();
+    }
+  }
+  Future<void> pastDeleteEvent({required String id ,required int index, required String organizationId,}) async{
+    try {
+      progressDialog.show();
+      var response = await apiService.deleteEvent(id: id,organizationId: organizationId);
+
+      if (response.error == false) {
+        ToastMessage.success(message: response.message);
+        pastEventList.removeAt(index);
+        progressDialog.hide();
+      } else {
+        ToastMessage.error(message: response.message);
+        progressDialog.hide();
+      }
+    } catch (error) {
+      debugPrint("getMyEvents : $error");
+      progressDialog.hide();
+    }
+  }
+
+
+
+  Future<void> myDeleteGame({required String id ,required int index, required String organizationId,}) async{
+    try {
+      progressDialog.show();
+      var response = await apiService.deleteGame(id: id,organizationId: organizationId);
+      if (response.error == false) {
+        ToastMessage.success(message: response.message);
+        int myEventIndex = upcomingGameList.indexWhere((event) => event.id == int.parse(id));
+
+        if (myEventIndex != -1) {
+          upcomingGameList.removeAt(myEventIndex);
+        }
+        myGameList.removeAt(index);
+        progressDialog.hide();
+      } else {
+        ToastMessage.error(message: response.message);
+        progressDialog.hide();
+      }
+    } catch (error) {
+      debugPrint("getMyEvents : $error");
+      progressDialog.hide();
+    }
+  }
+  Future<void> upcomingDeleteGame({required String id ,required int index, required String organizationId,}) async{
+    try {
+      progressDialog.show();
+      var response = await apiService.deleteGame(id: id,organizationId: organizationId);
+      if (response.error == false) {
+        ToastMessage.success(message: response.message);
+        int myEventIndex = myGameList.indexWhere((event) => event.id == int.parse(id));
+
+        if (myEventIndex != -1) {
+          myGameList.removeAt(myEventIndex);
+        }
+        upcomingGameList.removeAt(index);
+        progressDialog.hide();
+      } else {
+        ToastMessage.error(message: response.message);
+        progressDialog.hide();
+      }
+    } catch (error) {
+      debugPrint("getMyEvents : $error");
+      progressDialog.hide();
+    }
+  }
+  Future<void> pastDeleteGame({required String id ,required int index, required String organizationId,}) async{
+    try {
+      progressDialog.show();
+      var response = await apiService.deleteGame(id: id,organizationId: organizationId);
+      if (response.error == false) {
+        ToastMessage.success(message: response.message);
+        pastGameList.removeAt(index);
+        progressDialog.hide();
+      } else {
+        ToastMessage.error(message: response.message);
+        progressDialog.hide();
+      }
+    } catch (error) {
+      debugPrint("getMyEvents : $error");
+      progressDialog.hide();
+    }
+  }
+
+
+}
+`);
 })();
