@@ -49,20 +49,6 @@ jobs:
           DOCS_HTML_PATH: index.html
           FLUTTER_SRC_PATH: ${{ github.workspace }}/flutter-src
 
-      - name: Commit updated files
-        run: |
-          cd docs-repo
-          git config user.name "bga-pipeline-bot"
-          git config user.email "actions@github.com"
-
-          git add index.html JavaScripts/code-data-flutter.js JavaScripts/code-data-apis.js
-          if git diff --cached --quiet; then
-            echo "No code changes detected — skipping commit."
-          else
-            git commit -m "chore: auto-inject latest Flutter source code [skip ci]"
-            git push
-          fi
-
       - name: Deploy to GitHub Pages (gh-pages)
         uses: peaceiris/actions-gh-pages@v4
         with:
