@@ -326,10 +326,36 @@ FILE_MAP = [
 # ──────────────────────────────────────────────────────────────────────────
 
 EXTERNAL_JS_TARGETS = {
+    # ── Quick Start Wizard (wslide-0 … wslide-9) ──
+    "wslide-0":  {"flutter": "JavaScripts/flutter/quick-start-wizard.js", "apis": "JavaScripts/api/quick-start-wizard.js"},
+    "wslide-1":  {"flutter": "JavaScripts/flutter/quick-start-wizard.js", "apis": "JavaScripts/api/quick-start-wizard.js"},
+    "wslide-2":  {"flutter": "JavaScripts/flutter/quick-start-wizard.js", "apis": "JavaScripts/api/quick-start-wizard.js"},
+    "wslide-3":  {"flutter": "JavaScripts/flutter/quick-start-wizard.js", "apis": "JavaScripts/api/quick-start-wizard.js"},
+    "wslide-4":  {"flutter": "JavaScripts/flutter/quick-start-wizard.js", "apis": "JavaScripts/api/quick-start-wizard.js"},
+    "wslide-5":  {"flutter": "JavaScripts/flutter/quick-start-wizard.js", "apis": "JavaScripts/api/quick-start-wizard.js"},
+    "wslide-6":  {"flutter": "JavaScripts/flutter/quick-start-wizard.js", "apis": "JavaScripts/api/quick-start-wizard.js"},
+    "wslide-7":  {"flutter": "JavaScripts/flutter/quick-start-wizard.js", "apis": "JavaScripts/api/quick-start-wizard.js"},
+    "wslide-8":  {"flutter": "JavaScripts/flutter/quick-start-wizard.js", "apis": "JavaScripts/api/quick-start-wizard.js"},
+    "wslide-9":  {"flutter": "JavaScripts/flutter/quick-start-wizard.js", "apis": "JavaScripts/api/quick-start-wizard.js"},
+    # ── Add Score — Common steps (asslide-0 … asslide-11) ──
+    "asslide-0":  {"flutter": "JavaScripts/flutter/add-score.js", "apis": "JavaScripts/api/add-score-common.js"},
+    "asslide-1":  {"flutter": "JavaScripts/flutter/add-score.js", "apis": "JavaScripts/api/add-score-common.js"},
+    "asslide-2":  {"flutter": "JavaScripts/flutter/add-score.js", "apis": "JavaScripts/api/add-score-common.js"},
+    "asslide-3":  {"flutter": "JavaScripts/flutter/add-score.js", "apis": "JavaScripts/api/add-score-common.js"},
+    "asslide-4":  {"flutter": "JavaScripts/flutter/add-score.js", "apis": "JavaScripts/api/add-score-common.js"},
+    "asslide-5":  {"flutter": "JavaScripts/flutter/add-score.js", "apis": "JavaScripts/api/add-score-common.js"},
+    "asslide-6":  {"flutter": "JavaScripts/flutter/add-score.js", "apis": "JavaScripts/api/add-score-common.js"},
+    "asslide-7":  {"flutter": "JavaScripts/flutter/add-score.js", "apis": "JavaScripts/api/add-score-common.js"},
+    "asslide-8":  {"flutter": "JavaScripts/flutter/add-score.js", "apis": "JavaScripts/api/add-score-common.js"},
+    "asslide-9":  {"flutter": "JavaScripts/flutter/add-score.js", "apis": "JavaScripts/api/add-score-common.js"},
+    "asslide-10": {"flutter": "JavaScripts/flutter/add-score.js", "apis": "JavaScripts/api/add-score-common.js"},
+    "asslide-11": {"flutter": "JavaScripts/flutter/add-score.js", "apis": "JavaScripts/api/add-score-common.js"},
+    # ── View Results (vrslide-0 … vrslide-3) ──
     "vrslide-0": {"flutter": "JavaScripts/flutter/view-results.js", "apis": "JavaScripts/api/view-results.js"},
     "vrslide-1": {"flutter": "JavaScripts/flutter/view-results.js", "apis": "JavaScripts/api/view-results.js"},
     "vrslide-2": {"flutter": "JavaScripts/flutter/view-results.js", "apis": "JavaScripts/api/view-results.js"},
     "vrslide-3": {"flutter": "JavaScripts/flutter/view-results.js", "apis": "JavaScripts/api/view-results.js"},
+    # ── View Ledger (vlslide-0 … vlslide-4) ──
     "vlslide-0": {"flutter": "JavaScripts/flutter/view-ledger.js", "apis": "JavaScripts/api/view-ledger.js"},
     "vlslide-1": {"flutter": "JavaScripts/flutter/view-ledger.js", "apis": "JavaScripts/api/view-ledger.js"},
     "vlslide-2": {"flutter": "JavaScripts/flutter/view-ledger.js", "apis": "JavaScripts/api/view-ledger.js"},
