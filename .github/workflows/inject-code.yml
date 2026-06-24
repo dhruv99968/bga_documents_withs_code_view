@@ -4,11 +4,11 @@ on:
   repository_dispatch:
     types: [flutter-code-updated]
   workflow_dispatch:
-  push:
-    branches: [main]
 
 permissions:
   contents: write
+  id-token: write
+  pages: write
 
 jobs:
   inject:
@@ -57,9 +57,12 @@ jobs:
             git push
           fi
 
-      - name: Deploy to GitHub Pages (gh-pages)
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: docs-repo
-          publish_branch: gh-pages
+          path: docs-repo
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
