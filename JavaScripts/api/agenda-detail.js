@@ -11,7 +11,7 @@ window.CODE_DATA = window.CODE_DATA || {};
   }
 
   add("agenda-detail", "apis", "deleteEvent", `
-// DELETE {{baseUrl}}/api/event/$id/delete
+// DELETE {{baseUrl}}/api/event/\$id/delete
 // Controller: home_controller.dart → apiService.deleteEvent()
 
 Dart Method:
@@ -21,7 +21,7 @@ Dart Method:
   }) → Future&lt;DefaultModel&gt;
 
 HTTP Request:
-  DELETE {{baseUrl}}/api/event/$id/delete
+  DELETE {{baseUrl}}/api/event/\$id/delete
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -33,7 +33,7 @@ Response (DefaultModel):
 `);
 
   add("agenda-detail", "apis", "deleteGame", `
-// DELETE {{baseUrl}}/api/games/$id/delete
+// DELETE {{baseUrl}}/api/games/\$id/delete
 // Controller: home_controller.dart → apiService.deleteGame()
 
 Dart Method:
@@ -43,7 +43,7 @@ Dart Method:
   }) → Future&lt;DefaultModel&gt;
 
 HTTP Request:
-  DELETE {{baseUrl}}/api/games/$id/delete
+  DELETE {{baseUrl}}/api/games/\$id/delete
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 

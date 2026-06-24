@@ -150,7 +150,7 @@ Response (DefaultModel):
 `);
 
   add("sslide-2", "apis", "loginUser", `
-// POST {{baseUrl}}/${StaticData.apiLoginUrl}/realms/users/protocol/openid-connect/token
+// POST {{baseUrl}}/\${StaticData.apiLoginUrl}/realms/users/protocol/openid-connect/token
 // Controller: change_password_controller.dart → apiService.loginUser()
 
 Dart Method:
@@ -160,7 +160,7 @@ Dart Method:
   }) → Future&lt;LoginModel?&gt;
 
 HTTP Request:
-  POST {{baseUrl}}/${StaticData.apiLoginUrl}/realms/users/protocol/openid-connect/token
+  POST {{baseUrl}}/\${StaticData.apiLoginUrl}/realms/users/protocol/openid-connect/token
   Content-Type: application/json
 
 Request Body:
@@ -300,7 +300,7 @@ Response (DefaultModel):
 `);
 
   add("sslide-3", "apis", "deleteCourse", `
-// DELETE {{baseUrl}}/api/course/$id/delete
+// DELETE {{baseUrl}}/api/course/\$id/delete
 // Controller: course_controller.dart → apiService.deleteCourse()
 
 Dart Method:
@@ -309,7 +309,7 @@ Dart Method:
   }) → Future&lt;DefaultModel&gt;
 
 HTTP Request:
-  DELETE {{baseUrl}}/api/course/$id/delete
+  DELETE {{baseUrl}}/api/course/\$id/delete
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -321,7 +321,7 @@ Response (DefaultModel):
 `);
 
   add("sslide-3", "apis", "getFilterCourseList", `
-// GET {{baseUrl}}/api/course?city=$city&state=$state&country=$countryCode
+// GET {{baseUrl}}/api/course?city=\$city&state=\$state&country=\$countryCode
 // Controller: course_controller.dart → apiService.getFilterCourseList()
 
 Dart Method:
@@ -332,7 +332,7 @@ Dart Method:
   }) → Future&lt;CourseListModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/course?city=$city&state=$state&country=$countryCode
+  GET {{baseUrl}}/api/course?city=\$city&state=\$state&country=\$countryCode
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 

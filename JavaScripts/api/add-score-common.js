@@ -354,7 +354,7 @@ Response 200:
 
 
   add("asslide-0", "apis", "endFourSome", `
-// GET {{baseUrl}}/api/foursome/$foursomeId/game/end
+// GET {{baseUrl}}/api/foursome/\$foursomeId/game/end
 // Controller: add_score_controller.dart → apiService.endFourSome()
 
 Dart Method:
@@ -364,7 +364,7 @@ Dart Method:
   }) → Future&lt;DefaultModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/foursome/$foursomeId/game/end
+  GET {{baseUrl}}/api/foursome/\$foursomeId/game/end
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -376,7 +376,7 @@ Response (DefaultModel):
 `);
 
   add("asslide-0", "apis", "getCalcuttaRounds", `
-// GET {{baseUrl}}/api/games/calcutta/game/$gameId/round/players
+// GET {{baseUrl}}/api/games/calcutta/game/\$gameId/round/players
 // Controller: add_score_controller.dart → apiService.getCalcuttaRounds()
 
 Dart Method:
@@ -385,7 +385,7 @@ Dart Method:
   }) → Future&lt;CalcuttaRoundsModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/games/calcutta/game/$gameId/round/players
+  GET {{baseUrl}}/api/games/calcutta/game/\$gameId/round/players
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -397,7 +397,7 @@ Response (CalcuttaRoundsModel):
 `);
 
   add("asslide-0", "apis", "getCompletedHoles", `
-// GET {{baseUrl}}/api/scorecard/game/$gameId/completed/holes
+// GET {{baseUrl}}/api/scorecard/game/\$gameId/completed/holes
 // Controller: add_score_controller.dart → apiService.getCompletedHoles()
 
 Dart Method:
@@ -407,7 +407,7 @@ Dart Method:
   }) → Future&lt;CompletedHolesModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/scorecard/game/$gameId/completed/holes
+  GET {{baseUrl}}/api/scorecard/game/\$gameId/completed/holes
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -419,7 +419,7 @@ Response (CompletedHolesModel):
 `);
 
   add("asslide-0", "apis", "getFoursome", `
-// GET {{baseUrl}}/api/games/$gameID/foursomes/list
+// GET {{baseUrl}}/api/games/\$gameID/foursomes/list
 // Controller: add_score_controller.dart → apiService.getFoursome()
 
 Dart Method:
@@ -429,7 +429,7 @@ Dart Method:
   }) → Future&lt;CalcuttaFoursomeModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/games/$gameID/foursomes/list
+  GET {{baseUrl}}/api/games/\$gameID/foursomes/list
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -522,7 +522,7 @@ Response (DefaultModel):
 `);
 
   add("asslide-1", "apis", "getFourSomePlayer", `
-// GET {{baseUrl}}/api/foursome/$foursomeId/players
+// GET {{baseUrl}}/api/foursome/\$foursomeId/players
 // Controller: foursome_bottom_controller.dart → apiService.getFourSomePlayer()
 
 Dart Method:
@@ -531,7 +531,7 @@ Dart Method:
   }) → Future&lt;TeesheetOnlyPlayerModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/foursome/$foursomeId/players
+  GET {{baseUrl}}/api/foursome/\$foursomeId/players
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -543,7 +543,7 @@ Response (TeesheetOnlyPlayerModel):
 `);
 
   add("asslide-2", "apis", "getVegasCodMatches", `
-// GET {{baseUrl}}/api/games/$gameID/foursome/$foursomeId/generate/matches
+// GET {{baseUrl}}/api/games/\$gameID/foursome/\$foursomeId/generate/matches
 // Controller: vegas_match_config_bottom_controller.dart → apiService.getVegasCodMatches()
 
 Dart Method:
@@ -553,7 +553,7 @@ Dart Method:
   }) → Future&lt;VegasCodModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/games/$gameID/foursome/$foursomeId/generate/matches
+  GET {{baseUrl}}/api/games/\$gameID/foursome/\$foursomeId/generate/matches
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -565,7 +565,7 @@ Response (VegasCodModel):
 `);
 
   add("asslide-3", "apis", "endFourSome", `
-// GET {{baseUrl}}/api/foursome/$foursomeId/game/end
+// GET {{baseUrl}}/api/foursome/\$foursomeId/game/end
 // Controller: add_score_controller.dart → apiService.endFourSome()
 
 Dart Method:
@@ -575,7 +575,7 @@ Dart Method:
   }) → Future&lt;DefaultModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/foursome/$foursomeId/game/end
+  GET {{baseUrl}}/api/foursome/\$foursomeId/game/end
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -587,7 +587,7 @@ Response (DefaultModel):
 `);
 
   add("asslide-3", "apis", "getCalcuttaRounds", `
-// GET {{baseUrl}}/api/games/calcutta/game/$gameId/round/players
+// GET {{baseUrl}}/api/games/calcutta/game/\$gameId/round/players
 // Controller: add_score_controller.dart → apiService.getCalcuttaRounds()
 
 Dart Method:
@@ -596,7 +596,7 @@ Dart Method:
   }) → Future&lt;CalcuttaRoundsModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/games/calcutta/game/$gameId/round/players
+  GET {{baseUrl}}/api/games/calcutta/game/\$gameId/round/players
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -608,7 +608,7 @@ Response (CalcuttaRoundsModel):
 `);
 
   add("asslide-3", "apis", "getCompletedHoles", `
-// GET {{baseUrl}}/api/scorecard/game/$gameId/completed/holes
+// GET {{baseUrl}}/api/scorecard/game/\$gameId/completed/holes
 // Controller: add_score_controller.dart → apiService.getCompletedHoles()
 
 Dart Method:
@@ -618,7 +618,7 @@ Dart Method:
   }) → Future&lt;CompletedHolesModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/scorecard/game/$gameId/completed/holes
+  GET {{baseUrl}}/api/scorecard/game/\$gameId/completed/holes
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -630,7 +630,7 @@ Response (CompletedHolesModel):
 `);
 
   add("asslide-3", "apis", "getFoursome", `
-// GET {{baseUrl}}/api/games/$gameID/foursomes/list
+// GET {{baseUrl}}/api/games/\$gameID/foursomes/list
 // Controller: add_score_controller.dart → apiService.getFoursome()
 
 Dart Method:
@@ -640,7 +640,7 @@ Dart Method:
   }) → Future&lt;CalcuttaFoursomeModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/games/$gameID/foursomes/list
+  GET {{baseUrl}}/api/games/\$gameID/foursomes/list
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -733,7 +733,7 @@ Response (DefaultModel):
 `);
 
   add("asslide-4", "apis", "getFourSomePlayer", `
-// GET {{baseUrl}}/api/foursome/$foursomeId/players
+// GET {{baseUrl}}/api/foursome/\$foursomeId/players
 // Controller: foursome_bet_bottom_controller.dart → apiService.getFourSomePlayer()
 
 Dart Method:
@@ -742,7 +742,7 @@ Dart Method:
   }) → Future&lt;TeesheetOnlyPlayerModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/foursome/$foursomeId/players
+  GET {{baseUrl}}/api/foursome/\$foursomeId/players
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -754,7 +754,7 @@ Response (TeesheetOnlyPlayerModel):
 `);
 
   add("asslide-4", "apis", "getFoursomeOverride", `
-// GET {{baseUrl}}/api/games/$gameID/foursome/$foursomeId/override
+// GET {{baseUrl}}/api/games/\$gameID/foursome/\$foursomeId/override
 // Controller: foursome_bet_bottom_controller.dart → apiService.getFoursomeOverride()
 
 Dart Method:
@@ -765,7 +765,7 @@ Dart Method:
   }) → Future&lt;GetFoursomeOverrideModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/games/$gameID/foursome/$foursomeId/override
+  GET {{baseUrl}}/api/games/\$gameID/foursome/\$foursomeId/override
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -777,7 +777,7 @@ Response (GetFoursomeOverrideModel):
 `);
 
   add("asslide-5", "apis", "endFourSome", `
-// GET {{baseUrl}}/api/foursome/$foursomeId/game/end
+// GET {{baseUrl}}/api/foursome/\$foursomeId/game/end
 // Controller: add_score_controller.dart → apiService.endFourSome()
 
 Dart Method:
@@ -787,7 +787,7 @@ Dart Method:
   }) → Future&lt;DefaultModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/foursome/$foursomeId/game/end
+  GET {{baseUrl}}/api/foursome/\$foursomeId/game/end
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -799,7 +799,7 @@ Response (DefaultModel):
 `);
 
   add("asslide-5", "apis", "getCalcuttaRounds", `
-// GET {{baseUrl}}/api/games/calcutta/game/$gameId/round/players
+// GET {{baseUrl}}/api/games/calcutta/game/\$gameId/round/players
 // Controller: add_score_controller.dart → apiService.getCalcuttaRounds()
 
 Dart Method:
@@ -808,7 +808,7 @@ Dart Method:
   }) → Future&lt;CalcuttaRoundsModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/games/calcutta/game/$gameId/round/players
+  GET {{baseUrl}}/api/games/calcutta/game/\$gameId/round/players
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -820,7 +820,7 @@ Response (CalcuttaRoundsModel):
 `);
 
   add("asslide-5", "apis", "getCompletedHoles", `
-// GET {{baseUrl}}/api/scorecard/game/$gameId/completed/holes
+// GET {{baseUrl}}/api/scorecard/game/\$gameId/completed/holes
 // Controller: add_score_controller.dart → apiService.getCompletedHoles()
 
 Dart Method:
@@ -830,7 +830,7 @@ Dart Method:
   }) → Future&lt;CompletedHolesModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/scorecard/game/$gameId/completed/holes
+  GET {{baseUrl}}/api/scorecard/game/\$gameId/completed/holes
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -842,7 +842,7 @@ Response (CompletedHolesModel):
 `);
 
   add("asslide-5", "apis", "getFoursome", `
-// GET {{baseUrl}}/api/games/$gameID/foursomes/list
+// GET {{baseUrl}}/api/games/\$gameID/foursomes/list
 // Controller: add_score_controller.dart → apiService.getFoursome()
 
 Dart Method:
@@ -852,7 +852,7 @@ Dart Method:
   }) → Future&lt;CalcuttaFoursomeModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/games/$gameID/foursomes/list
+  GET {{baseUrl}}/api/games/\$gameID/foursomes/list
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -945,7 +945,7 @@ Response (DefaultModel):
 `);
 
   add("asslide-6", "apis", "endFourSome", `
-// GET {{baseUrl}}/api/foursome/$foursomeId/game/end
+// GET {{baseUrl}}/api/foursome/\$foursomeId/game/end
 // Controller: add_score_controller.dart → apiService.endFourSome()
 
 Dart Method:
@@ -955,7 +955,7 @@ Dart Method:
   }) → Future&lt;DefaultModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/foursome/$foursomeId/game/end
+  GET {{baseUrl}}/api/foursome/\$foursomeId/game/end
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -967,7 +967,7 @@ Response (DefaultModel):
 `);
 
   add("asslide-6", "apis", "getCalcuttaRounds", `
-// GET {{baseUrl}}/api/games/calcutta/game/$gameId/round/players
+// GET {{baseUrl}}/api/games/calcutta/game/\$gameId/round/players
 // Controller: add_score_controller.dart → apiService.getCalcuttaRounds()
 
 Dart Method:
@@ -976,7 +976,7 @@ Dart Method:
   }) → Future&lt;CalcuttaRoundsModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/games/calcutta/game/$gameId/round/players
+  GET {{baseUrl}}/api/games/calcutta/game/\$gameId/round/players
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -988,7 +988,7 @@ Response (CalcuttaRoundsModel):
 `);
 
   add("asslide-6", "apis", "getCompletedHoles", `
-// GET {{baseUrl}}/api/scorecard/game/$gameId/completed/holes
+// GET {{baseUrl}}/api/scorecard/game/\$gameId/completed/holes
 // Controller: add_score_controller.dart → apiService.getCompletedHoles()
 
 Dart Method:
@@ -998,7 +998,7 @@ Dart Method:
   }) → Future&lt;CompletedHolesModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/scorecard/game/$gameId/completed/holes
+  GET {{baseUrl}}/api/scorecard/game/\$gameId/completed/holes
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1010,7 +1010,7 @@ Response (CompletedHolesModel):
 `);
 
   add("asslide-6", "apis", "getFoursome", `
-// GET {{baseUrl}}/api/games/$gameID/foursomes/list
+// GET {{baseUrl}}/api/games/\$gameID/foursomes/list
 // Controller: add_score_controller.dart → apiService.getFoursome()
 
 Dart Method:
@@ -1020,7 +1020,7 @@ Dart Method:
   }) → Future&lt;CalcuttaFoursomeModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/games/$gameID/foursomes/list
+  GET {{baseUrl}}/api/games/\$gameID/foursomes/list
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1229,7 +1229,7 @@ Response (DefaultModel):
 `);
 
   add("asslide-7", "apis", "getBetDetails", `
-// GET {{baseUrl}}/api/scorecard/game/$gameId/hole/$holeNo/foursome/$foursomeId/bet/details
+// GET {{baseUrl}}/api/scorecard/game/\$gameId/hole/\$holeNo/foursome/\$foursomeId/bet/details
 // Controller: input_score_controller.dart → apiService.getBetDetails()
 
 Dart Method:
@@ -1241,7 +1241,7 @@ Dart Method:
   }) → Future&lt;BetDetailsModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/scorecard/game/$gameId/hole/$holeNo/foursome/$foursomeId/bet/details
+  GET {{baseUrl}}/api/scorecard/game/\$gameId/hole/\$holeNo/foursome/\$foursomeId/bet/details
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1253,7 +1253,7 @@ Response (BetDetailsModel):
 `);
 
   add("asslide-7", "apis", "getFoursomeOverride", `
-// GET {{baseUrl}}/api/games/$gameID/foursome/$foursomeId/override
+// GET {{baseUrl}}/api/games/\$gameID/foursome/\$foursomeId/override
 // Controller: input_score_controller.dart → apiService.getFoursomeOverride()
 
 Dart Method:
@@ -1264,7 +1264,7 @@ Dart Method:
   }) → Future&lt;GetFoursomeOverrideModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/games/$gameID/foursome/$foursomeId/override
+  GET {{baseUrl}}/api/games/\$gameID/foursome/\$foursomeId/override
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1276,7 +1276,7 @@ Response (GetFoursomeOverrideModel):
 `);
 
   add("asslide-7", "apis", "getFoursomeTeam", `
-// GET {{baseUrl}}/api/result/game/$gameID/foursome/$foursomeId/team/points
+// GET {{baseUrl}}/api/result/game/\$gameID/foursome/\$foursomeId/team/points
 // Controller: input_score_controller.dart → apiService.getFoursomeTeam()
 
 Dart Method:
@@ -1286,7 +1286,7 @@ Dart Method:
   }) → Future&lt;FoursomeTeamModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameID/foursome/$foursomeId/team/points
+  GET {{baseUrl}}/api/result/game/\$gameID/foursome/\$foursomeId/team/points
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1298,7 +1298,7 @@ Response (FoursomeTeamModel):
 `);
 
   add("asslide-7", "apis", "getGameDetails", `
-// GET {{baseUrl}}/api/games/$gameId/details
+// GET {{baseUrl}}/api/games/\$gameId/details
 // Controller: input_score_controller.dart → apiService.getGameDetails()
 
 Dart Method:
@@ -1308,7 +1308,7 @@ Dart Method:
   }) → Future&lt;GameDetails&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/games/$gameId/details
+  GET {{baseUrl}}/api/games/\$gameId/details
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1320,7 +1320,7 @@ Response (GameDetails):
 `);
 
   add("asslide-7", "apis", "getHoleData", `
-// GET {{baseUrl}}/api/scorecard/game/$gameId/hole/$holeId/list?foursome_id=$fourSomeId
+// GET {{baseUrl}}/api/scorecard/game/\$gameId/hole/\$holeId/list?foursome_id=\$fourSomeId
 // Controller: input_score_controller.dart → apiService.getHoleData()
 
 Dart Method:
@@ -1332,7 +1332,7 @@ Dart Method:
   }) → Future&lt;HoleDetailsModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/scorecard/game/$gameId/hole/$holeId/list?foursome_id=$fourSomeId
+  GET {{baseUrl}}/api/scorecard/game/\$gameId/hole/\$holeId/list?foursome_id=\$fourSomeId
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1363,7 +1363,7 @@ Response (SkodeJunkModel):
 `);
 
   add("asslide-7", "apis", "getPersonalGameHoleData", `
-// GET {{baseUrl}}/api/personal-game/$gameId/hole/${int.tryParse(holeNo.toString())?.toString()}/scorecard
+// GET {{baseUrl}}/api/personal-game/\$gameId/hole/\${int.tryParse(holeNo.toString())?.toString()}/scorecard
 // Controller: input_score_controller.dart → apiService.getPersonalGameHoleData()
 
 Dart Method:
@@ -1373,7 +1373,7 @@ Dart Method:
   }) → Future&lt;PersonalGameHoleDataModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/personal-game/$gameId/hole/${int.tryParse(holeNo.toString())?.toString()}/scorecard
+  GET {{baseUrl}}/api/personal-game/\$gameId/hole/\${int.tryParse(holeNo.toString())?.toString()}/scorecard
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1385,7 +1385,7 @@ Response (PersonalGameHoleDataModel):
 `);
 
   add("asslide-7", "apis", "getPersonalGameResult", `
-// GET {{baseUrl}}/api/personal-game/$gameId/result
+// GET {{baseUrl}}/api/personal-game/\$gameId/result
 // Controller: input_score_controller.dart → apiService.getPersonalGameResult()
 
 Dart Method:
@@ -1394,7 +1394,7 @@ Dart Method:
   }) → Future&lt;GameResultModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/personal-game/$gameId/result
+  GET {{baseUrl}}/api/personal-game/\$gameId/result
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1406,7 +1406,7 @@ Response (GameResultModel):
 `);
 
   add("asslide-7", "apis", "getResult", `
-// GET {{baseUrl}}/api/result/game/$gameId?foursome_id=$foursomeId
+// GET {{baseUrl}}/api/result/game/\$gameId?foursome_id=\$foursomeId
 // Controller: input_score_controller.dart → apiService.getResult()
 
 Dart Method:
@@ -1417,7 +1417,7 @@ Dart Method:
   }) → Future&lt;GameResultModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameId?foursome_id=$foursomeId
+  GET {{baseUrl}}/api/result/game/\$gameId?foursome_id=\$foursomeId
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1448,7 +1448,7 @@ Response (SkodeJunkModel):
 `);
 
   add("asslide-7", "apis", "getSkodeJunkHoleDetails", `
-// GET {{baseUrl}}/api/scorecard/game/$gameId/foursome/$foursomeId/bet/details
+// GET {{baseUrl}}/api/scorecard/game/\$gameId/foursome/\$foursomeId/bet/details
 // Controller: input_score_controller.dart → apiService.getSkodeJunkHoleDetails()
 
 Dart Method:
@@ -1459,7 +1459,7 @@ Dart Method:
   }) → Future&lt;SkodejunkHoleModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/scorecard/game/$gameId/foursome/$foursomeId/bet/details
+  GET {{baseUrl}}/api/scorecard/game/\$gameId/foursome/\$foursomeId/bet/details
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1814,7 +1814,7 @@ Response (DefaultModel):
 `);
 
   add("asslide-8", "apis", "getBetDetails", `
-// GET {{baseUrl}}/api/scorecard/game/$gameId/hole/$holeNo/foursome/$foursomeId/bet/details
+// GET {{baseUrl}}/api/scorecard/game/\$gameId/hole/\$holeNo/foursome/\$foursomeId/bet/details
 // Controller: input_score_controller.dart → apiService.getBetDetails()
 
 Dart Method:
@@ -1826,7 +1826,7 @@ Dart Method:
   }) → Future&lt;BetDetailsModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/scorecard/game/$gameId/hole/$holeNo/foursome/$foursomeId/bet/details
+  GET {{baseUrl}}/api/scorecard/game/\$gameId/hole/\$holeNo/foursome/\$foursomeId/bet/details
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1838,7 +1838,7 @@ Response (BetDetailsModel):
 `);
 
   add("asslide-8", "apis", "getFoursomeOverride", `
-// GET {{baseUrl}}/api/games/$gameID/foursome/$foursomeId/override
+// GET {{baseUrl}}/api/games/\$gameID/foursome/\$foursomeId/override
 // Controller: input_score_controller.dart → apiService.getFoursomeOverride()
 
 Dart Method:
@@ -1849,7 +1849,7 @@ Dart Method:
   }) → Future&lt;GetFoursomeOverrideModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/games/$gameID/foursome/$foursomeId/override
+  GET {{baseUrl}}/api/games/\$gameID/foursome/\$foursomeId/override
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1861,7 +1861,7 @@ Response (GetFoursomeOverrideModel):
 `);
 
   add("asslide-8", "apis", "getFoursomeTeam", `
-// GET {{baseUrl}}/api/result/game/$gameID/foursome/$foursomeId/team/points
+// GET {{baseUrl}}/api/result/game/\$gameID/foursome/\$foursomeId/team/points
 // Controller: input_score_controller.dart → apiService.getFoursomeTeam()
 
 Dart Method:
@@ -1871,7 +1871,7 @@ Dart Method:
   }) → Future&lt;FoursomeTeamModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameID/foursome/$foursomeId/team/points
+  GET {{baseUrl}}/api/result/game/\$gameID/foursome/\$foursomeId/team/points
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1883,7 +1883,7 @@ Response (FoursomeTeamModel):
 `);
 
   add("asslide-8", "apis", "getGameDetails", `
-// GET {{baseUrl}}/api/games/$gameId/details
+// GET {{baseUrl}}/api/games/\$gameId/details
 // Controller: input_score_controller.dart → apiService.getGameDetails()
 
 Dart Method:
@@ -1893,7 +1893,7 @@ Dart Method:
   }) → Future&lt;GameDetails&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/games/$gameId/details
+  GET {{baseUrl}}/api/games/\$gameId/details
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1905,7 +1905,7 @@ Response (GameDetails):
 `);
 
   add("asslide-8", "apis", "getHoleData", `
-// GET {{baseUrl}}/api/scorecard/game/$gameId/hole/$holeId/list?foursome_id=$fourSomeId
+// GET {{baseUrl}}/api/scorecard/game/\$gameId/hole/\$holeId/list?foursome_id=\$fourSomeId
 // Controller: input_score_controller.dart → apiService.getHoleData()
 
 Dart Method:
@@ -1917,7 +1917,7 @@ Dart Method:
   }) → Future&lt;HoleDetailsModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/scorecard/game/$gameId/hole/$holeId/list?foursome_id=$fourSomeId
+  GET {{baseUrl}}/api/scorecard/game/\$gameId/hole/\$holeId/list?foursome_id=\$fourSomeId
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1948,7 +1948,7 @@ Response (SkodeJunkModel):
 `);
 
   add("asslide-8", "apis", "getPersonalGameHoleData", `
-// GET {{baseUrl}}/api/personal-game/$gameId/hole/${int.tryParse(holeNo.toString())?.toString()}/scorecard
+// GET {{baseUrl}}/api/personal-game/\$gameId/hole/\${int.tryParse(holeNo.toString())?.toString()}/scorecard
 // Controller: input_score_controller.dart → apiService.getPersonalGameHoleData()
 
 Dart Method:
@@ -1958,7 +1958,7 @@ Dart Method:
   }) → Future&lt;PersonalGameHoleDataModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/personal-game/$gameId/hole/${int.tryParse(holeNo.toString())?.toString()}/scorecard
+  GET {{baseUrl}}/api/personal-game/\$gameId/hole/\${int.tryParse(holeNo.toString())?.toString()}/scorecard
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1970,7 +1970,7 @@ Response (PersonalGameHoleDataModel):
 `);
 
   add("asslide-8", "apis", "getPersonalGameResult", `
-// GET {{baseUrl}}/api/personal-game/$gameId/result
+// GET {{baseUrl}}/api/personal-game/\$gameId/result
 // Controller: input_score_controller.dart → apiService.getPersonalGameResult()
 
 Dart Method:
@@ -1979,7 +1979,7 @@ Dart Method:
   }) → Future&lt;GameResultModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/personal-game/$gameId/result
+  GET {{baseUrl}}/api/personal-game/\$gameId/result
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1991,7 +1991,7 @@ Response (GameResultModel):
 `);
 
   add("asslide-8", "apis", "getResult", `
-// GET {{baseUrl}}/api/result/game/$gameId?foursome_id=$foursomeId
+// GET {{baseUrl}}/api/result/game/\$gameId?foursome_id=\$foursomeId
 // Controller: input_score_controller.dart → apiService.getResult()
 
 Dart Method:
@@ -2002,7 +2002,7 @@ Dart Method:
   }) → Future&lt;GameResultModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameId?foursome_id=$foursomeId
+  GET {{baseUrl}}/api/result/game/\$gameId?foursome_id=\$foursomeId
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -2033,7 +2033,7 @@ Response (SkodeJunkModel):
 `);
 
   add("asslide-8", "apis", "getSkodeJunkHoleDetails", `
-// GET {{baseUrl}}/api/scorecard/game/$gameId/foursome/$foursomeId/bet/details
+// GET {{baseUrl}}/api/scorecard/game/\$gameId/foursome/\$foursomeId/bet/details
 // Controller: input_score_controller.dart → apiService.getSkodeJunkHoleDetails()
 
 Dart Method:
@@ -2044,7 +2044,7 @@ Dart Method:
   }) → Future&lt;SkodejunkHoleModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/scorecard/game/$gameId/foursome/$foursomeId/bet/details
+  GET {{baseUrl}}/api/scorecard/game/\$gameId/foursome/\$foursomeId/bet/details
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -2283,7 +2283,7 @@ Response (DefaultModel):
 `);
 
   add("asslide-10", "apis", "endFourSome", `
-// GET {{baseUrl}}/api/foursome/$foursomeId/game/end
+// GET {{baseUrl}}/api/foursome/\$foursomeId/game/end
 // Controller: add_score_controller.dart → apiService.endFourSome()
 
 Dart Method:
@@ -2293,7 +2293,7 @@ Dart Method:
   }) → Future&lt;DefaultModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/foursome/$foursomeId/game/end
+  GET {{baseUrl}}/api/foursome/\$foursomeId/game/end
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -2305,7 +2305,7 @@ Response (DefaultModel):
 `);
 
   add("asslide-10", "apis", "getCalcuttaRounds", `
-// GET {{baseUrl}}/api/games/calcutta/game/$gameId/round/players
+// GET {{baseUrl}}/api/games/calcutta/game/\$gameId/round/players
 // Controller: add_score_controller.dart → apiService.getCalcuttaRounds()
 
 Dart Method:
@@ -2314,7 +2314,7 @@ Dart Method:
   }) → Future&lt;CalcuttaRoundsModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/games/calcutta/game/$gameId/round/players
+  GET {{baseUrl}}/api/games/calcutta/game/\$gameId/round/players
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -2326,7 +2326,7 @@ Response (CalcuttaRoundsModel):
 `);
 
   add("asslide-10", "apis", "getCompletedHoles", `
-// GET {{baseUrl}}/api/scorecard/game/$gameId/completed/holes
+// GET {{baseUrl}}/api/scorecard/game/\$gameId/completed/holes
 // Controller: add_score_controller.dart → apiService.getCompletedHoles()
 
 Dart Method:
@@ -2336,7 +2336,7 @@ Dart Method:
   }) → Future&lt;CompletedHolesModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/scorecard/game/$gameId/completed/holes
+  GET {{baseUrl}}/api/scorecard/game/\$gameId/completed/holes
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -2348,7 +2348,7 @@ Response (CompletedHolesModel):
 `);
 
   add("asslide-10", "apis", "getFoursome", `
-// GET {{baseUrl}}/api/games/$gameID/foursomes/list
+// GET {{baseUrl}}/api/games/\$gameID/foursomes/list
 // Controller: add_score_controller.dart → apiService.getFoursome()
 
 Dart Method:
@@ -2358,7 +2358,7 @@ Dart Method:
   }) → Future&lt;CalcuttaFoursomeModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/games/$gameID/foursomes/list
+  GET {{baseUrl}}/api/games/\$gameID/foursomes/list
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -2451,7 +2451,7 @@ Response (DefaultModel):
 `);
 
   add("asslide-11", "apis", "endFourSome", `
-// GET {{baseUrl}}/api/foursome/$foursomeId/game/end
+// GET {{baseUrl}}/api/foursome/\$foursomeId/game/end
 // Controller: add_score_controller.dart → apiService.endFourSome()
 
 Dart Method:
@@ -2461,7 +2461,7 @@ Dart Method:
   }) → Future&lt;DefaultModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/foursome/$foursomeId/game/end
+  GET {{baseUrl}}/api/foursome/\$foursomeId/game/end
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -2473,7 +2473,7 @@ Response (DefaultModel):
 `);
 
   add("asslide-11", "apis", "getCalcuttaRounds", `
-// GET {{baseUrl}}/api/games/calcutta/game/$gameId/round/players
+// GET {{baseUrl}}/api/games/calcutta/game/\$gameId/round/players
 // Controller: add_score_controller.dart → apiService.getCalcuttaRounds()
 
 Dart Method:
@@ -2482,7 +2482,7 @@ Dart Method:
   }) → Future&lt;CalcuttaRoundsModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/games/calcutta/game/$gameId/round/players
+  GET {{baseUrl}}/api/games/calcutta/game/\$gameId/round/players
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -2494,7 +2494,7 @@ Response (CalcuttaRoundsModel):
 `);
 
   add("asslide-11", "apis", "getCompletedHoles", `
-// GET {{baseUrl}}/api/scorecard/game/$gameId/completed/holes
+// GET {{baseUrl}}/api/scorecard/game/\$gameId/completed/holes
 // Controller: add_score_controller.dart → apiService.getCompletedHoles()
 
 Dart Method:
@@ -2504,7 +2504,7 @@ Dart Method:
   }) → Future&lt;CompletedHolesModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/scorecard/game/$gameId/completed/holes
+  GET {{baseUrl}}/api/scorecard/game/\$gameId/completed/holes
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -2516,7 +2516,7 @@ Response (CompletedHolesModel):
 `);
 
   add("asslide-11", "apis", "getFoursome", `
-// GET {{baseUrl}}/api/games/$gameID/foursomes/list
+// GET {{baseUrl}}/api/games/\$gameID/foursomes/list
 // Controller: add_score_controller.dart → apiService.getFoursome()
 
 Dart Method:
@@ -2526,7 +2526,7 @@ Dart Method:
   }) → Future&lt;CalcuttaFoursomeModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/games/$gameID/foursomes/list
+  GET {{baseUrl}}/api/games/\$gameID/foursomes/list
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 

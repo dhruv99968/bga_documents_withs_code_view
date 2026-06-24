@@ -43,7 +43,7 @@ Response (DefaultModel):
   }
 `);
   add("vrslide-0", "apis", "deleteGame", `
-// DELETE {{baseUrl}}/api/games/$id/delete
+// DELETE {{baseUrl}}/api/games/\$id/delete
 // Controller: game_details_controller.dart → apiService.deleteGame()
 
 Dart Method:
@@ -53,7 +53,7 @@ Dart Method:
   }) → Future&lt;DefaultModel&gt;
 
 HTTP Request:
-  DELETE {{baseUrl}}/api/games/$id/delete
+  DELETE {{baseUrl}}/api/games/\$id/delete
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -64,7 +64,7 @@ Response (DefaultModel):
   }
 `);
   add("vrslide-0", "apis", "endGame", `
-// GET {{baseUrl}}/api/games/$gameId/end
+// GET {{baseUrl}}/api/games/\$gameId/end
 // Controller: game_details_controller.dart → apiService.endGame()
 
 Dart Method:
@@ -73,7 +73,7 @@ Dart Method:
   }) → Future&lt;DefaultModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/games/$gameId/end
+  GET {{baseUrl}}/api/games/\$gameId/end
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -84,7 +84,7 @@ Response (DefaultModel):
   }
 `);
   add("vrslide-0", "apis", "executePayment", `
-// POST {{baseUrl}}/v1/payments/payment/$paymentId/execute
+// POST {{baseUrl}}/v1/payments/payment/\$paymentId/execute
 // Controller: game_details_controller.dart → apiService.executePayment()
 
 Dart Method:
@@ -95,7 +95,7 @@ Dart Method:
   }) → Future&lt;ExecutePaymentModel&gt;
 
 HTTP Request:
-  POST {{baseUrl}}/v1/payments/payment/$paymentId/execute
+  POST {{baseUrl}}/v1/payments/payment/\$paymentId/execute
   Authorization: Bearer {{accessToken}}
   Content-Type: application/json
 
@@ -106,7 +106,7 @@ Response (ExecutePaymentModel):
   }
 `);
   add("vrslide-0", "apis", "get2v2Summary", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/2v2
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/2v2
 // Controller: game_details_controller.dart → apiService.get2v2Summary()
 
 Dart Method:
@@ -117,7 +117,7 @@ Dart Method:
   }) → Future&lt;CodSummaryModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/2v2
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/2v2
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -128,7 +128,7 @@ Response (CodSummaryModel):
   }
 `);
   add("vrslide-0", "apis", "get6HoleSummary2v2", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/2v2
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/2v2
 // Controller: game_details_controller.dart → apiService.get6HoleSummary2v2()
 
 Dart Method:
@@ -139,7 +139,7 @@ Dart Method:
   }) → Future&lt;SixHoleTwoVTwoSummaryMode&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/2v2
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/2v2
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -150,7 +150,7 @@ Response (SixHoleTwoVTwoSummaryMode):
   }
 `);
   add("vrslide-0", "apis", "get6HolesCodSummary", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/2v2
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/2v2
 // Controller: game_details_controller.dart → apiService.get6HolesCodSummary()
 
 Dart Method:
@@ -161,7 +161,7 @@ Dart Method:
   }) → Future&lt;NewScramblCodSummary&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/2v2
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/2v2
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -172,7 +172,7 @@ Response (NewScramblCodSummary):
   }
 `);
   add("vrslide-0", "apis", "getAcrossIndividualSummary", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/across
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/across
 // Controller: game_details_controller.dart → apiService.getAcrossIndividualSummary()
 
 Dart Method:
@@ -182,7 +182,7 @@ Dart Method:
   }) → Future&lt;AcrossIndividualSummaryModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/across
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/across
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -193,7 +193,7 @@ Response (AcrossIndividualSummaryModel):
   }
 `);
   add("vrslide-0", "apis", "getAcrossWinner", `
-// GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/accross/winner
+// GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/accross/winner
 // Controller: game_details_controller.dart → apiService.getAcrossWinner()
 
 Dart Method:
@@ -204,7 +204,7 @@ Dart Method:
   }) → Future&lt;AcrossWinnerModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/accross/winner
+  GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/accross/winner
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -215,7 +215,7 @@ Response (AcrossWinnerModel):
   }
 `);
   add("vrslide-0", "apis", "getAllPlayersResult", `
-// GET {{baseUrl}}/api/result/game/${gameId}/all-foursome
+// GET {{baseUrl}}/api/result/game/\${gameId}/all-foursome
 // Controller: game_details_controller.dart → apiService.getAllPlayersResult()
 
 Dart Method:
@@ -225,7 +225,7 @@ Dart Method:
   }) → Future&lt;GameResultModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/${gameId}/all-foursome
+  GET {{baseUrl}}/api/result/game/\${gameId}/all-foursome
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -236,7 +236,7 @@ Response (GameResultModel):
   }
 `);
   add("vrslide-0", "apis", "getBasementSummary", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/basement
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/basement
 // Controller: game_details_controller.dart → apiService.getBasementSummary()
 
 Dart Method:
@@ -247,7 +247,7 @@ Dart Method:
   }) → Future&lt;BasementSummaryModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/basement
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/basement
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -258,7 +258,7 @@ Response (BasementSummaryModel):
   }
 `);
   add("vrslide-0", "apis", "getBetTeeSheetPlayer", `
-// GET {{baseUrl}}/api/teesheet/course/$courseId/groups/details?game_type=$gameType
+// GET {{baseUrl}}/api/teesheet/course/\$courseId/groups/details?game_type=\$gameType
 // Controller: game_details_controller.dart → apiService.getBetTeeSheetPlayer()
 
 Dart Method:
@@ -267,7 +267,7 @@ Dart Method:
   }) → Future&lt;BetsTeesheetPlayerListModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/teesheet/course/$courseId/groups/details?game_type=$gameType
+  GET {{baseUrl}}/api/teesheet/course/\$courseId/groups/details?game_type=\$gameType
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -278,7 +278,7 @@ Response (BetsTeesheetPlayerListModel):
   }
 `);
   add("vrslide-0", "apis", "getCalcuttaSummary", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/individual
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/individual
 // Controller: game_details_controller.dart → apiService.getCalcuttaSummary()
 
 Dart Method:
@@ -289,7 +289,7 @@ Dart Method:
   }) → Future&lt;CalcuttaSummaryModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/individual
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/individual
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -300,7 +300,7 @@ Response (CalcuttaSummaryModel):
   }
 `);
   add("vrslide-0", "apis", "getDotsGameSummary", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/dots_game
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/dots_game
 // Controller: game_details_controller.dart → apiService.getDotsGameSummary()
 
 Dart Method:
@@ -310,7 +310,7 @@ Dart Method:
   }) → Future&lt;DotsGameWinnerSummary&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/dots_game
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/dots_game
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -321,7 +321,7 @@ Response (DotsGameWinnerSummary):
   }
 `);
   add("vrslide-0", "apis", "getDotsGameWinner", `
-// GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/dots_game/winner
+// GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/dots_game/winner
 // Controller: game_details_controller.dart → apiService.getDotsGameWinner()
 
 Dart Method:
@@ -332,7 +332,7 @@ Dart Method:
   }) → Future&lt;DotsGameWinnerModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/dots_game/winner
+  GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/dots_game/winner
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -343,7 +343,7 @@ Response (DotsGameWinnerModel):
   }
 `);
   add("vrslide-0", "apis", "getFoursome", `
-// GET {{baseUrl}}/api/games/$gameID/foursomes/list
+// GET {{baseUrl}}/api/games/\$gameID/foursomes/list
 // Controller: game_details_controller.dart → apiService.getFoursome()
 
 Dart Method:
@@ -353,7 +353,7 @@ Dart Method:
   }) → Future&lt;CalcuttaFoursomeModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/games/$gameID/foursomes/list
+  GET {{baseUrl}}/api/games/\$gameID/foursomes/list
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -364,7 +364,7 @@ Response (CalcuttaFoursomeModel):
   }
 `);
   add("vrslide-0", "apis", "getFoursomeOverride", `
-// GET {{baseUrl}}/api/games/$gameID/foursome/$foursomeId/override
+// GET {{baseUrl}}/api/games/\$gameID/foursome/\$foursomeId/override
 // Controller: game_details_controller.dart → apiService.getFoursomeOverride()
 
 Dart Method:
@@ -375,7 +375,7 @@ Dart Method:
   }) → Future&lt;GetFoursomeOverrideModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/games/$gameID/foursome/$foursomeId/override
+  GET {{baseUrl}}/api/games/\$gameID/foursome/\$foursomeId/override
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -386,7 +386,7 @@ Response (GetFoursomeOverrideModel):
   }
 `);
   add("vrslide-0", "apis", "getFoursomeTeam", `
-// GET {{baseUrl}}/api/result/game/$gameID/foursome/$foursomeId/team/points
+// GET {{baseUrl}}/api/result/game/\$gameID/foursome/\$foursomeId/team/points
 // Controller: game_details_controller.dart → apiService.getFoursomeTeam()
 
 Dart Method:
@@ -396,7 +396,7 @@ Dart Method:
   }) → Future&lt;FoursomeTeamModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameID/foursome/$foursomeId/team/points
+  GET {{baseUrl}}/api/result/game/\$gameID/foursome/\$foursomeId/team/points
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -407,7 +407,7 @@ Response (FoursomeTeamModel):
   }
 `);
   add("vrslide-0", "apis", "getGameDetails", `
-// GET {{baseUrl}}/api/games/$gameId/details
+// GET {{baseUrl}}/api/games/\$gameId/details
 // Controller: game_details_controller.dart → apiService.getGameDetails()
 
 Dart Method:
@@ -417,7 +417,7 @@ Dart Method:
   }) → Future&lt;GameDetails&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/games/$gameId/details
+  GET {{baseUrl}}/api/games/\$gameId/details
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -428,7 +428,7 @@ Response (GameDetails):
   }
 `);
   add("vrslide-0", "apis", "getHorseRaceAcrosswinner", `
-// GET {{baseUrl}}/api/result/game/$gameId/foursome/0/accross/winner
+// GET {{baseUrl}}/api/result/game/\$gameId/foursome/0/accross/winner
 // Controller: game_details_controller.dart → apiService.getHorseRaceAcrosswinner()
 
 Dart Method:
@@ -437,7 +437,7 @@ Dart Method:
   }) → Future&lt;HorseRaceWinnerModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameId/foursome/0/accross/winner
+  GET {{baseUrl}}/api/result/game/\$gameId/foursome/0/accross/winner
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -448,7 +448,7 @@ Response (HorseRaceWinnerModel):
   }
 `);
   add("vrslide-0", "apis", "getHorseRaceSummary", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/individual
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/individual
 // Controller: game_details_controller.dart → apiService.getHorseRaceSummary()
 
 Dart Method:
@@ -459,7 +459,7 @@ Dart Method:
   }) → Future&lt;HorseRaceSummaryModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/individual
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/individual
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -470,7 +470,7 @@ Response (HorseRaceSummaryModel):
   }
 `);
   add("vrslide-0", "apis", "getIndividualSummary", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/individual
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/individual
 // Controller: game_details_controller.dart → apiService.getIndividualSummary()
 
 Dart Method:
@@ -481,7 +481,7 @@ Dart Method:
   }) → Future&lt;RabbitChickenSummaryModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/individual
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/individual
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -492,7 +492,7 @@ Response (RabbitChickenSummaryModel):
   }
 `);
   add("vrslide-0", "apis", "getJunkSummary", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/junk-summary
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/junk-summary
 // Controller: game_details_controller.dart → apiService.getJunkSummary()
 
 Dart Method:
@@ -502,7 +502,7 @@ Dart Method:
   }) → Future&lt;JunkSummaryModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/junk-summary
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/junk-summary
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -513,7 +513,7 @@ Response (JunkSummaryModel):
   }
 `);
   add("vrslide-0", "apis", "getMedalPlayAcrossWinner", `
-// GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/accross/winner
+// GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/accross/winner
 // Controller: game_details_controller.dart → apiService.getMedalPlayAcrossWinner()
 
 Dart Method:
@@ -524,7 +524,7 @@ Dart Method:
   }) → Future&lt;MedalPlayAcrossWinner&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/accross/winner
+  GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/accross/winner
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -535,7 +535,7 @@ Response (MedalPlayAcrossWinner):
   }
 `);
   add("vrslide-0", "apis", "getModifiedStableFordWinner", `
-// GET {{baseUrl}}/api/result/game/$gameId/foursome/0/accross/winner
+// GET {{baseUrl}}/api/result/game/\$gameId/foursome/0/accross/winner
 // Controller: game_details_controller.dart → apiService.getModifiedStableFordWinner()
 
 Dart Method:
@@ -545,7 +545,7 @@ Dart Method:
   }) → Future&lt;ModifiedStableFordAcrossWinner&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameId/foursome/0/accross/winner
+  GET {{baseUrl}}/api/result/game/\$gameId/foursome/0/accross/winner
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -556,7 +556,7 @@ Response (ModifiedStableFordAcrossWinner):
   }
 `);
   add("vrslide-0", "apis", "getNewLedgerDate", `
-// GET {{baseUrl}}/api/ledger/game/$gameId
+// GET {{baseUrl}}/api/ledger/game/\$gameId
 // Controller: game_details_controller.dart → apiService.getNewLedgerDate()
 
 Dart Method:
@@ -567,7 +567,7 @@ Dart Method:
   }) → Future&lt;DemoLedgerModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/ledger/game/$gameId
+  GET {{baseUrl}}/api/ledger/game/\$gameId
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -619,7 +619,7 @@ Response (PaypalCredentialModel):
   }
 `);
   add("vrslide-0", "apis", "getPlayerResult", `
-// GET {{baseUrl}}/api/result/game/$gameId/player/$playerId
+// GET {{baseUrl}}/api/result/game/\$gameId/player/\$playerId
 // Controller: game_details_controller.dart → apiService.getPlayerResult()
 
 Dart Method:
@@ -629,7 +629,7 @@ Dart Method:
   }) → Future&lt;PlayerResultModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameId/player/$playerId
+  GET {{baseUrl}}/api/result/game/\$gameId/player/\$playerId
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -640,7 +640,7 @@ Response (PlayerResultModel):
   }
 `);
   add("vrslide-0", "apis", "getProgassiveFoursomeWinner", `
-// GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/winner
+// GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/winner
 // Controller: game_details_controller.dart → apiService.getProgassiveFoursomeWinner()
 
 Dart Method:
@@ -651,7 +651,7 @@ Dart Method:
   }) → Future&lt;GameWinnerModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/winner
+  GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/winner
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -662,7 +662,7 @@ Response (GameWinnerModel):
   }
 `);
   add("vrslide-0", "apis", "getQrLink", `
-// GET {{baseUrl}}/api/games/$gameId/onsite-register/qr/link
+// GET {{baseUrl}}/api/games/\$gameId/onsite-register/qr/link
 // Controller: game_details_controller.dart → apiService.getQrLink()
 
 Dart Method:
@@ -672,7 +672,7 @@ Dart Method:
   }) → Future&lt;QrModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/games/$gameId/onsite-register/qr/link
+  GET {{baseUrl}}/api/games/\$gameId/onsite-register/qr/link
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -683,7 +683,7 @@ Response (QrModel):
   }
 `);
   add("vrslide-0", "apis", "getRabbitChickenSummary", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/rabbitchicken
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/rabbitchicken
 // Controller: game_details_controller.dart → apiService.getRabbitChickenSummary()
 
 Dart Method:
@@ -693,7 +693,7 @@ Dart Method:
   }) → Future&lt;RabbitChickenSummaryModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/rabbitchicken
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/rabbitchicken
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -704,7 +704,7 @@ Response (RabbitChickenSummaryModel):
   }
 `);
   add("vrslide-0", "apis", "getRabitAndChickenWinner", `
-// GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/rabbitchicken/winner
+// GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/rabbitchicken/winner
 // Controller: game_details_controller.dart → apiService.getRabitAndChickenWinner()
 
 Dart Method:
@@ -715,7 +715,7 @@ Dart Method:
   }) → Future&lt;GameWinnerModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/rabbitchicken/winner
+  GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/rabbitchicken/winner
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -726,7 +726,7 @@ Response (GameWinnerModel):
   }
 `);
   add("vrslide-0", "apis", "getRegularIndividualAcrossWinner", `
-// GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/accross/winner
+// GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/accross/winner
 // Controller: game_details_controller.dart → apiService.getRegularIndividualAcrossWinner()
 
 Dart Method:
@@ -737,7 +737,7 @@ Dart Method:
   }) → Future&lt;RegularIndividualAcrossWinnerModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/accross/winner
+  GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/accross/winner
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -748,7 +748,7 @@ Response (RegularIndividualAcrossWinnerModel):
   }
 `);
   add("vrslide-0", "apis", "getResult", `
-// GET {{baseUrl}}/api/result/game/$gameId?foursome_id=$foursomeId
+// GET {{baseUrl}}/api/result/game/\$gameId?foursome_id=\$foursomeId
 // Controller: game_details_controller.dart → apiService.getResult()
 
 Dart Method:
@@ -759,7 +759,7 @@ Dart Method:
   }) → Future&lt;GameResultModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameId?foursome_id=$foursomeId
+  GET {{baseUrl}}/api/result/game/\$gameId?foursome_id=\$foursomeId
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -770,7 +770,7 @@ Response (GameResultModel):
   }
 `);
   add("vrslide-0", "apis", "getScramble4man6HolesSummary", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/individual
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/individual
 // Controller: game_details_controller.dart → apiService.getScramble4man6HolesSummary()
 
 Dart Method:
@@ -781,7 +781,7 @@ Dart Method:
   }) → Future&lt;Scramble4Man6HolesSummaryModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/individual
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/individual
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -792,7 +792,7 @@ Response (Scramble4Man6HolesSummaryModel):
   }
 `);
   add("vrslide-0", "apis", "getScrambleCodSummary", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/2v2
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/2v2
 // Controller: game_details_controller.dart → apiService.getScrambleCodSummary()
 
 Dart Method:
@@ -802,7 +802,7 @@ Dart Method:
   }) → Future&lt;ScrambleCodModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/2v2
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/2v2
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -813,7 +813,7 @@ Response (ScrambleCodModel):
   }
 `);
   add("vrslide-0", "apis", "getShotLedger", `
-// GET {{baseUrl}}/api/scorecard/game/$gameId/shot-ledger
+// GET {{baseUrl}}/api/scorecard/game/\$gameId/shot-ledger
 // Controller: game_details_controller.dart → apiService.getShotLedger()
 
 Dart Method:
@@ -823,7 +823,7 @@ Dart Method:
   }) → Future&lt;ShotLedgerModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/scorecard/game/$gameId/shot-ledger
+  GET {{baseUrl}}/api/scorecard/game/\$gameId/shot-ledger
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -834,7 +834,7 @@ Response (ShotLedgerModel):
   }
 `);
   add("vrslide-0", "apis", "getSkodeJunkWinner", `
-// GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/junk-skode/winners
+// GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/junk-skode/winners
 // Controller: game_details_controller.dart → apiService.getSkodeJunkWinner()
 
 Dart Method:
@@ -845,7 +845,7 @@ Dart Method:
   }) → Future&lt;SkodeJunkWinnerModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/junk-skode/winners
+  GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/junk-skode/winners
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -856,7 +856,7 @@ Response (SkodeJunkWinnerModel):
   }
 `);
   add("vrslide-0", "apis", "getSkodeSummary", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/skode-summary
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/skode-summary
 // Controller: game_details_controller.dart → apiService.getSkodeSummary()
 
 Dart Method:
@@ -866,7 +866,7 @@ Dart Method:
   }) → Future&lt;SkodeSummaryModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/skode-summary
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/skode-summary
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -877,7 +877,7 @@ Response (SkodeSummaryModel):
   }
 `);
   add("vrslide-0", "apis", "getSummary2v2", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/2v2
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/2v2
 // Controller: game_details_controller.dart → apiService.getSummary2v2()
 
 Dart Method:
@@ -888,7 +888,7 @@ Dart Method:
   }) → Future&lt;TwoVTwoSummaryModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/2v2
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/2v2
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -899,7 +899,7 @@ Response (TwoVTwoSummaryModel):
   }
 `);
   add("vrslide-0", "apis", "getVegasFoursomeWinner", `
-// GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/winner
+// GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/winner
 // Controller: game_details_controller.dart → apiService.getVegasFoursomeWinner()
 
 Dart Method:
@@ -910,7 +910,7 @@ Dart Method:
   }) → Future&lt;VegasWinnerModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/winner
+  GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/winner
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -954,7 +954,7 @@ Response (DefaultModel):
   }
 `);
   add("vrslide-0", "apis", "ryderCaptainsSummary", `
-// GET {{baseUrl}}/api/summary/game/$gameID/rydercup/winning-captain/summary
+// GET {{baseUrl}}/api/summary/game/\$gameID/rydercup/winning-captain/summary
 // Controller: game_details_controller.dart → apiService.ryderCaptainsSummary()
 
 Dart Method:
@@ -963,7 +963,7 @@ Dart Method:
   }) → Future&lt;RyderCaptainsSummaryModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameID/rydercup/winning-captain/summary
+  GET {{baseUrl}}/api/summary/game/\$gameID/rydercup/winning-captain/summary
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -974,7 +974,7 @@ Response (RyderCaptainsSummaryModel):
   }
 `);
   add("vrslide-0", "apis", "ryderCaptainsWinner", `
-// GET {{baseUrl}}/api/result/game/$gameID/rydercup/winner/captain
+// GET {{baseUrl}}/api/result/game/\$gameID/rydercup/winner/captain
 // Controller: game_details_controller.dart → apiService.ryderCaptainsWinner()
 
 Dart Method:
@@ -984,7 +984,7 @@ Dart Method:
   }) → Future&lt;RyderCaptainWinnerModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameID/rydercup/winner/captain
+  GET {{baseUrl}}/api/result/game/\$gameID/rydercup/winner/captain
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1025,7 +1025,7 @@ Response (DefaultModel):
   }
 `);
   add("vrslide-0", "apis", "shareScorecardPdf", `
-// POST {{baseUrl}}/${StaticData.apiUrl}api/groupme/posts/pdf
+// POST {{baseUrl}}/\${StaticData.apiUrl}api/groupme/posts/pdf
 // Controller: game_details_controller.dart → apiService.shareScorecardPdf()
 
 Dart Method:
@@ -1039,7 +1039,7 @@ Dart Method:
   }) → Future&lt;DefaultModel&gt;
 
 HTTP Request:
-  POST {{baseUrl}}/${StaticData.apiUrl}api/groupme/posts/pdf
+  POST {{baseUrl}}/\${StaticData.apiUrl}api/groupme/posts/pdf
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
   Content-Type: application/json
@@ -1062,7 +1062,7 @@ Response (DefaultModel):
   }
 `);
   add("vrslide-0", "apis", "shareWinnerAndScorecard", `
-// POST {{baseUrl}}/${StaticData.apiUrl}api/groupme/posts
+// POST {{baseUrl}}/\${StaticData.apiUrl}api/groupme/posts
 // Controller: game_details_controller.dart → apiService.shareWinnerAndScorecard()
 
 Dart Method:
@@ -1076,7 +1076,7 @@ Dart Method:
   }) → Future&lt;DefaultModel&gt;
 
 HTTP Request:
-  POST {{baseUrl}}/${StaticData.apiUrl}api/groupme/posts
+  POST {{baseUrl}}/\${StaticData.apiUrl}api/groupme/posts
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
   Content-Type: application/json
@@ -1098,7 +1098,7 @@ Response (DefaultModel):
   }
 `);
   add("vrslide-0", "apis", "startGame", `
-// GET {{baseUrl}}/api/games/$gameId/start
+// GET {{baseUrl}}/api/games/\$gameId/start
 // Controller: game_details_controller.dart → apiService.startGame()
 
 Dart Method:
@@ -1107,7 +1107,7 @@ Dart Method:
   }) → Future&lt;DefaultModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/games/$gameId/start
+  GET {{baseUrl}}/api/games/\$gameId/start
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1188,7 +1188,7 @@ Response (DefaultModel):
   }
 `);
   add("vrslide-1", "apis", "deleteGame", `
-// DELETE {{baseUrl}}/api/games/$id/delete
+// DELETE {{baseUrl}}/api/games/\$id/delete
 // Controller: game_details_controller.dart → apiService.deleteGame()
 
 Dart Method:
@@ -1198,7 +1198,7 @@ Dart Method:
   }) → Future&lt;DefaultModel&gt;
 
 HTTP Request:
-  DELETE {{baseUrl}}/api/games/$id/delete
+  DELETE {{baseUrl}}/api/games/\$id/delete
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1209,7 +1209,7 @@ Response (DefaultModel):
   }
 `);
   add("vrslide-1", "apis", "endGame", `
-// GET {{baseUrl}}/api/games/$gameId/end
+// GET {{baseUrl}}/api/games/\$gameId/end
 // Controller: game_details_controller.dart → apiService.endGame()
 
 Dart Method:
@@ -1218,7 +1218,7 @@ Dart Method:
   }) → Future&lt;DefaultModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/games/$gameId/end
+  GET {{baseUrl}}/api/games/\$gameId/end
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1229,7 +1229,7 @@ Response (DefaultModel):
   }
 `);
   add("vrslide-1", "apis", "executePayment", `
-// POST {{baseUrl}}/v1/payments/payment/$paymentId/execute
+// POST {{baseUrl}}/v1/payments/payment/\$paymentId/execute
 // Controller: game_details_controller.dart → apiService.executePayment()
 
 Dart Method:
@@ -1240,7 +1240,7 @@ Dart Method:
   }) → Future&lt;ExecutePaymentModel&gt;
 
 HTTP Request:
-  POST {{baseUrl}}/v1/payments/payment/$paymentId/execute
+  POST {{baseUrl}}/v1/payments/payment/\$paymentId/execute
   Authorization: Bearer {{accessToken}}
   Content-Type: application/json
 
@@ -1251,7 +1251,7 @@ Response (ExecutePaymentModel):
   }
 `);
   add("vrslide-1", "apis", "get2v2Summary", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/2v2
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/2v2
 // Controller: game_details_controller.dart → apiService.get2v2Summary()
 
 Dart Method:
@@ -1262,7 +1262,7 @@ Dart Method:
   }) → Future&lt;CodSummaryModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/2v2
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/2v2
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1273,7 +1273,7 @@ Response (CodSummaryModel):
   }
 `);
   add("vrslide-1", "apis", "get6HoleSummary2v2", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/2v2
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/2v2
 // Controller: game_details_controller.dart → apiService.get6HoleSummary2v2()
 
 Dart Method:
@@ -1284,7 +1284,7 @@ Dart Method:
   }) → Future&lt;SixHoleTwoVTwoSummaryMode&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/2v2
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/2v2
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1295,7 +1295,7 @@ Response (SixHoleTwoVTwoSummaryMode):
   }
 `);
   add("vrslide-1", "apis", "get6HolesCodSummary", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/2v2
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/2v2
 // Controller: game_details_controller.dart → apiService.get6HolesCodSummary()
 
 Dart Method:
@@ -1306,7 +1306,7 @@ Dart Method:
   }) → Future&lt;NewScramblCodSummary&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/2v2
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/2v2
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1317,7 +1317,7 @@ Response (NewScramblCodSummary):
   }
 `);
   add("vrslide-1", "apis", "getAcrossIndividualSummary", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/across
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/across
 // Controller: game_details_controller.dart → apiService.getAcrossIndividualSummary()
 
 Dart Method:
@@ -1327,7 +1327,7 @@ Dart Method:
   }) → Future&lt;AcrossIndividualSummaryModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/across
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/across
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1338,7 +1338,7 @@ Response (AcrossIndividualSummaryModel):
   }
 `);
   add("vrslide-1", "apis", "getAcrossWinner", `
-// GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/accross/winner
+// GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/accross/winner
 // Controller: game_details_controller.dart → apiService.getAcrossWinner()
 
 Dart Method:
@@ -1349,7 +1349,7 @@ Dart Method:
   }) → Future&lt;AcrossWinnerModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/accross/winner
+  GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/accross/winner
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1360,7 +1360,7 @@ Response (AcrossWinnerModel):
   }
 `);
   add("vrslide-1", "apis", "getAllPlayersResult", `
-// GET {{baseUrl}}/api/result/game/${gameId}/all-foursome
+// GET {{baseUrl}}/api/result/game/\${gameId}/all-foursome
 // Controller: game_details_controller.dart → apiService.getAllPlayersResult()
 
 Dart Method:
@@ -1370,7 +1370,7 @@ Dart Method:
   }) → Future&lt;GameResultModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/${gameId}/all-foursome
+  GET {{baseUrl}}/api/result/game/\${gameId}/all-foursome
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1381,7 +1381,7 @@ Response (GameResultModel):
   }
 `);
   add("vrslide-1", "apis", "getBasementSummary", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/basement
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/basement
 // Controller: game_details_controller.dart → apiService.getBasementSummary()
 
 Dart Method:
@@ -1392,7 +1392,7 @@ Dart Method:
   }) → Future&lt;BasementSummaryModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/basement
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/basement
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1403,7 +1403,7 @@ Response (BasementSummaryModel):
   }
 `);
   add("vrslide-1", "apis", "getBetTeeSheetPlayer", `
-// GET {{baseUrl}}/api/teesheet/course/$courseId/groups/details?game_type=$gameType
+// GET {{baseUrl}}/api/teesheet/course/\$courseId/groups/details?game_type=\$gameType
 // Controller: game_details_controller.dart → apiService.getBetTeeSheetPlayer()
 
 Dart Method:
@@ -1412,7 +1412,7 @@ Dart Method:
   }) → Future&lt;BetsTeesheetPlayerListModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/teesheet/course/$courseId/groups/details?game_type=$gameType
+  GET {{baseUrl}}/api/teesheet/course/\$courseId/groups/details?game_type=\$gameType
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1423,7 +1423,7 @@ Response (BetsTeesheetPlayerListModel):
   }
 `);
   add("vrslide-1", "apis", "getCalcuttaSummary", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/individual
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/individual
 // Controller: game_details_controller.dart → apiService.getCalcuttaSummary()
 
 Dart Method:
@@ -1434,7 +1434,7 @@ Dart Method:
   }) → Future&lt;CalcuttaSummaryModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/individual
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/individual
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1445,7 +1445,7 @@ Response (CalcuttaSummaryModel):
   }
 `);
   add("vrslide-1", "apis", "getDotsGameSummary", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/dots_game
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/dots_game
 // Controller: game_details_controller.dart → apiService.getDotsGameSummary()
 
 Dart Method:
@@ -1455,7 +1455,7 @@ Dart Method:
   }) → Future&lt;DotsGameWinnerSummary&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/dots_game
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/dots_game
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1466,7 +1466,7 @@ Response (DotsGameWinnerSummary):
   }
 `);
   add("vrslide-1", "apis", "getDotsGameWinner", `
-// GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/dots_game/winner
+// GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/dots_game/winner
 // Controller: game_details_controller.dart → apiService.getDotsGameWinner()
 
 Dart Method:
@@ -1477,7 +1477,7 @@ Dart Method:
   }) → Future&lt;DotsGameWinnerModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/dots_game/winner
+  GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/dots_game/winner
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1488,7 +1488,7 @@ Response (DotsGameWinnerModel):
   }
 `);
   add("vrslide-1", "apis", "getFoursome", `
-// GET {{baseUrl}}/api/games/$gameID/foursomes/list
+// GET {{baseUrl}}/api/games/\$gameID/foursomes/list
 // Controller: game_details_controller.dart → apiService.getFoursome()
 
 Dart Method:
@@ -1498,7 +1498,7 @@ Dart Method:
   }) → Future&lt;CalcuttaFoursomeModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/games/$gameID/foursomes/list
+  GET {{baseUrl}}/api/games/\$gameID/foursomes/list
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1509,7 +1509,7 @@ Response (CalcuttaFoursomeModel):
   }
 `);
   add("vrslide-1", "apis", "getFoursomeOverride", `
-// GET {{baseUrl}}/api/games/$gameID/foursome/$foursomeId/override
+// GET {{baseUrl}}/api/games/\$gameID/foursome/\$foursomeId/override
 // Controller: game_details_controller.dart → apiService.getFoursomeOverride()
 
 Dart Method:
@@ -1520,7 +1520,7 @@ Dart Method:
   }) → Future&lt;GetFoursomeOverrideModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/games/$gameID/foursome/$foursomeId/override
+  GET {{baseUrl}}/api/games/\$gameID/foursome/\$foursomeId/override
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1531,7 +1531,7 @@ Response (GetFoursomeOverrideModel):
   }
 `);
   add("vrslide-1", "apis", "getFoursomeTeam", `
-// GET {{baseUrl}}/api/result/game/$gameID/foursome/$foursomeId/team/points
+// GET {{baseUrl}}/api/result/game/\$gameID/foursome/\$foursomeId/team/points
 // Controller: game_details_controller.dart → apiService.getFoursomeTeam()
 
 Dart Method:
@@ -1541,7 +1541,7 @@ Dart Method:
   }) → Future&lt;FoursomeTeamModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameID/foursome/$foursomeId/team/points
+  GET {{baseUrl}}/api/result/game/\$gameID/foursome/\$foursomeId/team/points
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1552,7 +1552,7 @@ Response (FoursomeTeamModel):
   }
 `);
   add("vrslide-1", "apis", "getGameDetails", `
-// GET {{baseUrl}}/api/games/$gameId/details
+// GET {{baseUrl}}/api/games/\$gameId/details
 // Controller: game_details_controller.dart → apiService.getGameDetails()
 
 Dart Method:
@@ -1562,7 +1562,7 @@ Dart Method:
   }) → Future&lt;GameDetails&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/games/$gameId/details
+  GET {{baseUrl}}/api/games/\$gameId/details
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1573,7 +1573,7 @@ Response (GameDetails):
   }
 `);
   add("vrslide-1", "apis", "getHorseRaceAcrosswinner", `
-// GET {{baseUrl}}/api/result/game/$gameId/foursome/0/accross/winner
+// GET {{baseUrl}}/api/result/game/\$gameId/foursome/0/accross/winner
 // Controller: game_details_controller.dart → apiService.getHorseRaceAcrosswinner()
 
 Dart Method:
@@ -1582,7 +1582,7 @@ Dart Method:
   }) → Future&lt;HorseRaceWinnerModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameId/foursome/0/accross/winner
+  GET {{baseUrl}}/api/result/game/\$gameId/foursome/0/accross/winner
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1593,7 +1593,7 @@ Response (HorseRaceWinnerModel):
   }
 `);
   add("vrslide-1", "apis", "getHorseRaceSummary", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/individual
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/individual
 // Controller: game_details_controller.dart → apiService.getHorseRaceSummary()
 
 Dart Method:
@@ -1604,7 +1604,7 @@ Dart Method:
   }) → Future&lt;HorseRaceSummaryModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/individual
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/individual
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1615,7 +1615,7 @@ Response (HorseRaceSummaryModel):
   }
 `);
   add("vrslide-1", "apis", "getIndividualSummary", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/individual
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/individual
 // Controller: game_details_controller.dart → apiService.getIndividualSummary()
 
 Dart Method:
@@ -1626,7 +1626,7 @@ Dart Method:
   }) → Future&lt;RabbitChickenSummaryModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/individual
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/individual
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1637,7 +1637,7 @@ Response (RabbitChickenSummaryModel):
   }
 `);
   add("vrslide-1", "apis", "getJunkSummary", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/junk-summary
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/junk-summary
 // Controller: game_details_controller.dart → apiService.getJunkSummary()
 
 Dart Method:
@@ -1647,7 +1647,7 @@ Dart Method:
   }) → Future&lt;JunkSummaryModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/junk-summary
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/junk-summary
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1658,7 +1658,7 @@ Response (JunkSummaryModel):
   }
 `);
   add("vrslide-1", "apis", "getMedalPlayAcrossWinner", `
-// GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/accross/winner
+// GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/accross/winner
 // Controller: game_details_controller.dart → apiService.getMedalPlayAcrossWinner()
 
 Dart Method:
@@ -1669,7 +1669,7 @@ Dart Method:
   }) → Future&lt;MedalPlayAcrossWinner&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/accross/winner
+  GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/accross/winner
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1680,7 +1680,7 @@ Response (MedalPlayAcrossWinner):
   }
 `);
   add("vrslide-1", "apis", "getModifiedStableFordWinner", `
-// GET {{baseUrl}}/api/result/game/$gameId/foursome/0/accross/winner
+// GET {{baseUrl}}/api/result/game/\$gameId/foursome/0/accross/winner
 // Controller: game_details_controller.dart → apiService.getModifiedStableFordWinner()
 
 Dart Method:
@@ -1690,7 +1690,7 @@ Dart Method:
   }) → Future&lt;ModifiedStableFordAcrossWinner&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameId/foursome/0/accross/winner
+  GET {{baseUrl}}/api/result/game/\$gameId/foursome/0/accross/winner
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1701,7 +1701,7 @@ Response (ModifiedStableFordAcrossWinner):
   }
 `);
   add("vrslide-1", "apis", "getNewLedgerDate", `
-// GET {{baseUrl}}/api/ledger/game/$gameId
+// GET {{baseUrl}}/api/ledger/game/\$gameId
 // Controller: game_details_controller.dart → apiService.getNewLedgerDate()
 
 Dart Method:
@@ -1712,7 +1712,7 @@ Dart Method:
   }) → Future&lt;DemoLedgerModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/ledger/game/$gameId
+  GET {{baseUrl}}/api/ledger/game/\$gameId
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1764,7 +1764,7 @@ Response (PaypalCredentialModel):
   }
 `);
   add("vrslide-1", "apis", "getPlayerResult", `
-// GET {{baseUrl}}/api/result/game/$gameId/player/$playerId
+// GET {{baseUrl}}/api/result/game/\$gameId/player/\$playerId
 // Controller: game_details_controller.dart → apiService.getPlayerResult()
 
 Dart Method:
@@ -1774,7 +1774,7 @@ Dart Method:
   }) → Future&lt;PlayerResultModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameId/player/$playerId
+  GET {{baseUrl}}/api/result/game/\$gameId/player/\$playerId
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1785,7 +1785,7 @@ Response (PlayerResultModel):
   }
 `);
   add("vrslide-1", "apis", "getProgassiveFoursomeWinner", `
-// GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/winner
+// GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/winner
 // Controller: game_details_controller.dart → apiService.getProgassiveFoursomeWinner()
 
 Dart Method:
@@ -1796,7 +1796,7 @@ Dart Method:
   }) → Future&lt;GameWinnerModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/winner
+  GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/winner
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1807,7 +1807,7 @@ Response (GameWinnerModel):
   }
 `);
   add("vrslide-1", "apis", "getQrLink", `
-// GET {{baseUrl}}/api/games/$gameId/onsite-register/qr/link
+// GET {{baseUrl}}/api/games/\$gameId/onsite-register/qr/link
 // Controller: game_details_controller.dart → apiService.getQrLink()
 
 Dart Method:
@@ -1817,7 +1817,7 @@ Dart Method:
   }) → Future&lt;QrModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/games/$gameId/onsite-register/qr/link
+  GET {{baseUrl}}/api/games/\$gameId/onsite-register/qr/link
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1828,7 +1828,7 @@ Response (QrModel):
   }
 `);
   add("vrslide-1", "apis", "getRabbitChickenSummary", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/rabbitchicken
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/rabbitchicken
 // Controller: game_details_controller.dart → apiService.getRabbitChickenSummary()
 
 Dart Method:
@@ -1838,7 +1838,7 @@ Dart Method:
   }) → Future&lt;RabbitChickenSummaryModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/rabbitchicken
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/rabbitchicken
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1849,7 +1849,7 @@ Response (RabbitChickenSummaryModel):
   }
 `);
   add("vrslide-1", "apis", "getRabitAndChickenWinner", `
-// GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/rabbitchicken/winner
+// GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/rabbitchicken/winner
 // Controller: game_details_controller.dart → apiService.getRabitAndChickenWinner()
 
 Dart Method:
@@ -1860,7 +1860,7 @@ Dart Method:
   }) → Future&lt;GameWinnerModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/rabbitchicken/winner
+  GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/rabbitchicken/winner
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1871,7 +1871,7 @@ Response (GameWinnerModel):
   }
 `);
   add("vrslide-1", "apis", "getRegularIndividualAcrossWinner", `
-// GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/accross/winner
+// GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/accross/winner
 // Controller: game_details_controller.dart → apiService.getRegularIndividualAcrossWinner()
 
 Dart Method:
@@ -1882,7 +1882,7 @@ Dart Method:
   }) → Future&lt;RegularIndividualAcrossWinnerModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/accross/winner
+  GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/accross/winner
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1893,7 +1893,7 @@ Response (RegularIndividualAcrossWinnerModel):
   }
 `);
   add("vrslide-1", "apis", "getResult", `
-// GET {{baseUrl}}/api/result/game/$gameId?foursome_id=$foursomeId
+// GET {{baseUrl}}/api/result/game/\$gameId?foursome_id=\$foursomeId
 // Controller: game_details_controller.dart → apiService.getResult()
 
 Dart Method:
@@ -1904,7 +1904,7 @@ Dart Method:
   }) → Future&lt;GameResultModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameId?foursome_id=$foursomeId
+  GET {{baseUrl}}/api/result/game/\$gameId?foursome_id=\$foursomeId
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1915,7 +1915,7 @@ Response (GameResultModel):
   }
 `);
   add("vrslide-1", "apis", "getScramble4man6HolesSummary", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/individual
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/individual
 // Controller: game_details_controller.dart → apiService.getScramble4man6HolesSummary()
 
 Dart Method:
@@ -1926,7 +1926,7 @@ Dart Method:
   }) → Future&lt;Scramble4Man6HolesSummaryModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/individual
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/individual
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1937,7 +1937,7 @@ Response (Scramble4Man6HolesSummaryModel):
   }
 `);
   add("vrslide-1", "apis", "getScrambleCodSummary", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/2v2
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/2v2
 // Controller: game_details_controller.dart → apiService.getScrambleCodSummary()
 
 Dart Method:
@@ -1947,7 +1947,7 @@ Dart Method:
   }) → Future&lt;ScrambleCodModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/2v2
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/2v2
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1958,7 +1958,7 @@ Response (ScrambleCodModel):
   }
 `);
   add("vrslide-1", "apis", "getShotLedger", `
-// GET {{baseUrl}}/api/scorecard/game/$gameId/shot-ledger
+// GET {{baseUrl}}/api/scorecard/game/\$gameId/shot-ledger
 // Controller: game_details_controller.dart → apiService.getShotLedger()
 
 Dart Method:
@@ -1968,7 +1968,7 @@ Dart Method:
   }) → Future&lt;ShotLedgerModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/scorecard/game/$gameId/shot-ledger
+  GET {{baseUrl}}/api/scorecard/game/\$gameId/shot-ledger
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1979,7 +1979,7 @@ Response (ShotLedgerModel):
   }
 `);
   add("vrslide-1", "apis", "getSkodeJunkWinner", `
-// GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/junk-skode/winners
+// GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/junk-skode/winners
 // Controller: game_details_controller.dart → apiService.getSkodeJunkWinner()
 
 Dart Method:
@@ -1990,7 +1990,7 @@ Dart Method:
   }) → Future&lt;SkodeJunkWinnerModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/junk-skode/winners
+  GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/junk-skode/winners
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -2001,7 +2001,7 @@ Response (SkodeJunkWinnerModel):
   }
 `);
   add("vrslide-1", "apis", "getSkodeSummary", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/skode-summary
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/skode-summary
 // Controller: game_details_controller.dart → apiService.getSkodeSummary()
 
 Dart Method:
@@ -2011,7 +2011,7 @@ Dart Method:
   }) → Future&lt;SkodeSummaryModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/skode-summary
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/skode-summary
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -2022,7 +2022,7 @@ Response (SkodeSummaryModel):
   }
 `);
   add("vrslide-1", "apis", "getSummary2v2", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/2v2
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/2v2
 // Controller: game_details_controller.dart → apiService.getSummary2v2()
 
 Dart Method:
@@ -2033,7 +2033,7 @@ Dart Method:
   }) → Future&lt;TwoVTwoSummaryModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/2v2
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/2v2
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -2044,7 +2044,7 @@ Response (TwoVTwoSummaryModel):
   }
 `);
   add("vrslide-1", "apis", "getVegasFoursomeWinner", `
-// GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/winner
+// GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/winner
 // Controller: game_details_controller.dart → apiService.getVegasFoursomeWinner()
 
 Dart Method:
@@ -2055,7 +2055,7 @@ Dart Method:
   }) → Future&lt;VegasWinnerModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/winner
+  GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/winner
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -2099,7 +2099,7 @@ Response (DefaultModel):
   }
 `);
   add("vrslide-1", "apis", "ryderCaptainsSummary", `
-// GET {{baseUrl}}/api/summary/game/$gameID/rydercup/winning-captain/summary
+// GET {{baseUrl}}/api/summary/game/\$gameID/rydercup/winning-captain/summary
 // Controller: game_details_controller.dart → apiService.ryderCaptainsSummary()
 
 Dart Method:
@@ -2108,7 +2108,7 @@ Dart Method:
   }) → Future&lt;RyderCaptainsSummaryModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameID/rydercup/winning-captain/summary
+  GET {{baseUrl}}/api/summary/game/\$gameID/rydercup/winning-captain/summary
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -2119,7 +2119,7 @@ Response (RyderCaptainsSummaryModel):
   }
 `);
   add("vrslide-1", "apis", "ryderCaptainsWinner", `
-// GET {{baseUrl}}/api/result/game/$gameID/rydercup/winner/captain
+// GET {{baseUrl}}/api/result/game/\$gameID/rydercup/winner/captain
 // Controller: game_details_controller.dart → apiService.ryderCaptainsWinner()
 
 Dart Method:
@@ -2129,7 +2129,7 @@ Dart Method:
   }) → Future&lt;RyderCaptainWinnerModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameID/rydercup/winner/captain
+  GET {{baseUrl}}/api/result/game/\$gameID/rydercup/winner/captain
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -2170,7 +2170,7 @@ Response (DefaultModel):
   }
 `);
   add("vrslide-1", "apis", "shareScorecardPdf", `
-// POST {{baseUrl}}/${StaticData.apiUrl}api/groupme/posts/pdf
+// POST {{baseUrl}}/\${StaticData.apiUrl}api/groupme/posts/pdf
 // Controller: game_details_controller.dart → apiService.shareScorecardPdf()
 
 Dart Method:
@@ -2184,7 +2184,7 @@ Dart Method:
   }) → Future&lt;DefaultModel&gt;
 
 HTTP Request:
-  POST {{baseUrl}}/${StaticData.apiUrl}api/groupme/posts/pdf
+  POST {{baseUrl}}/\${StaticData.apiUrl}api/groupme/posts/pdf
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
   Content-Type: application/json
@@ -2207,7 +2207,7 @@ Response (DefaultModel):
   }
 `);
   add("vrslide-1", "apis", "shareWinnerAndScorecard", `
-// POST {{baseUrl}}/${StaticData.apiUrl}api/groupme/posts
+// POST {{baseUrl}}/\${StaticData.apiUrl}api/groupme/posts
 // Controller: game_details_controller.dart → apiService.shareWinnerAndScorecard()
 
 Dart Method:
@@ -2221,7 +2221,7 @@ Dart Method:
   }) → Future&lt;DefaultModel&gt;
 
 HTTP Request:
-  POST {{baseUrl}}/${StaticData.apiUrl}api/groupme/posts
+  POST {{baseUrl}}/\${StaticData.apiUrl}api/groupme/posts
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
   Content-Type: application/json
@@ -2243,7 +2243,7 @@ Response (DefaultModel):
   }
 `);
   add("vrslide-1", "apis", "startGame", `
-// GET {{baseUrl}}/api/games/$gameId/start
+// GET {{baseUrl}}/api/games/\$gameId/start
 // Controller: game_details_controller.dart → apiService.startGame()
 
 Dart Method:
@@ -2252,7 +2252,7 @@ Dart Method:
   }) → Future&lt;DefaultModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/games/$gameId/start
+  GET {{baseUrl}}/api/games/\$gameId/start
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -2333,7 +2333,7 @@ Response (DefaultModel):
   }
 `);
   add("vrslide-2", "apis", "deleteGame", `
-// DELETE {{baseUrl}}/api/games/$id/delete
+// DELETE {{baseUrl}}/api/games/\$id/delete
 // Controller: game_details_controller.dart → apiService.deleteGame()
 
 Dart Method:
@@ -2343,7 +2343,7 @@ Dart Method:
   }) → Future&lt;DefaultModel&gt;
 
 HTTP Request:
-  DELETE {{baseUrl}}/api/games/$id/delete
+  DELETE {{baseUrl}}/api/games/\$id/delete
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -2354,7 +2354,7 @@ Response (DefaultModel):
   }
 `);
   add("vrslide-2", "apis", "endGame", `
-// GET {{baseUrl}}/api/games/$gameId/end
+// GET {{baseUrl}}/api/games/\$gameId/end
 // Controller: game_details_controller.dart → apiService.endGame()
 
 Dart Method:
@@ -2363,7 +2363,7 @@ Dart Method:
   }) → Future&lt;DefaultModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/games/$gameId/end
+  GET {{baseUrl}}/api/games/\$gameId/end
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -2374,7 +2374,7 @@ Response (DefaultModel):
   }
 `);
   add("vrslide-2", "apis", "executePayment", `
-// POST {{baseUrl}}/v1/payments/payment/$paymentId/execute
+// POST {{baseUrl}}/v1/payments/payment/\$paymentId/execute
 // Controller: game_details_controller.dart → apiService.executePayment()
 
 Dart Method:
@@ -2385,7 +2385,7 @@ Dart Method:
   }) → Future&lt;ExecutePaymentModel&gt;
 
 HTTP Request:
-  POST {{baseUrl}}/v1/payments/payment/$paymentId/execute
+  POST {{baseUrl}}/v1/payments/payment/\$paymentId/execute
   Authorization: Bearer {{accessToken}}
   Content-Type: application/json
 
@@ -2396,7 +2396,7 @@ Response (ExecutePaymentModel):
   }
 `);
   add("vrslide-2", "apis", "get2v2Summary", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/2v2
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/2v2
 // Controller: game_details_controller.dart → apiService.get2v2Summary()
 
 Dart Method:
@@ -2407,7 +2407,7 @@ Dart Method:
   }) → Future&lt;CodSummaryModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/2v2
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/2v2
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -2418,7 +2418,7 @@ Response (CodSummaryModel):
   }
 `);
   add("vrslide-2", "apis", "get6HoleSummary2v2", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/2v2
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/2v2
 // Controller: game_details_controller.dart → apiService.get6HoleSummary2v2()
 
 Dart Method:
@@ -2429,7 +2429,7 @@ Dart Method:
   }) → Future&lt;SixHoleTwoVTwoSummaryMode&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/2v2
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/2v2
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -2440,7 +2440,7 @@ Response (SixHoleTwoVTwoSummaryMode):
   }
 `);
   add("vrslide-2", "apis", "get6HolesCodSummary", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/2v2
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/2v2
 // Controller: game_details_controller.dart → apiService.get6HolesCodSummary()
 
 Dart Method:
@@ -2451,7 +2451,7 @@ Dart Method:
   }) → Future&lt;NewScramblCodSummary&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/2v2
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/2v2
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -2462,7 +2462,7 @@ Response (NewScramblCodSummary):
   }
 `);
   add("vrslide-2", "apis", "getAcrossIndividualSummary", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/across
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/across
 // Controller: game_details_controller.dart → apiService.getAcrossIndividualSummary()
 
 Dart Method:
@@ -2472,7 +2472,7 @@ Dart Method:
   }) → Future&lt;AcrossIndividualSummaryModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/across
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/across
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -2483,7 +2483,7 @@ Response (AcrossIndividualSummaryModel):
   }
 `);
   add("vrslide-2", "apis", "getAcrossWinner", `
-// GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/accross/winner
+// GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/accross/winner
 // Controller: game_details_controller.dart → apiService.getAcrossWinner()
 
 Dart Method:
@@ -2494,7 +2494,7 @@ Dart Method:
   }) → Future&lt;AcrossWinnerModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/accross/winner
+  GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/accross/winner
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -2505,7 +2505,7 @@ Response (AcrossWinnerModel):
   }
 `);
   add("vrslide-2", "apis", "getAllPlayersResult", `
-// GET {{baseUrl}}/api/result/game/${gameId}/all-foursome
+// GET {{baseUrl}}/api/result/game/\${gameId}/all-foursome
 // Controller: game_details_controller.dart → apiService.getAllPlayersResult()
 
 Dart Method:
@@ -2515,7 +2515,7 @@ Dart Method:
   }) → Future&lt;GameResultModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/${gameId}/all-foursome
+  GET {{baseUrl}}/api/result/game/\${gameId}/all-foursome
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -2526,7 +2526,7 @@ Response (GameResultModel):
   }
 `);
   add("vrslide-2", "apis", "getBasementSummary", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/basement
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/basement
 // Controller: game_details_controller.dart → apiService.getBasementSummary()
 
 Dart Method:
@@ -2537,7 +2537,7 @@ Dart Method:
   }) → Future&lt;BasementSummaryModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/basement
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/basement
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -2548,7 +2548,7 @@ Response (BasementSummaryModel):
   }
 `);
   add("vrslide-2", "apis", "getBetTeeSheetPlayer", `
-// GET {{baseUrl}}/api/teesheet/course/$courseId/groups/details?game_type=$gameType
+// GET {{baseUrl}}/api/teesheet/course/\$courseId/groups/details?game_type=\$gameType
 // Controller: game_details_controller.dart → apiService.getBetTeeSheetPlayer()
 
 Dart Method:
@@ -2557,7 +2557,7 @@ Dart Method:
   }) → Future&lt;BetsTeesheetPlayerListModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/teesheet/course/$courseId/groups/details?game_type=$gameType
+  GET {{baseUrl}}/api/teesheet/course/\$courseId/groups/details?game_type=\$gameType
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -2568,7 +2568,7 @@ Response (BetsTeesheetPlayerListModel):
   }
 `);
   add("vrslide-2", "apis", "getCalcuttaSummary", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/individual
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/individual
 // Controller: game_details_controller.dart → apiService.getCalcuttaSummary()
 
 Dart Method:
@@ -2579,7 +2579,7 @@ Dart Method:
   }) → Future&lt;CalcuttaSummaryModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/individual
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/individual
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -2590,7 +2590,7 @@ Response (CalcuttaSummaryModel):
   }
 `);
   add("vrslide-2", "apis", "getDotsGameSummary", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/dots_game
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/dots_game
 // Controller: game_details_controller.dart → apiService.getDotsGameSummary()
 
 Dart Method:
@@ -2600,7 +2600,7 @@ Dart Method:
   }) → Future&lt;DotsGameWinnerSummary&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/dots_game
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/dots_game
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -2611,7 +2611,7 @@ Response (DotsGameWinnerSummary):
   }
 `);
   add("vrslide-2", "apis", "getDotsGameWinner", `
-// GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/dots_game/winner
+// GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/dots_game/winner
 // Controller: game_details_controller.dart → apiService.getDotsGameWinner()
 
 Dart Method:
@@ -2622,7 +2622,7 @@ Dart Method:
   }) → Future&lt;DotsGameWinnerModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/dots_game/winner
+  GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/dots_game/winner
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -2633,7 +2633,7 @@ Response (DotsGameWinnerModel):
   }
 `);
   add("vrslide-2", "apis", "getFoursome", `
-// GET {{baseUrl}}/api/games/$gameID/foursomes/list
+// GET {{baseUrl}}/api/games/\$gameID/foursomes/list
 // Controller: game_details_controller.dart → apiService.getFoursome()
 
 Dart Method:
@@ -2643,7 +2643,7 @@ Dart Method:
   }) → Future&lt;CalcuttaFoursomeModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/games/$gameID/foursomes/list
+  GET {{baseUrl}}/api/games/\$gameID/foursomes/list
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -2654,7 +2654,7 @@ Response (CalcuttaFoursomeModel):
   }
 `);
   add("vrslide-2", "apis", "getFoursomeOverride", `
-// GET {{baseUrl}}/api/games/$gameID/foursome/$foursomeId/override
+// GET {{baseUrl}}/api/games/\$gameID/foursome/\$foursomeId/override
 // Controller: game_details_controller.dart → apiService.getFoursomeOverride()
 
 Dart Method:
@@ -2665,7 +2665,7 @@ Dart Method:
   }) → Future&lt;GetFoursomeOverrideModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/games/$gameID/foursome/$foursomeId/override
+  GET {{baseUrl}}/api/games/\$gameID/foursome/\$foursomeId/override
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -2676,7 +2676,7 @@ Response (GetFoursomeOverrideModel):
   }
 `);
   add("vrslide-2", "apis", "getFoursomeTeam", `
-// GET {{baseUrl}}/api/result/game/$gameID/foursome/$foursomeId/team/points
+// GET {{baseUrl}}/api/result/game/\$gameID/foursome/\$foursomeId/team/points
 // Controller: game_details_controller.dart → apiService.getFoursomeTeam()
 
 Dart Method:
@@ -2686,7 +2686,7 @@ Dart Method:
   }) → Future&lt;FoursomeTeamModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameID/foursome/$foursomeId/team/points
+  GET {{baseUrl}}/api/result/game/\$gameID/foursome/\$foursomeId/team/points
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -2697,7 +2697,7 @@ Response (FoursomeTeamModel):
   }
 `);
   add("vrslide-2", "apis", "getGameDetails", `
-// GET {{baseUrl}}/api/games/$gameId/details
+// GET {{baseUrl}}/api/games/\$gameId/details
 // Controller: game_details_controller.dart → apiService.getGameDetails()
 
 Dart Method:
@@ -2707,7 +2707,7 @@ Dart Method:
   }) → Future&lt;GameDetails&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/games/$gameId/details
+  GET {{baseUrl}}/api/games/\$gameId/details
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -2718,7 +2718,7 @@ Response (GameDetails):
   }
 `);
   add("vrslide-2", "apis", "getHorseRaceAcrosswinner", `
-// GET {{baseUrl}}/api/result/game/$gameId/foursome/0/accross/winner
+// GET {{baseUrl}}/api/result/game/\$gameId/foursome/0/accross/winner
 // Controller: game_details_controller.dart → apiService.getHorseRaceAcrosswinner()
 
 Dart Method:
@@ -2727,7 +2727,7 @@ Dart Method:
   }) → Future&lt;HorseRaceWinnerModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameId/foursome/0/accross/winner
+  GET {{baseUrl}}/api/result/game/\$gameId/foursome/0/accross/winner
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -2738,7 +2738,7 @@ Response (HorseRaceWinnerModel):
   }
 `);
   add("vrslide-2", "apis", "getHorseRaceSummary", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/individual
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/individual
 // Controller: game_details_controller.dart → apiService.getHorseRaceSummary()
 
 Dart Method:
@@ -2749,7 +2749,7 @@ Dart Method:
   }) → Future&lt;HorseRaceSummaryModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/individual
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/individual
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -2760,7 +2760,7 @@ Response (HorseRaceSummaryModel):
   }
 `);
   add("vrslide-2", "apis", "getIndividualSummary", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/individual
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/individual
 // Controller: game_details_controller.dart → apiService.getIndividualSummary()
 
 Dart Method:
@@ -2771,7 +2771,7 @@ Dart Method:
   }) → Future&lt;RabbitChickenSummaryModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/individual
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/individual
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -2782,7 +2782,7 @@ Response (RabbitChickenSummaryModel):
   }
 `);
   add("vrslide-2", "apis", "getJunkSummary", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/junk-summary
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/junk-summary
 // Controller: game_details_controller.dart → apiService.getJunkSummary()
 
 Dart Method:
@@ -2792,7 +2792,7 @@ Dart Method:
   }) → Future&lt;JunkSummaryModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/junk-summary
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/junk-summary
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -2803,7 +2803,7 @@ Response (JunkSummaryModel):
   }
 `);
   add("vrslide-2", "apis", "getMedalPlayAcrossWinner", `
-// GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/accross/winner
+// GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/accross/winner
 // Controller: game_details_controller.dart → apiService.getMedalPlayAcrossWinner()
 
 Dart Method:
@@ -2814,7 +2814,7 @@ Dart Method:
   }) → Future&lt;MedalPlayAcrossWinner&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/accross/winner
+  GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/accross/winner
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -2825,7 +2825,7 @@ Response (MedalPlayAcrossWinner):
   }
 `);
   add("vrslide-2", "apis", "getModifiedStableFordWinner", `
-// GET {{baseUrl}}/api/result/game/$gameId/foursome/0/accross/winner
+// GET {{baseUrl}}/api/result/game/\$gameId/foursome/0/accross/winner
 // Controller: game_details_controller.dart → apiService.getModifiedStableFordWinner()
 
 Dart Method:
@@ -2835,7 +2835,7 @@ Dart Method:
   }) → Future&lt;ModifiedStableFordAcrossWinner&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameId/foursome/0/accross/winner
+  GET {{baseUrl}}/api/result/game/\$gameId/foursome/0/accross/winner
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -2846,7 +2846,7 @@ Response (ModifiedStableFordAcrossWinner):
   }
 `);
   add("vrslide-2", "apis", "getNewLedgerDate", `
-// GET {{baseUrl}}/api/ledger/game/$gameId
+// GET {{baseUrl}}/api/ledger/game/\$gameId
 // Controller: game_details_controller.dart → apiService.getNewLedgerDate()
 
 Dart Method:
@@ -2857,7 +2857,7 @@ Dart Method:
   }) → Future&lt;DemoLedgerModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/ledger/game/$gameId
+  GET {{baseUrl}}/api/ledger/game/\$gameId
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -2909,7 +2909,7 @@ Response (PaypalCredentialModel):
   }
 `);
   add("vrslide-2", "apis", "getPlayerResult", `
-// GET {{baseUrl}}/api/result/game/$gameId/player/$playerId
+// GET {{baseUrl}}/api/result/game/\$gameId/player/\$playerId
 // Controller: game_details_controller.dart → apiService.getPlayerResult()
 
 Dart Method:
@@ -2919,7 +2919,7 @@ Dart Method:
   }) → Future&lt;PlayerResultModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameId/player/$playerId
+  GET {{baseUrl}}/api/result/game/\$gameId/player/\$playerId
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -2930,7 +2930,7 @@ Response (PlayerResultModel):
   }
 `);
   add("vrslide-2", "apis", "getProgassiveFoursomeWinner", `
-// GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/winner
+// GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/winner
 // Controller: game_details_controller.dart → apiService.getProgassiveFoursomeWinner()
 
 Dart Method:
@@ -2941,7 +2941,7 @@ Dart Method:
   }) → Future&lt;GameWinnerModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/winner
+  GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/winner
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -2952,7 +2952,7 @@ Response (GameWinnerModel):
   }
 `);
   add("vrslide-2", "apis", "getQrLink", `
-// GET {{baseUrl}}/api/games/$gameId/onsite-register/qr/link
+// GET {{baseUrl}}/api/games/\$gameId/onsite-register/qr/link
 // Controller: game_details_controller.dart → apiService.getQrLink()
 
 Dart Method:
@@ -2962,7 +2962,7 @@ Dart Method:
   }) → Future&lt;QrModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/games/$gameId/onsite-register/qr/link
+  GET {{baseUrl}}/api/games/\$gameId/onsite-register/qr/link
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -2973,7 +2973,7 @@ Response (QrModel):
   }
 `);
   add("vrslide-2", "apis", "getRabbitChickenSummary", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/rabbitchicken
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/rabbitchicken
 // Controller: game_details_controller.dart → apiService.getRabbitChickenSummary()
 
 Dart Method:
@@ -2983,7 +2983,7 @@ Dart Method:
   }) → Future&lt;RabbitChickenSummaryModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/rabbitchicken
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/rabbitchicken
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -2994,7 +2994,7 @@ Response (RabbitChickenSummaryModel):
   }
 `);
   add("vrslide-2", "apis", "getRabitAndChickenWinner", `
-// GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/rabbitchicken/winner
+// GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/rabbitchicken/winner
 // Controller: game_details_controller.dart → apiService.getRabitAndChickenWinner()
 
 Dart Method:
@@ -3005,7 +3005,7 @@ Dart Method:
   }) → Future&lt;GameWinnerModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/rabbitchicken/winner
+  GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/rabbitchicken/winner
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -3016,7 +3016,7 @@ Response (GameWinnerModel):
   }
 `);
   add("vrslide-2", "apis", "getRegularIndividualAcrossWinner", `
-// GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/accross/winner
+// GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/accross/winner
 // Controller: game_details_controller.dart → apiService.getRegularIndividualAcrossWinner()
 
 Dart Method:
@@ -3027,7 +3027,7 @@ Dart Method:
   }) → Future&lt;RegularIndividualAcrossWinnerModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/accross/winner
+  GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/accross/winner
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -3038,7 +3038,7 @@ Response (RegularIndividualAcrossWinnerModel):
   }
 `);
   add("vrslide-2", "apis", "getResult", `
-// GET {{baseUrl}}/api/result/game/$gameId?foursome_id=$foursomeId
+// GET {{baseUrl}}/api/result/game/\$gameId?foursome_id=\$foursomeId
 // Controller: game_details_controller.dart → apiService.getResult()
 
 Dart Method:
@@ -3049,7 +3049,7 @@ Dart Method:
   }) → Future&lt;GameResultModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameId?foursome_id=$foursomeId
+  GET {{baseUrl}}/api/result/game/\$gameId?foursome_id=\$foursomeId
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -3060,7 +3060,7 @@ Response (GameResultModel):
   }
 `);
   add("vrslide-2", "apis", "getScramble4man6HolesSummary", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/individual
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/individual
 // Controller: game_details_controller.dart → apiService.getScramble4man6HolesSummary()
 
 Dart Method:
@@ -3071,7 +3071,7 @@ Dart Method:
   }) → Future&lt;Scramble4Man6HolesSummaryModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/individual
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/individual
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -3082,7 +3082,7 @@ Response (Scramble4Man6HolesSummaryModel):
   }
 `);
   add("vrslide-2", "apis", "getScrambleCodSummary", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/2v2
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/2v2
 // Controller: game_details_controller.dart → apiService.getScrambleCodSummary()
 
 Dart Method:
@@ -3092,7 +3092,7 @@ Dart Method:
   }) → Future&lt;ScrambleCodModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/2v2
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/2v2
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -3103,7 +3103,7 @@ Response (ScrambleCodModel):
   }
 `);
   add("vrslide-2", "apis", "getShotLedger", `
-// GET {{baseUrl}}/api/scorecard/game/$gameId/shot-ledger
+// GET {{baseUrl}}/api/scorecard/game/\$gameId/shot-ledger
 // Controller: game_details_controller.dart → apiService.getShotLedger()
 
 Dart Method:
@@ -3113,7 +3113,7 @@ Dart Method:
   }) → Future&lt;ShotLedgerModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/scorecard/game/$gameId/shot-ledger
+  GET {{baseUrl}}/api/scorecard/game/\$gameId/shot-ledger
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -3124,7 +3124,7 @@ Response (ShotLedgerModel):
   }
 `);
   add("vrslide-2", "apis", "getSkodeJunkWinner", `
-// GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/junk-skode/winners
+// GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/junk-skode/winners
 // Controller: game_details_controller.dart → apiService.getSkodeJunkWinner()
 
 Dart Method:
@@ -3135,7 +3135,7 @@ Dart Method:
   }) → Future&lt;SkodeJunkWinnerModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/junk-skode/winners
+  GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/junk-skode/winners
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -3146,7 +3146,7 @@ Response (SkodeJunkWinnerModel):
   }
 `);
   add("vrslide-2", "apis", "getSkodeSummary", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/skode-summary
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/skode-summary
 // Controller: game_details_controller.dart → apiService.getSkodeSummary()
 
 Dart Method:
@@ -3156,7 +3156,7 @@ Dart Method:
   }) → Future&lt;SkodeSummaryModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/skode-summary
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/skode-summary
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -3167,7 +3167,7 @@ Response (SkodeSummaryModel):
   }
 `);
   add("vrslide-2", "apis", "getSummary2v2", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/2v2
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/2v2
 // Controller: game_details_controller.dart → apiService.getSummary2v2()
 
 Dart Method:
@@ -3178,7 +3178,7 @@ Dart Method:
   }) → Future&lt;TwoVTwoSummaryModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/2v2
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/2v2
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -3189,7 +3189,7 @@ Response (TwoVTwoSummaryModel):
   }
 `);
   add("vrslide-2", "apis", "getVegasFoursomeWinner", `
-// GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/winner
+// GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/winner
 // Controller: game_details_controller.dart → apiService.getVegasFoursomeWinner()
 
 Dart Method:
@@ -3200,7 +3200,7 @@ Dart Method:
   }) → Future&lt;VegasWinnerModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/winner
+  GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/winner
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -3244,7 +3244,7 @@ Response (DefaultModel):
   }
 `);
   add("vrslide-2", "apis", "ryderCaptainsSummary", `
-// GET {{baseUrl}}/api/summary/game/$gameID/rydercup/winning-captain/summary
+// GET {{baseUrl}}/api/summary/game/\$gameID/rydercup/winning-captain/summary
 // Controller: game_details_controller.dart → apiService.ryderCaptainsSummary()
 
 Dart Method:
@@ -3253,7 +3253,7 @@ Dart Method:
   }) → Future&lt;RyderCaptainsSummaryModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameID/rydercup/winning-captain/summary
+  GET {{baseUrl}}/api/summary/game/\$gameID/rydercup/winning-captain/summary
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -3264,7 +3264,7 @@ Response (RyderCaptainsSummaryModel):
   }
 `);
   add("vrslide-2", "apis", "ryderCaptainsWinner", `
-// GET {{baseUrl}}/api/result/game/$gameID/rydercup/winner/captain
+// GET {{baseUrl}}/api/result/game/\$gameID/rydercup/winner/captain
 // Controller: game_details_controller.dart → apiService.ryderCaptainsWinner()
 
 Dart Method:
@@ -3274,7 +3274,7 @@ Dart Method:
   }) → Future&lt;RyderCaptainWinnerModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameID/rydercup/winner/captain
+  GET {{baseUrl}}/api/result/game/\$gameID/rydercup/winner/captain
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -3315,7 +3315,7 @@ Response (DefaultModel):
   }
 `);
   add("vrslide-2", "apis", "shareScorecardPdf", `
-// POST {{baseUrl}}/${StaticData.apiUrl}api/groupme/posts/pdf
+// POST {{baseUrl}}/\${StaticData.apiUrl}api/groupme/posts/pdf
 // Controller: game_details_controller.dart → apiService.shareScorecardPdf()
 
 Dart Method:
@@ -3329,7 +3329,7 @@ Dart Method:
   }) → Future&lt;DefaultModel&gt;
 
 HTTP Request:
-  POST {{baseUrl}}/${StaticData.apiUrl}api/groupme/posts/pdf
+  POST {{baseUrl}}/\${StaticData.apiUrl}api/groupme/posts/pdf
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
   Content-Type: application/json
@@ -3352,7 +3352,7 @@ Response (DefaultModel):
   }
 `);
   add("vrslide-2", "apis", "shareWinnerAndScorecard", `
-// POST {{baseUrl}}/${StaticData.apiUrl}api/groupme/posts
+// POST {{baseUrl}}/\${StaticData.apiUrl}api/groupme/posts
 // Controller: game_details_controller.dart → apiService.shareWinnerAndScorecard()
 
 Dart Method:
@@ -3366,7 +3366,7 @@ Dart Method:
   }) → Future&lt;DefaultModel&gt;
 
 HTTP Request:
-  POST {{baseUrl}}/${StaticData.apiUrl}api/groupme/posts
+  POST {{baseUrl}}/\${StaticData.apiUrl}api/groupme/posts
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
   Content-Type: application/json
@@ -3388,7 +3388,7 @@ Response (DefaultModel):
   }
 `);
   add("vrslide-2", "apis", "startGame", `
-// GET {{baseUrl}}/api/games/$gameId/start
+// GET {{baseUrl}}/api/games/\$gameId/start
 // Controller: game_details_controller.dart → apiService.startGame()
 
 Dart Method:
@@ -3397,7 +3397,7 @@ Dart Method:
   }) → Future&lt;DefaultModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/games/$gameId/start
+  GET {{baseUrl}}/api/games/\$gameId/start
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -3478,7 +3478,7 @@ Response (DefaultModel):
   }
 `);
   add("vrslide-3", "apis", "deleteGame", `
-// DELETE {{baseUrl}}/api/games/$id/delete
+// DELETE {{baseUrl}}/api/games/\$id/delete
 // Controller: game_details_controller.dart → apiService.deleteGame()
 
 Dart Method:
@@ -3488,7 +3488,7 @@ Dart Method:
   }) → Future&lt;DefaultModel&gt;
 
 HTTP Request:
-  DELETE {{baseUrl}}/api/games/$id/delete
+  DELETE {{baseUrl}}/api/games/\$id/delete
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -3499,7 +3499,7 @@ Response (DefaultModel):
   }
 `);
   add("vrslide-3", "apis", "endGame", `
-// GET {{baseUrl}}/api/games/$gameId/end
+// GET {{baseUrl}}/api/games/\$gameId/end
 // Controller: game_details_controller.dart → apiService.endGame()
 
 Dart Method:
@@ -3508,7 +3508,7 @@ Dart Method:
   }) → Future&lt;DefaultModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/games/$gameId/end
+  GET {{baseUrl}}/api/games/\$gameId/end
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -3519,7 +3519,7 @@ Response (DefaultModel):
   }
 `);
   add("vrslide-3", "apis", "executePayment", `
-// POST {{baseUrl}}/v1/payments/payment/$paymentId/execute
+// POST {{baseUrl}}/v1/payments/payment/\$paymentId/execute
 // Controller: game_details_controller.dart → apiService.executePayment()
 
 Dart Method:
@@ -3530,7 +3530,7 @@ Dart Method:
   }) → Future&lt;ExecutePaymentModel&gt;
 
 HTTP Request:
-  POST {{baseUrl}}/v1/payments/payment/$paymentId/execute
+  POST {{baseUrl}}/v1/payments/payment/\$paymentId/execute
   Authorization: Bearer {{accessToken}}
   Content-Type: application/json
 
@@ -3541,7 +3541,7 @@ Response (ExecutePaymentModel):
   }
 `);
   add("vrslide-3", "apis", "get2v2Summary", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/2v2
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/2v2
 // Controller: game_details_controller.dart → apiService.get2v2Summary()
 
 Dart Method:
@@ -3552,7 +3552,7 @@ Dart Method:
   }) → Future&lt;CodSummaryModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/2v2
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/2v2
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -3563,7 +3563,7 @@ Response (CodSummaryModel):
   }
 `);
   add("vrslide-3", "apis", "get6HoleSummary2v2", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/2v2
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/2v2
 // Controller: game_details_controller.dart → apiService.get6HoleSummary2v2()
 
 Dart Method:
@@ -3574,7 +3574,7 @@ Dart Method:
   }) → Future&lt;SixHoleTwoVTwoSummaryMode&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/2v2
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/2v2
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -3585,7 +3585,7 @@ Response (SixHoleTwoVTwoSummaryMode):
   }
 `);
   add("vrslide-3", "apis", "get6HolesCodSummary", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/2v2
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/2v2
 // Controller: game_details_controller.dart → apiService.get6HolesCodSummary()
 
 Dart Method:
@@ -3596,7 +3596,7 @@ Dart Method:
   }) → Future&lt;NewScramblCodSummary&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/2v2
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/2v2
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -3607,7 +3607,7 @@ Response (NewScramblCodSummary):
   }
 `);
   add("vrslide-3", "apis", "getAcrossIndividualSummary", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/across
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/across
 // Controller: game_details_controller.dart → apiService.getAcrossIndividualSummary()
 
 Dart Method:
@@ -3617,7 +3617,7 @@ Dart Method:
   }) → Future&lt;AcrossIndividualSummaryModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/across
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/across
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -3628,7 +3628,7 @@ Response (AcrossIndividualSummaryModel):
   }
 `);
   add("vrslide-3", "apis", "getAcrossWinner", `
-// GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/accross/winner
+// GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/accross/winner
 // Controller: game_details_controller.dart → apiService.getAcrossWinner()
 
 Dart Method:
@@ -3639,7 +3639,7 @@ Dart Method:
   }) → Future&lt;AcrossWinnerModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/accross/winner
+  GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/accross/winner
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -3650,7 +3650,7 @@ Response (AcrossWinnerModel):
   }
 `);
   add("vrslide-3", "apis", "getAllPlayersResult", `
-// GET {{baseUrl}}/api/result/game/${gameId}/all-foursome
+// GET {{baseUrl}}/api/result/game/\${gameId}/all-foursome
 // Controller: game_details_controller.dart → apiService.getAllPlayersResult()
 
 Dart Method:
@@ -3660,7 +3660,7 @@ Dart Method:
   }) → Future&lt;GameResultModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/${gameId}/all-foursome
+  GET {{baseUrl}}/api/result/game/\${gameId}/all-foursome
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -3671,7 +3671,7 @@ Response (GameResultModel):
   }
 `);
   add("vrslide-3", "apis", "getBasementSummary", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/basement
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/basement
 // Controller: game_details_controller.dart → apiService.getBasementSummary()
 
 Dart Method:
@@ -3682,7 +3682,7 @@ Dart Method:
   }) → Future&lt;BasementSummaryModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/basement
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/basement
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -3693,7 +3693,7 @@ Response (BasementSummaryModel):
   }
 `);
   add("vrslide-3", "apis", "getBetTeeSheetPlayer", `
-// GET {{baseUrl}}/api/teesheet/course/$courseId/groups/details?game_type=$gameType
+// GET {{baseUrl}}/api/teesheet/course/\$courseId/groups/details?game_type=\$gameType
 // Controller: game_details_controller.dart → apiService.getBetTeeSheetPlayer()
 
 Dart Method:
@@ -3702,7 +3702,7 @@ Dart Method:
   }) → Future&lt;BetsTeesheetPlayerListModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/teesheet/course/$courseId/groups/details?game_type=$gameType
+  GET {{baseUrl}}/api/teesheet/course/\$courseId/groups/details?game_type=\$gameType
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -3713,7 +3713,7 @@ Response (BetsTeesheetPlayerListModel):
   }
 `);
   add("vrslide-3", "apis", "getCalcuttaSummary", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/individual
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/individual
 // Controller: game_details_controller.dart → apiService.getCalcuttaSummary()
 
 Dart Method:
@@ -3724,7 +3724,7 @@ Dart Method:
   }) → Future&lt;CalcuttaSummaryModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/individual
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/individual
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -3735,7 +3735,7 @@ Response (CalcuttaSummaryModel):
   }
 `);
   add("vrslide-3", "apis", "getDotsGameSummary", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/dots_game
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/dots_game
 // Controller: game_details_controller.dart → apiService.getDotsGameSummary()
 
 Dart Method:
@@ -3745,7 +3745,7 @@ Dart Method:
   }) → Future&lt;DotsGameWinnerSummary&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/dots_game
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/dots_game
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -3756,7 +3756,7 @@ Response (DotsGameWinnerSummary):
   }
 `);
   add("vrslide-3", "apis", "getDotsGameWinner", `
-// GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/dots_game/winner
+// GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/dots_game/winner
 // Controller: game_details_controller.dart → apiService.getDotsGameWinner()
 
 Dart Method:
@@ -3767,7 +3767,7 @@ Dart Method:
   }) → Future&lt;DotsGameWinnerModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/dots_game/winner
+  GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/dots_game/winner
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -3778,7 +3778,7 @@ Response (DotsGameWinnerModel):
   }
 `);
   add("vrslide-3", "apis", "getFoursome", `
-// GET {{baseUrl}}/api/games/$gameID/foursomes/list
+// GET {{baseUrl}}/api/games/\$gameID/foursomes/list
 // Controller: game_details_controller.dart → apiService.getFoursome()
 
 Dart Method:
@@ -3788,7 +3788,7 @@ Dart Method:
   }) → Future&lt;CalcuttaFoursomeModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/games/$gameID/foursomes/list
+  GET {{baseUrl}}/api/games/\$gameID/foursomes/list
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -3799,7 +3799,7 @@ Response (CalcuttaFoursomeModel):
   }
 `);
   add("vrslide-3", "apis", "getFoursomeOverride", `
-// GET {{baseUrl}}/api/games/$gameID/foursome/$foursomeId/override
+// GET {{baseUrl}}/api/games/\$gameID/foursome/\$foursomeId/override
 // Controller: game_details_controller.dart → apiService.getFoursomeOverride()
 
 Dart Method:
@@ -3810,7 +3810,7 @@ Dart Method:
   }) → Future&lt;GetFoursomeOverrideModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/games/$gameID/foursome/$foursomeId/override
+  GET {{baseUrl}}/api/games/\$gameID/foursome/\$foursomeId/override
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -3821,7 +3821,7 @@ Response (GetFoursomeOverrideModel):
   }
 `);
   add("vrslide-3", "apis", "getFoursomeTeam", `
-// GET {{baseUrl}}/api/result/game/$gameID/foursome/$foursomeId/team/points
+// GET {{baseUrl}}/api/result/game/\$gameID/foursome/\$foursomeId/team/points
 // Controller: game_details_controller.dart → apiService.getFoursomeTeam()
 
 Dart Method:
@@ -3831,7 +3831,7 @@ Dart Method:
   }) → Future&lt;FoursomeTeamModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameID/foursome/$foursomeId/team/points
+  GET {{baseUrl}}/api/result/game/\$gameID/foursome/\$foursomeId/team/points
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -3842,7 +3842,7 @@ Response (FoursomeTeamModel):
   }
 `);
   add("vrslide-3", "apis", "getGameDetails", `
-// GET {{baseUrl}}/api/games/$gameId/details
+// GET {{baseUrl}}/api/games/\$gameId/details
 // Controller: game_details_controller.dart → apiService.getGameDetails()
 
 Dart Method:
@@ -3852,7 +3852,7 @@ Dart Method:
   }) → Future&lt;GameDetails&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/games/$gameId/details
+  GET {{baseUrl}}/api/games/\$gameId/details
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -3863,7 +3863,7 @@ Response (GameDetails):
   }
 `);
   add("vrslide-3", "apis", "getHorseRaceAcrosswinner", `
-// GET {{baseUrl}}/api/result/game/$gameId/foursome/0/accross/winner
+// GET {{baseUrl}}/api/result/game/\$gameId/foursome/0/accross/winner
 // Controller: game_details_controller.dart → apiService.getHorseRaceAcrosswinner()
 
 Dart Method:
@@ -3872,7 +3872,7 @@ Dart Method:
   }) → Future&lt;HorseRaceWinnerModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameId/foursome/0/accross/winner
+  GET {{baseUrl}}/api/result/game/\$gameId/foursome/0/accross/winner
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -3883,7 +3883,7 @@ Response (HorseRaceWinnerModel):
   }
 `);
   add("vrslide-3", "apis", "getHorseRaceSummary", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/individual
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/individual
 // Controller: game_details_controller.dart → apiService.getHorseRaceSummary()
 
 Dart Method:
@@ -3894,7 +3894,7 @@ Dart Method:
   }) → Future&lt;HorseRaceSummaryModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/individual
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/individual
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -3905,7 +3905,7 @@ Response (HorseRaceSummaryModel):
   }
 `);
   add("vrslide-3", "apis", "getIndividualSummary", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/individual
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/individual
 // Controller: game_details_controller.dart → apiService.getIndividualSummary()
 
 Dart Method:
@@ -3916,7 +3916,7 @@ Dart Method:
   }) → Future&lt;RabbitChickenSummaryModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/individual
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/individual
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -3927,7 +3927,7 @@ Response (RabbitChickenSummaryModel):
   }
 `);
   add("vrslide-3", "apis", "getJunkSummary", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/junk-summary
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/junk-summary
 // Controller: game_details_controller.dart → apiService.getJunkSummary()
 
 Dart Method:
@@ -3937,7 +3937,7 @@ Dart Method:
   }) → Future&lt;JunkSummaryModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/junk-summary
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/junk-summary
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -3948,7 +3948,7 @@ Response (JunkSummaryModel):
   }
 `);
   add("vrslide-3", "apis", "getMedalPlayAcrossWinner", `
-// GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/accross/winner
+// GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/accross/winner
 // Controller: game_details_controller.dart → apiService.getMedalPlayAcrossWinner()
 
 Dart Method:
@@ -3959,7 +3959,7 @@ Dart Method:
   }) → Future&lt;MedalPlayAcrossWinner&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/accross/winner
+  GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/accross/winner
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -3970,7 +3970,7 @@ Response (MedalPlayAcrossWinner):
   }
 `);
   add("vrslide-3", "apis", "getModifiedStableFordWinner", `
-// GET {{baseUrl}}/api/result/game/$gameId/foursome/0/accross/winner
+// GET {{baseUrl}}/api/result/game/\$gameId/foursome/0/accross/winner
 // Controller: game_details_controller.dart → apiService.getModifiedStableFordWinner()
 
 Dart Method:
@@ -3980,7 +3980,7 @@ Dart Method:
   }) → Future&lt;ModifiedStableFordAcrossWinner&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameId/foursome/0/accross/winner
+  GET {{baseUrl}}/api/result/game/\$gameId/foursome/0/accross/winner
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -3991,7 +3991,7 @@ Response (ModifiedStableFordAcrossWinner):
   }
 `);
   add("vrslide-3", "apis", "getNewLedgerDate", `
-// GET {{baseUrl}}/api/ledger/game/$gameId
+// GET {{baseUrl}}/api/ledger/game/\$gameId
 // Controller: game_details_controller.dart → apiService.getNewLedgerDate()
 
 Dart Method:
@@ -4002,7 +4002,7 @@ Dart Method:
   }) → Future&lt;DemoLedgerModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/ledger/game/$gameId
+  GET {{baseUrl}}/api/ledger/game/\$gameId
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -4054,7 +4054,7 @@ Response (PaypalCredentialModel):
   }
 `);
   add("vrslide-3", "apis", "getPlayerResult", `
-// GET {{baseUrl}}/api/result/game/$gameId/player/$playerId
+// GET {{baseUrl}}/api/result/game/\$gameId/player/\$playerId
 // Controller: game_details_controller.dart → apiService.getPlayerResult()
 
 Dart Method:
@@ -4064,7 +4064,7 @@ Dart Method:
   }) → Future&lt;PlayerResultModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameId/player/$playerId
+  GET {{baseUrl}}/api/result/game/\$gameId/player/\$playerId
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -4075,7 +4075,7 @@ Response (PlayerResultModel):
   }
 `);
   add("vrslide-3", "apis", "getProgassiveFoursomeWinner", `
-// GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/winner
+// GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/winner
 // Controller: game_details_controller.dart → apiService.getProgassiveFoursomeWinner()
 
 Dart Method:
@@ -4086,7 +4086,7 @@ Dart Method:
   }) → Future&lt;GameWinnerModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/winner
+  GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/winner
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -4097,7 +4097,7 @@ Response (GameWinnerModel):
   }
 `);
   add("vrslide-3", "apis", "getQrLink", `
-// GET {{baseUrl}}/api/games/$gameId/onsite-register/qr/link
+// GET {{baseUrl}}/api/games/\$gameId/onsite-register/qr/link
 // Controller: game_details_controller.dart → apiService.getQrLink()
 
 Dart Method:
@@ -4107,7 +4107,7 @@ Dart Method:
   }) → Future&lt;QrModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/games/$gameId/onsite-register/qr/link
+  GET {{baseUrl}}/api/games/\$gameId/onsite-register/qr/link
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -4118,7 +4118,7 @@ Response (QrModel):
   }
 `);
   add("vrslide-3", "apis", "getRabbitChickenSummary", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/rabbitchicken
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/rabbitchicken
 // Controller: game_details_controller.dart → apiService.getRabbitChickenSummary()
 
 Dart Method:
@@ -4128,7 +4128,7 @@ Dart Method:
   }) → Future&lt;RabbitChickenSummaryModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/rabbitchicken
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/rabbitchicken
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -4139,7 +4139,7 @@ Response (RabbitChickenSummaryModel):
   }
 `);
   add("vrslide-3", "apis", "getRabitAndChickenWinner", `
-// GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/rabbitchicken/winner
+// GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/rabbitchicken/winner
 // Controller: game_details_controller.dart → apiService.getRabitAndChickenWinner()
 
 Dart Method:
@@ -4150,7 +4150,7 @@ Dart Method:
   }) → Future&lt;GameWinnerModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/rabbitchicken/winner
+  GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/rabbitchicken/winner
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -4161,7 +4161,7 @@ Response (GameWinnerModel):
   }
 `);
   add("vrslide-3", "apis", "getRegularIndividualAcrossWinner", `
-// GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/accross/winner
+// GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/accross/winner
 // Controller: game_details_controller.dart → apiService.getRegularIndividualAcrossWinner()
 
 Dart Method:
@@ -4172,7 +4172,7 @@ Dart Method:
   }) → Future&lt;RegularIndividualAcrossWinnerModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/accross/winner
+  GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/accross/winner
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -4183,7 +4183,7 @@ Response (RegularIndividualAcrossWinnerModel):
   }
 `);
   add("vrslide-3", "apis", "getResult", `
-// GET {{baseUrl}}/api/result/game/$gameId?foursome_id=$foursomeId
+// GET {{baseUrl}}/api/result/game/\$gameId?foursome_id=\$foursomeId
 // Controller: game_details_controller.dart → apiService.getResult()
 
 Dart Method:
@@ -4194,7 +4194,7 @@ Dart Method:
   }) → Future&lt;GameResultModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameId?foursome_id=$foursomeId
+  GET {{baseUrl}}/api/result/game/\$gameId?foursome_id=\$foursomeId
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -4205,7 +4205,7 @@ Response (GameResultModel):
   }
 `);
   add("vrslide-3", "apis", "getScramble4man6HolesSummary", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/individual
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/individual
 // Controller: game_details_controller.dart → apiService.getScramble4man6HolesSummary()
 
 Dart Method:
@@ -4216,7 +4216,7 @@ Dart Method:
   }) → Future&lt;Scramble4Man6HolesSummaryModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/individual
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/individual
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -4227,7 +4227,7 @@ Response (Scramble4Man6HolesSummaryModel):
   }
 `);
   add("vrslide-3", "apis", "getScrambleCodSummary", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/2v2
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/2v2
 // Controller: game_details_controller.dart → apiService.getScrambleCodSummary()
 
 Dart Method:
@@ -4237,7 +4237,7 @@ Dart Method:
   }) → Future&lt;ScrambleCodModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/2v2
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/2v2
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -4248,7 +4248,7 @@ Response (ScrambleCodModel):
   }
 `);
   add("vrslide-3", "apis", "getShotLedger", `
-// GET {{baseUrl}}/api/scorecard/game/$gameId/shot-ledger
+// GET {{baseUrl}}/api/scorecard/game/\$gameId/shot-ledger
 // Controller: game_details_controller.dart → apiService.getShotLedger()
 
 Dart Method:
@@ -4258,7 +4258,7 @@ Dart Method:
   }) → Future&lt;ShotLedgerModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/scorecard/game/$gameId/shot-ledger
+  GET {{baseUrl}}/api/scorecard/game/\$gameId/shot-ledger
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -4269,7 +4269,7 @@ Response (ShotLedgerModel):
   }
 `);
   add("vrslide-3", "apis", "getSkodeJunkWinner", `
-// GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/junk-skode/winners
+// GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/junk-skode/winners
 // Controller: game_details_controller.dart → apiService.getSkodeJunkWinner()
 
 Dart Method:
@@ -4280,7 +4280,7 @@ Dart Method:
   }) → Future&lt;SkodeJunkWinnerModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/junk-skode/winners
+  GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/junk-skode/winners
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -4291,7 +4291,7 @@ Response (SkodeJunkWinnerModel):
   }
 `);
   add("vrslide-3", "apis", "getSkodeSummary", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/skode-summary
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/skode-summary
 // Controller: game_details_controller.dart → apiService.getSkodeSummary()
 
 Dart Method:
@@ -4301,7 +4301,7 @@ Dart Method:
   }) → Future&lt;SkodeSummaryModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/skode-summary
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/skode-summary
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -4312,7 +4312,7 @@ Response (SkodeSummaryModel):
   }
 `);
   add("vrslide-3", "apis", "getSummary2v2", `
-// GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/2v2
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/2v2
 // Controller: game_details_controller.dart → apiService.getSummary2v2()
 
 Dart Method:
@@ -4323,7 +4323,7 @@ Dart Method:
   }) → Future&lt;TwoVTwoSummaryModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameId/foursome/$foursomeId/2v2
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/2v2
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -4334,7 +4334,7 @@ Response (TwoVTwoSummaryModel):
   }
 `);
   add("vrslide-3", "apis", "getVegasFoursomeWinner", `
-// GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/winner
+// GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/winner
 // Controller: game_details_controller.dart → apiService.getVegasFoursomeWinner()
 
 Dart Method:
@@ -4345,7 +4345,7 @@ Dart Method:
   }) → Future&lt;VegasWinnerModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameId/foursome/$fourSomeId/winner
+  GET {{baseUrl}}/api/result/game/\$gameId/foursome/\$fourSomeId/winner
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -4389,7 +4389,7 @@ Response (DefaultModel):
   }
 `);
   add("vrslide-3", "apis", "ryderCaptainsSummary", `
-// GET {{baseUrl}}/api/summary/game/$gameID/rydercup/winning-captain/summary
+// GET {{baseUrl}}/api/summary/game/\$gameID/rydercup/winning-captain/summary
 // Controller: game_details_controller.dart → apiService.ryderCaptainsSummary()
 
 Dart Method:
@@ -4398,7 +4398,7 @@ Dart Method:
   }) → Future&lt;RyderCaptainsSummaryModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/summary/game/$gameID/rydercup/winning-captain/summary
+  GET {{baseUrl}}/api/summary/game/\$gameID/rydercup/winning-captain/summary
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -4409,7 +4409,7 @@ Response (RyderCaptainsSummaryModel):
   }
 `);
   add("vrslide-3", "apis", "ryderCaptainsWinner", `
-// GET {{baseUrl}}/api/result/game/$gameID/rydercup/winner/captain
+// GET {{baseUrl}}/api/result/game/\$gameID/rydercup/winner/captain
 // Controller: game_details_controller.dart → apiService.ryderCaptainsWinner()
 
 Dart Method:
@@ -4419,7 +4419,7 @@ Dart Method:
   }) → Future&lt;RyderCaptainWinnerModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/result/game/$gameID/rydercup/winner/captain
+  GET {{baseUrl}}/api/result/game/\$gameID/rydercup/winner/captain
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -4460,7 +4460,7 @@ Response (DefaultModel):
   }
 `);
   add("vrslide-3", "apis", "shareScorecardPdf", `
-// POST {{baseUrl}}/${StaticData.apiUrl}api/groupme/posts/pdf
+// POST {{baseUrl}}/\${StaticData.apiUrl}api/groupme/posts/pdf
 // Controller: game_details_controller.dart → apiService.shareScorecardPdf()
 
 Dart Method:
@@ -4474,7 +4474,7 @@ Dart Method:
   }) → Future&lt;DefaultModel&gt;
 
 HTTP Request:
-  POST {{baseUrl}}/${StaticData.apiUrl}api/groupme/posts/pdf
+  POST {{baseUrl}}/\${StaticData.apiUrl}api/groupme/posts/pdf
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
   Content-Type: application/json
@@ -4497,7 +4497,7 @@ Response (DefaultModel):
   }
 `);
   add("vrslide-3", "apis", "shareWinnerAndScorecard", `
-// POST {{baseUrl}}/${StaticData.apiUrl}api/groupme/posts
+// POST {{baseUrl}}/\${StaticData.apiUrl}api/groupme/posts
 // Controller: game_details_controller.dart → apiService.shareWinnerAndScorecard()
 
 Dart Method:
@@ -4511,7 +4511,7 @@ Dart Method:
   }) → Future&lt;DefaultModel&gt;
 
 HTTP Request:
-  POST {{baseUrl}}/${StaticData.apiUrl}api/groupme/posts
+  POST {{baseUrl}}/\${StaticData.apiUrl}api/groupme/posts
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
   Content-Type: application/json
@@ -4533,7 +4533,7 @@ Response (DefaultModel):
   }
 `);
   add("vrslide-3", "apis", "startGame", `
-// GET {{baseUrl}}/api/games/$gameId/start
+// GET {{baseUrl}}/api/games/\$gameId/start
 // Controller: game_details_controller.dart → apiService.startGame()
 
 Dart Method:
@@ -4542,7 +4542,7 @@ Dart Method:
   }) → Future&lt;DefaultModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/games/$gameId/start
+  GET {{baseUrl}}/api/games/\$gameId/start
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 

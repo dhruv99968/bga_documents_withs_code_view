@@ -215,7 +215,7 @@ Response 200:
 
   // ── cgslide-9 — Game Created Successfully ────────────────
   add("cgslide-9", "apis", "createGame", `
-// POST {{baseUrl}}/${StaticData.apiUrl}api/games/create
+// POST {{baseUrl}}/\${StaticData.apiUrl}api/games/create
 // Controller: create_game_controller.dart → apiService.createGame()
 
 Dart Method:
@@ -269,7 +269,7 @@ Dart Method:
   }) → Future&lt;GamCreateModel&gt;
 
 HTTP Request:
-  POST {{baseUrl}}/${StaticData.apiUrl}api/games/create
+  POST {{baseUrl}}/\${StaticData.apiUrl}api/games/create
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
   Content-Type: application/json
@@ -370,7 +370,7 @@ Response 200:
 
 
   add("cgslide-0", "apis", "createGame", `
-// POST {{baseUrl}}/${StaticData.apiUrl}api/games/create
+// POST {{baseUrl}}/\${StaticData.apiUrl}api/games/create
 // Controller: create_game_controller.dart → apiService.createGame()
 
 Dart Method:
@@ -424,7 +424,7 @@ Dart Method:
   }) → Future&lt;GamCreateModel&gt;
 
 HTTP Request:
-  POST {{baseUrl}}/${StaticData.apiUrl}api/games/create
+  POST {{baseUrl}}/\${StaticData.apiUrl}api/games/create
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
   Content-Type: application/json
@@ -501,7 +501,7 @@ Response (GamCreateModel):
 `);
 
   add("cgslide-0", "apis", "getCourseTeesPositions", `
-// GET {{baseUrl}}/api/course/${courseId}/tee/list
+// GET {{baseUrl}}/api/course/\${courseId}/tee/list
 // Controller: create_game_controller.dart → apiService.getCourseTeesPositions()
 
 Dart Method:
@@ -510,7 +510,7 @@ Dart Method:
   }) → Future&lt;TeePositionModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/course/${courseId}/tee/list
+  GET {{baseUrl}}/api/course/\${courseId}/tee/list
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -587,7 +587,7 @@ Response (GameNameValidateModel):
 `);
 
   add("cgslide-1", "apis", "createGame", `
-// POST {{baseUrl}}/${StaticData.apiUrl}api/games/create
+// POST {{baseUrl}}/\${StaticData.apiUrl}api/games/create
 // Controller: create_game_controller.dart → apiService.createGame()
 
 Dart Method:
@@ -641,7 +641,7 @@ Dart Method:
   }) → Future&lt;GamCreateModel&gt;
 
 HTTP Request:
-  POST {{baseUrl}}/${StaticData.apiUrl}api/games/create
+  POST {{baseUrl}}/\${StaticData.apiUrl}api/games/create
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
   Content-Type: application/json
@@ -718,7 +718,7 @@ Response (GamCreateModel):
 `);
 
   add("cgslide-1", "apis", "getCourseTeesPositions", `
-// GET {{baseUrl}}/api/course/${courseId}/tee/list
+// GET {{baseUrl}}/api/course/\${courseId}/tee/list
 // Controller: create_game_controller.dart → apiService.getCourseTeesPositions()
 
 Dart Method:
@@ -727,7 +727,7 @@ Dart Method:
   }) → Future&lt;TeePositionModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/course/${courseId}/tee/list
+  GET {{baseUrl}}/api/course/\${courseId}/tee/list
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -804,7 +804,7 @@ Response (GameNameValidateModel):
 `);
 
   add("cgslide-2", "apis", "createGame", `
-// POST {{baseUrl}}/${StaticData.apiUrl}api/games/create
+// POST {{baseUrl}}/\${StaticData.apiUrl}api/games/create
 // Controller: create_game_controller.dart → apiService.createGame()
 
 Dart Method:
@@ -858,7 +858,7 @@ Dart Method:
   }) → Future&lt;GamCreateModel&gt;
 
 HTTP Request:
-  POST {{baseUrl}}/${StaticData.apiUrl}api/games/create
+  POST {{baseUrl}}/\${StaticData.apiUrl}api/games/create
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
   Content-Type: application/json
@@ -935,7 +935,7 @@ Response (GamCreateModel):
 `);
 
   add("cgslide-2", "apis", "getCourseTeesPositions", `
-// GET {{baseUrl}}/api/course/${courseId}/tee/list
+// GET {{baseUrl}}/api/course/\${courseId}/tee/list
 // Controller: create_game_controller.dart → apiService.getCourseTeesPositions()
 
 Dart Method:
@@ -944,7 +944,7 @@ Dart Method:
   }) → Future&lt;TeePositionModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/course/${courseId}/tee/list
+  GET {{baseUrl}}/api/course/\${courseId}/tee/list
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1021,7 +1021,7 @@ Response (GameNameValidateModel):
 `);
 
   add("cgslide-3", "apis", "createGame", `
-// POST {{baseUrl}}/${StaticData.apiUrl}api/games/create
+// POST {{baseUrl}}/\${StaticData.apiUrl}api/games/create
 // Controller: create_game_controller.dart → apiService.createGame()
 
 Dart Method:
@@ -1075,7 +1075,7 @@ Dart Method:
   }) → Future&lt;GamCreateModel&gt;
 
 HTTP Request:
-  POST {{baseUrl}}/${StaticData.apiUrl}api/games/create
+  POST {{baseUrl}}/\${StaticData.apiUrl}api/games/create
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
   Content-Type: application/json
@@ -1152,7 +1152,7 @@ Response (GamCreateModel):
 `);
 
   add("cgslide-3", "apis", "getCourseTeesPositions", `
-// GET {{baseUrl}}/api/course/${courseId}/tee/list
+// GET {{baseUrl}}/api/course/\${courseId}/tee/list
 // Controller: create_game_controller.dart → apiService.getCourseTeesPositions()
 
 Dart Method:
@@ -1161,7 +1161,7 @@ Dart Method:
   }) → Future&lt;TeePositionModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/course/${courseId}/tee/list
+  GET {{baseUrl}}/api/course/\${courseId}/tee/list
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1238,7 +1238,7 @@ Response (GameNameValidateModel):
 `);
 
   add("cgslide-4", "apis", "createGame", `
-// POST {{baseUrl}}/${StaticData.apiUrl}api/games/create
+// POST {{baseUrl}}/\${StaticData.apiUrl}api/games/create
 // Controller: create_game_controller.dart → apiService.createGame()
 
 Dart Method:
@@ -1292,7 +1292,7 @@ Dart Method:
   }) → Future&lt;GamCreateModel&gt;
 
 HTTP Request:
-  POST {{baseUrl}}/${StaticData.apiUrl}api/games/create
+  POST {{baseUrl}}/\${StaticData.apiUrl}api/games/create
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
   Content-Type: application/json
@@ -1369,7 +1369,7 @@ Response (GamCreateModel):
 `);
 
   add("cgslide-4", "apis", "getCourseTeesPositions", `
-// GET {{baseUrl}}/api/course/${courseId}/tee/list
+// GET {{baseUrl}}/api/course/\${courseId}/tee/list
 // Controller: create_game_controller.dart → apiService.getCourseTeesPositions()
 
 Dart Method:
@@ -1378,7 +1378,7 @@ Dart Method:
   }) → Future&lt;TeePositionModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/course/${courseId}/tee/list
+  GET {{baseUrl}}/api/course/\${courseId}/tee/list
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1455,7 +1455,7 @@ Response (GameNameValidateModel):
 `);
 
   add("cgslide-5", "apis", "createGame", `
-// POST {{baseUrl}}/${StaticData.apiUrl}api/games/create
+// POST {{baseUrl}}/\${StaticData.apiUrl}api/games/create
 // Controller: create_game_controller.dart → apiService.createGame()
 
 Dart Method:
@@ -1509,7 +1509,7 @@ Dart Method:
   }) → Future&lt;GamCreateModel&gt;
 
 HTTP Request:
-  POST {{baseUrl}}/${StaticData.apiUrl}api/games/create
+  POST {{baseUrl}}/\${StaticData.apiUrl}api/games/create
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
   Content-Type: application/json
@@ -1586,7 +1586,7 @@ Response (GamCreateModel):
 `);
 
   add("cgslide-5", "apis", "getCourseTeesPositions", `
-// GET {{baseUrl}}/api/course/${courseId}/tee/list
+// GET {{baseUrl}}/api/course/\${courseId}/tee/list
 // Controller: create_game_controller.dart → apiService.getCourseTeesPositions()
 
 Dart Method:
@@ -1595,7 +1595,7 @@ Dart Method:
   }) → Future&lt;TeePositionModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/course/${courseId}/tee/list
+  GET {{baseUrl}}/api/course/\${courseId}/tee/list
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1672,7 +1672,7 @@ Response (GameNameValidateModel):
 `);
 
   add("cgslide-6", "apis", "createGame", `
-// POST {{baseUrl}}/${StaticData.apiUrl}api/games/create
+// POST {{baseUrl}}/\${StaticData.apiUrl}api/games/create
 // Controller: create_game_controller.dart → apiService.createGame()
 
 Dart Method:
@@ -1726,7 +1726,7 @@ Dart Method:
   }) → Future&lt;GamCreateModel&gt;
 
 HTTP Request:
-  POST {{baseUrl}}/${StaticData.apiUrl}api/games/create
+  POST {{baseUrl}}/\${StaticData.apiUrl}api/games/create
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
   Content-Type: application/json
@@ -1803,7 +1803,7 @@ Response (GamCreateModel):
 `);
 
   add("cgslide-6", "apis", "getCourseTeesPositions", `
-// GET {{baseUrl}}/api/course/${courseId}/tee/list
+// GET {{baseUrl}}/api/course/\${courseId}/tee/list
 // Controller: create_game_controller.dart → apiService.getCourseTeesPositions()
 
 Dart Method:
@@ -1812,7 +1812,7 @@ Dart Method:
   }) → Future&lt;TeePositionModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/course/${courseId}/tee/list
+  GET {{baseUrl}}/api/course/\${courseId}/tee/list
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -1889,7 +1889,7 @@ Response (GameNameValidateModel):
 `);
 
   add("cgslide-7", "apis", "createGame", `
-// POST {{baseUrl}}/${StaticData.apiUrl}api/games/create
+// POST {{baseUrl}}/\${StaticData.apiUrl}api/games/create
 // Controller: create_game_controller.dart → apiService.createGame()
 
 Dart Method:
@@ -1943,7 +1943,7 @@ Dart Method:
   }) → Future&lt;GamCreateModel&gt;
 
 HTTP Request:
-  POST {{baseUrl}}/${StaticData.apiUrl}api/games/create
+  POST {{baseUrl}}/\${StaticData.apiUrl}api/games/create
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
   Content-Type: application/json
@@ -2020,7 +2020,7 @@ Response (GamCreateModel):
 `);
 
   add("cgslide-7", "apis", "getCourseTeesPositions", `
-// GET {{baseUrl}}/api/course/${courseId}/tee/list
+// GET {{baseUrl}}/api/course/\${courseId}/tee/list
 // Controller: create_game_controller.dart → apiService.getCourseTeesPositions()
 
 Dart Method:
@@ -2029,7 +2029,7 @@ Dart Method:
   }) → Future&lt;TeePositionModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/course/${courseId}/tee/list
+  GET {{baseUrl}}/api/course/\${courseId}/tee/list
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -2106,7 +2106,7 @@ Response (GameNameValidateModel):
 `);
 
   add("cgslide-8", "apis", "createGame", `
-// POST {{baseUrl}}/${StaticData.apiUrl}api/games/create
+// POST {{baseUrl}}/\${StaticData.apiUrl}api/games/create
 // Controller: create_game_controller.dart → apiService.createGame()
 
 Dart Method:
@@ -2160,7 +2160,7 @@ Dart Method:
   }) → Future&lt;GamCreateModel&gt;
 
 HTTP Request:
-  POST {{baseUrl}}/${StaticData.apiUrl}api/games/create
+  POST {{baseUrl}}/\${StaticData.apiUrl}api/games/create
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
   Content-Type: application/json
@@ -2237,7 +2237,7 @@ Response (GamCreateModel):
 `);
 
   add("cgslide-8", "apis", "getCourseTeesPositions", `
-// GET {{baseUrl}}/api/course/${courseId}/tee/list
+// GET {{baseUrl}}/api/course/\${courseId}/tee/list
 // Controller: create_game_controller.dart → apiService.getCourseTeesPositions()
 
 Dart Method:
@@ -2246,7 +2246,7 @@ Dart Method:
   }) → Future&lt;TeePositionModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/course/${courseId}/tee/list
+  GET {{baseUrl}}/api/course/\${courseId}/tee/list
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -2323,7 +2323,7 @@ Response (GameNameValidateModel):
 `);
 
   add("cgslide-9", "apis", "getCourseTeesPositions", `
-// GET {{baseUrl}}/api/course/${courseId}/tee/list
+// GET {{baseUrl}}/api/course/\${courseId}/tee/list
 // Controller: create_game_controller.dart → apiService.getCourseTeesPositions()
 
 Dart Method:
@@ -2332,7 +2332,7 @@ Dart Method:
   }) → Future&lt;TeePositionModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/course/${courseId}/tee/list
+  GET {{baseUrl}}/api/course/\${courseId}/tee/list
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 

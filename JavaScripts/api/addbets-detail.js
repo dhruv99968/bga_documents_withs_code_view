@@ -61,7 +61,7 @@ Response (DefaultModel):
 `);
 
   add("addbets-detail", "apis", "getBetTeeSheetPlayer", `
-// GET {{baseUrl}}/api/teesheet/course/$courseId/groups/details?game_type=$gameType
+// GET {{baseUrl}}/api/teesheet/course/\$courseId/groups/details?game_type=\$gameType
 // Controller: add_bet_bottom_sheet_controller.dart → apiService.getBetTeeSheetPlayer()
 
 Dart Method:
@@ -70,7 +70,7 @@ Dart Method:
   }) → Future&lt;BetsTeesheetPlayerListModel&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/teesheet/course/$courseId/groups/details?game_type=$gameType
+  GET {{baseUrl}}/api/teesheet/course/\$courseId/groups/details?game_type=\$gameType
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 
@@ -82,7 +82,7 @@ Response (BetsTeesheetPlayerListModel):
 `);
 
   add("addbets-detail", "apis", "getGameDetails", `
-// GET {{baseUrl}}/api/games/$gameId/details
+// GET {{baseUrl}}/api/games/\$gameId/details
 // Controller: add_bet_bottom_sheet_controller.dart → apiService.getGameDetails()
 
 Dart Method:
@@ -92,7 +92,7 @@ Dart Method:
   }) → Future&lt;GameDetails&gt;
 
 HTTP Request:
-  GET {{baseUrl}}/api/games/$gameId/details
+  GET {{baseUrl}}/api/games/\$gameId/details
   X-Organization-Id: all
   Authorization: Bearer {{accessToken}}
 

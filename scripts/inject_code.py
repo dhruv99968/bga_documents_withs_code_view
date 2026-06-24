@@ -504,7 +504,8 @@ def inject_into_external_js(key, stack, filename, code):
         print(f"  SKIP  No add() call in {target} for {key}/{stack}/{filename}")
         return False
 
-    new_content = content[:match.end(1)] + "\n" + code + match.group(3) + content[match.end():]
+    escaped = code.replace("\\", "\\\\").replace("`", "\\`").replace("$", "\\$")
+    new_content = content[:match.end(1)] + "\n" + escaped + match.group(3) + content[match.end():]
     _external_js_cache[target] = new_content
     return True
 
@@ -527,7 +528,8 @@ def inject_api_into_external_js(key, method_name, doc):
     )
     match = pat.search(content)
     if match:
-        new_content = content[:match.end(1)] + "\n" + doc + match.group(3) + content[match.end():]
+        escaped = doc.replace("\\", "\\\\").replace("`", "\\`").replace("$", "\\$")
+        new_content = content[:match.end(1)] + "\n" + escaped + match.group(3) + content[match.end():]
         _external_js_cache[target] = new_content
         return True
 
@@ -538,7 +540,8 @@ def inject_api_into_external_js(key, method_name, doc):
         print(f"  SKIP  Cannot find closing }})(); in {target}")
         return False
 
-    new_add = f'\n  add("{key}", "apis", "{method_name}", `\n{doc}`);\n'
+    escaped = doc.replace("\\", "\\\\").replace("`", "\\`").replace("$", "\\$")
+    new_add = f'\n  add("{key}", "apis", "{method_name}", `\n{escaped}`);\n'
     _external_js_cache[target] = content[:pos] + new_add + content[pos:]
     return True
 
@@ -960,6 +963,11 @@ def main():
 
     for entry in FILE_MAP:
         key, stack, file = entry["key"], entry["stack"], entry["file"]
+
+        if stack == "flutter":
+            skipped += 1
+            continue
+
         code = read_source(entry)
         if code is None:
             skipped += 1
