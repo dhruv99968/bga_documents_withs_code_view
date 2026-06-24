@@ -27,12 +27,15 @@ jobs:
         with:
           repository: dhruv99968/bga_app_copy
           token: ${{ secrets.PIPELINE_TOKEN }}
+          ref: main
           path: flutter-src
 
       - name: Verify Flutter Source
         run: |
-          echo "Checking Flutter repo contents..."
-          ls -la flutter-src
+          echo "Flutter repo HEAD commit:"
+          git -C flutter-src log --oneline -1
+          echo "signup_screen.dart first line:"
+          head -1 flutter-src/lib/views/auth/signup_screen.dart
 
       - name: Set up Python
         uses: actions/setup-python@v5
