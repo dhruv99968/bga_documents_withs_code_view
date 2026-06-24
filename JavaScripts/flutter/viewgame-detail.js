@@ -10,7 +10,8 @@ window.CODE_DATA = window.CODE_DATA || {};
     window.CODE_DATA[k][s].push({ name: n, code: c });
   }
 
-  add("viewgame-detail", "flutter", "game_details_screen.dart", `import 'package:bga_flutter_app/controllers/bets/add_bet_bottom_sheet_controller.dart';
+  add("viewgame-detail", "flutter", "game_details_screen.dart", `
+import 'package:bga_flutter_app/controllers/bets/add_bet_bottom_sheet_controller.dart';
 import 'package:bga_flutter_app/controllers/games/game_details_controller.dart';
 import 'package:bga_flutter_app/model/game_models/game_result_model.dart';
 import 'package:bga_flutter_app/utils/toast_message.dart';
@@ -563,7 +564,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                                       height: 22,
                                                                       color: ColorCode.appBackArrowColor,
                                                                     ),
-                                                                    Text("\${controller.gameData?.value.course?.noOfHoles ?? "0"} holes", style: CustomStyle.paragraph1Style),
+                                                                    Text("${controller.gameData?.value.course?.noOfHoles ?? "0"} holes", style: CustomStyle.paragraph1Style),
                                                                   ],
                                                                 ),
                                                               ),
@@ -575,6 +576,8 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                                     Get.put(LeaderBoardScreenController());
                                                                     var sheetController = Get.find<LeaderBoardScreenController>();
                                                                     sheetController.gameType = controller.gameData?.value.gameType ?? "";
+                                                                    sheetController.isSkinPlacesPaid = controller.gameData!.value.isPlacesPaid ?? false;
+                                                                    print("is places piad => ${controller.gameData!.value.isPlacesPaid}");
                                                                     sheetController.gameId = controller.gameId.toString();
                                                                     sheetController.fourSomeId = controller.fourSomeId.toString();
                                                                     sheetController.organizationId = controller.organizationId;
@@ -607,7 +610,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                                     sheetController.gameId = controller.gameId.toString();
 
                                                                     sheetController.isModifiedStableford = controller.gameData!.value.isModifiedStableford!;
-                                                                    print("Is Modified Stableford \${sheetController.isModifiedStableford}");
+                                                                    print("Is Modified Stableford ${sheetController.isModifiedStableford}");
                                                                     await sheetController.liveLeaderboard(
                                                                         gameId: controller.gameId.toString(), foursomeId: "0", organizationId: controller.organizationId);
 
@@ -689,7 +692,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                                 controller.gameData?.value.totalMatches != 0 ||
                                                                         (GetStorageManager.getValue(prefUserRole, "role") != "Organizer" ||
                                                                             GetStorageManager.getValue(prefUserRole, "role") != "Player")
-                                                                    ? Text("\${controller.gameData?.value.totalMatches ?? "0"}", style: CustomStyle.heading5Style)
+                                                                    ? Text("${controller.gameData?.value.totalMatches ?? "0"}", style: CustomStyle.heading5Style)
                                                                     : InkWell(
                                                                         onTap: () async {
                                                                           if (controller.gameData!.value.gameType == "horse_race") {
@@ -778,7 +781,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                                       child: Row(
                                                                         children: [
                                                                           Text(
-                                                                            ("\${controller.gameData?.value.gameTypeName}" ?? "").allInCaps,
+                                                                            ("${controller.gameData?.value.gameTypeName}" ?? "").allInCaps,
                                                                             style: CustomStyle.heading5Style,
                                                                             maxLines: 1,
                                                                             textAlign: TextAlign.center,
@@ -800,7 +803,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                             Container(width: 1, height: 25, color: ColorCode.dividerColor),
                                                             Column(
                                                               children: [
-                                                                Text("\${controller.gameData!.value.totalPlayers ?? controller.gameData!.value.players?.length ?? 0}",
+                                                                Text("${controller.gameData!.value.totalPlayers ?? controller.gameData!.value.players?.length ?? 0}",
                                                                     style: CustomStyle.heading5Style),
                                                                 Column(
                                                                   children: [
@@ -844,8 +847,8 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                                             controller.gameData?.value.gameType == "stroke_play" ||
                                                                             controller.gameData?.value.gameType == "wolf" ||
                                                                             controller.gameData?.value.gameType == "vegas"
-                                                                        ? "\\$ \${controller.gameData?.value.amountPerPoint ?? "0"}"
-                                                                        : "\\$ \${controller.gameData?.value.betPerGame ?? "0"}",
+                                                                        ? "\$ ${controller.gameData?.value.amountPerPoint ?? "0"}"
+                                                                        : "\$ ${controller.gameData?.value.betPerGame ?? "0"}",
                                                                     style: CustomStyle.heading5Style),
                                                                 if (controller.gameData?.value.gameType == "progressive_skins" ||
                                                                     controller.gameData?.value.gameType == "regular_skins" ||
@@ -856,8 +859,8 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                                   Text(
                                                                     controller.gameData?.value.gameType == "progressive_skins" ||
                                                                             controller.gameData?.value.gameType == "regular_skins"
-                                                                        ? "\\$ per Skin"
-                                                                        : "\\$ per point",
+                                                                        ? "\$ per Skin"
+                                                                        : "\$ per point",
                                                                     style: CustomStyle.paragraph1Style,
                                                                     textAlign: TextAlign.center,
                                                                   ),
@@ -883,7 +886,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                               crossAxisAlignment: CrossAxisAlignment.center,
                                                               children: [
                                                                 Text(
-                                                                  "\\$ \${controller.gameData?.value.skodePoolPrize ?? "0"}",
+                                                                  "\$ ${controller.gameData?.value.skodePoolPrize ?? "0"}",
                                                                   style: CustomStyle.heading5Style,
                                                                   textAlign: TextAlign.center,
                                                                 ),
@@ -903,7 +906,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                               crossAxisAlignment: CrossAxisAlignment.center,
                                                               children: [
                                                                 Text(
-                                                                  "\\$ \${controller.gameData?.value.junkPoolPrize ?? "0"}",
+                                                                  "\$ ${controller.gameData?.value.junkPoolPrize ?? "0"}",
                                                                   style: CustomStyle.heading5Style,
                                                                   textAlign: TextAlign.center,
                                                                 ),
@@ -1028,7 +1031,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                                         activeColor: ColorCode.switchButton,
                                                                       ),
                                                                       Text(
-                                                                        "foursome \${dataItem.foursomeNo} ".allInCaps,
+                                                                        "foursome ${dataItem.foursomeNo} ".allInCaps,
                                                                         style: CustomStyle.foursomeIndexTitle,
                                                                       ),
                                                                       const SizedBox(width: 8),
@@ -1157,7 +1160,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                                           activeColor: ColorCode.switchButton,
                                                                         ),
                                                                         Text(
-                                                                          "foursome \${foursome.foursomeNo} ".allInCaps,
+                                                                          "foursome ${foursome.foursomeNo} ".allInCaps,
                                                                           style: CustomStyle.foursomeIndexTitle,
                                                                         ),
                                                                         const SizedBox(width: 8),
@@ -1246,7 +1249,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                                             crossAxisAlignment: CrossAxisAlignment.center,
                                                                             children: [
                                                                               Text(
-                                                                                "foursome \${dataItem.foursomeNo} ".allInCaps,
+                                                                                "foursome ${dataItem.foursomeNo} ".allInCaps,
                                                                                 style: CustomStyle.foursomeIndexTitle,
                                                                               ),
                                                                               const SizedBox(width: 8),
@@ -1275,7 +1278,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                                                   ),
                                                                                   child: Center(
                                                                                     child: Text(
-                                                                                      '\${dataItem.fourSomeCardType} ',
+                                                                                      '${dataItem.fourSomeCardType} ',
                                                                                       textAlign: TextAlign.center,
                                                                                       style: const TextStyle(
                                                                                         color: Colors.black,
@@ -1380,7 +1383,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                                                           mainAxisAlignment: MainAxisAlignment.start,
                                                                                           children: [
                                                                                             Text(
-                                                                                              "\${items.teams![j].groupName}",
+                                                                                              "${items.teams![j].groupName}",
                                                                                               style: const TextStyle(
                                                                                                   fontSize: 12,
                                                                                                   fontWeight: FontWeight.w700,
@@ -1478,7 +1481,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                                             crossAxisAlignment: CrossAxisAlignment.center,
                                                                             children: [
                                                                               Text(
-                                                                                "foursome \${dataItem.foursomeNo} ".allInCaps,
+                                                                                "foursome ${dataItem.foursomeNo} ".allInCaps,
                                                                                 style: CustomStyle.foursomeIndexTitle,
                                                                               ),
                                                                               const SizedBox(width: 8),
@@ -1507,7 +1510,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                                                   ),
                                                                                   child: Center(
                                                                                     child: Text(
-                                                                                      '\${dataItem.fourSomeCardType} ',
+                                                                                      '${dataItem.fourSomeCardType} ',
                                                                                       textAlign: TextAlign.center,
                                                                                       style: const TextStyle(
                                                                                         color: Colors.black,
@@ -1541,7 +1544,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                                                 child: Row(
                                                                                   children: [
                                                                                     Text(
-                                                                                      "Match - \${dataItem.matches![i].match}",
+                                                                                      "Match - ${dataItem.matches![i].match}",
                                                                                       style: CustomStyle.heading5Style,
                                                                                     ),
                                                                                     const Spacer(),
@@ -1637,7 +1640,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                                             crossAxisAlignment: CrossAxisAlignment.center,
                                                                             children: [
                                                                               Text(
-                                                                                "foursome \${dataItem.foursomeNo} ".allInCaps,
+                                                                                "foursome ${dataItem.foursomeNo} ".allInCaps,
                                                                                 style: CustomStyle.foursomeIndexTitle,
                                                                               ),
                                                                               const SizedBox(width: 8),
@@ -1666,7 +1669,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                                               //     ),
                                                                               //     child: Center(
                                                                               //       child: Text(
-                                                                              //         '\${dataItem.fourSomeCardType} ',
+                                                                              //         '${dataItem.fourSomeCardType} ',
                                                                               //         textAlign: TextAlign.center,
                                                                               //         style: const TextStyle(
                                                                               //           color: Colors.black,
@@ -1701,7 +1704,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                                                   mainAxisAlignment: MainAxisAlignment.start,
                                                                                   children: [
                                                                                     Text(
-                                                                                      "Match - \${dataItem.matches![i].match}",
+                                                                                      "Match - ${dataItem.matches![i].match}",
                                                                                       style: CustomStyle.heading5Style,
                                                                                     ),
                                                                                     if (dataItem.matches![i].matchType != null)
@@ -1835,7 +1838,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                                             crossAxisAlignment: CrossAxisAlignment.center,
                                                                             children: [
                                                                               Text(
-                                                                                "foursome \${dataItem.foursomeNo} ".allInCaps,
+                                                                                "foursome ${dataItem.foursomeNo} ".allInCaps,
                                                                                 style: CustomStyle.foursomeIndexTitle,
                                                                               ),
                                                                               const SizedBox(width: 8),
@@ -1862,7 +1865,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                                                 ),
                                                                                 child: Center(
                                                                                   child: Text(
-                                                                                    '\${dataItem.fourSomeCardType} ',
+                                                                                    '${dataItem.fourSomeCardType} ',
                                                                                     textAlign: TextAlign.center,
                                                                                     style: CustomStyle.paragraph2DarkStyle,
                                                                                   ),
@@ -1892,7 +1895,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                                                 child: Row(
                                                                                   children: [
                                                                                     Text(
-                                                                                      "Match - \${dataItem.matches![i].match}",
+                                                                                      "Match - ${dataItem.matches![i].match}",
                                                                                       style: CustomStyle.heading5Style,
                                                                                     ),
                                                                                     const Spacer(),
@@ -2042,7 +2045,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                                         activeColor: ColorCode.switchButton,
                                                                       ),
                                                                       Text(
-                                                                        "TEAM \${dataItem.teamNo} ".allInCaps,
+                                                                        "TEAM ${dataItem.teamNo} ".allInCaps,
                                                                         style: CustomStyle.foursomeIndexTitle,
                                                                       ),
                                                                       const SizedBox(width: 8),
@@ -2156,7 +2159,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                                         activeColor: ColorCode.switchButton,
                                                                       ),
                                                                       Text(
-                                                                        "Captain \${dataItem.teamNo == 1 ? controller.gameData?.value.captainA : controller.gameData?.value.captainB} "
+                                                                        "Captain ${dataItem.teamNo == 1 ? controller.gameData?.value.captainA : controller.gameData?.value.captainB} "
                                                                             .allInCaps,
                                                                         style: CustomStyle.heading5Style,
                                                                       ),
@@ -2290,7 +2293,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                                     crossAxisAlignment: CrossAxisAlignment.start,
                                                                     children: [
                                                                       for (int i = 0; i < dataItem.groups!.length; i++) ...[
-                                                                        Text("\${dataItem.groups![i].name}(\${dataItem.groups![i].betType.toString().substring(0, 1).capitalize})",
+                                                                        Text("${dataItem.groups![i].name}(${dataItem.groups![i].betType.toString().substring(0, 1).capitalize})",
                                                                             style: CustomStyle.joinDateText
                                                                                 .copyWith(color: const Color.fromRGBO(36, 138, 61, 1), fontWeight: FontWeight.w600)),
                                                                       ],
@@ -2491,7 +2494,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                         return GestureDetector(
                                                           onTap: () async {
                                                             controller.isFoursome.value = false;
-                                                            controller.foursomeNo.value = "FOURSOME \${dataItem.foursomeNo}";
+                                                            controller.foursomeNo.value = "FOURSOME ${dataItem.foursomeNo}";
                                                             controller.foursomeId.value = dataItem.id.toString();
 
                                                             if (controller.gameData!.value.gameType != "scramble") {}
@@ -2523,7 +2526,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                       children: [
                                                                         Text(
-                                                                          "FOURSOME \${dataItem.foursomeNo}",
+                                                                          "FOURSOME ${dataItem.foursomeNo}",
                                                                           style: CustomStyle.foursomeIndexTitle,
                                                                         ),
                                                                         Transform.rotate(
@@ -2687,7 +2690,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                                             Column(
                                                                               children: [
                                                                                 Text(
-                                                                                  "\${index + 1}",
+                                                                                  "${index + 1}",
                                                                                   style: CustomStyle.heading4Style,
                                                                                 ),
                                                                               ],
@@ -2734,7 +2737,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                                               child: SingleChildScrollView(
                                                                                 scrollDirection: Axis.horizontal,
                                                                                 child: Text(
-                                                                                  "Skin. \${player.totalSkins}",
+                                                                                  "Skin. ${player.totalSkins}",
                                                                                   style: CustomStyle.gameDetailsPtsTitle,
                                                                                 ),
                                                                               ),
@@ -2751,7 +2754,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                                   const SizedBox(width: 5),
                                                                   if (controller.gameData!.value.gameType != "medal_play")
                                                                     Text(
-                                                                      player.amount!.toString(),
+                                                                      "\$${player.amount!.toString()}",
                                                                       style: CustomStyle.heading4Style,
                                                                     ),
                                                                   // if(controller.gameData!.value.gameType == "medal_play")
@@ -2839,7 +2842,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                                             Column(
                                                                               children: [
                                                                                 Text(
-                                                                                  "\${index + 1}",
+                                                                                  "${index + 1}",
                                                                                   style: CustomStyle.heading4Style,
                                                                                 ),
                                                                               ],
@@ -2887,7 +2890,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                                               child: SingleChildScrollView(
                                                                                 scrollDirection: Axis.horizontal,
                                                                                 child: Text(
-                                                                                  "Greenie. \${player.greeniesWon}",
+                                                                                  "Greenie. ${player.greeniesWon}",
                                                                                   style: CustomStyle.gameDetailsPtsTitle,
                                                                                 ),
                                                                               ),
@@ -3002,7 +3005,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                                             Column(
                                                                               children: [
                                                                                 Text(
-                                                                                  "\${index + 1}",
+                                                                                  "${index + 1}",
                                                                                   style: CustomStyle.heading4Style,
                                                                                 ),
                                                                               ],
@@ -3049,7 +3052,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                                               child: SingleChildScrollView(
                                                                                 scrollDirection: Axis.horizontal,
                                                                                 child: Text(
-                                                                                  "Scr. \${player.score}",
+                                                                                  "Scr. ${player.score}",
                                                                                   style: CustomStyle.gameDetailsPtsTitle,
                                                                                 ),
                                                                               ),
@@ -3143,7 +3146,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                                             Column(
                                                                               children: [
                                                                                 Text(
-                                                                                  "\${index + 1}",
+                                                                                  "${index + 1}",
                                                                                   style: CustomStyle.heading4Style,
                                                                                 ),
                                                                               ],
@@ -3190,7 +3193,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                                               child: SingleChildScrollView(
                                                                                 scrollDirection: Axis.horizontal,
                                                                                 child: Text(
-                                                                                  "Skin. \${player.skinsWon}",
+                                                                                  "Skin. ${player.skinsWon}",
                                                                                   style: CustomStyle.gameDetailsPtsTitle,
                                                                                 ),
                                                                               ),
@@ -3294,7 +3297,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                                             Column(
                                                                               children: [
                                                                                 Text(
-                                                                                  "\${index + 1}",
+                                                                                  "${index + 1}",
                                                                                   style: CustomStyle.heading4Style,
                                                                                 ),
                                                                               ],
@@ -3342,7 +3345,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                                               child: SingleChildScrollView(
                                                                                 scrollDirection: Axis.horizontal,
                                                                                 child: Text(
-                                                                                  "Greenie. \${player.greeniesWon}",
+                                                                                  "Greenie. ${player.greeniesWon}",
                                                                                   style: CustomStyle.gameDetailsPtsTitle,
                                                                                 ),
                                                                               ),
@@ -3479,7 +3482,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                                       Column(
                                                                         children: [
                                                                           Text(
-                                                                            "\${winner.rank}",
+                                                                            "${winner.rank}",
                                                                             style: CustomStyle.accessTab,
                                                                           ),
                                                                         ],
@@ -3511,7 +3514,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                                     child: Row(
                                                                       children: [
                                                                         Text(
-                                                                          "\${winner.firstName}",
+                                                                          "${winner.firstName}",
                                                                           overflow: TextOverflow.ellipsis,
                                                                           style: CustomStyle.accessTab,
                                                                         ),
@@ -3540,7 +3543,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                                       ),
                                                                       child: Center(
                                                                         child: Text(
-                                                                          'Pts. \${winner.points}',
+                                                                          'Pts. ${winner.points}',
                                                                           style: CustomStyle.gameDetailsPtsTitle,
                                                                         ),
                                                                       ),
@@ -3555,7 +3558,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                             // Confetti icon and price section
                                                             const SizedBox(width: 5),
                                                             Text(
-                                                              "\${winner.earnedAmount}",
+                                                              "${winner.earnedAmount}",
                                                               style: CustomStyle.accessTab.copyWith(fontSize: 20),
                                                             ),
                                                           ],
@@ -3634,7 +3637,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                                       Column(
                                                                         children: [
                                                                           Text(
-                                                                            "\${player.rank}",
+                                                                            "${player.rank}",
                                                                             style: CustomStyle.accessTab,
                                                                           ),
                                                                         ],
@@ -3683,7 +3686,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                                   ),
                                                                   child: Center(
                                                                     child: Text(
-                                                                      'Pts. \${player.points}',
+                                                                      'Pts. ${player.points}',
                                                                       style: CustomStyle.gameDetailsPtsTitle,
                                                                     ),
                                                                   ),
@@ -3774,7 +3777,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                                       Column(
                                                                         children: [
                                                                           Text(
-                                                                            player.rank == null ? "\${index + 1}" : "\${player.rank}",
+                                                                            player.rank == null ? "${index + 1}" : "${player.rank}",
                                                                             style: CustomStyle.accessTab,
                                                                           ),
                                                                         ],
@@ -3820,7 +3823,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                                   ),
                                                                   child: Center(
                                                                     child: Text(
-                                                                      'Pts. \${player.points}',
+                                                                      'Pts. ${player.points}',
                                                                       style: CustomStyle.gameDetailsPtsTitle,
                                                                     ),
                                                                   ),
@@ -3895,8 +3898,8 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                                   controller.gameData?.value.gameType == "stroke_play" ||
                                                                   controller.gameData?.value.gameType == "wolf" ||
                                                                   controller.gameData?.value.gameType == "vegas"
-                                                              ? "\\$ \${controller.gameData?.value.amountPerPoint ?? "0"}"
-                                                              : "\\$ \${controller.gameData?.value.betPerGame ?? "0"}",
+                                                              ? "\$ ${controller.gameData?.value.amountPerPoint ?? "0"}"
+                                                              : "\$ ${controller.gameData?.value.betPerGame ?? "0"}",
                                                           style: CustomStyle.heading5Style),
                                                       if (controller.gameData?.value.gameType == "progressive_skins" ||
                                                           controller.gameData?.value.gameType == "regular_skins" ||
@@ -3906,8 +3909,8 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                           controller.gameData?.value.gameType == "stroke_play")
                                                         Text(
                                                           controller.gameData?.value.gameType == "progressive_skins" || controller.gameData?.value.gameType == "regular_skins"
-                                                              ? "\\$ per Skin"
-                                                              : "\\$ per point",
+                                                              ? "\$ per Skin"
+                                                              : "\$ per point",
                                                           style: CustomStyle.paragraph1Style,
                                                           textAlign: TextAlign.center,
                                                         ),
@@ -3927,7 +3930,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                   Container(width: 1, height: 25, color: ColorCode.dividerColor),
                                                   Column(
                                                     children: [
-                                                      Text("\\$ \${controller.gameData?.value.skodePoolPrize ?? "0"}", style: CustomStyle.heading5Style),
+                                                      Text("\$ ${controller.gameData?.value.skodePoolPrize ?? "0"}", style: CustomStyle.heading5Style),
                                                       Text(
                                                         "Skode pool",
                                                         style: CustomStyle.paragraph1Style,
@@ -3938,7 +3941,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                   Container(width: 1, height: 25, color: ColorCode.dividerColor),
                                                   Column(
                                                     children: [
-                                                      Text("\\$ \${controller.gameData?.value.junkPoolPrize ?? "0"}", style: CustomStyle.heading5Style),
+                                                      Text("\$ ${controller.gameData?.value.junkPoolPrize ?? "0"}", style: CustomStyle.heading5Style),
                                                       Text(
                                                         "Junk pool",
                                                         style: CustomStyle.paragraph1Style,
@@ -3977,8 +3980,8 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                               child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
                                                                 Row(
                                                                   children: [
-                                                                    Text("Foursome \${controller.ledgersDataList[dataIndex].foursomeNo} : ", style: CustomStyle.foursomeIndexTitle),
-                                                                    Text("\${dataItem.player!.capitalizeFirst ?? 0}", style: CustomStyle.playerNameStyle)
+                                                                    Text("Foursome ${controller.ledgersDataList[dataIndex].foursomeNo} : ", style: CustomStyle.foursomeIndexTitle),
+                                                                    Text("${dataItem.player!.capitalizeFirst ?? 0}", style: CustomStyle.playerNameStyle)
                                                                   ],
                                                                 ),
                                                               ]),
@@ -4606,7 +4609,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                                   crossAxisAlignment: CrossAxisAlignment.center,
                                                                   children: [
                                                                     Text(
-                                                                      "foursome \${dataItem.foursomeNo} ".allInCaps,
+                                                                      "foursome ${dataItem.foursomeNo} ".allInCaps,
                                                                       style: CustomStyle.foursomeIndexTitle,
                                                                     ),
                                                                     const SizedBox(width: 8),
@@ -4665,7 +4668,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                                                       SingleChildScrollView(
                                                                                         scrollDirection: Axis.horizontal,
                                                                                         child: Text(
-                                                                                          "\${playerData.playerEmail}",
+                                                                                          "${playerData.playerEmail}",
                                                                                           style: CustomStyle.playerEmailStyle,
                                                                                           overflow: TextOverflow.ellipsis,
                                                                                         ),
@@ -4910,7 +4913,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                   borderColor: ColorCode.borderColor,
                                   text: "ADD SCORE",
                                   onPressed: () async {
-                                    print("holes per match => \${controller.gameData!.value.holesPerMatch!.first}");
+                                    print("holes per match => ${controller.gameData!.value.holesPerMatch!.first}");
                                     var result = await Get.toNamed(RoutsNames.addScore,
                                         arguments: {
                                           "par": controller.gameData!.value.course!.holePars,
@@ -4930,6 +4933,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                           "courseId": controller.gameData!.value.course!.id,
                                           "holesPerMatch": controller.gameData!.value.holesPerMatch!.first.toString(),
                                           "organizationId": controller.organizationId,
+                                          "regauleSkinsGreenieEnabled": controller.isRegauleSkinsGreenieEnabled.value,
                                         },
                                         preventDuplicates: false);
                                     print("result tab =>  $result");
@@ -4940,8 +4944,10 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                         gameId: controller.gameId,
                                       );
                                       controller.getGameDetails(showProgress: false);
+                                        controller.getShotLedger(showProgress: false);
                                     } else {
                                       controller.getGameDetails();
+                                      controller.getShotLedger(showProgress: false);
                                     }
                                   },
                                 ),
@@ -4981,9 +4987,9 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                     if (await Get.isBottomSheetOpen == true) {
                                       return;
                                     }
-                                    print("foursome List \${controller.foursomeList.length}");
-                                    print("player List \${controller.playerList.length}");
-                                    // â— Avoid creating controller multiple times
+                                    print("foursome List ${controller.foursomeList.length}");
+                                    print("player List ${controller.playerList.length}");
+                                    // ❗ Avoid creating controller multiple times
                                     // if (!Get.isRegistered<AddBetBottomSheetController>()) {
                                     if (controller.gameData!.value.selectedGroupId != null) {
                                       await controller.getTeeSheetPlayerDetails(controller.gameData!.value.selectedGroupId!);
@@ -5084,8 +5090,8 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
     int totalHcp = !isHorseRace
         ? hcps.whereType<num>().fold(0, (sum, h) => sum + h.toInt())
         : List.generate(27, (i) => hcps[i % hcps.length]).whereType<num>().fold(0, (sum, h) => sum + (h ?? 0).toInt());
-    debugPrint("_buildColumns => \${_buildColumns().length}");
-    debugPrint("_buildRows => \${_buildRows().length}");
+    debugPrint("_buildColumns => ${_buildColumns().length}");
+    debugPrint("_buildRows => ${_buildRows().length}");
     return CappedTextScaling(
       maxScale: 1.0,
       child: Container(
@@ -5316,7 +5322,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                               SingleChildScrollView(
                                                 scrollDirection: Axis.horizontal,
                                                 child: Text(
-                                                  "\${getFormattedName(controller.resultList[i].name!)} (\${controller.resultList[i].bgaHcp!})",
+                                                  "${getFormattedName(controller.resultList[i].name!)} (${controller.resultList[i].bgaHcp!})",
                                                   maxLines: 1,
                                                   // overflow: TextOverflow.ellipsis,
                                                   // softWrap: true,
@@ -5415,7 +5421,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                           ),
                                         ),
                                         Visibility(
-                                          visible: controller.expandedRows[i] && controller.isGreenieGameEnabled.value,
+                                          visible: controller.expandedRows[i] && (controller.isGreenieGameEnabled.value || controller.isRegauleSkinsGreenieEnabled.value),
                                           child: Container(
                                             height: Get.height * 0.05,
                                             alignment: Alignment.centerLeft,
@@ -5570,7 +5576,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                     Column(
                                                       children: [
                                                         Text(
-                                                          "\${player.rank}",
+                                                          "${player.rank}",
                                                           style: CustomStyle.heading4Style,
                                                         ),
                                                       ],
@@ -5618,7 +5624,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                 ),
                                                 child: Center(
                                                   child: Text(
-                                                    'Pts. \${controller.formatPoints(player.points)}',
+                                                    'Pts. ${controller.formatPoints(player.points)}',
                                                     style: CustomStyle.gameDetailsPtsTitle,
                                                   ),
                                                 ),
@@ -5727,7 +5733,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                     Column(
                                                       children: [
                                                         Text(
-                                                          "\${player.rank}",
+                                                          "${player.rank}",
                                                           style: CustomStyle.heading4Style,
                                                         ),
                                                       ],
@@ -5774,7 +5780,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                 ),
                                                 child: Center(
                                                   child: Text(
-                                                    'Pts. \${controller.formatPoints(player.points)}',
+                                                    'Pts. ${controller.formatPoints(player.points)}',
                                                     style: CustomStyle.gameDetailsPtsTitle,
                                                   ),
                                                 ),
@@ -5842,9 +5848,9 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                       children: [
                                         holeLabelView(),
                                         // ...List.generate(9, (i) => _buildNewDataColumn(i+1, hcps[i], pars[i])),
-                                        // â”€â”€ Holes 1â€“9 â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+                                        // ── Holes 1–9 ──────────────────────────────────────────
                                         ...List.generate(9, (i) {
-                                          final holeNum = i + 1; // 1 â€¦ 9
+                                          final holeNum = i + 1; // 1 … 9
                                           return Container(
                                             width: Get.width * 0.131,
                                             decoration: const BoxDecoration(
@@ -5921,10 +5927,10 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
 
                                         // _buildNewSummaryColumn('OUT', outHcp, outPar, ColorCode.outBGColor),
                                         // ...List.generate(9, (i) => _buildNewDataColumn(i+10, hcps[i+9], pars[i+9])),
-                                        // â”€â”€ Holes 10â€“18 â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+                                        // ── Holes 10–18 ─────────────────────────────────────────
                                         ...List.generate(9, (i) {
-                                          final holeNum = i + 10; // 10 â€¦ 18
-                                          final hcpIndex = i + 9; // index 9 â€¦ 17
+                                          final holeNum = i + 10; // 10 … 18
+                                          final hcpIndex = i + 9; // index 9 … 17
                                           return Container(
                                             width: 53,
                                             decoration: const BoxDecoration(
@@ -5999,11 +6005,11 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                             ],
                                           ),
                                         ),
-                                        // â”€â”€ Horse Race Holes 19â€“27 â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+                                        // ── Horse Race Holes 19–27 ──────────────────────────────
                                         if (controller.gameData!.value.gameType == "horse_race")
                                           ...List.generate(9, (i) {
-                                            final holeNum = i + 19; // âœ… 19 â€¦ 27
-                                            final hcpIndex = i + 9; // âœ…  9 â€¦ 17  (matches hcps[i-10] from _buildColumns)
+                                            final holeNum = i + 19; // ✅ 19 … 27
+                                            final hcpIndex = i + 9; // ✅  9 … 17  (matches hcps[i-10] from _buildColumns)
                                             return Container(
                                               width: 53,
                                               decoration: const BoxDecoration(
@@ -6187,8 +6193,8 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                       ],
                     ),
                   ),
-                  // â”€â”€ Block 2: Players list + DataTable â€” ONE single scroll â”€â”€â”€â”€
-                  // â”€â”€ Block 2: Players list + DataTable â€” FULL CUSTOM â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+                  // ── Block 2: Players list + DataTable — ONE single scroll ────
+                  // ── Block 2: Players list + DataTable — FULL CUSTOM ──────────
                   Obx(
                     () => Offstage(
                       offstage: !controller.captureScoreCard.value,
@@ -6199,7 +6205,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              // â”€â”€ LEFT: Player label column â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+                              // ── LEFT: Player label column ──────────────────────────
                               Obx(() => Column(
                                     children: [
                                       SizedBox(
@@ -6239,8 +6245,8 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                             SingleChildScrollView(
                                                               scrollDirection: Axis.horizontal,
                                                               child: Text(
-                                                                "\${getFormattedName(controller.resultList[i].name!)} "
-                                                                "(\${controller.resultList[i].bgaHcp!})",
+                                                                "${getFormattedName(controller.resultList[i].name!)} "
+                                                                "(${controller.resultList[i].bgaHcp!})",
                                                                 maxLines: 1,
                                                                 style: CustomStyle.foursomeSkodeJunkTitle,
                                                               ),
@@ -6305,7 +6311,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                     ],
                                   )),
 
-                              // â”€â”€ RIGHT: FULL CUSTOM SCORECARD (no DataTable) â”€â”€â”€â”€â”€â”€â”€â”€
+                              // ── RIGHT: FULL CUSTOM SCORECARD (no DataTable) ────────
                               Obx(() {
                                 final List<ResultData> dataList =
                                     // controller.resultsTab.value == "allPlayers" && controller.captureScoreCard.value
@@ -6329,7 +6335,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                   return 53;
                                 }
 
-                                /*      // â”€â”€ HEADER ROW (Hole / HCP / PAR) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€*/
+                                /*      // ── HEADER ROW (Hole / HCP / PAR) ──────────────────*/
                                 Widget buildPlayerRow(int i) {
                                   final Color rowColor = (i % 2 == 0) ? ColorCode.white : ColorCode.searchBg;
                                   final ResultData player = dataList[i];
@@ -6427,7 +6433,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                     totalDots += hole.dotsPoint ?? 0;
                                   }
 
-                                  // â”€â”€ helper: single hole cell â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+                                  // ── helper: single hole cell ──────────────────────
                                   Widget holeCell(Holes hole, double width) {
                                     final num points = num.tryParse(hole.playerPoints ?? '0') ?? 0;
                                     final junkSkodeList = (hole.junkMadeName ?? []) + (hole.skodeMadeName ?? []);
@@ -6451,7 +6457,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                           child: Column(
                                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                             children: [
-                                              // â”€â”€ Score â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+                                              // ── Score ──────────────────────────────────
                                               Container(
                                                 height: Get.height * 0.06,
                                                 alignment: Alignment.center,
@@ -6475,7 +6481,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                     Column(
                                                       mainAxisAlignment: MainAxisAlignment.center,
                                                       children: [
-                                                        Text('\${hole.score ?? 0}', style: CustomStyle.paragraph5Style),
+                                                        Text('${hole.score ?? 0}', style: CustomStyle.paragraph5Style),
                                                         if (hole.isWolf == true) const Text('W', style: TextStyle(color: Colors.green, fontSize: 13, fontWeight: FontWeight.bold)),
                                                       ],
                                                     ),
@@ -6485,19 +6491,19 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                 ),
                                               ),
                                               Container(color: ColorCode.borderColor, height: 1.5),
-                                              // â”€â”€ Points â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+                                              // ── Points ─────────────────────────────────
                                               Container(
                                                 height: Get.height * 0.05,
                                                 alignment: Alignment.center,
                                                 child: Text(
-                                                  hole.playerPoints == null ? "0" : "\${hole.playerPoints}",
+                                                  hole.playerPoints == null ? "0" : "${hole.playerPoints}",
                                                   style: CustomStyle.paragraph5Style.copyWith(
                                                     decoration: points > 0 ? TextDecoration.underline : TextDecoration.none,
                                                   ),
                                                 ),
                                               ),
                                               Container(color: ColorCode.borderColor, height: 1.5),
-                                              // â”€â”€ Skode & Junk â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+                                              // ── Skode & Junk ───────────────────────────
                                               Container(
                                                 alignment: Alignment.center,
                                                 height: Get.height * 0.05,
@@ -6617,7 +6623,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                                                         CustomButtonNew(
                                                                                           width: Get.width * 0.23,
                                                                                           height: 45,
-                                                                                          text: skode != "regular" ? "Made" : "Made (\${hole.regularNetMadeCount})",
+                                                                                          text: skode != "regular" ? "Made" : "Made (${hole.regularNetMadeCount})",
                                                                                           backgroundColor: ColorCode.switchButton,
                                                                                           borderColor: ColorCode.borderColor,
                                                                                           style: CustomStyle.buttonTextStyle4,
@@ -6677,7 +6683,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                                                     CustomButtonNew(
                                                                                       width: Get.width * 0.23,
                                                                                       height: 45,
-                                                                                      text: skode != "regular" ? "Missed" : "Missed (\${hole.regularNetMissedCount})",
+                                                                                      text: skode != "regular" ? "Missed" : "Missed (${hole.regularNetMissedCount})",
                                                                                       style: CustomStyle.buttonTextStyle4,
                                                                                       backgroundColor: ColorCode.birdieColor,
                                                                                       borderColor: ColorCode.borderColor,
@@ -6928,13 +6934,13 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                   );
                                                 }),
                                               ),
-                                              // â”€â”€ Expanded fields â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+                                              // ── Expanded fields ────────────────────────
                                               if (controller.expandedRows[i]) ...[
                                                 Container(color: ColorCode.borderColor, height: 1.5),
                                                 Container(
                                                   height: Get.height * 0.05,
                                                   alignment: Alignment.center,
-                                                  child: Text('\${hole.putts ?? 0}', style: CustomStyle.paragraph5Style),
+                                                  child: Text('${hole.putts ?? 0}', style: CustomStyle.paragraph5Style),
                                                 ),
                                                 Container(color: ColorCode.borderColor, height: 1.5),
                                                 Container(
@@ -6944,10 +6950,10 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                     mainAxisAlignment: MainAxisAlignment.center,
                                                     children: [
                                                       if ((hole.rabbitWinTotal ?? 0) > 0)
-                                                        Text('R:\${hole.rabbitWinTotal}',
+                                                        Text('R:${hole.rabbitWinTotal}',
                                                             style: CustomStyle.paragraph5Style.copyWith(color: Color(int.parse(hole.rabbitColor!.replaceAll('#', '0xFF'))))),
                                                       if ((hole.chickenWinTotal ?? 0) > 0)
-                                                        Text(' C:\${hole.chickenWinTotal}',
+                                                        Text(' C:${hole.chickenWinTotal}',
                                                             style: CustomStyle.paragraph5Style.copyWith(color: Color(int.parse(hole.chickenColor!.replaceAll('#', '0xFF'))))),
                                                     ],
                                                   ),
@@ -6956,7 +6962,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                 Container(
                                                   height: Get.height * 0.05,
                                                   alignment: Alignment.center,
-                                                  child: Text('\${hole.dotsPoint ?? 0}', style: CustomStyle.paragraph5Style),
+                                                  child: Text('${hole.dotsPoint ?? 0}', style: CustomStyle.paragraph5Style),
                                                 ),
                                                 Container(color: ColorCode.borderColor, height: 1.5),
                                                 Container(
@@ -6973,7 +6979,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                         ));
                                   }
 
-                                  // â”€â”€ helper: summary cell (OUT/IN/GROSS/NET) â”€â”€â”€â”€â”€â”€â”€
+                                  // ── helper: summary cell (OUT/IN/GROSS/NET) ───────
                                   Widget summaryCell(int score, double pts, int madeJunk, int missedJunk, int madeSkode, int missedSkode, TextStyle style, Color bgColor, int putts,
                                       int dots, double width) {
                                     return Obx(() => Container(
@@ -7052,7 +7058,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                         ));
                                   }
 
-                                  // â”€â”€ Assemble all cells for this player â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+                                  // ── Assemble all cells for this player ────────────
                                   return Row(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
@@ -7269,7 +7275,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
     final missedStr = missed.map(abbrev).join(' ');
     return [
       if (madeStr.isNotEmpty) madeStr,
-      if (missedStr.isNotEmpty) '(\${missedStr})',
+      if (missedStr.isNotEmpty) '(${missedStr})',
     ].join(' ');
   }
 
@@ -7305,7 +7311,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                 child: Row(
                                   children: [
                                     SvgPicture.asset('assets/icons/ic_back.svg', height: 14, width: 16, color: ColorCode.appBackArrowColor),
-                                    Text(" \${controller.foursomeNo.value}", style: CustomStyle.paragraph2DarkStyle),
+                                    Text(" ${controller.foursomeNo.value}", style: CustomStyle.paragraph2DarkStyle),
                                   ],
                                 ))),
                         const SizedBox(
@@ -7517,7 +7523,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                       SingleChildScrollView(
                                                         scrollDirection: Axis.horizontal,
                                                         child: Text(
-                                                          "\${getFormattedName(controller.resultList[i].name!)} (\${controller.resultList[i].bgaHcp!})",
+                                                          "${getFormattedName(controller.resultList[i].name!)} (${controller.resultList[i].bgaHcp!})",
                                                           maxLines: 1,
                                                           style: CustomStyle.foursomeSkodeJunkTitle,
                                                         ),
@@ -7637,7 +7643,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                               ),
                                             ),
                                             Visibility(
-                                              visible: controller.expandedRows[i] && controller.isGreenieGameEnabled.value,
+                                              visible: controller.expandedRows[i] && (controller.isGreenieGameEnabled.value || controller.isRegauleSkinsGreenieEnabled.value),
                                               child: Container(
                                                 height: Get.height * 0.05,
                                                 alignment: Alignment.centerLeft,
@@ -7795,7 +7801,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                           SingleChildScrollView(
                                             scrollDirection: Axis.horizontal,
                                             child: Text(
-                                              "\${getFormattedName(controller.resultList[i].name!)} (\${controller.resultList[i].bgaHcp!})",
+                                              "${getFormattedName(controller.resultList[i].name!)} (${controller.resultList[i].bgaHcp!})",
                                               maxLines: 1,
                                               // overflow: TextOverflow.ellipsis,
                                               // softWrap: true,
@@ -7894,7 +7900,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                   ),
                                 ),
                                 Visibility(
-                                  visible: controller.expandedRows[i] && controller.isGreenieGameEnabled.value,
+                                  visible: controller.expandedRows[i] && (controller.isGreenieGameEnabled.value || controller.isRegauleSkinsGreenieEnabled.value),
                                   child: Container(
                                     height: Get.height * 0.05,
                                     alignment: Alignment.centerLeft,
@@ -7908,7 +7914,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                       ),
                       if (controller.gameData?.value.playType != "individual" && controller.gameData?.value.playType != "4v4")
                         Container(
-                          width: Get.width * 0.2,
+                          width: Get.width * 0.25,
                           height: 95.5,
                           decoration: const BoxDecoration(
                               color: ColorCode.mainColor,
@@ -7993,7 +7999,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                         padding: const EdgeInsets.only(left: 10, right: 10),
                         child: Row(
                           children: [
-                            Text(" \${controller.foursomeNo.value}", style: CustomStyle.paragraph2DarkStyle),
+                            Text(" ${controller.foursomeNo.value}", style: CustomStyle.paragraph2DarkStyle),
                             const SizedBox(
                               width: 5,
                             ),
@@ -8165,7 +8171,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                 Column(
                                                   children: [
                                                     Text(
-                                                      controller.gameData!.value.gameType != "medal_play" ? "\${player.rank}" : "1",
+                                                      controller.gameData!.value.gameType != "medal_play" ? "${player.rank}" : "1",
                                                       style: CustomStyle.heading4Style,
                                                     ),
                                                   ],
@@ -8215,7 +8221,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                   child: SingleChildScrollView(
                                                     scrollDirection: Axis.horizontal,
                                                     child: Text(
-                                                      controller.gameData!.value.gameType != "medal_play" ? 'Pts. \${player.netPoints}' : "Scr. \${player.score}",
+                                                      controller.gameData!.value.gameType != "medal_play" ? 'Pts. ${player.netPoints}' : "Scr. ${player.score}",
                                                       style: CustomStyle.gameDetailsPtsTitle,
                                                     ),
                                                   ),
@@ -8314,21 +8320,21 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                   Visibility(
                                                     visible: player.matchType == null && player.matchNo == null,
                                                     child: Text(
-                                                      "\${player.hole}",
+                                                      "${player.hole}",
                                                       style: CustomStyle.heading4Style,
                                                     ),
                                                   ),
                                                   Visibility(
                                                     visible: player.matchType != null,
                                                     child: Text(
-                                                      "\${player.matchType == "junk_pool_winner" ? "J" : player.matchType == "skode_pool_winner" ? "S" : player.matchType}",
+                                                      "${player.matchType == "junk_pool_winner" ? "J" : player.matchType == "skode_pool_winner" ? "S" : player.matchType}",
                                                       style: CustomStyle.heading4Style,
                                                     ),
                                                   ),
                                                   Visibility(
                                                     visible: player.matchNo != null,
                                                     child: Text(
-                                                      "M \${player.matchNo}",
+                                                      "M ${player.matchNo}",
                                                       style: CustomStyle.heading4Style,
                                                     ),
                                                   ),
@@ -8390,7 +8396,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                               ),
                                               child: Center(
                                                 child: Text(
-                                                  'Pts. \${player.points}',
+                                                  'Pts. ${player.points}',
                                                   style: CustomStyle.gameDetailsPtsTitle,
                                                 ),
                                               ),
@@ -8398,7 +8404,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                             const SizedBox(width: 5),
                                             if (player.hole != null && player.hole != "" && controller.gameData!.value.holesPerMatch!.first.toString() == "3")
                                               Text(
-                                                '\${player.hole}',
+                                                '${player.hole}',
                                                 style: const TextStyle(
                                                   fontSize: 18,
                                                   color: ColorCode.vs,
@@ -8489,7 +8495,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                 Column(
                                                   children: [
                                                     Text(
-                                                      "M \${player.matchNo}",
+                                                      "M ${player.matchNo}",
                                                       style: CustomStyle.heading4Style,
                                                     ),
                                                   ],
@@ -8526,7 +8532,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                           Row(
                                             children: [
                                               Text(
-                                                player.matchType != "Sucker in Bucket" ? '\${player.matchType}' : "SIB",
+                                                player.matchType != "Sucker in Bucket" ? '${player.matchType}' : "SIB",
                                                 style: CustomStyle.summaryTableTitle,
                                               ),
                                               Row(
@@ -8540,7 +8546,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                     ),
                                                     child: Center(
                                                       child: Text(
-                                                        'Pts. \${player.points}',
+                                                        'Pts. ${player.points}',
                                                         style: CustomStyle.gameDetailsPtsTitle,
                                                       ),
                                                     ),
@@ -8630,11 +8636,11 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                 borderRadius: const BorderRadius.all(Radius.circular(10))),
                                             child: dataItem.matchNo != null
                                                 ? Text(
-                                                    "M \${dataItem.matchNo}",
+                                                    "M ${dataItem.matchNo}",
                                                     style: CustomStyle.heading4Style,
                                                   )
                                                 : Text(
-                                                    "\${dataItem.matchType == "junk_pool_winner" ? "J" : dataItem.matchType == "skode_pool_winner" ? "S" : dataItem.matchType}",
+                                                    "${dataItem.matchType == "junk_pool_winner" ? "J" : dataItem.matchType == "skode_pool_winner" ? "S" : dataItem.matchType}",
                                                     style: CustomStyle.heading4Style,
                                                   )),
                                         Visibility(
@@ -8662,7 +8668,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                             style: CustomStyle.summaryTableTitle,
                                           ),
                                         ),
-                                        Visibility(visible: dataItem.isTie == 0, child: Text("\${dataItem.earnedAmount}", style: CustomStyle.summaryTableTitle)),
+                                        Visibility(visible: dataItem.isTie == 0, child: Text("${dataItem.earnedAmount}", style: CustomStyle.summaryTableTitle)),
                                         Visibility(
                                           visible: dataItem.isTie == 1,
                                           child: Text("Wash out", style: CustomStyle.summaryTableTitle),
@@ -8742,7 +8748,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                 Column(
                                                   children: [
                                                     Text(
-                                                      "M \${dataitem.matchNo}",
+                                                      "M ${dataitem.matchNo}",
                                                       style: CustomStyle.heading4Style,
                                                     ),
                                                   ],
@@ -8782,7 +8788,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                 Obx(() => Visibility(
                                                       visible: controller.gameData!.value.holesPerMatch!.first.toString() == "3",
                                                       child: Text(
-                                                        "\${dataitem.hole!}......",
+                                                        "${dataitem.hole!}......",
                                                         style: CustomStyle.accessTab.copyWith(fontSize: 18),
                                                       ),
                                                     )),
@@ -8796,7 +8802,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                   ),
                                                   child: Center(
                                                     child: Text(
-                                                      'Pts. \${dataitem.points}',
+                                                      'Pts. ${dataitem.points}',
                                                       style: CustomStyle.gameDetailsPtsTitle,
                                                     ),
                                                   ),
@@ -8914,7 +8920,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                     Column(
                                                       children: [
                                                         Text(
-                                                          "\${index + 1}",
+                                                          "${index + 1}",
                                                           style: CustomStyle.heading4Style,
                                                         ),
                                                       ],
@@ -8942,7 +8948,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                               SizedBox(
                                                 width: width * 0.35,
                                                 child: Text(
-                                                  "\${winner.firstName}",
+                                                  "${winner.firstName}",
                                                   overflow: TextOverflow.ellipsis,
                                                   style: CustomStyle.summaryTableTitle,
                                                 ),
@@ -8958,7 +8964,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                     ),
                                                     child: Center(
                                                       child: Text(
-                                                        'Pts. \${winner.points}',
+                                                        'Pts. ${winner.points}',
                                                         style: CustomStyle.gameDetailsPtsTitle,
                                                       ),
                                                     ),
@@ -8973,7 +8979,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                           // Confetti icon and price section
                                           const SizedBox(width: 5),
                                           Text(
-                                            "\${winner.earnedAmount}",
+                                            "${winner.earnedAmount}",
                                             style: CustomStyle.heading4Style,
                                           ),
                                         ],
@@ -9088,14 +9094,14 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                         Visibility(
                                                           visible: player.matchType != null,
                                                           child: Text(
-                                                            "\${player.matchType}",
+                                                            "${player.matchType}",
                                                             style: CustomStyle.heading4Style,
                                                           ),
                                                         ),
                                                         Visibility(
                                                           visible: player.matchNo != null,
                                                           child: Text(
-                                                            "M \${player.matchNo}",
+                                                            "M ${player.matchNo}",
                                                             style: CustomStyle.heading4Style,
                                                           ),
                                                         ),
@@ -9141,7 +9147,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                 children: [
                                                   if (player.hole != null && player.hole != "" && controller.gameData!.value.holesPerMatch!.first.toString() == "3")
                                                     Text(
-                                                      "\${player.hole}",
+                                                      "${player.hole}",
                                                       style: const TextStyle(
                                                         fontSize: 14,
                                                         color: Color.fromRGBO(40, 46, 52, 1),
@@ -9160,7 +9166,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                     ),
                                                     child: Center(
                                                       child: Text(
-                                                        'Pts. \${player.points}',
+                                                        'Pts. ${player.points}',
                                                         style: CustomStyle.gameDetailsPtsTitle,
                                                       ),
                                                     ),
@@ -9272,7 +9278,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                     Column(
                                                       children: [
                                                         Text(
-                                                          "\${index + 1}",
+                                                          "${index + 1}",
                                                           style: CustomStyle.heading4Style,
                                                         ),
                                                       ],
@@ -9314,7 +9320,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                     ),
                                                     child: Center(
                                                       child: Text(
-                                                        'Pts. \${player.points}',
+                                                        'Pts. ${player.points}',
                                                         style: CustomStyle.gameDetailsPtsTitle,
                                                       ),
                                                     ),
@@ -9470,7 +9476,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                             ),
                                             child: Center(
                                               child: Text(
-                                                'Pts. \${player.points}',
+                                                'Pts. ${player.points}',
                                                 style: CustomStyle.gameDetailsPtsTitle,
                                               ),
                                             ),
@@ -9620,7 +9626,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                             ),
                                             child: Center(
                                               child: Text(
-                                                'Pts. \${player.points}',
+                                                'Pts. ${player.points}',
                                                 style: CustomStyle.gameDetailsPtsTitle,
                                               ),
                                             ),
@@ -9730,7 +9736,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                             mainAxisAlignment: MainAxisAlignment.center,
                                             children: [
                                               Text(
-                                                "\${index + 1}",
+                                                "${index + 1}",
                                                 style: CustomStyle.heading4Style,
                                               ),
                                             ],
@@ -9768,12 +9774,12 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                           children: [
                                             if (dataItem.totalChickenWins != 0)
                                               Text(
-                                                "\${dataItem.totalChickenWins} Chickens ",
+                                                "${dataItem.totalChickenWins} Chickens ",
                                                 style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: ColorCode.appTitleColor),
                                               ),
                                             const SizedBox(width: 8),
                                             if (dataItem.totalRabbitWins != 0)
-                                              Text("\${dataItem.totalRabbitWins} Rabbit",
+                                              Text("${dataItem.totalRabbitWins} Rabbit",
                                                   style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: ColorCode.appTitleColor)),
                                           ],
                                         ),
@@ -9923,7 +9929,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                           ),
                                           child: Center(
                                             child: Text(
-                                              'Dot. \${dotsItem.totalDotsWins}',
+                                              'Dot. ${dotsItem.totalDotsWins}',
                                               style: CustomStyle.gameDetailsPtsTitle,
                                             ),
                                           ),
@@ -10023,7 +10029,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                 ),
                                                 borderRadius: const BorderRadius.all(Radius.circular(10))),
                                             child: Text(
-                                              "\${dataItem.holeType}",
+                                              "${dataItem.holeType}",
                                               style: CustomStyle.heading4Style,
                                             )),
                                         Visibility(
@@ -10055,7 +10061,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                           style: CustomStyle.summaryTableTitle,
                                         ),
                                       ),
-                                      Text("\${dataItem.earnedAmount}", style: CustomStyle.heading4Style),
+                                      Text("${dataItem.earnedAmount}", style: CustomStyle.heading4Style),
                                     ]),
                                   ],
                                 ),
@@ -10152,7 +10158,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                   //                               Column(
                   //                                 children: [
                   //                                   Text(
-                  //                                     "\${index + 1}",
+                  //                                     "${index + 1}",
                   //                                     style: CustomStyle.heading4Style,
                   //                                   ),
                   //                                 ],
@@ -10199,7 +10205,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                   //                                 child: SingleChildScrollView(
                   //                                   scrollDirection: Axis.horizontal,
                   //                                   child: Text(
-                  //                                     "Scr. \${player.score}",
+                  //                                     "Scr. ${player.score}",
                   //                                     style: CustomStyle.gameDetailsPtsTitle,
                   //                                   ),
                   //                                 ),
@@ -10294,7 +10300,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                   //                               Column(
                   //                                 children: [
                   //                                   Text(
-                  //                                     "\${index + 1}",
+                  //                                     "${index + 1}",
                   //                                     style: CustomStyle.heading4Style,
                   //                                   ),
                   //                                 ],
@@ -10341,7 +10347,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                   //                                 child: SingleChildScrollView(
                   //                                   scrollDirection: Axis.horizontal,
                   //                                   child: Text(
-                  //                                     "Skin. \${player.skinsWon}",
+                  //                                     "Skin. ${player.skinsWon}",
                   //                                     style: CustomStyle.gameDetailsPtsTitle,
                   //                                   ),
                   //                                 ),
@@ -10445,7 +10451,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                   //                               Column(
                   //                                 children: [
                   //                                   Text(
-                  //                                     "\${index + 1}",
+                  //                                     "${index + 1}",
                   //                                     style: CustomStyle.heading4Style,
                   //                                   ),
                   //                                 ],
@@ -10493,7 +10499,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                   //                                 child: SingleChildScrollView(
                   //                                   scrollDirection: Axis.horizontal,
                   //                                   child: Text(
-                  //                                     "Greenie. \${player.greeniesWon}",
+                  //                                     "Greenie. ${player.greeniesWon}",
                   //                                     style: CustomStyle.gameDetailsPtsTitle,
                   //                                   ),
                   //                                 ),
@@ -10603,7 +10609,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                       ),
                                       Container(
                                           padding: const EdgeInsets.only(left: 10),
-                                          child: Text("Team \${controller.ryderCaptainWinnerData!.value.winningCaptain} Wins",
+                                          child: Text("Team ${controller.ryderCaptainWinnerData!.value.winningCaptain} Wins",
                                               style: CustomStyle.hintTextStyle.copyWith(
                                                 fontSize: 18,
                                                 fontWeight: FontWeight.w600,
@@ -10692,7 +10698,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                     Column(
                                                       children: [
                                                         Text(
-                                                          "\${winner.rank}",
+                                                          "${winner.rank}",
                                                           style: CustomStyle.heading4Style,
                                                         ),
                                                       ],
@@ -10724,7 +10730,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                   child: Row(
                                                     children: [
                                                       Text(
-                                                        "\${winner.firstName}",
+                                                        "${winner.firstName}",
                                                         // player.firstName!,
                                                         overflow: TextOverflow.ellipsis,
                                                         style: CustomStyle.summaryTableTitle,
@@ -10754,7 +10760,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                     ),
                                                     child: Center(
                                                       child: Text(
-                                                        'Pts. \${winner.points}',
+                                                        'Pts. ${winner.points}',
                                                         style: CustomStyle.gameDetailsPtsTitle,
                                                       ),
                                                     ),
@@ -10769,7 +10775,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                           // Confetti icon and price section
                                           const SizedBox(width: 5),
                                           Text(
-                                            "\${winner.earnedAmount}",
+                                            "${winner.earnedAmount}",
                                             style: CustomStyle.heading4Style,
                                           ),
                                         ],
@@ -10845,7 +10851,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                     Column(
                                                       children: [
                                                         Text(
-                                                          "\${player.rank}",
+                                                          "${player.rank}",
                                                           style: CustomStyle.heading4Style,
                                                         ),
                                                       ],
@@ -10894,7 +10900,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                 ),
                                                 child: Center(
                                                   child: Text(
-                                                    'Pts. \${player.points}',
+                                                    'Pts. ${player.points}',
                                                     style: CustomStyle.gameDetailsPtsTitle,
                                                   ),
                                                 ),
@@ -10995,7 +11001,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                 ),
                                                 child: Center(
                                                   child: Text(
-                                                    'Pts. \${player.points}',
+                                                    'Pts. ${player.points}',
                                                     style: CustomStyle.gameDetailsPtsTitle,
                                                   ),
                                                 ),
@@ -11222,7 +11228,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                       Visibility(
                                         visible: controller.foursomeNo.value != "",
                                         child: Text(
-                                          "\${controller.foursomeNo.value}" ?? "",
+                                          "${controller.foursomeNo.value}" ?? "",
                                           style: CustomStyle.resultColum.copyWith(
                                             color: ColorCode.memberTextColor,
                                             fontWeight: FontWeight.w500,
@@ -11797,7 +11803,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
     for (int i = 0; i < itemCount; i++) {
       controller.expandedRows.add(false);
       Color? rowColor = (counter % 2 == 0) ? ColorCode.white : ColorCode.searchBg;
-      int? gameHcp = 0;
+      num? gameHcp = 0;
       // Variables to accumulate scores and points
       int outScore = 0,
           inScore = 0,
@@ -11860,11 +11866,10 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                     rabbitColor: "#000000")
             };
       for (var hole in holesMultiList[i].holes ?? []) {
-        // print("game hcp => \${holesMultiList[i].gameHcp}");
+        // print("game hcp => ${holesMultiList[i].gameHcp}");
         playerHoles[hole.hole] = hole;
       }
-      // gameHcp = num.parse(holesMultiList[i].gameHcp.toString()?? "0")  ;
-      gameHcp = num.parse(holesMultiList[i].gameHcp??"0").toInt();  ;
+      gameHcp = num.parse(holesMultiList[i].gameHcp?? "0" ) ;
 
       // Calculate OUT and IN stats for holes 1-9 and 10-18
 
@@ -11939,8 +11944,8 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
           // stroke HCP Summary
             if (controller.gameData!.value.gameType == "medal_play")
               _buildSummaryCell(
-                  gameHcp,           // â† stroke HCP value as score
-                  0,                 // or whatever point value makes sense here
+                  0,           // ← stroke HCP value as score
+                  gameHcp.toDouble(),                 // or whatever point value makes sense here
                   0, 0, 0, 0,
                   CustomStyle.foursomeSkodeJunkTitle,
                   Colors.white, i, 0, 0
@@ -12176,7 +12181,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text('\${hole.score ?? 0}', style: CustomStyle.paragraph5Style),
+                          Text('${hole.score ?? 0}', style: CustomStyle.paragraph5Style),
                           if (hole.isWolf == true)
                             const Text(
                               'W',
@@ -12222,7 +12227,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                   alignment: Alignment.center,
                   height: Get.height * 0.05,
                   child: Text(
-                    hole.playerPoints == null ? "0" : "\${hole.playerPoints ?? 0}",
+                    hole.playerPoints == null ? "0" : "${hole.playerPoints ?? 0}",
                     textAlign: TextAlign.center,
                     style: CustomStyle.paragraph5Style.copyWith(
                       decoration: (hole.playerPoints != null && points > 0) ? TextDecoration.underline : TextDecoration.none,
@@ -12352,7 +12357,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                           CustomButtonNew(
                                                             width: Get.width * 0.23,
                                                             height: 45,
-                                                            text: skode != "regular" ? "Made" : "Made (\${hole.regularNetMadeCount})",
+                                                            text: skode != "regular" ? "Made" : "Made (${hole.regularNetMadeCount})",
                                                             backgroundColor: ColorCode.switchButton,
                                                             borderColor: ColorCode.borderColor,
                                                             style: CustomStyle.buttonTextStyle4,
@@ -12412,7 +12417,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                       CustomButtonNew(
                                                         width: Get.width * 0.23,
                                                         height: 45,
-                                                        text: skode != "regular" ? "Missed" : "Missed (\${hole.regularNetMissedCount})",
+                                                        text: skode != "regular" ? "Missed" : "Missed (${hole.regularNetMissedCount})",
                                                         style: CustomStyle.buttonTextStyle4,
                                                         backgroundColor: ColorCode.birdieColor,
                                                         borderColor: ColorCode.borderColor,
@@ -12672,7 +12677,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                   child: Container(
                     alignment: Alignment.center,
                     height: Get.height * 0.05,
-                    child: Text('\${hole.putts ?? 0}', textAlign: TextAlign.center, style: CustomStyle.paragraph5Style),
+                    child: Text('${hole.putts ?? 0}', textAlign: TextAlign.center, style: CustomStyle.paragraph5Style),
                   ),
                 ),
                 Visibility(
@@ -12692,7 +12697,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                       children: [
                         if (hole.chickenWinTotal != 0 && hole.chickenWinTotal != null)
                           Text(
-                            'C\${hole.chickenWinTotal}',
+                            'C${hole.chickenWinTotal}',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               color: controller.parseColor(hole.chickenColor ?? "#000000"),
@@ -12709,7 +12714,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                             ),
                           ),
                         if (hole.rabbitWinTotal != 0 && hole.rabbitWinTotal != null)
-                          Text('R\${hole.rabbitWinTotal}',
+                          Text('R${hole.rabbitWinTotal}',
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 color: controller.parseColor(hole.rabbitColor ?? "#000000"),
@@ -12810,11 +12815,11 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                                         crossAxisAlignment: CrossAxisAlignment.center,
                                                         children: [
                                                           Text(
-                                                            "\${dotItem.dotType}".allInCaps,
+                                                            "${dotItem.dotType}".allInCaps,
                                                             style: CustomStyle.heading6Style.copyWith(fontWeight: FontWeight.w500),
                                                           ),
                                                           Text(
-                                                            "\${dotItem.dotPoint}",
+                                                            "${dotItem.dotPoint}",
                                                             style: CustomStyle.heading6Style.copyWith(fontWeight: FontWeight.w500),
                                                           ),
                                                         ],
@@ -12837,7 +12842,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                         child: Container(
                           alignment: Alignment.center,
                           height: Get.height * 0.05,
-                          child: Text('\${hole.dotsPoint ?? "-"}', textAlign: TextAlign.center, style: CustomStyle.paragraph5Style),
+                          child: Text('${hole.dotsPoint ?? "-"}', textAlign: TextAlign.center, style: CustomStyle.paragraph5Style),
                         ),
                       );
                     }),
@@ -12889,22 +12894,22 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                   child: Container(
                     alignment: Alignment.center,
                     height: Get.height * 0.05,
-                    child: Text('\${hole.skinGameScore ?? "-"}', textAlign: TextAlign.center, style: CustomStyle.paragraph5Style),
+                    child: Text('${hole.skinGameScore ?? "-"}', textAlign: TextAlign.center, style: CustomStyle.paragraph5Style),
                   ),
                 ),
                 Visibility(
-                  visible: controller.expandedRows[index] && controller.isGreenieGameEnabled.value,
+                  visible: controller.expandedRows[index] && (controller.isGreenieGameEnabled.value || controller.isRegauleSkinsGreenieEnabled.value),
                   child: Container(
                     color: ColorCode.borderColor,
                     height: 1.5,
                   ),
                 ),
                 Visibility(
-                  visible: controller.expandedRows[index] && controller.isGreenieGameEnabled.value,
+                  visible: controller.expandedRows[index] && (controller.isGreenieGameEnabled.value || controller.isRegauleSkinsGreenieEnabled.value),
                   child: Container(
                     alignment: Alignment.center,
                     height: Get.height * 0.05,
-                    child: Text('\${hole.greenieGameScore ?? "-"}', textAlign: TextAlign.center, style: CustomStyle.paragraph5Style),
+                    child: Text('${hole.greenieGameScore ?? "-"}', textAlign: TextAlign.center, style: CustomStyle.paragraph5Style),
                   ),
                 ),
               ],
@@ -13058,14 +13063,14 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
               ),
             ),
             Visibility(
-              visible: controller.expandedRows[index] && controller.isGreenieGameEnabled.value,
+              visible: controller.expandedRows[index] && (controller.isGreenieGameEnabled.value || controller.isRegauleSkinsGreenieEnabled.value),
               child: Container(
                 color: ColorCode.borderColor,
                 height: 1.5,
               ),
             ),
             Visibility(
-              visible: controller.expandedRows[index] && controller.isGreenieGameEnabled.value,
+              visible: controller.expandedRows[index] && (controller.isGreenieGameEnabled.value || controller.isRegauleSkinsGreenieEnabled.value),
               child: Container(
                 alignment: Alignment.center,
                 height: Get.height * 0.05,
@@ -13256,7 +13261,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                       // Extra spacing for this column
                       child: Center(
                           child: Text(
-                        '\${index + 1}',
+                        '${index + 1}',
                         style: CustomStyle.foursomeSkodeJunkTitleSShot,
                       )))),
                   DataCell(Container(
@@ -13265,7 +13270,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                       // Extra spacing for this column
 
                       child: Text(
-                        '\${controller.basementStatsList[index].playerName}',
+                        '${controller.basementStatsList[index].playerName}',
                         style: CustomStyle.foursomeSkodeJunkTitleSShot,
                       ))),
                   DataCell(Container(
@@ -13274,7 +13279,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                       // Extra spacing for this column
                       child: Center(
                           child: Text(
-                        '\${controller.basementStatsList[index].totalPoints}',
+                        '${controller.basementStatsList[index].totalPoints}',
                         style: CustomStyle.foursomeSkodeJunkTitleSShot,
                       )))),
                 ]),
@@ -13301,7 +13306,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                             Container(
                               width: Get.width * 0.61,
                               padding: const EdgeInsets.only(right: 10, left: 10),
-                              child: Text("\${dataItem.fromPlayerName}", style: CustomStyle.foursomeSkodeJunkTitleSShot),
+                              child: Text("${dataItem.fromPlayerName}", style: CustomStyle.foursomeSkodeJunkTitleSShot),
                             ),
                             Container(
                               width: 1,
@@ -13311,7 +13316,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                             Container(
                               width: Get.width * 0.205,
                               padding: const EdgeInsets.only(right: 10, left: 10),
-                              child: Center(child: Text("\\$\${dataItem.amount}", style: CustomStyle.foursomeSkodeJunkTitleSShot)),
+                              child: Center(child: Text("\$${dataItem.amount}", style: CustomStyle.foursomeSkodeJunkTitleSShot)),
                             )
                           ],
                         ),
@@ -13394,7 +13399,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "Rank \${dataItem.rank}",
+                              "Rank ${dataItem.rank}",
                               style: CustomStyle.playerNameStyle,
                             ),
                             Row(
@@ -13405,7 +13410,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                   style: CustomStyle.foursomeSkodeJunkTitleSShot,
                                 ),
                                 Text(
-                                  '\\$\${dataItem.totalAmount!}',
+                                  '\$${dataItem.totalAmount!}',
                                   style: CustomStyle.foursomeSkodeJunkTitleSShot,
                                 ),
                               ],
@@ -13417,13 +13422,13 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                 children: [
                                   Row(
                                     children: [
-                                      Text("\${dataItem.chickenWins.toString()} ", style: CustomStyle.foursomeSkodeJunkTitleSShot),
+                                      Text("${dataItem.chickenWins.toString()} ", style: CustomStyle.foursomeSkodeJunkTitleSShot),
                                       Text("Chickens ", style: CustomStyle.playerNameStyle),
                                     ],
                                   ),
                                   Row(
                                     children: [
-                                      Text("\${dataItem.rabbitWins.toString()} ", style: CustomStyle.foursomeSkodeJunkTitleSShot),
+                                      Text("${dataItem.rabbitWins.toString()} ", style: CustomStyle.foursomeSkodeJunkTitleSShot),
                                       Text("Rabbit", style: CustomStyle.playerNameStyle),
                                     ],
                                   ),
@@ -13491,7 +13496,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                               child: Row(children: [
                                 Padding(
                                   padding: const EdgeInsets.only(left: 8.0),
-                                  child: Text("\${payment.toPlayerName}", style: CustomStyle.foursomeSkodeJunkTitleSShot),
+                                  child: Text("${payment.toPlayerName}", style: CustomStyle.foursomeSkodeJunkTitleSShot),
                                 ),
                                 const Spacer(),
                                 Container(
@@ -13502,7 +13507,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                 Container(
                                   width: Get.width * 0.12,
                                   alignment: Alignment.center,
-                                  child: Text("\\$\${payment.amount}", style: CustomStyle.foursomeSkodeJunkTitleSShot),
+                                  child: Text("\$${payment.amount}", style: CustomStyle.foursomeSkodeJunkTitleSShot),
                                 )
                               ]),
                             );
@@ -13628,7 +13633,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                         width: Get.width * 0.17,
                                         alignment: Alignment.center,
                                         child: Text(
-                                          "\\$",
+                                          "\$",
                                           style: CustomStyle.playerNameStyle,
                                         ),
                                       ),
@@ -13648,7 +13653,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                       child: Row(
                                         crossAxisAlignment: CrossAxisAlignment.center,
                                         mainAxisAlignment: MainAxisAlignment.center,
-                                        children: [Text("Match \${match.matchNo}", style: CustomStyle.playerNameStyle)],
+                                        children: [Text("Match ${match.matchNo}", style: CustomStyle.playerNameStyle)],
                                       ),
                                     ),
                                   ),
@@ -13680,7 +13685,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                             Container(
                                                 width: Get.width * 0.17,
                                                 alignment: Alignment.center,
-                                                child: Text("\${players.points}", style: CustomStyle.foursomeSkodeJunkTitleSShot)),
+                                                child: Text("${players.points}", style: CustomStyle.foursomeSkodeJunkTitleSShot)),
                                             Container(
                                               width: 1,
                                               height: Get.height * 0.055,
@@ -13689,7 +13694,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                             Container(
                                                 width: Get.width * 0.17,
                                                 alignment: Alignment.center,
-                                                child: Text(players.isWinner == 1 ? "\\$\${match.amount}" : "\\$0", style: CustomStyle.foursomeSkodeJunkTitleSShot)),
+                                                child: Text(players.isWinner == 1 ? "\$${match.amount}" : "\$0", style: CustomStyle.foursomeSkodeJunkTitleSShot)),
                                           ],
                                         ),
                                       );
@@ -13759,7 +13764,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                           Container(
                                               width: Get.width * 0.15,
                                               alignment: Alignment.center,
-                                              child: Text("\\$\${payment.amount}", style: CustomStyle.foursomeSkodeJunkTitleSShot)),
+                                              child: Text("\$${payment.amount}", style: CustomStyle.foursomeSkodeJunkTitleSShot)),
                                         ],
                                       ),
                                     );
@@ -13869,7 +13874,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                         padding: const EdgeInsets.only(right: 10, left: 10),
                         child: Center(
                             child: Text(
-                          '\\$',
+                          '\$',
                           style: CustomStyle.playerNameStyle,
                         )))),
               ],
@@ -13882,7 +13887,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                       // Extra spacing for this column
                       child: Center(
                           child: Text(
-                        '\${index + 1}',
+                        '${index + 1}',
                         style: CustomStyle.foursomeSkodeJunkTitleSShot,
                       )))),
                   DataCell(Container(
@@ -13899,7 +13904,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                       // Extra spacing for this column
                       child: Center(
                           child: Text(
-                        '\${controller.individualSummaryList[index].totalPoints}',
+                        '${controller.individualSummaryList[index].totalPoints}',
                         style: CustomStyle.foursomeSkodeJunkTitleSShot,
                       )))),
                   DataCell(Container(
@@ -13972,7 +13977,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                     color: ColorCode.borderColor,
                                   ),
                                   Container(
-                                      width: Get.width * 0.18, alignment: Alignment.center, child: Text("\\$\${payment.amount}", style: CustomStyle.foursomeSkodeJunkTitleSShot)),
+                                      width: Get.width * 0.18, alignment: Alignment.center, child: Text("\$${payment.amount}", style: CustomStyle.foursomeSkodeJunkTitleSShot)),
                                 ],
                               ),
                             );
@@ -14075,7 +14080,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                           padding: const EdgeInsets.only(right: 10, left: 10),
                           child: Center(
                             child: Text(
-                              '\\$',
+                              '\$',
                               style: CustomStyle.playerNameStyle,
                             ),
                           ))),
@@ -14187,7 +14192,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Text(
-                              '\${controller.codSummaryList.toJson()[item][0]["F"]}',
+                              '${controller.codSummaryList.toJson()[item][0]["F"]}',
                               style: CustomStyle.foursomeSkodeJunkTitleSShot,
                             ),
                             Container(
@@ -14197,7 +14202,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                               color: ColorCode.borderColor,
                             ),
                             Text(
-                              '\${controller.codSummaryList.toJson()[item][1]["F"]}',
+                              '${controller.codSummaryList.toJson()[item][1]["F"]}',
                               style: CustomStyle.foursomeSkodeJunkTitleSShot,
                             ),
                           ],
@@ -14209,7 +14214,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Text(
-                              '\${controller.codSummaryList.toJson()[item][0]["B"]}',
+                              '${controller.codSummaryList.toJson()[item][0]["B"]}',
                               style: CustomStyle.foursomeSkodeJunkTitleSShot,
                             ),
                             Container(
@@ -14219,7 +14224,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                               color: ColorCode.borderColor,
                             ),
                             Text(
-                              '\${controller.codSummaryList.toJson()[item][1]["B"]}',
+                              '${controller.codSummaryList.toJson()[item][1]["B"]}',
                               style: CustomStyle.foursomeSkodeJunkTitleSShot,
                             ),
                           ],
@@ -14231,7 +14236,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Text(
-                              '\${controller.codSummaryList.toJson()[item][0]["T"]}',
+                              '${controller.codSummaryList.toJson()[item][0]["T"]}',
                               style: CustomStyle.foursomeSkodeJunkTitleSShot,
                             ),
                             Container(
@@ -14241,7 +14246,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                               color: ColorCode.borderColor,
                             ),
                             Text(
-                              '\${controller.codSummaryList.toJson()[item][1]["T"]}',
+                              '${controller.codSummaryList.toJson()[item][1]["T"]}',
                               style: CustomStyle.foursomeSkodeJunkTitleSShot,
                             ),
                           ],
@@ -14284,7 +14289,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [0, 1].map<Widget>((index) {
-                            debugPrint("paymentsList $item: \${controller.paymentsList.toJson()[item]}");
+                            debugPrint("paymentsList $item: ${controller.paymentsList.toJson()[item]}");
 
                             return Container(
                               decoration: const BoxDecoration(
@@ -14306,10 +14311,10 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                             Text(
                                                 controller.paymentsList.toJson()[item] == null
                                                     ? "-"
-                                                    : "\${getFormattedName(controller.paymentsList.toJson()[item][index]["from"])} ",
+                                                    : "${getFormattedName(controller.paymentsList.toJson()[item][index]["from"])} ",
                                                 style: CustomStyle.foursomeSkodeJunkTitleSShot),
                                             Text(controller.paymentsList.toJson()[item] == null ? "-" : " to ", style: CustomStyle.playerNameStyle),
-                                            Text(controller.paymentsList.toJson()[item] == null ? "-" : "\${getFormattedName(controller.paymentsList.toJson()[item][index]["to"])}",
+                                            Text(controller.paymentsList.toJson()[item] == null ? "-" : "${getFormattedName(controller.paymentsList.toJson()[item][index]["to"])}",
                                                 style: CustomStyle.foursomeSkodeJunkTitleSShot),
                                           ],
                                         ),
@@ -14327,7 +14332,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                       alignment: Alignment.center,
                                       child: SingleChildScrollView(
                                           scrollDirection: Axis.horizontal,
-                                          child: Text(controller.paymentsList.toJson()[item] == null ? "-" : "\\$\${controller.paymentsList.toJson()[item][index]["amount"]}",
+                                          child: Text(controller.paymentsList.toJson()[item] == null ? "-" : "\$${controller.paymentsList.toJson()[item][index]["amount"]}",
                                               style: CustomStyle.foursomeSkodeJunkTitleSShot))),
                                 ],
                               ),
@@ -14348,11 +14353,11 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
 
   void withinFoursomeSummary321Milo() {
     debugPrint("=== DEBUG INFO ===");
-    debugPrint("codList: \${controller.codList}");
-    debugPrint("codList types: \${controller.codList.map((e) => e.runtimeType).toList()}");
-    debugPrint("codStringList: \${controller.codStringList}");
-    debugPrint("Summary JSON keys: \${controller.codSummaryList.toJson().keys.toList()}");
-    debugPrint("Payments JSON keys: \${controller.paymentsList.toJson().keys.toList()}");
+    debugPrint("codList: ${controller.codList}");
+    debugPrint("codList types: ${controller.codList.map((e) => e.runtimeType).toList()}");
+    debugPrint("codStringList: ${controller.codStringList}");
+    debugPrint("Summary JSON keys: ${controller.codSummaryList.toJson().keys.toList()}");
+    debugPrint("Payments JSON keys: ${controller.paymentsList.toJson().keys.toList()}");
     Get.dialog(Dialog(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20.0),
@@ -14509,7 +14514,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                     children: [
                                       Text(
-                                        '\${controller.codSummaryList.toJson()[item][0]["F"]}',
+                                        '${controller.codSummaryList.toJson()[item][0]["F"]}',
                                         style: CustomStyle.foursomeSkodeJunkTitleSShot,
                                       ),
                                       Container(
@@ -14519,7 +14524,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                         color: ColorCode.borderColor,
                                       ),
                                       Text(
-                                        '\${controller.codSummaryList.toJson()[item][1]["F"]}',
+                                        '${controller.codSummaryList.toJson()[item][1]["F"]}',
                                         style: CustomStyle.foursomeSkodeJunkTitleSShot,
                                       ),
                                     ],
@@ -14531,7 +14536,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                     children: [
                                       Text(
-                                        '\${controller.codSummaryList.toJson()[item][0]["B"]}',
+                                        '${controller.codSummaryList.toJson()[item][0]["B"]}',
                                         style: CustomStyle.foursomeSkodeJunkTitleSShot,
                                       ),
                                       Container(
@@ -14541,7 +14546,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                         color: ColorCode.borderColor,
                                       ),
                                       Text(
-                                        '\${controller.codSummaryList.toJson()[item][1]["B"]}',
+                                        '${controller.codSummaryList.toJson()[item][1]["B"]}',
                                         style: CustomStyle.foursomeSkodeJunkTitleSShot,
                                       ),
                                     ],
@@ -14553,7 +14558,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                     children: [
                                       Text(
-                                        '\${controller.codSummaryList.toJson()[item][0]["T"]}',
+                                        '${controller.codSummaryList.toJson()[item][0]["T"]}',
                                         style: CustomStyle.foursomeSkodeJunkTitleSShot,
                                       ),
                                       Container(
@@ -14563,7 +14568,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                         color: ColorCode.borderColor,
                                       ),
                                       Text(
-                                        '\${controller.codSummaryList.toJson()[item][1]["T"]}',
+                                        '${controller.codSummaryList.toJson()[item][1]["T"]}',
                                         style: CustomStyle.foursomeSkodeJunkTitleSShot,
                                       ),
                                     ],
@@ -14671,7 +14676,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                             Container(
                                               width: Get.width * 0.12,
                                               alignment: Alignment.center,
-                                              child: Text("\\$$amount", style: CustomStyle.foursomeSkodeJunkTitleSShot),
+                                              child: Text("\$$amount", style: CustomStyle.foursomeSkodeJunkTitleSShot),
                                             ),
                                           ],
                                         ),
@@ -14962,11 +14967,11 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                             child: Row(
                               children: [
                                 Text(
-                                  'Team \${controller.acrossIndividualWinners[index].teamNo} (',
+                                  'Team ${controller.acrossIndividualWinners[index].teamNo} (',
                                   style: CustomStyle.playerNameStyle,
                                 ),
                                 Text(
-                                  '\${getFormattedName(controller.acrossIndividualWinners[index].playerName!)}',
+                                  '${getFormattedName(controller.acrossIndividualWinners[index].playerName!)}',
                                   style: CustomStyle.foursomeSkodeJunkTitleSShot,
                                 ),
                                 Text(
@@ -14986,7 +14991,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            '\${controller.acrossIndividualWinners[index].fPoints}',
+                            '${controller.acrossIndividualWinners[index].fPoints}',
                             style: CustomStyle.foursomeSkodeJunkTitleSShot,
                           ),
                         ],
@@ -15000,7 +15005,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            '\${controller.acrossIndividualWinners[index].bPoints}',
+                            '${controller.acrossIndividualWinners[index].bPoints}',
                             style: CustomStyle.foursomeSkodeJunkTitleSShot,
                           ),
                         ],
@@ -15011,7 +15016,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                       // Extra spacing for this column
                       child: Center(
                           child: Text(
-                        '\${controller.acrossIndividualWinners[index].tPoints}',
+                        '${controller.acrossIndividualWinners[index].tPoints}',
                         style: CustomStyle.foursomeSkodeJunkTitleSShot,
                       )))),
                 ]),
@@ -15061,9 +15066,9 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                       scrollDirection: Axis.horizontal,
                                       child: Row(
                                         children: [
-                                          Text("\${getFormattedName(payment.fromPlayerName!)}", style: CustomStyle.foursomeSkodeJunkTitleSShot),
+                                          Text("${getFormattedName(payment.fromPlayerName!)}", style: CustomStyle.foursomeSkodeJunkTitleSShot),
                                           Text(" TO ", style: CustomStyle.playerNameStyle),
-                                          Text("\${getFormattedName(payment.toPlayerName!)} ", style: CustomStyle.foursomeSkodeJunkTitleSShot),
+                                          Text("${getFormattedName(payment.toPlayerName!)} ", style: CustomStyle.foursomeSkodeJunkTitleSShot),
                                         ],
                                       ),
                                     ),
@@ -15075,7 +15080,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                     color: ColorCode.borderColor,
                                   ),
                                   Container(
-                                      width: Get.width * 0.12, alignment: Alignment.center, child: Text("\\$\${payment.amount}", style: CustomStyle.foursomeSkodeJunkTitleSShot)),
+                                      width: Get.width * 0.12, alignment: Alignment.center, child: Text("\$${payment.amount}", style: CustomStyle.foursomeSkodeJunkTitleSShot)),
                                 ],
                               ),
                             );
@@ -15192,7 +15197,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                 Container(
                                   width: Get.width * 0.15,
                                   alignment: Alignment.center,
-                                  child: Text("\\$", style: CustomStyle.playerNameStyle),
+                                  child: Text("\$", style: CustomStyle.playerNameStyle),
                                 ),
                               ],
                             ),
@@ -15210,7 +15215,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                 child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [Text("Match \${match.matchNo}", style: CustomStyle.playerNameStyle)],
+                                  children: [Text("Match ${match.matchNo}", style: CustomStyle.playerNameStyle)],
                                 ),
                               ),
                             ),
@@ -15237,7 +15242,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                         color: ColorCode.borderColor,
                                       ),
                                       Container(
-                                          width: Get.width * 0.15, alignment: Alignment.center, child: Text("\${players.points}", style: CustomStyle.foursomeSkodeJunkTitleSShot)),
+                                          width: Get.width * 0.15, alignment: Alignment.center, child: Text("${players.points}", style: CustomStyle.foursomeSkodeJunkTitleSShot)),
                                       Container(
                                         width: 1,
                                         height: Get.height * 0.055,
@@ -15246,7 +15251,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                       Container(
                                           width: Get.width * 0.15,
                                           alignment: Alignment.center,
-                                          child: Text(players.isWinner == 1 ? "\\$\${match.amount}" : "\\$0", style: CustomStyle.foursomeSkodeJunkTitleSShot)),
+                                          child: Text(players.isWinner == 1 ? "\$${match.amount}" : "\$0", style: CustomStyle.foursomeSkodeJunkTitleSShot)),
                                     ],
                                   ),
                                 );
@@ -15320,7 +15325,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                       color: ColorCode.borderColor,
                                     ),
                                     Container(
-                                        width: Get.width * 0.12, alignment: Alignment.center, child: Text("\\$\${payment.amount}", style: CustomStyle.foursomeSkodeJunkTitleSShot)),
+                                        width: Get.width * 0.12, alignment: Alignment.center, child: Text("\$${payment.amount}", style: CustomStyle.foursomeSkodeJunkTitleSShot)),
                                   ],
                                 ),
                               );
@@ -15483,7 +15488,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Text(
-                                '\${controller.summary2v2List.matches![index][0].f}',
+                                '${controller.summary2v2List.matches![index][0].f}',
                                 style: CustomStyle.foursomeSkodeJunkTitleSShot,
                               ),
                               Container(
@@ -15493,7 +15498,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                 color: ColorCode.borderColor,
                               ),
                               Text(
-                                '\${controller.summary2v2List.matches![index][1].f}',
+                                '${controller.summary2v2List.matches![index][1].f}',
                                 style: CustomStyle.foursomeSkodeJunkTitleSShot,
                                 overflow: TextOverflow.ellipsis,
                               ),
@@ -15507,7 +15512,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Text(
-                                '\${controller.summary2v2List.matches![index][0].b}',
+                                '${controller.summary2v2List.matches![index][0].b}',
                                 style: CustomStyle.foursomeSkodeJunkTitleSShot,
                               ),
                               Container(
@@ -15517,7 +15522,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                 color: ColorCode.borderColor,
                               ),
                               Text(
-                                '\${controller.summary2v2List.matches![index][1].b}',
+                                '${controller.summary2v2List.matches![index][1].b}',
                                 style: CustomStyle.foursomeSkodeJunkTitleSShot,
                                 overflow: TextOverflow.ellipsis,
                               ),
@@ -15531,7 +15536,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Text(
-                                '\${controller.summary2v2List.matches![index][0].t}',
+                                '${controller.summary2v2List.matches![index][0].t}',
                                 style: CustomStyle.foursomeSkodeJunkTitleSShot,
                               ),
                               Container(
@@ -15541,7 +15546,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                 color: ColorCode.borderColor,
                               ),
                               Text(
-                                '\${controller.summary2v2List.matches![index][1].t}',
+                                '${controller.summary2v2List.matches![index][1].t}',
                                 style: CustomStyle.foursomeSkodeJunkTitleSShot,
                                 overflow: TextOverflow.ellipsis,
                               ),
@@ -15565,7 +15570,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                 padding: const EdgeInsets.only(top: 10, left: 16, bottom: 16, right: 16),
                 child: Table(
                   columnWidths: const {
-                    0: FlexColumnWidth(2), // From â†’ To
+                    0: FlexColumnWidth(2), // From → To
                     1: FlexColumnWidth(0.4), // Amount
                   },
                   border: TableBorder.all(color: Colors.grey),
@@ -15596,9 +15601,9 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                               scrollDirection: Axis.horizontal,
                               child: Row(
                                 children: [
-                                  Text("\${payment.from}", style: CustomStyle.foursomeSkodeJunkTitleSShot),
+                                  Text("${payment.from}", style: CustomStyle.foursomeSkodeJunkTitleSShot),
                                   Text(" To ", style: CustomStyle.playerNameStyle),
-                                  Text("\${payment.to}", style: CustomStyle.foursomeSkodeJunkTitleSShot),
+                                  Text("${payment.to}", style: CustomStyle.foursomeSkodeJunkTitleSShot),
                                 ],
                               ),
                             ),
@@ -15611,7 +15616,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                               child: Center(
                                 child: SingleChildScrollView(
                                     scrollDirection: Axis.horizontal,
-                                    child: Text(payment.amount != null ? "\\$\${payment.amount}" : "", textAlign: TextAlign.center, style: CustomStyle.foursomeSkodeJunkTitleSShot)),
+                                    child: Text(payment.amount != null ? "\$${payment.amount}" : "", textAlign: TextAlign.center, style: CustomStyle.foursomeSkodeJunkTitleSShot)),
                               ),
                             )),
                       ],
@@ -15743,14 +15748,14 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        '\${controller.junkStatsSummary[index].totalMade} + ',
+                                        '${controller.junkStatsSummary[index].totalMade} + ',
                                         style: CustomStyle.foursomeSkodeJunkTitleSShot,
                                       ),
                                       Tooltip(
                                         message: 'Junk Pool Winner',
                                         triggerMode: TooltipTriggerMode.tap,
                                         child: Text(
-                                          '\${controller.junkStatsSummary[index].poolAmount} ',
+                                          '${controller.junkStatsSummary[index].poolAmount} ',
                                           style: CustomStyle.foursomeSkodeJunkTitleSShot.copyWith(decoration: TextDecoration.underline),
                                         ),
                                       ),
@@ -15763,7 +15768,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        '\${controller.junkStatsSummary[index].totalMade} ',
+                                        '${controller.junkStatsSummary[index].totalMade} ',
                                         style: CustomStyle.foursomeSkodeJunkTitleSShot,
                                       ),
                                       if (controller.junkStatsSummary[index].negativeJunkMade != 0)
@@ -15773,7 +15778,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                           child: Row(
                                             children: [
                                               Text(
-                                                '(\${controller.junkStatsSummary[index].negativeJunkMade})',
+                                                '(${controller.junkStatsSummary[index].negativeJunkMade})',
                                                 style: CustomStyle.foursomeSkodeJunkTitleSShot
                                                     .copyWith(color: ColorCode.blockText, decoration: TextDecoration.underline, decorationColor: ColorCode.blockText),
                                               ),
@@ -15789,7 +15794,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                       // Extra spacing for this column
                       child: Center(
                           child: Text(
-                        '\${controller.junkStatsSummary[index].totalMissed}',
+                        '${controller.junkStatsSummary[index].totalMissed}',
                         style: CustomStyle.foursomeSkodeJunkTitleSShot,
                       )))),
                   DataCell(Container(
@@ -15798,7 +15803,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                       // Extra spacing for this column
                       child: Center(
                           child: Text(
-                        '\${controller.junkStatsSummary[index].totalNetMade}',
+                        '${controller.junkStatsSummary[index].totalNetMade}',
                         style: CustomStyle.foursomeSkodeJunkTitleSShot,
                       )))),
                 ]),
@@ -15862,7 +15867,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                     color: ColorCode.borderColor,
                                   ),
                                   Container(
-                                      width: Get.width * 0.18, alignment: Alignment.center, child: Text("\\$\${payment.amount}", style: CustomStyle.foursomeSkodeJunkTitleSShot)),
+                                      width: Get.width * 0.18, alignment: Alignment.center, child: Text("\$${payment.amount}", style: CustomStyle.foursomeSkodeJunkTitleSShot)),
                                 ],
                               ),
                             );
@@ -15991,14 +15996,14 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                   child: Row(
                                     children: [
                                       Text(
-                                        '\${controller.skodeStatsSummary[index].totalMade} + ',
+                                        '${controller.skodeStatsSummary[index].totalMade} + ',
                                         style: CustomStyle.foursomeSkodeJunkTitleSShot,
                                       ),
                                       Tooltip(
                                         message: 'Skode Winner',
                                         triggerMode: TooltipTriggerMode.tap,
                                         child: Text(
-                                          '\${controller.skodeStatsSummary[index].poolAmount}',
+                                          '${controller.skodeStatsSummary[index].poolAmount}',
                                           style: CustomStyle.foursomeSkodeJunkTitleSShot.copyWith(decoration: TextDecoration.underline),
                                         ),
                                       ),
@@ -16011,7 +16016,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        '\${controller.skodeStatsSummary[index].totalMade} ',
+                                        '${controller.skodeStatsSummary[index].totalMade} ',
                                         style: CustomStyle.foursomeSkodeJunkTitleSShot,
                                       ),
                                       if (controller.skodeStatsSummary[index].negativeJunkMade != 0)
@@ -16019,7 +16024,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                           message: 'Negative Skode',
                                           triggerMode: TooltipTriggerMode.tap,
                                           child: Text(
-                                            '(\${controller.skodeStatsSummary[index].negativeJunkMade})',
+                                            '(${controller.skodeStatsSummary[index].negativeJunkMade})',
                                             style: CustomStyle.foursomeSkodeJunkTitleSShot
                                                 .copyWith(color: ColorCode.blockText, decoration: TextDecoration.underline, decorationColor: ColorCode.blockText),
                                           ),
@@ -16033,7 +16038,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                       // Extra spacing for this column
                       child: Center(
                           child: Text(
-                        '\${controller.skodeStatsSummary[index].totalMissed}',
+                        '${controller.skodeStatsSummary[index].totalMissed}',
                         style: CustomStyle.foursomeSkodeJunkTitleSShot,
                       )))),
                   DataCell(Container(
@@ -16042,7 +16047,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                       // Extra spacing for this column
                       child: Center(
                           child: Text(
-                        '\${controller.skodeStatsSummary[index].totalNetMade}',
+                        '${controller.skodeStatsSummary[index].totalNetMade}',
                         style: CustomStyle.foursomeSkodeJunkTitleSShot,
                       )))),
                 ]),
@@ -16106,7 +16111,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                     color: ColorCode.borderColor,
                                   ),
                                   Container(
-                                      width: Get.width * 0.18, alignment: Alignment.center, child: Text("\\$\${payment.amount}", style: CustomStyle.foursomeSkodeJunkTitleSShot)),
+                                      width: Get.width * 0.18, alignment: Alignment.center, child: Text("\$${payment.amount}", style: CustomStyle.foursomeSkodeJunkTitleSShot)),
                                 ],
                               ),
                             );
@@ -16212,7 +16217,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                         padding: const EdgeInsets.only(right: 10, left: 10),
                         child: Center(
                             child: Text(
-                          '\\$',
+                          '\$',
                           style: CustomStyle.playerNameStyle,
                         )))),
               ],
@@ -16225,7 +16230,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                       // Extra spacing for this column
                       child: Center(
                           child: Text(
-                        '\${controller.dotsWinnersSummaryList[index].rank}',
+                        '${controller.dotsWinnersSummaryList[index].rank}',
                         style: CustomStyle.foursomeSkodeJunkTitleSShot,
                       )))),
                   DataCell(Container(
@@ -16242,7 +16247,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                       // Extra spacing for this column
                       child: Center(
                           child: Text(
-                        '\${controller.dotsWinnersSummaryList[index].totalDots}',
+                        '${controller.dotsWinnersSummaryList[index].totalDots}',
                         style: CustomStyle.foursomeSkodeJunkTitleSShot,
                       )))),
                   DataCell(Container(
@@ -16315,7 +16320,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                     color: ColorCode.borderColor,
                                   ),
                                   Container(
-                                      width: Get.width * 0.18, alignment: Alignment.center, child: Text("\\$\${payment.amount}", style: CustomStyle.foursomeSkodeJunkTitleSShot)),
+                                      width: Get.width * 0.18, alignment: Alignment.center, child: Text("\$${payment.amount}", style: CustomStyle.foursomeSkodeJunkTitleSShot)),
                                 ],
                               ),
                             );
@@ -16491,7 +16496,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
     // If selected tee time is already set, preselect hour, minute, and position
     if (controller.selectedTeeTime.value.isNotEmpty && controller.selectedTeeTime.value.length > 3) {
       // Expected format: "HH:mm(F)" or "HH:mm(B)"
-      final regex = RegExp(r"(\\d{2}):(\\d{2})\\((F|B)\\)");
+      final regex = RegExp(r"(\d{2}):(\d{2})\((F|B)\)");
       final match = regex.firstMatch(controller.selectedTeeTime.value);
       if (match != null) {
         final hour = int.parse(match.group(1)!);
@@ -16632,7 +16637,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                     onPressed: () {
                       Get.back();
                       controller.addFoursomeTeeTime(foursomeId: foursomeId, hour: controller.selectedHour.value, minute: controller.selectedMinute.value, showProgress: false);
-                      // print("tee time value \${controller.selectedTeeTime.value}");
+                      // print("tee time value ${controller.selectedTeeTime.value}");
                     },
                   ),
                 ),
@@ -16660,7 +16665,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // ðŸ”¹ Title
+                // 🔹 Title
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -16688,7 +16693,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
 
                 const SizedBox(height: 6),
 
-                // ðŸ”¹ Subtitle
+                // 🔹 Subtitle
                 Text(
                   "Set the maximum number of players who can join using the QR code.",
                   style: CustomStyle.heading7Style,
@@ -16696,7 +16701,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
 
                 const SizedBox(height: 16),
 
-                // ðŸ”¹ TextField
+                // 🔹 TextField
                 CustomTextFormField2(
                   labelText: "Max Wolf points",
                   style: CustomStyle.paragraph4LightStyle.copyWith(color: ColorCode.labelText, fontSize: appFontSize.value + 18),
@@ -16709,7 +16714,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
 
                 const SizedBox(height: 20),
 
-                // ðŸ”¹ Buttons
+                // 🔹 Buttons
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -16861,7 +16866,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
     required List<CalledByShots> calledByPlayers,
     required List<EarnedShots> earnedPlayers,
   }) {
-    // â”€â”€ Shot unit: circle on left merged into pill container â”€â”€
+    // ── Shot unit: circle on left merged into pill container ──
     Widget shotUnit(String number, String label, Color labelBg, Color labelFg) {
       return Container(
         height: 38,
@@ -16904,7 +16909,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
       );
     }
 
-    // â”€â”€ Section title â”€â”€
+    // ── Section title ──
     Widget sectionTitle(String title) => Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -16919,7 +16924,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
           ],
         );
 
-    // â”€â”€ Called-by Shots section â”€â”€
+    // ── Called-by Shots section ──
     Widget calledBySection(List<CalledByShots> callByshots) => Column(
           children: List.generate(callByshots.length, (i) {
             final player = callByshots[i];
@@ -16955,8 +16960,8 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   shotUnit(
-                                    "\${shot.holeNo ?? "!"}", // Show ! for pending
-                                    "\${isPlus ? "+" : "-"}\${(shot.betSymbol ?? "")}",
+                                    "${shot.holeNo ?? "!"}", // Show ! for pending
+                                    "${isPlus ? "+" : "-"}${(shot.betSymbol ?? "")}",
                                     shot.holeNo == null
                                         ? const Color(0xFFFFF4E5)
                                         : isPlus
@@ -17007,7 +17012,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
           }),
         );
 
-    // â”€â”€ Earned Shots section â”€â”€
+    // ── Earned Shots section ──
     Widget earnedSection(List<EarnedShots> earnShots) => Column(
       children: List.generate(earnShots.length, (i) {
         List<Shots> shotList = earnShots[i].shots ?? [];
@@ -17034,7 +17039,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
                           children: shotList.map((shot) {
                             bool isEG = shot.status == "made";
                             return shotUnit(
-                              "\${shot.holeNo ?? "!"}",
+                              "${shot.holeNo ?? "!"}",
                                 (shot.betSymbol ?? ""),
                               isEG ? const Color(0xFFE6F4EC) : const Color(0xFFFCEBEB),
                               isEG ? const Color(0xFF1E7A3E) : const Color(0xFFA32D2D),
@@ -17051,7 +17056,7 @@ class GameDetailsScreen extends GetView<GameDetailsController> {
           }),
         );
 
-    // â”€â”€ Dialog â”€â”€
+    // ── Dialog ──
     showDialog(
       context: context,
       barrierColor: Colors.black38,
@@ -17179,9 +17184,11 @@ List<Players> getUniquePlayers(List<Players> players) {
 
 String getReturnUrl() {
   return 'https://samplesite.com/';
-}`);
+}
+`);
 
-  add("viewgame-detail", "flutter", "game_details_controller.dart", `import 'dart:async';
+  add("viewgame-detail", "flutter", "game_details_controller.dart", `
+import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
@@ -17416,6 +17423,7 @@ class GameDetailsController extends GetxController {
   RxBool isDotsEnabled = false.obs;
   RxBool isSkinGameEnabled = false.obs;
   RxBool isGreenieGameEnabled = false.obs;
+  RxBool isRegauleSkinsGreenieEnabled = false.obs;
 
   void updateHour(int hour) {
     selectedHour.value = hour;
@@ -17426,7 +17434,7 @@ class GameDetailsController extends GetxController {
   }
 
   String formatTime(int hour, int minute) {
-    return '\${hour.toString().padLeft(2, '0')}:\${minute.toString().padLeft(2, '0')}';
+    return '${hour.toString().padLeft(2, '0')}:${minute.toString().padLeft(2, '0')}';
   }
 
   void toggleCollapsed(int index) {
@@ -17498,7 +17506,7 @@ class GameDetailsController extends GetxController {
       print("organizationId :$organizationId");
 
       if (argument["tab"] == "result") {
-        debugPrint("GameDetailsController : \${tab.value}");
+        debugPrint("GameDetailsController : ${tab.value}");
         tab.value = "result";
         resultsTab.value = "allPlayers";
 
@@ -17556,7 +17564,7 @@ class GameDetailsController extends GetxController {
   }) async {
     try {
       final dir = await getTemporaryDirectory();
-      final file = File('\${dir.path}/$fileName');
+      final file = File('${dir.path}/$fileName');
 
       if (await file.exists()) await file.delete();
       await file.writeAsBytes(xlsxBytes);
@@ -17591,7 +17599,7 @@ class GameDetailsController extends GetxController {
   }) async {
     try {
       final dir = await getTemporaryDirectory();
-      final file = File('\${dir.path}/$fileName');
+      final file = File('${dir.path}/$fileName');
 
       if (await file.exists()) await file.delete();
       await file.writeAsBytes(pdfBytes);
@@ -17626,7 +17634,7 @@ class GameDetailsController extends GetxController {
   }) async {
     try {
       final dir = await getTemporaryDirectory();
-      final file = File('\${dir.path}/$fileName');
+      final file = File('${dir.path}/$fileName');
 
       if (await file.exists()) await file.delete();
       await file.writeAsBytes(imageBytes);
@@ -17675,7 +17683,7 @@ class GameDetailsController extends GetxController {
     final extensionIndex = name.lastIndexOf('.');
     if (extensionIndex == -1) {
       // No extension
-      return "\${name.substring(0, maxLength)}...";
+      return "${name.substring(0, maxLength)}...";
     }
 
     final extension = name.substring(extensionIndex); // .pdf
@@ -17687,7 +17695,7 @@ class GameDetailsController extends GetxController {
       return "...$extension";
     }
 
-    return "\${baseName.substring(0, allowedBaseLength)}...$extension";
+    return "${baseName.substring(0, allowedBaseLength)}...$extension";
   }
 
 
@@ -17700,30 +17708,30 @@ class GameDetailsController extends GetxController {
     return (playerCount * 1.5 + 5).ceil();
   }
 
-  // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-// showFilePickerDialog  â€“  shares ALL pages when Image is selected
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+  // ════════════════════════════════════════════════════════════════════════════
+// showFilePickerDialog  –  shares ALL pages when Image is selected
+// ════════════════════════════════════════════════════════════════════════════
   Future<void> showFilePickerDialog(BuildContext context) async {
     final files = [
       {
         "id": 1,
-        "name": "\${gameData?.value.gameName}_\${resultsTab == "allPlayers" ? "All_Players" : foursomeNo}_\${DateTime.now().millisecondsSinceEpoch}.jpg",
+        "name": "${gameData?.value.gameName}_${resultsTab == "allPlayers" ? "All_Players" : foursomeNo}_${DateTime.now().millisecondsSinceEpoch}.jpg",
         "size": "",
         "type": "img",
         "label": resultList.length > _playersPerImage
-            ? "Image (split into \${(resultList.length / _playersPerImage).ceil()} images)"
+            ? "Image (split into ${(resultList.length / _playersPerImage).ceil()} images)"
             : "Image (.jpg)",
       },
       {
         "id": 2,
-        "name": "\${gameData?.value.gameName}_\${resultsTab == "allPlayers" ? "All_Players" : foursomeNo}_\${DateTime.now().millisecondsSinceEpoch}.pdf",
+        "name": "${gameData?.value.gameName}_${resultsTab == "allPlayers" ? "All_Players" : foursomeNo}_${DateTime.now().millisecondsSinceEpoch}.pdf",
         "size": "",
         "type": "pdf",
         "label": "PDF (recommended for large groups)",
       },
       {
         "id": 3,
-        "name": "\${gameData?.value.gameName}_\${resultsTab == "allPlayers" ? "All_Players" : foursomeNo}_\${DateTime.now().millisecondsSinceEpoch}.xlsx",
+        "name": "${gameData?.value.gameName}_${resultsTab == "allPlayers" ? "All_Players" : foursomeNo}_${DateTime.now().millisecondsSinceEpoch}.xlsx",
         "size": "",
         "type": "xlsx",
         "label": "Excel spreadsheet",
@@ -17821,7 +17829,7 @@ class GameDetailsController extends GetxController {
                         child: Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            "\${selected.length} format\${selected.length > 1 ? 's' : ''} selected",
+                            "${selected.length} format${selected.length > 1 ? 's' : ''} selected",
                             style: const TextStyle(color: Colors.green, fontSize: 12),
                           ),
                         ),
@@ -17838,7 +17846,7 @@ class GameDetailsController extends GetxController {
                               return;
                             }
 
-                            // â”€â”€ Reset â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+                            // ── Reset ────────────────────────────────────────
                             captureWinners.value    = false;
                             captureScoreCard.value  = false;
                             captureHoleHcpPar.value = false;
@@ -17867,9 +17875,9 @@ class GameDetailsController extends GetxController {
                             await Future.delayed(const Duration(milliseconds: 300));
 
                             try {
-                              // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+                              // ─────────────────────────────────────────────
                               // GENERATE
-                              // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+                              // ─────────────────────────────────────────────
 
                               if (selected.contains(1) || selected.contains(2)) {
 
@@ -17926,9 +17934,9 @@ class GameDetailsController extends GetxController {
                                 }
                               }
 
-                              // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+                              // ─────────────────────────────────────────────
                               // EXCEL
-                              // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+                              // ─────────────────────────────────────────────
 
                               if (selected.contains(3)) {
 
@@ -17953,9 +17961,9 @@ class GameDetailsController extends GetxController {
                                 await Future.delayed(Duration.zero);
                               }
 
-                              // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+                              // ─────────────────────────────────────────────
                               // COMPRESS PHASE
-                              // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+                              // ─────────────────────────────────────────────
 
                               _exportProgressDialog.startCompressPhase(
                                 label: "Compressing images...",
@@ -17965,9 +17973,9 @@ class GameDetailsController extends GetxController {
                                 const Duration(milliseconds: 100),
                               );
 
-                              // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+                              // ─────────────────────────────────────────────
                               // FILES
-                              // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+                              // ─────────────────────────────────────────────
 
                               final List<XFile> filesToShare = [];
 
@@ -17980,9 +17988,9 @@ class GameDetailsController extends GetxController {
                               final ts =
                                   DateTime.now().millisecondsSinceEpoch;
 
-                              // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+                              // ─────────────────────────────────────────────
                               // IMAGES
-                              // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+                              // ─────────────────────────────────────────────
 
                               if (selected.contains(1) &&
                                   sharedImagePages.isNotEmpty) {
@@ -17995,7 +18003,7 @@ class GameDetailsController extends GetxController {
                                   await Future.delayed(Duration.zero);
 
                                   _exportProgressDialog.updateLabel(
-                                    "Saving image \${i + 1}/\${sharedImagePages.length}",
+                                    "Saving image ${i + 1}/${sharedImagePages.length}",
                                   );
 
                                   final compressed =
@@ -18007,7 +18015,7 @@ class GameDetailsController extends GetxController {
                                   await Future.delayed(Duration.zero);
 
                                   final imgFile = File(
-                                    '\${docDir.path}/scorecard_\${ts}_page\${i + 1}.jpg',
+                                    '${docDir.path}/scorecard_${ts}_page${i + 1}.jpg',
                                   );
 
                                   await imgFile.writeAsBytes(compressed);
@@ -18024,15 +18032,15 @@ class GameDetailsController extends GetxController {
                                       imgFile.path,
                                       mimeType: 'image/jpeg',
                                       name:
-                                      'scorecard_page\${i + 1}.jpg',
+                                      'scorecard_page${i + 1}.jpg',
                                     ),
                                   );
                                 }
                               }
 
-                              // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+                              // ─────────────────────────────────────────────
                               // PDF
-                              // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+                              // ─────────────────────────────────────────────
 
                               if (selected.contains(2) &&
                                   pdfFileBytes != null) {
@@ -18044,7 +18052,7 @@ class GameDetailsController extends GetxController {
                                 await Future.delayed(Duration.zero);
 
                                 final pdfFile = File(
-                                  '\${tempDir.path}/scorecard_$ts.pdf',
+                                  '${tempDir.path}/scorecard_$ts.pdf',
                                 );
 
                                 await pdfFile.writeAsBytes(
@@ -18059,9 +18067,9 @@ class GameDetailsController extends GetxController {
                                 );
                               }
 
-                              // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+                              // ─────────────────────────────────────────────
                               // EXCEL FILE
-                              // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+                              // ─────────────────────────────────────────────
 
                               if (selected.contains(3) &&
                                   xlsxFileBytes != null) {
@@ -18073,7 +18081,7 @@ class GameDetailsController extends GetxController {
                                 await Future.delayed(Duration.zero);
 
                                 final xlsxFile = File(
-                                  '\${tempDir.path}/scorecard_$ts.xlsx',
+                                  '${tempDir.path}/scorecard_$ts.xlsx',
                                 );
 
                                 await xlsxFile.writeAsBytes(
@@ -18089,9 +18097,9 @@ class GameDetailsController extends GetxController {
                                 );
                               }
 
-                              // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+                              // ─────────────────────────────────────────────
                               // COMPLETE LOADER
-                              // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+                              // ─────────────────────────────────────────────
 
                               _exportProgressDialog.updateLabel(
                                 "Finalizing...",
@@ -18102,17 +18110,17 @@ class GameDetailsController extends GetxController {
 
                               Navigator.pop(context);
 
-                              // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+                              // ─────────────────────────────────────────────
                               // SHARE
-                              // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+                              // ─────────────────────────────────────────────
 // Add this before Share.shareXFiles
                               for (int i = 0; i < filesToShare.length; i++) {
                                 final f = File(filesToShare[i].path);
-                                log("File $i: \${f.lengthSync() ~/ 1024} KB");
+                                log("File $i: ${f.lengthSync() ~/ 1024} KB");
                               }
                               for (int i = 0; i < filesToShare.length; i++) {
                                 final f = File(filesToShare[i].path);
-                                log("File $i: \${f.lengthSync() ~/ 1024} KB");
+                                log("File $i: ${f.lengthSync() ~/ 1024} KB");
                               }
 
                               if (filesToShare.isNotEmpty) {
@@ -18131,13 +18139,13 @@ class GameDetailsController extends GetxController {
 
                                 ShareResult? lastResult;
 
-                                // â”€â”€ Share images first (all at once) â”€â”€
+                                // ── Share images first (all at once) ──
                                 if (imageFiles.isNotEmpty) {
                                   lastResult = await Share.shareXFiles(
                                     imageFiles,
                                     subject: gameData?.value.gameName ?? "Scorecard",
                                     text: imageFiles.length > 1
-                                        ? "Golf Scorecard (\${imageFiles.length} images)"
+                                        ? "Golf Scorecard (${imageFiles.length} images)"
                                         : "Golf Scorecard",
                                   );
 
@@ -18153,7 +18161,7 @@ class GameDetailsController extends GetxController {
                                   }
                                 }
 
-                                // â”€â”€ Share PDF / Excel separately â”€â”€
+                                // ── Share PDF / Excel separately ──
                                 if (docFiles.isNotEmpty) {
                                   lastResult = await Share.shareXFiles(
                                     docFiles,
@@ -18161,7 +18169,7 @@ class GameDetailsController extends GetxController {
                                   );
                                 }
 
-                                // â”€â”€ Show result toast based on final share â”€â”€
+                                // ── Show result toast based on final share ──
                                 switch (lastResult?.status) {
                                   case ShareResultStatus.success:
                                     ToastMessage.success(message: "$formatLabel shared successfully!");
@@ -18307,10 +18315,10 @@ class GameDetailsController extends GetxController {
     try {
       final List<ResultData> allPlayers = resultList.toList();
 
-      // â”€â”€ 1. Capture Game Details header (once, shared by every page) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+      // ── 1. Capture Game Details header (once, shared by every page) ──────────
       await captureAndSaveImageGameDetails(context);
 
-      // â”€â”€ 2. Capture HoleHcpPar header (once, shared by every page) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+      // ── 2. Capture HoleHcpPar header (once, shared by every page) ────────────
       await captureAndSaveImageHoleHcpPar(context);
 
       if (capturedGameDetailsImage == null) throw Exception("GameDetails capture failed");
@@ -18327,18 +18335,18 @@ class GameDetailsController extends GetxController {
       final double hhpW = decodedHHP.width.toDouble();
       final double hhpH = decodedHHP.height.toDouble();
 
-      // â”€â”€ 3. Split players into pages of _playersPerImage â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+      // ── 3. Split players into pages of _playersPerImage ──────────────────────
       final List<List<ResultData>> pages = [];
       for (int i = 0; i < allPlayers.length; i += _playersPerImage) {
         final end = (i + _playersPerImage).clamp(0, allPlayers.length);
         pages.add(allPlayers.sublist(i, end));
       }
 
-      debugPrint("Total players: \${allPlayers.length}  |  Pages: \${pages.length}");
+      debugPrint("Total players: ${allPlayers.length}  |  Pages: ${pages.length}");
 
       sharedImagePages.clear();
 
-      // â”€â”€ 4. For each page: capture scorecard rows â†’ merge with headers â”€â”€â”€â”€â”€â”€â”€â”€â”€
+      // ── 4. For each page: capture scorecard rows → merge with headers ─────────
       for (int p = 0; p < pages.length; p++) {
         final group = pages[p];
 
@@ -18386,13 +18394,13 @@ class GameDetailsController extends GetxController {
 
         final double canvasH = scaledGdH + scaledHhpH + scaledScH;
 
-        // 4c. Merge: GameDetails â†’ HoleHcpPar â†’ Scorecard rows
+        // 4c. Merge: GameDetails → HoleHcpPar → Scorecard rows
         final option = ImageMergeOption(
           canvasSize: Size(canvasW, canvasH),
           format: const OutputFormat.jpeg(92),
         );
 
-        // Row 1 â€“ Game Details
+        // Row 1 – Game Details
         option.addImage(MergeImageConfig(
           image: MemoryImageSource(capturedGameDetailsImage!),
           position: ImagePosition(
@@ -18401,7 +18409,7 @@ class GameDetailsController extends GetxController {
           ),
         ));
 
-        // Row 2 â€“ Hole / Hcp / Par header
+        // Row 2 – Hole / Hcp / Par header
         option.addImage(MergeImageConfig(
           image: MemoryImageSource(capturedHoleHcpParImage!),
           position: ImagePosition(
@@ -18410,7 +18418,7 @@ class GameDetailsController extends GetxController {
           ),
         ));
 
-        // Row 3 â€“ Scorecard rows for this page
+        // Row 3 – Scorecard rows for this page
         option.addImage(MergeImageConfig(
           image: MemoryImageSource(scorecardBytes),
           position: ImagePosition(
@@ -18432,10 +18440,10 @@ class GameDetailsController extends GetxController {
 
         sharedImagePages.add(finalBytes);
         debugPrint(
-          "Page \${p + 1}/\${pages.length} done | "
-              "\${group.length} players | "
-              "\${finalBytes.length ~/ 1024} KB | "
-              "canvas: \${canvasW.toInt()}Ã—\${canvasH.toInt()}",
+          "Page ${p + 1}/${pages.length} done | "
+              "${group.length} players | "
+              "${finalBytes.length ~/ 1024} KB | "
+              "canvas: ${canvasW.toInt()}×${canvasH.toInt()}",
         );
       }
 
@@ -18459,8 +18467,8 @@ class GameDetailsController extends GetxController {
 
       debugPrint(
         "newIOSFinalScorecard done | "
-            "\${sharedImagePages.length} image(s) | "
-            "pdf: \${pdfFileBytes?.length != null ? pdfFileBytes!.length ~/ 1024 : 0} KB",
+            "${sharedImagePages.length} image(s) | "
+            "pdf: ${pdfFileBytes?.length != null ? pdfFileBytes!.length ~/ 1024 : 0} KB",
       );
     } catch (e) {
       debugPrint("newIOSFinalScorecard error: $e");
@@ -18479,7 +18487,7 @@ class GameDetailsController extends GetxController {
       await Future.delayed(interval);
     }
     throw Exception(
-      'Widget context still null after \${maxRetries * interval.inMilliseconds}ms. '
+      'Widget context still null after ${maxRetries * interval.inMilliseconds}ms. '
           'Ensure the WidgetsToImage widget is in the tree.',
     );
   }
@@ -18505,7 +18513,7 @@ class GameDetailsController extends GetxController {
       compressed = Uint8List.fromList(img.encodeJpg(resized, quality: quality));
     }
 
-    debugPrint("Compressed: \${originalBytes.length ~/ 1024}KB â†’ \${compressed.length ~/ 1024}KB at quality $quality");
+    debugPrint("Compressed: ${originalBytes.length ~/ 1024}KB → ${compressed.length ~/ 1024}KB at quality $quality");
     return compressed;
   }
 
@@ -18540,7 +18548,7 @@ class GameDetailsController extends GetxController {
       pdfFileBytes = await pdf.save();
     } catch (e) {
       debugPrint("_buildScorecardPdfTiled error: $e");
-      // Non-fatal â€“ image share still works
+      // Non-fatal – image share still works
     }
   }
 
@@ -18563,7 +18571,7 @@ class GameDetailsController extends GetxController {
 
     if (bytes != null) {
       capturedHoleHcpParImage = bytes;
-      debugPrint("HoleHcpPar captured: \${bytes.length ~/ 1024} KB");
+      debugPrint("HoleHcpPar captured: ${bytes.length ~/ 1024} KB");
     }
 
     captureHoleHcpPar.value = false;
@@ -18578,7 +18586,7 @@ class GameDetailsController extends GetxController {
   //   captureHoleHcpPar.value = true;
   //   await Future.delayed(const Duration(milliseconds: 100)); // Ensure UI updates
   //   await WidgetsBinding.instance.endOfFrame;
-  //   print("player total : \${resultList.length}");
+  //   print("player total : ${resultList.length}");
   //   await WidgetsBinding.instance.endOfFrame;
   //   final bytes = await holeHcpParImageController.capture(
   //     options: CaptureOptions(
@@ -18598,7 +18606,7 @@ class GameDetailsController extends GetxController {
 
   Future<void> saveCsvToDownloads(String csvString) async {
     try {
-      String fileName = "\${gameData?.value.gameName}_scorecards_\${DateTime.now().millisecondsSinceEpoch}.csv";
+      String fileName = "${gameData?.value.gameName}_scorecards_${DateTime.now().millisecondsSinceEpoch}.csv";
       PermissionStatus status;
       if (Platform.isAndroid) {
         // --- ANDROID CASE: Direct Save to Downloads ---
@@ -18615,12 +18623,12 @@ class GameDetailsController extends GetxController {
         Directory downloadsDirectory = Directory('/storage/emulated/0/Download');
 
         // Check if the specific BGA folder exists
-        final Directory folder = Directory('\${downloadsDirectory.path}');
+        final Directory folder = Directory('${downloadsDirectory.path}');
         if (!await folder.exists()) {
           await folder.create(recursive: true);
         }
 
-        final File file = File('\${folder.path}/$fileName');
+        final File file = File('${folder.path}/$fileName');
         await file.writeAsString(csvString);
 
         ToastMessage.success(message: "Saved to Downloads");
@@ -18630,7 +18638,7 @@ class GameDetailsController extends GetxController {
         // iOS doesn't have a public 'Download' path.
         // We save to ApplicationDocumentsDirectory, then share it.
         final Directory directory = await getApplicationDocumentsDirectory();
-        final File file = File('\${directory.path}/$fileName');
+        final File file = File('${directory.path}/$fileName');
 
         await file.writeAsString(csvString);
 
@@ -18674,7 +18682,7 @@ class GameDetailsController extends GetxController {
     xlsxFileBytes = await GolfScorecardExporter.export(
       gameData!.value, // positional
       resultList,
-      holeHcps, // no .toList() â€” done inside
+      holeHcps, // no .toList() — done inside
       holePars,
       resultsTab,
       foursomeNo,
@@ -18689,8 +18697,8 @@ class GameDetailsController extends GetxController {
       progressDialog.hide();
 
       if (xlsxFileBytes != null && pdfFileBytes != null) {
-        xlsxfileName = "\${gameData?.value.gameName}_\${resultsTab == "allPlayers" ? "All_Players" : foursomeNo}_\${DateTime.now().millisecondsSinceEpoch}.xlsx";
-        pdffileName = "\${gameData?.value.gameName}_\${resultsTab == "allPlayers" ? "All_Players" : foursomeNo}_\${DateTime.now().millisecondsSinceEpoch}.pdf";
+        xlsxfileName = "${gameData?.value.gameName}_${resultsTab == "allPlayers" ? "All_Players" : foursomeNo}_${DateTime.now().millisecondsSinceEpoch}.xlsx";
+        pdffileName = "${gameData?.value.gameName}_${resultsTab == "allPlayers" ? "All_Players" : foursomeNo}_${DateTime.now().millisecondsSinceEpoch}.pdf";
 
         await shareScorecardFiles(
           xlsxFileBytes: xlsxFileBytes!,
@@ -18707,11 +18715,11 @@ class GameDetailsController extends GetxController {
       progressDialog.hide();
       // pdfFileBytes = await createScorecardPdf(
       //   images: capturedMultiScorecardImages,
-      //   fileName: "\${gameData?.value.gameName}_scorecards_\${DateTime.now().millisecondsSinceEpoch}.pdf",
+      //   fileName: "${gameData?.value.gameName}_scorecards_${DateTime.now().millisecondsSinceEpoch}.pdf",
       // );
       if (xlsxFileBytes != null && pdfFileBytes != null) {
-        xlsxfileName = "\${gameData?.value.gameName}_\${resultsTab.value == "allPlayers" ? "All_Players" : foursomeNo}_\${DateTime.now().millisecondsSinceEpoch}.xlsx";
-        pdffileName = "\${gameData?.value.gameName}_\${resultsTab.value == "allPlayers" ? "All_Players" : foursomeNo}_\${DateTime.now().millisecondsSinceEpoch}.pdf";
+        xlsxfileName = "${gameData?.value.gameName}_${resultsTab.value == "allPlayers" ? "All_Players" : foursomeNo}_${DateTime.now().millisecondsSinceEpoch}.xlsx";
+        pdffileName = "${gameData?.value.gameName}_${resultsTab.value == "allPlayers" ? "All_Players" : foursomeNo}_${DateTime.now().millisecondsSinceEpoch}.pdf";
 
         await shareScorecardFiles(
           xlsxFileBytes: xlsxFileBytes!,
@@ -18723,8 +18731,8 @@ class GameDetailsController extends GetxController {
       }
     }
 
-    print('Excel File Bytes to: \${xlsxFileBytes}');
-    print('Excel File Bytes to: \${pdfFileBytes}');
+    print('Excel File Bytes to: ${xlsxFileBytes}');
+    print('Excel File Bytes to: ${pdfFileBytes}');
   }
 
   Future<void> shareScorecardFiles({
@@ -18736,9 +18744,9 @@ class GameDetailsController extends GetxController {
   }) async {
     try {
       final tempDir = await getTemporaryDirectory();
-      // âœ… FIX: Delete old files first to avoid iOS share sheet caching issues
-      final xlsxFile = File('\${tempDir.path}/$xlsxFileName');
-      final pdfFile = File('\${tempDir.path}/$pdfFileName');
+      // ✅ FIX: Delete old files first to avoid iOS share sheet caching issues
+      final xlsxFile = File('${tempDir.path}/$xlsxFileName');
+      final pdfFile = File('${tempDir.path}/$pdfFileName');
 
       if (await xlsxFile.exists()) await xlsxFile.delete();
       if (await pdfFile.exists()) await pdfFile.delete();
@@ -18884,7 +18892,7 @@ class GameDetailsController extends GetxController {
       )
   async {
     try {
-      // â”€â”€ 1. Capture Game Details header â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+      // ── 1. Capture Game Details header ──────────────────────────────────────
       await captureAndSaveImageGameDetails(context);
 
       if (capturedGameDetailsImage == null) throw Exception("GameDetails capture failed");
@@ -18895,7 +18903,7 @@ class GameDetailsController extends GetxController {
       final double gdW = decodedGD.width.toDouble();
       final double gdH = decodedGD.height.toDouble();
 
-      // â”€â”€ 2. Capture Scorecard â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+      // ── 2. Capture Scorecard ─────────────────────────────────────────────────
       captureScoreCard.value = true;
 
       await Future.delayed(const Duration(milliseconds: 300));
@@ -18905,7 +18913,7 @@ class GameDetailsController extends GetxController {
       final scorecardBytes = await scorecardImageController.capture(
         options: CaptureOptions(
           waitForAnimations: true,
-          pixelRatio: _exportPixelRatio, // â† same pixel ratio as newIOSFinalScorecard
+          pixelRatio: _exportPixelRatio, // ← same pixel ratio as newIOSFinalScorecard
         ),
       );
       captureScoreCard.value = false;
@@ -18918,7 +18926,7 @@ class GameDetailsController extends GetxController {
       final double scW = decodedSC.width.toDouble();
       final double scH = decodedSC.height.toDouble();
 
-      // â”€â”€ 3. Unified canvas width (max of GD and SC) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+      // ── 3. Unified canvas width (max of GD and SC) ───────────────────────────
       double canvasW = [gdW, scW].reduce((a, b) => a > b ? a : b);
       if (canvasW > _maxImageWidthPx) canvasW = _maxImageWidthPx.toDouble();
 
@@ -18930,13 +18938,13 @@ class GameDetailsController extends GetxController {
 
       final double canvasH = scaledGdH + scaledScH;
 
-      // â”€â”€ 4. Merge: GameDetails â†’ Scorecard rows â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+      // ── 4. Merge: GameDetails → Scorecard rows ───────────────────────────────
       final option = ImageMergeOption(
         canvasSize: Size(canvasW, canvasH),
         format: const OutputFormat.jpeg(92),
       );
 
-      // Row 1 â€“ Game Details
+      // Row 1 – Game Details
       option.addImage(MergeImageConfig(
         image: MemoryImageSource(capturedGameDetailsImage!),
         position: ImagePosition(
@@ -18945,7 +18953,7 @@ class GameDetailsController extends GetxController {
         ),
       ));
 
-      // Row 2 â€“ Scorecard rows
+      // Row 2 – Scorecard rows
       option.addImage(MergeImageConfig(
         image: MemoryImageSource(scorecardBytes),
         position: ImagePosition(
@@ -18957,7 +18965,7 @@ class GameDetailsController extends GetxController {
       final merged = await ImageMerger.mergeToMemory(option: option);
       if (merged == null) throw Exception("Image merge returned null");
 
-      // â”€â”€ 5. Final encode at full quality â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+      // ── 5. Final encode at full quality ─────────────────────────────────────
       final decodedMerged = img.decodeImage(merged);
       if (decodedMerged == null) throw Exception("Merged decode failed");
 
@@ -18972,7 +18980,7 @@ class GameDetailsController extends GetxController {
       baseListImage       = finalBytes;
       base64Image         = base64Encode(finalBytes);
 
-      // â”€â”€ 6. Build PDF â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+      // ── 6. Build PDF ──────────────────────────────────────────────────────────
       await _buildScorecardPdfTiled(
         gameDetailsBytes: capturedGameDetailsImage!,
         holeHcpParBytes:  capturedGameDetailsImage!, // reuse GD as placeholder if needed
@@ -18981,7 +18989,7 @@ class GameDetailsController extends GetxController {
 
       debugPrint(
         "finalScorecard done | "
-            "pdf: \${pdfFileBytes?.length != null ? pdfFileBytes!.length ~/ 1024 : 0} KB",
+            "pdf: ${pdfFileBytes?.length != null ? pdfFileBytes!.length ~/ 1024 : 0} KB",
       );
     } catch (e) {
       debugPrint("finalScorecard error: $e");
@@ -18995,7 +19003,7 @@ class GameDetailsController extends GetxController {
 
     currentScorecardIndex.value = index;
 
-    // ðŸ”¥ This updates the UI
+    // 🔥 This updates the UI
     multiResultList.assignAll(splitInto16(resultList)[index]);
   }
 
@@ -19046,13 +19054,13 @@ class GameDetailsController extends GetxController {
           margin: pw.EdgeInsets.zero,
           build: (context) {
             return pw.Container(
-              // color: PdfColor.fromInt(0xFFF2F2F2), // ðŸŽ¨ background color bgColor
+              // color: PdfColor.fromInt(0xFFF2F2F2), // 🎨 background color bgColor
               alignment: pw.Alignment.center,
               child: pw.Image(
                 image,
-                // width: context.page.pageFormat.width * 0.7, // âœ… 70% page width
+                // width: context.page.pageFormat.width * 0.7, // ✅ 70% page width
                 fit: pw.BoxFit.contain,
-                // fit: pw.BoxFit.fill, // ðŸ‘ˆ no downscale
+                // fit: pw.BoxFit.fill, // 👈 no downscale
               ),
             );
           },
@@ -19092,17 +19100,17 @@ class GameDetailsController extends GetxController {
 
     folder ??= await getExternalStorageDirectory();
 
-    final file = File('\${folder!.path}/$fileName');
+    final file = File('${folder!.path}/$fileName');
     await file.writeAsBytes(pdfBytes);
-    debugPrint("File saved to: \${file.path}");
+    debugPrint("File saved to: ${file.path}");
     ToastMessage.success(message: "PDF saved successfully to Download folder");
     return file;
   }
 
   Future<File> _saveOnIOS(String fileName, List<int> pdfBytes) async {
-    // Use temp directory for sharing â€” Documents dir isn't always accessible via Files app
+    // Use temp directory for sharing — Documents dir isn't always accessible via Files app
     final tempDir = await getTemporaryDirectory();
-    final file = File('\${tempDir.path}/$fileName');
+    final file = File('${tempDir.path}/$fileName');
     await file.writeAsBytes(pdfBytes);
 
     final result = await Share.shareXFiles(
@@ -19123,7 +19131,7 @@ class GameDetailsController extends GetxController {
         break;
     }
 
-    debugPrint("File saved to: \${file.path}");
+    debugPrint("File saved to: ${file.path}");
     ToastMessage.success(message: "PDF saved successfully");
     return file;
   }
@@ -19285,15 +19293,15 @@ class GameDetailsController extends GetxController {
                   print(gameId.toString());
                   print(foursomeId);
                   print(sharedWinnersImage);
-                  print('winners_\${DateTime.now().millisecondsSinceEpoch}');
-                  await shereWinners(userId, gameId.toString(), foursomeId, 'winners_\${DateTime.now().millisecondsSinceEpoch}.png', base64Image);
-                  await saveImageToAppFolder(result, 'scorecard_\${DateTime.now().millisecondsSinceEpoch}', context);
+                  print('winners_${DateTime.now().millisecondsSinceEpoch}');
+                  await shereWinners(userId, gameId.toString(), foursomeId, 'winners_${DateTime.now().millisecondsSinceEpoch}.png', base64Image);
+                  await saveImageToAppFolder(result, 'scorecard_${DateTime.now().millisecondsSinceEpoch}', context);
                 },
                 child: const Text("Share on GroupMe"),
               ),
               TextButton(
                 onPressed: () async {
-                  await saveImageToAppFolder(result, 'winners_\${DateTime.now().millisecondsSinceEpoch}', context);
+                  await saveImageToAppFolder(result, 'winners_${DateTime.now().millisecondsSinceEpoch}', context);
                 },
                 child: const Text("Save"),
               ),
@@ -19308,12 +19316,12 @@ class GameDetailsController extends GetxController {
     }
   }
 
-  // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-// captureAndSaveImageGameDetails  (unchanged â€“ pixelRatio kept at 1 so the
+  // ════════════════════════════════════════════════════════════════════════════
+// captureAndSaveImageGameDetails  (unchanged – pixelRatio kept at 1 so the
 // physical size matches HoleHcpPar; scaling is done during merge)
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ════════════════════════════════════════════════════════════════════════════
 
-  // âœ… After â€” higher pixel ratio = bigger/sharper game details
+  // ✅ After — higher pixel ratio = bigger/sharper game details
   static const double _gameDetailsPixelRatio = 1.5; // tweak this value
 
   Future<void> captureAndSaveImageGameDetails(BuildContext context) async {
@@ -19330,7 +19338,7 @@ class GameDetailsController extends GetxController {
 
     if (bytes != null) {
       capturedGameDetailsImage = bytes;
-      debugPrint("GameDetails captured: \${bytes.length ~/ 1024} KB");
+      debugPrint("GameDetails captured: ${bytes.length ~/ 1024} KB");
     }
     captureGameDetails.value = false;
   }
@@ -19363,7 +19371,7 @@ class GameDetailsController extends GetxController {
 
     final int n = resultList.length;
 
-    // Adaptive pixelRatio: more players â†’ lower ratio to stay under memory limit
+    // Adaptive pixelRatio: more players → lower ratio to stay under memory limit
     double ratio;
     if (n <= 4)
       ratio = 3.0;
@@ -19380,7 +19388,7 @@ class GameDetailsController extends GetxController {
 
     // For the new chunked path (groups of 4), always use a fixed safe ratio
     if (multiResultList.isNotEmpty && multiResultList.length <= _playersPerChunk) {
-      ratio = 2.0; // chunk is small, 2Ã— is always safe
+      ratio = 2.0; // chunk is small, 2× is always safe
     }
 
     final bytes = await scorecardImageController.capture(
@@ -19431,17 +19439,17 @@ class GameDetailsController extends GetxController {
 
         if (!await folder.exists()) {
           await folder.create(recursive: true);
-          print("ðŸ“ Created folder at: \${folder.path}");
+          print("📁 Created folder at: ${folder.path}");
         } else {
-          print("ðŸ“ Folder already exists at: \${folder.path}");
+          print("📁 Folder already exists at: ${folder.path}");
         }
 
-        final File file = File('\${folder.path}/$fileName.png');
+        final File file = File('${folder.path}/$fileName.png');
         await file.writeAsBytes(bytes);
         Navigator.pop(context);
         progressDialog.hide();
         ToastMessage.success(message: "Image Captured & Saved!");
-        print("âœ… Image saved at: \${file.path}");
+        print("✅ Image saved at: ${file.path}");
       } else {
         // iOS logic
 
@@ -19464,7 +19472,7 @@ class GameDetailsController extends GetxController {
           } catch (e) {
             Navigator.pop(context);
             ToastMessage.error(message: "An error occurred while saving.");
-            print("âŒ Error saving to Photos: $e");
+            print("❌ Error saving to Photos: $e");
           }
         } else if (status.isDenied || status.isPermanentlyDenied) {
           ToastMessage.error(message: "Photo access not granted.");
@@ -19475,7 +19483,7 @@ class GameDetailsController extends GetxController {
     } catch (e) {
       progressDialog.hide();
       ToastMessage.success(message: "Error saving image: $e");
-      print("âŒ Error saving image: $e");
+      print("❌ Error saving image: $e");
     }
   }
 
@@ -19500,15 +19508,15 @@ class GameDetailsController extends GetxController {
 
         foursomeCollapsedList.value = List.generate(resutfourSomeList.length, (_) => true);
 
-        debugPrint("fourSome 1 : \${resutfourSomeList.length}");
-        debugPrint("fourSome 1 : \${foursomeCollapsedList.toJson()}");
-        debugPrint("Foursome API Response ==> \${response.toJson()}");
+        debugPrint("fourSome 1 : ${resutfourSomeList.length}");
+        debugPrint("fourSome 1 : ${foursomeCollapsedList.toJson()}");
+        debugPrint("Foursome API Response ==> ${response.toJson()}");
       } else {
         if (showProgress) {
           progressDialog.hide();
         }
         ToastMessage.error(message: response.message);
-        debugPrint("error => \${response.message}");
+        debugPrint("error => ${response.message}");
       }
     } catch (error) {
       if (showProgress) {
@@ -19581,7 +19589,7 @@ class GameDetailsController extends GetxController {
     for (ResultData result in resultList) {
       for (Holes hole in result.holes ?? []) {
         if (actualHole == hole.hole) {
-          debugPrint("hole.isChallenged  \${hole.isChallenged}:  $actualHole and $holeNo");
+          debugPrint("hole.isChallenged  ${hole.isChallenged}:  $actualHole and $holeNo");
           return hole.isChallenged == true ? "Ch" : "";
         }
       }
@@ -19619,13 +19627,16 @@ class GameDetailsController extends GetxController {
         if (gameStatus.value == "ended") {
           getLedger(showProgress: false);
         }
+        if(response.data!.playType=="individual_across"){
+          isRegauleSkinsGreenieEnabled.value = response.data!.isGreenieGameEnabled!;
+        }
 
-        debugPrint("isParticipant => \${gameData!.value.isParticipant}");
+        debugPrint("isParticipant => ${gameData!.value.isParticipant}");
       }
       else {
         progressDialog.hide();
         ToastMessage.error(message: response.message);
-        debugPrint("game details => \${response.message}");
+        debugPrint("game details => ${response.message}");
       }
       if (showProgress) {
         progressDialog.hide();
@@ -19638,7 +19649,7 @@ class GameDetailsController extends GetxController {
   }
 
   Future<void> getTeeSheetPlayerDetails(String teesheetId) async {
-    print("\${num},,,,,,,,,,,,num");
+    print("${num},,,,,,,,,,,,num");
 
     try {
       var response = await apiService.getBetTeeSheetPlayer(teesheetId);
@@ -19648,11 +19659,11 @@ class GameDetailsController extends GetxController {
 
       if (response.error == false) {
         for (var d = 0; d < response.data!.length; d++) {
-          // ðŸ”¥ Loop all data[]
+          // 🔥 Loop all data[]
           final teamPlayers = response.data![d].teamPlayers ?? [];
 
           for (var i = 0; i < teamPlayers.length; i++) {
-            // ðŸ”¥ Loop teamPlayers inside each data
+            // 🔥 Loop teamPlayers inside each data
             final p = teamPlayers[i];
 
             tempPlayerList.add(
@@ -19666,17 +19677,17 @@ class GameDetailsController extends GetxController {
             );
 
             // Debug print
-            print("data index $d - player index $i - name \${p.name}");
+            print("data index $d - player index $i - name ${p.name}");
           }
         }
 
         gamePlayer.assignAll(playerList);
-        print("\${playerList}......................player lisst");
-        print("\${tempPlayerList}......................player lisst");
+        print("${playerList}......................player lisst");
+        print("${tempPlayerList}......................player lisst");
 
-        /// ADD ALL AT ONE TIME â†’ correct place
+        /// ADD ALL AT ONE TIME → correct place
         playerList.addAll(tempPlayerList);
-        print("\${playerList}......................player lisst");
+        print("${playerList}......................player lisst");
         playerList.refresh();
       } else {
         ToastMessage.error(message: response.message);
@@ -19728,8 +19739,8 @@ class GameDetailsController extends GetxController {
             }
 
             debugPrint("After getScrambleCodSummary call:");
-            debugPrint("scrambleCodSummaryList: \${scrambleCodSummaryList?.toJson()}");
-            debugPrint("scrambleCodPaymentsList: \${scrambleCodPaymentsList?.toJson()}");
+            debugPrint("scrambleCodSummaryList: ${scrambleCodSummaryList?.toJson()}");
+            debugPrint("scrambleCodPaymentsList: ${scrambleCodPaymentsList?.toJson()}");
 
             if (scrambleCodSummaryList?.matches != null || new6HoleCodScramblMatches != null) {
             } else {
@@ -20034,7 +20045,7 @@ class GameDetailsController extends GetxController {
         if (rabbitAndChickenWinnerList.isNotEmpty) {
           await getRabbitChickenSummary(gameID: gameId, foursomeID: foursomeID);
         }
-        debugPrint("rabbit and chicken winner \${response.data}");
+        debugPrint("rabbit and chicken winner ${response.data}");
       } else {
         ToastMessage.error(message: response.message);
       }
@@ -20057,7 +20068,7 @@ class GameDetailsController extends GetxController {
         if (dotsGameWinnerList.isNotEmpty) {
           await getDotsGameSummary(gameID: gameId, foursomeID: foursomeID);
         }
-        debugPrint("Dots game winner \${response.data}");
+        debugPrint("Dots game winner ${response.data}");
       } else {
         ToastMessage.error(message: response.message);
       }
@@ -20116,7 +20127,7 @@ class GameDetailsController extends GetxController {
         ryderCaptainWinnerData!.value = response.data!;
         progressDialog.hide();
 
-        debugPrint("rabbit and chicken winner \${response.data}");
+        debugPrint("rabbit and chicken winner ${response.data}");
       } else {
         ToastMessage.error(message: response.message);
       }
@@ -20140,7 +20151,7 @@ class GameDetailsController extends GetxController {
         ryderCaptainsSummaryData!.value = response.data!;
         progressDialog.hide();
 
-        debugPrint("rabbit and chicken winner \${response.data}");
+        debugPrint("rabbit and chicken winner ${response.data}");
       } else {
         ToastMessage.error(message: response.message);
       }
@@ -20194,7 +20205,7 @@ class GameDetailsController extends GetxController {
     // If the name has more than one word (e.g., "Vishal Vaghela")
     if (nameParts.length > 1) {
       // Extract the first letter of the first name and append it to the last name
-      return "\${nameParts[0][0]}. \${nameParts[1]}";
+      return "${nameParts[0][0]}. ${nameParts[1]}";
     } else {
       // If it's just one word (e.g., "Vishal"), return it as is
       return name;
@@ -20212,7 +20223,7 @@ class GameDetailsController extends GetxController {
     }
 
     // For longer lists, return first 2 and last 1 with ellipsis in between
-    return "\${holesToPlay.take(2).join('-')} ... -\${holesToPlay.last}";
+    return "${holesToPlay.take(2).join('-')} ... -${holesToPlay.last}";
   }
 
   List<String> mapHolesToDescription(List<String> holes) {
@@ -20364,7 +20375,7 @@ class GameDetailsController extends GetxController {
   }
 
   void onPusherInitialize(PusherClient pusherClient) {
-    debugPrint("onPusherInitialize - socket-id: \${pusherClient.socketId}");
+    debugPrint("onPusherInitialize - socket-id: ${pusherClient.socketId}");
 
     privateChannel = pusherClient.private('game.status', subscribe: true);
 
@@ -20480,19 +20491,19 @@ class GameDetailsController extends GetxController {
     // Map suit to readable symbols and set color
     switch (suit) {
       case 'H':
-        suit = 'â™¥';
+        suit = '♥';
         color = Colors.red;
         break;
       case 'D':
-        suit = 'â™¦';
+        suit = '♦';
         color = Colors.red;
         break;
       case 'C':
-        suit = 'â™£';
+        suit = '♣';
         color = Colors.black;
         break;
       case 'S':
-        suit = 'â™ ';
+        suit = '♠';
         color = Colors.black;
         break;
       default:
@@ -20531,7 +20542,7 @@ class GameDetailsController extends GetxController {
 
   String getSelectedHolesDisplayText(List<String> holes) {
     final selectedHoles = holes;
-    String formattedHoles = "\${holes[0]}-\${holes[1]}-...-\${holes.last}";
+    String formattedHoles = "${holes[0]}-${holes[1]}-...-${holes.last}";
 
     return formattedHoles;
   }
@@ -20592,7 +20603,7 @@ class GameDetailsController extends GetxController {
     List<String> parts = name.split(' ');
     if (parts.length > 1) {
       // Format as "Initial.Lastname"
-      return '\${parts[0][0]}.\${parts[1]}';
+      return '${parts[0][0]}.${parts[1]}';
     }
     // Use the single name as-is
     return name;
@@ -20755,19 +20766,19 @@ class GameDetailsController extends GetxController {
         codSummaryList = response.data!.summary!.matches!;
         paymentsList = response.data!.payments!;
         debugPrint("After assignment:");
-        debugPrint("codSummaryList: \${codSummaryList.toJson()}");
-        debugPrint("paymentsList: \${paymentsList.toJson()}");
+        debugPrint("codSummaryList: ${codSummaryList.toJson()}");
+        debugPrint("paymentsList: ${paymentsList.toJson()}");
       } else {
         debugPrint("No matches found");
-        debugPrint("No matches found - response.data: \${response.data}");
-        debugPrint("Summary: \${response.data?.summary}");
-        debugPrint("Matches: \${response.data?.summary?.matches}");
+        debugPrint("No matches found - response.data: ${response.data}");
+        debugPrint("Summary: ${response.data?.summary}");
+        debugPrint("Matches: ${response.data?.summary?.matches}");
       }
     } catch (error) {
       progressDialog.hide();
       debugPrint("foursome cod: $error");
       debugPrint("get2v2Summary error: $error");
-      debugPrint("Error stack trace: \${StackTrace.current}");
+      debugPrint("Error stack trace: ${StackTrace.current}");
       ToastMessage.error(message: "$error");
     }
   }
@@ -20778,7 +20789,7 @@ class GameDetailsController extends GetxController {
 
       var response = await apiService.getScrambleCodSummary(gameId: gameID, foursomeId: foursomeID);
 
-      debugPrint("Raw response received: \${response.toString()}");
+      debugPrint("Raw response received: ${response.toString()}");
 
       // Check if response.data exists
       if (response.data == null) {
@@ -20830,9 +20841,9 @@ class GameDetailsController extends GetxController {
           debugPrint("Got matches object: $matches");
 
           // Check each match type individually
-          if (matches.c != null) debugPrint("C matches exist: \${matches.c!.length} items");
-          if (matches.o != null) debugPrint("O matches exist: \${matches.o!.length} items");
-          if (matches.d != null) debugPrint("D matches exist: \${matches.d!.length} items");
+          if (matches.c != null) debugPrint("C matches exist: ${matches.c!.length} items");
+          if (matches.o != null) debugPrint("O matches exist: ${matches.o!.length} items");
+          if (matches.d != null) debugPrint("D matches exist: ${matches.d!.length} items");
         }
       } catch (e) {
         debugPrint("Error accessing match data: $e");
@@ -20840,8 +20851,8 @@ class GameDetailsController extends GetxController {
     } catch (error) {
       progressDialog.hide();
       debugPrint("getScrambleCodSummary error: $error");
-      debugPrint("Error type: \${error.runtimeType}");
-      debugPrint("Error stack trace: \${StackTrace.current}");
+      debugPrint("Error type: ${error.runtimeType}");
+      debugPrint("Error stack trace: ${StackTrace.current}");
       ToastMessage.error(message: "$error");
     }
   }
@@ -20855,7 +20866,7 @@ class GameDetailsController extends GetxController {
 
       var response = await apiService.get6HolesCodSummary(gameId: gameID, foursomeId: foursomeID, organizationId: organizationId);
 
-      debugPrint("Raw response received: \${response.toString()}");
+      debugPrint("Raw response received: ${response.toString()}");
       if (response.data != null) {
         newScramblData.value = response.data!;
       }
@@ -20919,11 +20930,11 @@ class GameDetailsController extends GetxController {
 
           // Check each match type individually
           // if (matches != null) debugPrint(
-          //     "C matches exist: \${matches.c!.length} items");
+          //     "C matches exist: ${matches.c!.length} items");
           // if (matches.o != null) debugPrint(
-          //     "O matches exist: \${matches.o!.length} items");
+          //     "O matches exist: ${matches.o!.length} items");
           // if (matches.d != null) debugPrint(
-          //     "D matches exist: \${matches.d!.length} items");
+          //     "D matches exist: ${matches.d!.length} items");
         }
       } catch (e) {
         debugPrint("Error accessing match data: $e");
@@ -20931,8 +20942,8 @@ class GameDetailsController extends GetxController {
     } catch (error) {
       progressDialog.hide();
       debugPrint("getScrambleCodSummary error: $error");
-      debugPrint("Error type: \${error.runtimeType}");
-      debugPrint("Error stack trace: \${StackTrace.current}");
+      debugPrint("Error type: ${error.runtimeType}");
+      debugPrint("Error stack trace: ${StackTrace.current}");
       ToastMessage.error(message: "$error");
     }
   }
@@ -20945,7 +20956,7 @@ class GameDetailsController extends GetxController {
         summary2v2List = response.data!.summary!;
         summary2v2paymentList = response.data!;
         setPayments(response.data!.payments);
-        print("summary2v2List. \${summary2v2List.matches!.length}");
+        print("summary2v2List. ${summary2v2List.matches!.length}");
         // Wrap the single match in a list
       } else {
         debugPrint("No matches found");
@@ -20966,7 +20977,7 @@ class GameDetailsController extends GetxController {
 
         new2V26HoleSummaryMatches!.value = response.data!.matches ?? [];
         new2V26HoleLedgerSummary!.value = response.data!.ledgerSummary ?? [];
-        print("6 holes new2V26HoleSummaryMatches. \${response.data?.matches!.length}");
+        print("6 holes new2V26HoleSummaryMatches. ${response.data?.matches!.length}");
         // Wrap the single match in a list
       } else {
         debugPrint("No matches found");
@@ -21082,7 +21093,7 @@ class GameDetailsController extends GetxController {
                     secretKey: StaticData.paypalSecretKey,
                     onSuccess: (params) async {
                       log('onSuccess: $params');
-                      debugPrint('paypalResponse status :\${params['status']}');
+                      debugPrint('paypalResponse status :${params['status']}');
 
                       print('onSuccess: ======> $params');
                     },
@@ -21143,13 +21154,13 @@ class GameDetailsController extends GetxController {
     String formatName(String name) {
       List<String> parts = name.split(' ');
       if (parts.length > 1) {
-        return "\${parts[0][0].toUpperCase()}.\${parts[1]}";
+        return "${parts[0][0].toUpperCase()}.${parts[1]}";
       }
       return name; // If only one name is present, return as it is.
     }
 
     if (names.length == 2) {
-      return "\${formatName(names[0])} & \${formatName(names[1])}";
+      return "${formatName(names[0])} & ${formatName(names[1])}";
     }
 
     return players; // Return as it is if it does not match expected format.
@@ -21201,8 +21212,8 @@ class GameDetailsController extends GetxController {
     debugPrint("=== SCRAMBLE DIALOG DEBUG INFO ===");
 
     // Don't call toJson() on the objects as it might cause the String/int error
-    debugPrint("scrambleCodSummaryList exists: \${scrambleCodSummaryList != null}");
-    debugPrint("scrambleCodPaymentsList exists: \${scrambleCodPaymentsList != null}");
+    debugPrint("scrambleCodSummaryList exists: ${scrambleCodSummaryList != null}");
+    debugPrint("scrambleCodPaymentsList exists: ${scrambleCodPaymentsList != null}");
 
     // Get match keys safely without calling toJson()
     List<String> matchKeys = [];
@@ -21278,7 +21289,7 @@ class GameDetailsController extends GetxController {
                 final matchData = _getMatchDataForKeySafe(matchKey);
                 final paymentData = _getPaymentDataForKeySafe(matchKey);
 
-                debugPrint("matchData runtimeType: \${matchData.runtimeType}");
+                debugPrint("matchData runtimeType: ${matchData.runtimeType}");
                 debugPrint("matchData content: $matchData");
                 return Column(
                   children: [
@@ -21546,7 +21557,7 @@ class GameDetailsController extends GetxController {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            // â”€â”€ Header â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+            // ── Header ──────────────────────────────────────────
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -21572,7 +21583,7 @@ class GameDetailsController extends GetxController {
             ),
             const SizedBox(height: 10),
 
-            // â”€â”€ Summary DataTable â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+            // ── Summary DataTable ────────────────────────────────
             Padding(
               padding: const EdgeInsets.only(right: 15, left: 0),
               child: DataTable(
@@ -21586,7 +21597,7 @@ class GameDetailsController extends GetxController {
                 headingRowColor: MaterialStateProperty.all(Colors.white),
                 dataRowColor: MaterialStateProperty.all(Colors.white),
                 columns: [
-                  // â”€â”€ Match Type Column â”€â”€
+                  // ── Match Type Column ──
                   DataColumn(
                     label: Container(
                       width: Get.width * 0.09,
@@ -21596,7 +21607,7 @@ class GameDetailsController extends GetxController {
                       ),
                     ),
                   ),
-                  // â”€â”€ Team Column â”€â”€
+                  // ── Team Column ──
                   DataColumn(
                     label: Container(
                       width: Get.width * 0.45,
@@ -21607,7 +21618,7 @@ class GameDetailsController extends GetxController {
                     ),
                   ),
 
-                  // â”€â”€ F Column â”€â”€
+                  // ── F Column ──
                   // DataColumn(
                   //   label: Container(
                   //     width: Get.width * 0.12,
@@ -21617,7 +21628,7 @@ class GameDetailsController extends GetxController {
                   //     ),
                   //   ),
                   // ),
-                  // // â”€â”€ B Column â”€â”€
+                  // // ── B Column ──
                   // DataColumn(
                   //   label: Container(
                   //     width: Get.width * 0.12,
@@ -21627,7 +21638,7 @@ class GameDetailsController extends GetxController {
                   //     ),
                   //   ),
                   // ),
-                  // â”€â”€ T Column â”€â”€
+                  // ── T Column ──
                   DataColumn(
                     label: Container(
                       width: Get.width * 0.20,
@@ -21637,13 +21648,13 @@ class GameDetailsController extends GetxController {
                       ),
                     ),
                   ),
-                  // â”€â”€ $ Column â”€â”€
+                  // ── $ Column ──
                   DataColumn(
                     label: Container(
                       width: Get.width * 0.13,
                       padding: const EdgeInsets.only(right: 10, left: 10),
                       child: Center(
-                        child: Text('\\$', style: CustomStyle.playerNameStyle),
+                        child: Text('\$', style: CustomStyle.playerNameStyle),
                       ),
                     ),
                   ),
@@ -21689,7 +21700,7 @@ class GameDetailsController extends GetxController {
                   final team2Amount = isTie ? amount : (team2PointsAvg > team1PointsAvg ? amount : '0');
 
                   return DataRow(cells: [
-                    // â”€â”€ Match Type (C / O / D) â”€â”€
+                    // ── Match Type (C / O / D) ──
                     DataCell(Container(
                       width: Get.width * 0.09,
                       padding: const EdgeInsets.only(right: 10, left: 10),
@@ -21700,7 +21711,7 @@ class GameDetailsController extends GetxController {
                         ),
                       ),
                     )),
-                    // â”€â”€ Team Names â”€â”€
+                    // ── Team Names ──
                     DataCell(Container(
                       width: Get.width * 0.45,
                       padding: const EdgeInsets.only(right: 10, left: 10),
@@ -21756,7 +21767,7 @@ class GameDetailsController extends GetxController {
                         ),
                       ),
                     )),
-                    // â”€â”€ $ Amount â”€â”€
+                    // ── $ Amount ──
                     DataCell(Container(
                       width: Get.width * 0.13,
                       child: Column(
@@ -21788,7 +21799,7 @@ class GameDetailsController extends GetxController {
 
             const SizedBox(height: 8),
 
-            // â”€â”€ Payment Table â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+            // ── Payment Table ────────────────────────────────────
             Padding(
               padding: const EdgeInsets.only(left: 0.0, right: 0),
               child: Container(
@@ -21843,7 +21854,7 @@ class GameDetailsController extends GetxController {
                               Container(
                                 width: Get.width * 0.24,
                                 alignment: Alignment.center,
-                                child: Text("\\$0.00", style: CustomStyle.foursomeSkodeJunkTitleSShot),
+                                child: Text("\$0.00", style: CustomStyle.foursomeSkodeJunkTitleSShot),
                               ),
                             ],
                           ),
@@ -21874,7 +21885,7 @@ class GameDetailsController extends GetxController {
                                       child: Row(
                                         children: [
                                           Text(
-                                            "\${loser.playerName ?? ''} ",
+                                            "${loser.playerName ?? ''} ",
                                             style: CustomStyle.foursomeSkodeJunkTitleSShot,
                                           ),
                                           Text("to ", style: CustomStyle.playerNameStyle),
@@ -21897,7 +21908,7 @@ class GameDetailsController extends GetxController {
                                   width: Get.width * 0.24,
                                   alignment: Alignment.center,
                                   child: Text(
-                                    "\\$$amount",
+                                    "\$$amount",
                                     style: CustomStyle.foursomeSkodeJunkTitleSShot,
                                   ),
                                 ),
@@ -21910,7 +21921,7 @@ class GameDetailsController extends GetxController {
 
                     return TableRow(
                       children: [
-                        // â”€â”€ Match Type Label â”€â”€
+                        // ── Match Type Label ──
                         Padding(
                           padding: const EdgeInsets.only(left: 10, right: 10),
                           child: Container(
@@ -21927,7 +21938,7 @@ class GameDetailsController extends GetxController {
                             ),
                           ),
                         ),
-                        // â”€â”€ Payment Rows â”€â”€
+                        // ── Payment Rows ──
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: paymentRows,
@@ -21969,7 +21980,7 @@ class GameDetailsController extends GetxController {
             mainAxisSize: MainAxisSize.min,
             children: [
 
-              // â”€â”€ Header â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+              // ── Header ──────────────────────────────────────────
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -21995,7 +22006,7 @@ class GameDetailsController extends GetxController {
 
               const SizedBox(height: 10),
 
-              // â”€â”€ Table â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+              // ── Table ────────────────────────────────────────────
               ConstrainedBox(
                 constraints: BoxConstraints(maxHeight: Get.height * 0.6),
                 child: SingleChildScrollView(
@@ -22013,7 +22024,7 @@ class GameDetailsController extends GetxController {
                       dataRowColor: MaterialStateProperty.all(Colors.white),
                       columns: [
 
-                        // â”€â”€ Match No â”€â”€
+                        // ── Match No ──
                         DataColumn(
                           label: Container(
                             width: Get.width * 0.14,
@@ -22024,7 +22035,7 @@ class GameDetailsController extends GetxController {
                           ),
                         ),
 
-                        // â”€â”€ Team No â”€â”€
+                        // ── Team No ──
                         DataColumn(
                           label: Container(
                             width: Get.width * 0.13,
@@ -22035,7 +22046,7 @@ class GameDetailsController extends GetxController {
                           ),
                         ),
 
-                        // â”€â”€ Players â”€â”€
+                        // ── Players ──
                         DataColumn(
                           label: Container(
                             width: Get.width * 0.4,
@@ -22044,7 +22055,7 @@ class GameDetailsController extends GetxController {
                           ),
                         ),
 
-                        // â”€â”€ Points â”€â”€
+                        // ── Points ──
                         DataColumn(
                           label: Container(
                             width: Get.width * 0.15,
@@ -22070,7 +22081,7 @@ class GameDetailsController extends GetxController {
     );
   }
 
-// â”€â”€ Helper: build one DataRow per (match, team) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── Helper: build one DataRow per (match, team) ──────────────
   List<DataRow> _buildSummaryRows() {
     final List<DataRow> rows = [];
 
@@ -22093,19 +22104,19 @@ class GameDetailsController extends GetxController {
             .map((p) => p.playerName ?? '')
             .join(', ');
 
-        // All players in a team share the same points value â€” take first
+        // All players in a team share the same points value — take first
         final points = double.tryParse(players.first.points ?? '0') ?? 0.0;
         final pointsDisplay = points % 1 == 0
             ? points.toInt().toString()
             : points.toStringAsFixed(1);
 
         // Show match number only on the first team row of each match
-        final matchLabel = i == 0 ? '\${match.matchNo ?? ''}' : '';
+        final matchLabel = i == 0 ? '${match.matchNo ?? ''}' : '';
 
         rows.add(
           DataRow(cells: [
 
-            // â”€â”€ Match No Cell â”€â”€
+            // ── Match No Cell ──
             DataCell(
               Container(
                 width: Get.width * 0.13,
@@ -22120,7 +22131,7 @@ class GameDetailsController extends GetxController {
               ),
             ),
 
-            // â”€â”€ Team No Cell â”€â”€
+            // ── Team No Cell ──
             DataCell(
               Container(
                 width: Get.width * 0.13,
@@ -22135,7 +22146,7 @@ class GameDetailsController extends GetxController {
               ),
             ),
 
-            // â”€â”€ Players Cell â”€â”€
+            // ── Players Cell ──
             DataCell(
               Container(
                 width: Get.width * 0.4,
@@ -22151,7 +22162,7 @@ class GameDetailsController extends GetxController {
               ),
             ),
 
-            // â”€â”€ Points Cell â”€â”€
+            // ── Points Cell ──
             DataCell(
               Container(
                 width: Get.width * 0.15,
@@ -22210,7 +22221,7 @@ class GameDetailsController extends GetxController {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            // â”€â”€ Header â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+            // ── Header ──────────────────────────────────────────
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -22236,7 +22247,7 @@ class GameDetailsController extends GetxController {
             ),
             const SizedBox(height: 10),
 
-            // â”€â”€ Summary DataTable â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+            // ── Summary DataTable ────────────────────────────────
             Padding(
               padding: const EdgeInsets.only(right: 15, left: 0),
               child: DataTable(
@@ -22250,7 +22261,7 @@ class GameDetailsController extends GetxController {
                 headingRowColor: MaterialStateProperty.all(Colors.white),
                 dataRowColor: MaterialStateProperty.all(Colors.white),
                 columns: [
-                  // â”€â”€ Match Column â”€â”€
+                  // ── Match Column ──
                   DataColumn(
                     label: Container(
                       width: Get.width * 0.09,
@@ -22260,7 +22271,7 @@ class GameDetailsController extends GetxController {
                       ),
                     ),
                   ),
-                  // â”€â”€ Team Column â”€â”€
+                  // ── Team Column ──
                   DataColumn(
                     label: Container(
                       width: Get.width * 0.45,
@@ -22274,7 +22285,7 @@ class GameDetailsController extends GetxController {
                       ),
                     ),
                   ),
-                  // â”€â”€ Points Column â”€â”€
+                  // ── Points Column ──
                   DataColumn(
                     label: Container(
                       width: Get.width * 0.20,
@@ -22284,13 +22295,13 @@ class GameDetailsController extends GetxController {
                       ),
                     ),
                   ),
-                  // â”€â”€ $ Column â”€â”€
+                  // ── $ Column ──
                   DataColumn(
                     label: Container(
                       width: Get.width * 0.13,
                       padding: const EdgeInsets.only(right: 10, left: 10),
                       child: Center(
-                        child: Text('\\$', style: CustomStyle.playerNameStyle),
+                        child: Text('\$', style: CustomStyle.playerNameStyle),
                       ),
                     ),
                   ),
@@ -22328,7 +22339,7 @@ class GameDetailsController extends GetxController {
                   final team2Amount = isTie ? amount : (team2PointsAvg > team1PointsAvg ? amount : '0');
 
                   return DataRow(cells: [
-                    // â”€â”€ Match No â”€â”€
+                    // ── Match No ──
                     DataCell(Container(
                       width: Get.width * 0.09,
                       padding: const EdgeInsets.only(right: 10, left: 10),
@@ -22339,7 +22350,7 @@ class GameDetailsController extends GetxController {
                         ),
                       ),
                     )),
-                    // â”€â”€ Team Names â”€â”€
+                    // ── Team Names ──
                     DataCell(Container(
                       width: Get.width * 0.45,
                       padding: const EdgeInsets.only(right: 10, left: 10),
@@ -22369,7 +22380,7 @@ class GameDetailsController extends GetxController {
                         ),
                       ),
                     )),
-                    // â”€â”€ Points â”€â”€
+                    // ── Points ──
                     DataCell(Container(
                       width: Get.width * 0.20,
                       child: Center(
@@ -22387,7 +22398,7 @@ class GameDetailsController extends GetxController {
                         ),
                       ),
                     )),
-                    // â”€â”€ $ Amount â”€â”€
+                    // ── $ Amount ──
                     DataCell(Container(
                       width: Get.width * 0.13,
                       child: Column(
@@ -22410,7 +22421,7 @@ class GameDetailsController extends GetxController {
 
             const SizedBox(height: 8),
 
-            // â”€â”€ Payment Table â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+            // ── Payment Table ────────────────────────────────────
             Padding(
               padding: const EdgeInsets.only(left: 0.0, right: 0),
               child: Container(
@@ -22464,7 +22475,7 @@ class GameDetailsController extends GetxController {
                               Container(
                                 width: Get.width * 0.20,
                                 alignment: Alignment.center,
-                                child: Text("\\$0.00", style: CustomStyle.foursomeSkodeJunkTitleSShot),
+                                child: Text("\$0.00", style: CustomStyle.foursomeSkodeJunkTitleSShot),
                               ),
                             ],
                           ),
@@ -22495,7 +22506,7 @@ class GameDetailsController extends GetxController {
                                       child: Row(
                                         children: [
                                           Text(
-                                            "\${loser.playerName ?? ''} ",
+                                            "${loser.playerName ?? ''} ",
                                             style: CustomStyle.foursomeSkodeJunkTitleSShot,
                                           ),
                                           Text("to ", style: CustomStyle.playerNameStyle),
@@ -22518,7 +22529,7 @@ class GameDetailsController extends GetxController {
                                   width: Get.width * 0.20,
                                   alignment: Alignment.center,
                                   child: Text(
-                                    "\\$$amount",
+                                    "\$$amount",
                                     style: CustomStyle.foursomeSkodeJunkTitleSShot,
                                   ),
                                 ),
@@ -22531,7 +22542,7 @@ class GameDetailsController extends GetxController {
 
                     return TableRow(
                       children: [
-                        // â”€â”€ Payment Rows only (no match label) â”€â”€
+                        // ── Payment Rows only (no match label) ──
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: paymentRows,
@@ -22602,8 +22613,8 @@ class GameDetailsController extends GetxController {
         case 'C':
           debugPrint("Getting C payments...");
           final cPayments = payments.c;
-          debugPrint("C payments exists: \${cPayments != null}");
-          debugPrint("C payments length: \${cPayments?.length ?? 0}");
+          debugPrint("C payments exists: ${cPayments != null}");
+          debugPrint("C payments length: ${cPayments?.length ?? 0}");
 
           if (cPayments != null && cPayments.isNotEmpty) {
             result = cPayments
@@ -22622,8 +22633,8 @@ class GameDetailsController extends GetxController {
         case 'O':
           debugPrint("Getting O payments...");
           final oPayments = payments.o;
-          debugPrint("O payments exists: \${oPayments != null}");
-          debugPrint("O payments length: \${oPayments?.length ?? 0}");
+          debugPrint("O payments exists: ${oPayments != null}");
+          debugPrint("O payments length: ${oPayments?.length ?? 0}");
 
           if (oPayments != null && oPayments.isNotEmpty) {
             result = oPayments
@@ -22642,8 +22653,8 @@ class GameDetailsController extends GetxController {
         case 'D':
           debugPrint("Getting D payments...");
           final dPayments = payments.d;
-          debugPrint("D payments exists: \${dPayments != null}");
-          debugPrint("D payments length: \${dPayments?.length ?? 0}");
+          debugPrint("D payments exists: ${dPayments != null}");
+          debugPrint("D payments length: ${dPayments?.length ?? 0}");
 
           if (dPayments != null && dPayments.isNotEmpty) {
             result = dPayments
@@ -22668,7 +22679,7 @@ class GameDetailsController extends GetxController {
       return result;
     } catch (e) {
       debugPrint("Error getting payment data for key $key: $e");
-      debugPrint("Stack trace: \${StackTrace.current}");
+      debugPrint("Stack trace: ${StackTrace.current}");
       return [];
     }
   }
@@ -22747,7 +22758,7 @@ class GameDetailsController extends GetxController {
               Container(
                 width: Get.width * 0.12,
                 alignment: Alignment.center,
-                child: Text("\\$$amount", style: CustomStyle.summaryTableText),
+                child: Text("\$$amount", style: CustomStyle.summaryTableText),
               ),
             ],
           ),
@@ -23058,7 +23069,7 @@ class GameDetailsController extends GetxController {
       isScrollControlled: true,
     );
   }
-// âœ… New dialog method
+// ✅ New dialog method
   void _showPlayerLimitDialog() {
     final TextEditingController limitController = TextEditingController();
     final formKey = GlobalKey<FormState>();
@@ -23144,7 +23155,7 @@ class GameDetailsController extends GetxController {
     );
   }
 
-  // âœ… API call method
+  // ✅ API call method
   Future<void> _submitPlayerLimit(int limit) async {
     try {
       Get.back(); // Close dialog first
@@ -23189,7 +23200,7 @@ class GameDetailsController extends GetxController {
         }
       } else {
         // ToastMessage.error(message: response.message);
-        debugPrint("error : \${response.message}");
+        debugPrint("error : ${response.message}");
         if (showProgress) {
           progressDialog.hide();
         }
@@ -23218,9 +23229,9 @@ class GameDetailsController extends GetxController {
     num value = num.tryParse(amount.toString()) ?? 0;
 
     if (value < 0) {
-      return '-\\$\${value.abs()}';
+      return '-\$${value.abs()}';
     }
-    return '\\$$value';
+    return '\$$value';
   }
 
   double getTableHeight(){
@@ -23239,11 +23250,12 @@ class GameDetailsController extends GetxController {
     if(isSkinGameEnabled.value){
       totalHeight += height * 0.055;
     }
-    if(isGreenieGameEnabled.value){
+    if(isGreenieGameEnabled.value || isRegauleSkinsGreenieEnabled.value){
       totalHeight += height * 0.055;
     }
     return totalHeight;
 
   }
-}`);
+}
+`);
 })();

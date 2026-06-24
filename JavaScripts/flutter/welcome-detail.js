@@ -11,6 +11,7 @@ window.CODE_DATA = window.CODE_DATA || {};
   }
 
   add("welcome-detail", "flutter", "welcome_screen.dart", `
+
 import 'package:bga_flutter_app/utils/utils_methods.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -31,7 +32,7 @@ class WelcomeScreen extends GetView<WelcomeController>  {
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
-    debugPrint("appFontSize => \${appFontSize.value}");
+    debugPrint("appFontSize => ${appFontSize.value}");
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -218,7 +219,8 @@ class WelcomeScreen extends GetView<WelcomeController>  {
 }
 `);
 
-  add("welcome-detail", "flutter", "welcome_controller.dart", `import 'package:flutter/material.dart';
+  add("welcome-detail", "flutter", "welcome_controller.dart", `
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../resources/tables_keys_values.dart';

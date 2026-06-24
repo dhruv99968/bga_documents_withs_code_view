@@ -10,7 +10,8 @@ window.CODE_DATA = window.CODE_DATA || {};
     window.CODE_DATA[k][s].push({ name: n, code: c });
   }
 
-  add("home-detail", "flutter", "home_screen.dart", `import 'package:bga_flutter_app/resources/custom_style.dart';
+  add("home-detail", "flutter", "home_screen.dart", `
+import 'package:bga_flutter_app/resources/custom_style.dart';
 import 'package:bga_flutter_app/resources/ripple_click.dart';
 import 'package:bga_flutter_app/views/games/game_item.dart';
 import 'package:flutter/foundation.dart';
@@ -49,9 +50,9 @@ class HomeScreen extends GetView<HomeController> {
     var width = getWidth();
     var height = MediaQuery.of(context).size.height;
 
-    print("email => \${GetStorageManager.getValue(prefLoginEmail, "")}");
-    print("email => \${GetStorageManager.getValue(prefLoginPassword, "")}");
-    print("email => \${GetStorageManager.getValue(prefIsRemember, false)}");
+    print("email => ${GetStorageManager.getValue(prefLoginEmail, "")}");
+    print("email => ${GetStorageManager.getValue(prefLoginPassword, "")}");
+    print("email => ${GetStorageManager.getValue(prefIsRemember, false)}");
     final today = DateTime.now(); // Add this line inside Obx
 
     return GetBuilder<HomeController>(builder: (controller) {
@@ -267,7 +268,7 @@ class HomeScreen extends GetView<HomeController> {
                                               ),
                                               child: ClipOval(
                                                 child: customCacheImage(
-                                                  url: "\${GetStorageManager.getValue(prefProfile, "")}",
+                                                  url: "${GetStorageManager.getValue(prefProfile, "")}",
                                                   width: 50,
                                                   height: 50,
                                                   fit: BoxFit.cover,
@@ -287,7 +288,7 @@ class HomeScreen extends GetView<HomeController> {
                                                   Get.toNamed(RoutsNames.profile);
                                                 },
                                                 child: Text(
-                                                  "\${GetStorageManager.getValue(prefName, "")}",
+                                                  "${GetStorageManager.getValue(prefName, "")}",
                                                   style: CustomStyle.heading3Style,
                                                   textAlign: TextAlign.start,
                                                 ),
@@ -310,7 +311,7 @@ class HomeScreen extends GetView<HomeController> {
                                                               "BGA HCP: ",
                                                               style: CustomStyle.paragraph5Style,
                                                             ),
-                                                            Text("\${GetStorageManager.getValue(prefBgaHandicap, "0")}",
+                                                            Text("${GetStorageManager.getValue(prefBgaHandicap, "0")}",
                                                                 style: CustomStyle.paragraph5Style.copyWith(
                                                                   fontWeight: FontWeight.w700,
                                                                 )),
@@ -335,7 +336,7 @@ class HomeScreen extends GetView<HomeController> {
                                                               "RANK: ",
                                                               style: CustomStyle.paragraph5Style,
                                                             ),
-                                                            Text("\${GetStorageManager.getValue(prefRank, "0")}",
+                                                            Text("${GetStorageManager.getValue(prefRank, "0")}",
                                                                 style: CustomStyle.paragraph5Style.copyWith(fontWeight: FontWeight.w700)),
                                                           ],
                                                         )),
@@ -381,7 +382,7 @@ class HomeScreen extends GetView<HomeController> {
                                                 GetStorageManager.setValue(prefHomeTab, "myagenda");
                                                 controller.getUpcomingAgenda();
 
-                                                debugPrint("tab--\${controller.tab.value}");
+                                                debugPrint("tab--${controller.tab.value}");
                                               },
                                             ),
                                           ),
@@ -617,16 +618,16 @@ class HomeScreen extends GetView<HomeController> {
                                                             DateTime today = DateTime.now();
 
                                                             if (today.isAfter(end)) {
-                                                              // âœ… Event is finished
-                                                              dayDisplay = "Ended on \${DateFormat('MMM dd, yyyy').format(end)}";
+                                                              // ✅ Event is finished
+                                                              dayDisplay = "Ended on ${DateFormat('MMM dd, yyyy').format(end)}";
                                                             } else if (today.isBefore(start)) {
-                                                              // âœ… Event not started yet
-                                                              dayDisplay = "Starts on \${DateFormat('MMM dd, yyyy').format(start)}";
+                                                              // ✅ Event not started yet
+                                                              dayDisplay = "Starts on ${DateFormat('MMM dd, yyyy').format(start)}";
                                                             } else {
-                                                              // âœ… Event is ongoing â†’ calculate day count
+                                                              // ✅ Event is ongoing → calculate day count
                                                               int dayNumber = today.difference(start).inDays + 1;
                                                               dayDisplay = "Day $dayNumber";
-                                                              print("day data => \${dayDisplay}");
+                                                              print("day data => ${dayDisplay}");
                                                             }
                                                           } catch (e) {
                                                             print("Date parse error: $e");
@@ -681,7 +682,7 @@ class HomeScreen extends GetView<HomeController> {
                                                                               child: Row(
                                                                                 children: [
                                                                                   Text(
-                                                                                    "\${gameItem.name}".capitalizeFirstOfEach ?? "",
+                                                                                    "${gameItem.name}".capitalizeFirstOfEach ?? "",
                                                                                     style: CustomStyle.gameDetailsSubTitle,
                                                                                   ),
                                                                                 ],
@@ -697,7 +698,7 @@ class HomeScreen extends GetView<HomeController> {
                                                                                   children: [
                                                                                     if (gameItem.foursome!.no != null)
                                                                                       Text(
-                                                                                        "Foursome \${gameItem.foursome!.no} : \${gameItem.foursome!.teeTime != null ? formatEventTime(gameItem.foursome!.teeTime.toString()) : ""} " ??
+                                                                                        "Foursome ${gameItem.foursome!.no} : ${gameItem.foursome!.teeTime != null ? formatEventTime(gameItem.foursome!.teeTime.toString()) : ""} " ??
                                                                                             "",
                                                                                         style: CustomStyle.summaryTableText,
                                                                                       ),
@@ -713,7 +714,7 @@ class HomeScreen extends GetView<HomeController> {
                                                                                 child: Row(
                                                                                   children: [
                                                                                     Text(
-                                                                                      "\${dayDisplay} " ?? "",
+                                                                                      "${dayDisplay} " ?? "",
                                                                                       style: CustomStyle.summaryTableText,
                                                                                     ),
                                                                                   ],
@@ -737,8 +738,8 @@ class HomeScreen extends GetView<HomeController> {
                                                                                 ),
                                                                                 Text(
                                                                                   gameItem.type == "game"
-                                                                                      ? "\${gameItem.courseName}".capitalizeFirstOfEach
-                                                                                      : "\${gameItem.location}".capitalizeFirstOfEach,
+                                                                                      ? "${gameItem.courseName}".capitalizeFirstOfEach
+                                                                                      : "${gameItem.location}".capitalizeFirstOfEach,
                                                                                   overflow: TextOverflow.fade,
                                                                                   style: CustomStyle.summaryTableText,
                                                                                 ),
@@ -819,9 +820,9 @@ class HomeScreen extends GetView<HomeController> {
 
       // Compare only the date part (ignoring time)
       if (parsedDate.year == now.year && parsedDate.month == now.month && parsedDate.day == now.day) {
-        return "Todayâ€™s Agenda";
+        return "Today’s Agenda";
       } else {
-        return DateFormat('\${GetStorageManager.getValue(prefDateFormate, "dd MMM, yyyy")}').format(parsedDate);
+        return DateFormat('${GetStorageManager.getValue(prefDateFormate, "dd MMM, yyyy")}').format(parsedDate);
       }
     } catch (e) {
       print("Date parse error: $e");
@@ -892,9 +893,11 @@ class HomeScreen extends GetView<HomeController> {
       ),
     );
   }
-}`);
+}
+`);
 
   add("home-detail", "flutter", "home_general_item.dart", `
+
 import 'package:bga_flutter_app/resources/color_code.dart';
 import 'package:bga_flutter_app/utils/capped_text_scaling.dart';
 import 'package:flutter/material.dart';
@@ -956,9 +959,11 @@ class HomeGeneralItem extends StatelessWidget {
       ),
     );
   }
-}`);
+}
+`);
 
-  add("home-detail", "flutter", "home_controller.dart", `import 'package:bga_flutter_app/resources/tables_keys_values.dart';
+  add("home-detail", "flutter", "home_controller.dart", `
+import 'package:bga_flutter_app/resources/tables_keys_values.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -1132,7 +1137,7 @@ class HomeController extends GetxController {
   @override
   void onReady() {
     role.value = GetStorageManager.getValue(prefUserRole, "role");
-    debugPrint("role--\${role.value}");
+    debugPrint("role--${role.value}");
 
     if (GetStorageManager.getValue(prefUserRole, "role") == "Guest") {
       tab.value = "event";
@@ -1151,7 +1156,7 @@ class HomeController extends GetxController {
     } else {
       filterHomeGeneralList.value = homeGeneralList;
     }
-    print("filter agenda list => \${filterHomeGeneralList.length}");
+    print("filter agenda list => ${filterHomeGeneralList.length}");
   }
 
   Future<void> getAllAgenda() async {
@@ -1179,7 +1184,7 @@ class HomeController extends GetxController {
         upcomingMyAgendaEventList.addAll(response.upcoming ?? []);
         sortAgendaList();
       } else {
-        debugPrint("getUpcomingMyAgendaEvents : \${response.message}");
+        debugPrint("getUpcomingMyAgendaEvents : ${response.message}");
       }
     } catch (error) {
       debugPrint("getUpcomingMyAgendaEvents : $error");
@@ -1202,10 +1207,10 @@ class HomeController extends GetxController {
 
       if (priorityA != priorityB) return priorityA.compareTo(priorityB);
 
-      // Future dates â†’ ascending (24 before 25)
+      // Future dates → ascending (24 before 25)
       if (priorityA == 1) return dateA.compareTo(dateB);
 
-      // Past dates â†’ descending (22 before 21 before 31/12/2025)
+      // Past dates → descending (22 before 21 before 31/12/2025)
       if (priorityA == 2) return dateB.compareTo(dateA);
 
       return 0;
@@ -1215,9 +1220,9 @@ class HomeController extends GetxController {
   int _getDatePriority(DateTime date, DateTime today) {
     bool isToday = date.year == today.year && date.month == today.month && date.day == today.day;
 
-    if (isToday) return 0; // Today   â†’ first
-    if (date.isAfter(today)) return 1; // Future  â†’ second
-    return 2; // Past    â†’ last
+    if (isToday) return 0; // Today   → first
+    if (date.isAfter(today)) return 1; // Future  → second
+    return 2; // Past    → last
   }
 
   DateTime? _parseDate(String? date) {
@@ -1270,7 +1275,7 @@ class HomeController extends GetxController {
         eventStartTime.value = upcomingEventList[0].startTime.toString();
         eventLocation.value = upcomingEventList[0].location.toString();
       } else {
-        debugPrint("getUpcomingEvents : \${response.message}");
+        debugPrint("getUpcomingEvents : ${response.message}");
       }
     } catch (error) {
       debugPrint("getUpcomingEvents : $error");
@@ -1295,7 +1300,7 @@ class HomeController extends GetxController {
         eventStartTime.value = upcomingEventList[0].startTime.toString();
         eventLocation.value = upcomingEventList[0].location.toString();
       } else {
-        debugPrint("getUpcomingEvents : \${response.message}");
+        debugPrint("getUpcomingEvents : ${response.message}");
       }
     } catch (error) {
       debugPrint("getUpcomingEvents : $error");
@@ -1309,7 +1314,7 @@ class HomeController extends GetxController {
       if (response.error == false) {
         myEventList.addAll(response.myEvents ?? []);
       } else {
-        debugPrint("getMyEvents : \${response.message}");
+        debugPrint("getMyEvents : ${response.message}");
       }
     } catch (error) {
       debugPrint("getMyEvents : $error");
@@ -1325,7 +1330,7 @@ class HomeController extends GetxController {
         myGameList.addAll(response.upcomingGames ?? []);
         myPlayerPastGameList.addAll(response.pastGames ?? []);
       } else {
-        debugPrint("getMyGames : \${response.message}");
+        debugPrint("getMyGames : ${response.message}");
       }
     } catch (error) {
       debugPrint("getMyGames : $error");
@@ -1340,9 +1345,9 @@ class HomeController extends GetxController {
       if (response.error == false) {
         upcomingGameList.addAll(response.upcomingGames ?? []);
         pastGameList.addAll(response.pastGames ?? []);
-        debugPrint("getUpcomingGames : \${upcomingGameList.length}");
+        debugPrint("getUpcomingGames : ${upcomingGameList.length}");
       } else {
-        debugPrint("getUpcomingGames : \${response.message}");
+        debugPrint("getUpcomingGames : ${response.message}");
       }
     } catch (error) {
       debugPrint("getUpcomingGames : $error");
@@ -1361,7 +1366,7 @@ class HomeController extends GetxController {
       }
       return;
     }
-    debugPrint("pastEventList  : \${pastEventList.length}");
+    debugPrint("pastEventList  : ${pastEventList.length}");
     for (var event in (type == "Past Events" ? pastEventList : upcomingEventList)) {
       if (event.name!.toLowerCase().contains(value.toLowerCase())) {
         searchEventList.add(event);
@@ -1567,13 +1572,13 @@ class HomeController extends GetxController {
           for (PreferenceData item in preference.data ?? []) {
             if (item.key == "app_version") {
               var currentVersion = await getAppVersion();
-              debugPrint("app_version : $currentVersion = \${item.value?[0]}");
+              debugPrint("app_version : $currentVersion = ${item.value?[0]}");
               if (currentVersion != item.value?[0]) {
                 for (PreferenceData item2 in preference.data ?? []) {
                   if (item2.key == "force_update") {
                     StaticData.updateChecked = false;
                     showForceUpdateDialog(isForce: item2.value?[0] == "true");
-                    debugPrint("force_update : \${item2.value}");
+                    debugPrint("force_update : ${item2.value}");
                   }else{
                     StaticData.updateChecked = true;
                   }
@@ -1590,5 +1595,6 @@ class HomeController extends GetxController {
       debugPrint("Error fetching preference: $e");
     }
   }
-}`);
+}
+`);
 })();

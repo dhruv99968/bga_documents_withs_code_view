@@ -214,56 +214,136 @@ Response 200:
 // in the final POST /api/v1/games body.`);
 
   // ── cgslide-9 — Game Created Successfully ────────────────
-  add("cgslide-9", "apis", "createGame", `POST {{baseUrl}}/api/v1/games
-Authorization: Bearer {token}
-X-Organization-Id: all
-Content-Type: application/json
+  add("cgslide-9", "apis", "createGame", `
+// POST {{baseUrl}}/${StaticData.apiUrl}api/games/create
+// Controller: create_game_controller.dart → apiService.createGame()
 
-// This is the final wizard submission — all fields
-// collected across cgslide-0..8 are sent here.
+Dart Method:
+  apiService.createGame({
+    gameName: String,
+    eventId: String?,
+    courseId: num,
+    gameType: String,
+    playType: String,
+    type: String,
+    teaTime: String,
+    betPerGame: String,
+    totalTeams: String,
+    skodePoolPrize: String,
+    junkPoolPrize: String,
+    pointPerHoleWin: String,
+    bonusPointPerGameWin: int,
+    amountPerPoint: String,
+    isUltraVegas: int,
+    isModifiedStableFord: int,
+    pointPerMatchWin: String,
+    pointForUnchallenged: String,
+    pointForChallenged: String,
+    maxWolfPoints: String,
+    List<String> holePerMatch,
+    isWithHandicap: String,
+    isPlayerRestrict: int,
+    List<MatchConfigModel> playerList,
+    List<TeesheetGroupData>? groupList,
+    List<TeamListItem>? courseTeamList,
+    totalPlayers: String,
+    logo: Uint8List?,
+    logoName: String?,
+    teeSheetId: String?,
+    calcuttaPlayerId: String?,
+    teamHcpPreference: String?,
+    hcpPercentage: String?,
+    skinPool: String?,
+    greeniePool: String?,
+    prizingPool: String?,
+    teePosition: String?,
+    isProshopeEmail: int?,
+    isSkinsGame: int?,
+    isGreenieGame: int?,
+    greenieType: String?,
+    isSkinsCarry: int?,
+    IsSkinsPaid: int?,
+    isPlacedPaid: int?,
+    placesPaid: String?,
+    List<String>? placesPaidPercentages
+  }) → Future&lt;GamCreateModel&gt;
+
+HTTP Request:
+  POST {{baseUrl}}/${StaticData.apiUrl}api/games/create
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+  Content-Type: application/json
 
 Request Body:
   {
-    "event_id":        1,
-    "tee_sheet_id":    1,
-    "name":            "Saturday 321 Milo",
-    "game_type":       "3_2_1",
-    "play_type":       "COD",
-    "handicap_method": "WHS",
-    "match_format":    "strokeplay",
-    "start_datetime":  "2025-07-05T08:00:00",
-    "holes_per_match": 18,
-    "buy_in":          20.00,
-    "match_amount":    5.00,
-    "points_win":      3,
-    "points_halve":    1,
-    "points_loss":     0,
-    "player_ids":      [1, 2, 3, 4],
-    "thumbnail":       "abc123.jpg"
+    "game_name": "..."
+    "event_id": "..."
+    "course_id": "..."
+    "game_type": "..."
+    "tee_time": "..."
+    "total_teams": "..."
+    "skode_pool_prize": "..."
+    "junk_pool_prize": "..."
+    "point_per_hole_win": "..."
+    "bonus_point_per_game_win": "..."
+    "points_per_match_win": "..."
+    "teesheet_id": "..."
+    "score_edit_policy": "..."
+    "is_auto_newt_twofer_enabled": "..."
+    "mail_to_proshop": "..."
+    "handicap_percentage": "..."
+    "prizing_pool": "..."
+    "is_skin_game_enabled": "..."
+    "is_greenie_game_enabled": "..."
+    "skin_pool": "..."
+    "greenie_pool": "..."
+    "tee_position": "..."
+    "is_greenie_game_enabled": "..."
+    "skin_pool": "..."
+    "greenie_pool": "..."
+    "greenie_type": "..."
+    "carry_skin": "..."
+    "is_places_paid": "..."
+    "places_paid": "..."
+    "places_paid_percentages": "..."
+    "Is_skins_paid": "..."
+    "bet_per_game": "..."
+    "is_with_handicap": "..."
+    "total_players": "..."
+    "play_type": "..."
+    "player_ids": "..."
+    "total_players": "..."
+    "play_type": "..."
+    "player_ids": "..."
+    "is_ultravegas": "..."
+    "play_type": "..."
+    "play_type": "..."
+    "play_type": "..."
+    "team_hcp_preference": "..."
+    "play_type": "..."
+    "amount_per_point": "..."
+    "team_hcp_preference": "..."
+    "play_type": "..."
+    "point_per_hole_win": "..."
+    "point_for_challenged": "..."
+    "max_wolf_points": "..."
+    "play_type": "..."
+    "is_modified_stableford": "..."
+    "amount_per_point": "..."
+    "selected_game_team_id": "..."
+    "total_players": "..."
+    "play_type": "..."
+    "play_type": "..."
+    "selected_group_id": "..."
+    "selected_group_id": "..."
   }
 
-game_type options:
-  "3_2_1" | "calcutta" | "progressive_skins" | "regular_skins"
-  "ryder_cup" | "vegas" | "horse_race" | "wolf"
-  "scramble" | "stableford" | "stroke_play"
-
-Response 201:
+Response (GamCreateModel):
   {
     "error":   false,
-    "message": "Game created successfully.",
-    "data": {
-      "id":         42,
-      "name":       "Saturday 321 Milo",
-      "game_type":  "3_2_1",
-      "status":     "upcoming",
-      "start_date": "2025-07-05",
-      "course":     { "id": 1, "name": "Pebble Beach Golf Links" },
-      "players":    [{ "id": 1, "name": "Player A" }]
-    }
+    "message": "..."
   }
-
-Error 422 (Validation):
-  { "error": true, "message": "The event_id field is required." }`);
+`);
 
   add("cgslide-9", "apis", "getGameDetails", `GET {{baseUrl}}/api/v1/games/{game_id}
 Authorization: Bearer {token}
@@ -288,4 +368,2043 @@ Response 200:
     }
   }`);
 
+
+  add("cgslide-0", "apis", "createGame", `
+// POST {{baseUrl}}/${StaticData.apiUrl}api/games/create
+// Controller: create_game_controller.dart → apiService.createGame()
+
+Dart Method:
+  apiService.createGame({
+    gameName: String,
+    eventId: String?,
+    courseId: num,
+    gameType: String,
+    playType: String,
+    type: String,
+    teaTime: String,
+    betPerGame: String,
+    totalTeams: String,
+    skodePoolPrize: String,
+    junkPoolPrize: String,
+    pointPerHoleWin: String,
+    bonusPointPerGameWin: int,
+    amountPerPoint: String,
+    isUltraVegas: int,
+    isModifiedStableFord: int,
+    pointPerMatchWin: String,
+    pointForUnchallenged: String,
+    pointForChallenged: String,
+    maxWolfPoints: String,
+    List<String> holePerMatch,
+    isWithHandicap: String,
+    isPlayerRestrict: int,
+    List<MatchConfigModel> playerList,
+    List<TeesheetGroupData>? groupList,
+    List<TeamListItem>? courseTeamList,
+    totalPlayers: String,
+    logo: Uint8List?,
+    logoName: String?,
+    teeSheetId: String?,
+    calcuttaPlayerId: String?,
+    teamHcpPreference: String?,
+    hcpPercentage: String?,
+    skinPool: String?,
+    greeniePool: String?,
+    prizingPool: String?,
+    teePosition: String?,
+    isProshopeEmail: int?,
+    isSkinsGame: int?,
+    isGreenieGame: int?,
+    greenieType: String?,
+    isSkinsCarry: int?,
+    IsSkinsPaid: int?,
+    isPlacedPaid: int?,
+    placesPaid: String?,
+    List<String>? placesPaidPercentages
+  }) → Future&lt;GamCreateModel&gt;
+
+HTTP Request:
+  POST {{baseUrl}}/${StaticData.apiUrl}api/games/create
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+  Content-Type: application/json
+
+Request Body:
+  {
+    "game_name": "..."
+    "event_id": "..."
+    "course_id": "..."
+    "game_type": "..."
+    "tee_time": "..."
+    "total_teams": "..."
+    "skode_pool_prize": "..."
+    "junk_pool_prize": "..."
+    "point_per_hole_win": "..."
+    "bonus_point_per_game_win": "..."
+    "points_per_match_win": "..."
+    "teesheet_id": "..."
+    "score_edit_policy": "..."
+    "is_auto_newt_twofer_enabled": "..."
+    "mail_to_proshop": "..."
+    "handicap_percentage": "..."
+    "prizing_pool": "..."
+    "is_skin_game_enabled": "..."
+    "is_greenie_game_enabled": "..."
+    "skin_pool": "..."
+    "greenie_pool": "..."
+    "tee_position": "..."
+    "is_greenie_game_enabled": "..."
+    "skin_pool": "..."
+    "greenie_pool": "..."
+    "greenie_type": "..."
+    "carry_skin": "..."
+    "is_places_paid": "..."
+    "places_paid": "..."
+    "places_paid_percentages": "..."
+    "Is_skins_paid": "..."
+    "bet_per_game": "..."
+    "is_with_handicap": "..."
+    "total_players": "..."
+    "play_type": "..."
+    "player_ids": "..."
+    "total_players": "..."
+    "play_type": "..."
+    "player_ids": "..."
+    "is_ultravegas": "..."
+    "play_type": "..."
+    "play_type": "..."
+    "play_type": "..."
+    "team_hcp_preference": "..."
+    "play_type": "..."
+    "amount_per_point": "..."
+    "team_hcp_preference": "..."
+    "play_type": "..."
+    "point_per_hole_win": "..."
+    "point_for_challenged": "..."
+    "max_wolf_points": "..."
+    "play_type": "..."
+    "is_modified_stableford": "..."
+    "amount_per_point": "..."
+    "selected_game_team_id": "..."
+    "total_players": "..."
+    "play_type": "..."
+    "play_type": "..."
+    "selected_group_id": "..."
+    "selected_group_id": "..."
+  }
+
+Response (GamCreateModel):
+  {
+    "error":   false,
+    "message": "..."
+  }
+`);
+
+  add("cgslide-0", "apis", "getCourseTeesPositions", `
+// GET {{baseUrl}}/api/course/${courseId}/tee/list
+// Controller: create_game_controller.dart → apiService.getCourseTeesPositions()
+
+Dart Method:
+  apiService.getCourseTeesPositions({
+    courseId: String
+  }) → Future&lt;TeePositionModel&gt;
+
+HTTP Request:
+  GET {{baseUrl}}/api/course/${courseId}/tee/list
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+
+Response (TeePositionModel):
+  {
+    "error":   false,
+    "message": "..."
+  }
+`);
+
+  add("cgslide-0", "apis", "getTeeList", `
+// GET {{baseUrl}}/api/v2/teesheet/groups/list
+// Controller: create_game_controller.dart → apiService.getTeeList()
+
+Dart Method:
+  apiService.getTeeList(()) → Future&lt;NewTeeSheetModel&gt;
+
+HTTP Request:
+  GET {{baseUrl}}/api/v2/teesheet/groups/list
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+
+Response (NewTeeSheetModel):
+  {
+    "error":   false,
+    "message": "..."
+  }
+`);
+
+  add("cgslide-0", "apis", "minimizeEventList", `
+// GET {{baseUrl}}/api/event/list/mini
+// Controller: create_game_controller.dart → apiService.minimizeEventList()
+
+Dart Method:
+  apiService.minimizeEventList(()) → Future&lt;EventListModel&gt;
+
+HTTP Request:
+  GET {{baseUrl}}/api/event/list/mini
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+
+Response (EventListModel):
+  {
+    "error":   false,
+    "message": "..."
+  }
+`);
+
+  add("cgslide-0", "apis", "validateGameName", `
+// POST {{baseUrl}}/api/games/name/validate
+// Controller: create_game_controller.dart → apiService.validateGameName()
+
+Dart Method:
+  apiService.validateGameName({
+    name: String
+  }) → Future&lt;GameNameValidateModel&gt;
+
+HTTP Request:
+  POST {{baseUrl}}/api/games/name/validate
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+  Content-Type: application/json
+
+Request Body:
+  {
+    "name": "..."
+  }
+
+Response (GameNameValidateModel):
+  {
+    "error":   false,
+    "message": "..."
+  }
+`);
+
+  add("cgslide-1", "apis", "createGame", `
+// POST {{baseUrl}}/${StaticData.apiUrl}api/games/create
+// Controller: create_game_controller.dart → apiService.createGame()
+
+Dart Method:
+  apiService.createGame({
+    gameName: String,
+    eventId: String?,
+    courseId: num,
+    gameType: String,
+    playType: String,
+    type: String,
+    teaTime: String,
+    betPerGame: String,
+    totalTeams: String,
+    skodePoolPrize: String,
+    junkPoolPrize: String,
+    pointPerHoleWin: String,
+    bonusPointPerGameWin: int,
+    amountPerPoint: String,
+    isUltraVegas: int,
+    isModifiedStableFord: int,
+    pointPerMatchWin: String,
+    pointForUnchallenged: String,
+    pointForChallenged: String,
+    maxWolfPoints: String,
+    List<String> holePerMatch,
+    isWithHandicap: String,
+    isPlayerRestrict: int,
+    List<MatchConfigModel> playerList,
+    List<TeesheetGroupData>? groupList,
+    List<TeamListItem>? courseTeamList,
+    totalPlayers: String,
+    logo: Uint8List?,
+    logoName: String?,
+    teeSheetId: String?,
+    calcuttaPlayerId: String?,
+    teamHcpPreference: String?,
+    hcpPercentage: String?,
+    skinPool: String?,
+    greeniePool: String?,
+    prizingPool: String?,
+    teePosition: String?,
+    isProshopeEmail: int?,
+    isSkinsGame: int?,
+    isGreenieGame: int?,
+    greenieType: String?,
+    isSkinsCarry: int?,
+    IsSkinsPaid: int?,
+    isPlacedPaid: int?,
+    placesPaid: String?,
+    List<String>? placesPaidPercentages
+  }) → Future&lt;GamCreateModel&gt;
+
+HTTP Request:
+  POST {{baseUrl}}/${StaticData.apiUrl}api/games/create
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+  Content-Type: application/json
+
+Request Body:
+  {
+    "game_name": "..."
+    "event_id": "..."
+    "course_id": "..."
+    "game_type": "..."
+    "tee_time": "..."
+    "total_teams": "..."
+    "skode_pool_prize": "..."
+    "junk_pool_prize": "..."
+    "point_per_hole_win": "..."
+    "bonus_point_per_game_win": "..."
+    "points_per_match_win": "..."
+    "teesheet_id": "..."
+    "score_edit_policy": "..."
+    "is_auto_newt_twofer_enabled": "..."
+    "mail_to_proshop": "..."
+    "handicap_percentage": "..."
+    "prizing_pool": "..."
+    "is_skin_game_enabled": "..."
+    "is_greenie_game_enabled": "..."
+    "skin_pool": "..."
+    "greenie_pool": "..."
+    "tee_position": "..."
+    "is_greenie_game_enabled": "..."
+    "skin_pool": "..."
+    "greenie_pool": "..."
+    "greenie_type": "..."
+    "carry_skin": "..."
+    "is_places_paid": "..."
+    "places_paid": "..."
+    "places_paid_percentages": "..."
+    "Is_skins_paid": "..."
+    "bet_per_game": "..."
+    "is_with_handicap": "..."
+    "total_players": "..."
+    "play_type": "..."
+    "player_ids": "..."
+    "total_players": "..."
+    "play_type": "..."
+    "player_ids": "..."
+    "is_ultravegas": "..."
+    "play_type": "..."
+    "play_type": "..."
+    "play_type": "..."
+    "team_hcp_preference": "..."
+    "play_type": "..."
+    "amount_per_point": "..."
+    "team_hcp_preference": "..."
+    "play_type": "..."
+    "point_per_hole_win": "..."
+    "point_for_challenged": "..."
+    "max_wolf_points": "..."
+    "play_type": "..."
+    "is_modified_stableford": "..."
+    "amount_per_point": "..."
+    "selected_game_team_id": "..."
+    "total_players": "..."
+    "play_type": "..."
+    "play_type": "..."
+    "selected_group_id": "..."
+    "selected_group_id": "..."
+  }
+
+Response (GamCreateModel):
+  {
+    "error":   false,
+    "message": "..."
+  }
+`);
+
+  add("cgslide-1", "apis", "getCourseTeesPositions", `
+// GET {{baseUrl}}/api/course/${courseId}/tee/list
+// Controller: create_game_controller.dart → apiService.getCourseTeesPositions()
+
+Dart Method:
+  apiService.getCourseTeesPositions({
+    courseId: String
+  }) → Future&lt;TeePositionModel&gt;
+
+HTTP Request:
+  GET {{baseUrl}}/api/course/${courseId}/tee/list
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+
+Response (TeePositionModel):
+  {
+    "error":   false,
+    "message": "..."
+  }
+`);
+
+  add("cgslide-1", "apis", "getTeeList", `
+// GET {{baseUrl}}/api/v2/teesheet/groups/list
+// Controller: create_game_controller.dart → apiService.getTeeList()
+
+Dart Method:
+  apiService.getTeeList(()) → Future&lt;NewTeeSheetModel&gt;
+
+HTTP Request:
+  GET {{baseUrl}}/api/v2/teesheet/groups/list
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+
+Response (NewTeeSheetModel):
+  {
+    "error":   false,
+    "message": "..."
+  }
+`);
+
+  add("cgslide-1", "apis", "minimizeEventList", `
+// GET {{baseUrl}}/api/event/list/mini
+// Controller: create_game_controller.dart → apiService.minimizeEventList()
+
+Dart Method:
+  apiService.minimizeEventList(()) → Future&lt;EventListModel&gt;
+
+HTTP Request:
+  GET {{baseUrl}}/api/event/list/mini
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+
+Response (EventListModel):
+  {
+    "error":   false,
+    "message": "..."
+  }
+`);
+
+  add("cgslide-1", "apis", "validateGameName", `
+// POST {{baseUrl}}/api/games/name/validate
+// Controller: create_game_controller.dart → apiService.validateGameName()
+
+Dart Method:
+  apiService.validateGameName({
+    name: String
+  }) → Future&lt;GameNameValidateModel&gt;
+
+HTTP Request:
+  POST {{baseUrl}}/api/games/name/validate
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+  Content-Type: application/json
+
+Request Body:
+  {
+    "name": "..."
+  }
+
+Response (GameNameValidateModel):
+  {
+    "error":   false,
+    "message": "..."
+  }
+`);
+
+  add("cgslide-2", "apis", "createGame", `
+// POST {{baseUrl}}/${StaticData.apiUrl}api/games/create
+// Controller: create_game_controller.dart → apiService.createGame()
+
+Dart Method:
+  apiService.createGame({
+    gameName: String,
+    eventId: String?,
+    courseId: num,
+    gameType: String,
+    playType: String,
+    type: String,
+    teaTime: String,
+    betPerGame: String,
+    totalTeams: String,
+    skodePoolPrize: String,
+    junkPoolPrize: String,
+    pointPerHoleWin: String,
+    bonusPointPerGameWin: int,
+    amountPerPoint: String,
+    isUltraVegas: int,
+    isModifiedStableFord: int,
+    pointPerMatchWin: String,
+    pointForUnchallenged: String,
+    pointForChallenged: String,
+    maxWolfPoints: String,
+    List<String> holePerMatch,
+    isWithHandicap: String,
+    isPlayerRestrict: int,
+    List<MatchConfigModel> playerList,
+    List<TeesheetGroupData>? groupList,
+    List<TeamListItem>? courseTeamList,
+    totalPlayers: String,
+    logo: Uint8List?,
+    logoName: String?,
+    teeSheetId: String?,
+    calcuttaPlayerId: String?,
+    teamHcpPreference: String?,
+    hcpPercentage: String?,
+    skinPool: String?,
+    greeniePool: String?,
+    prizingPool: String?,
+    teePosition: String?,
+    isProshopeEmail: int?,
+    isSkinsGame: int?,
+    isGreenieGame: int?,
+    greenieType: String?,
+    isSkinsCarry: int?,
+    IsSkinsPaid: int?,
+    isPlacedPaid: int?,
+    placesPaid: String?,
+    List<String>? placesPaidPercentages
+  }) → Future&lt;GamCreateModel&gt;
+
+HTTP Request:
+  POST {{baseUrl}}/${StaticData.apiUrl}api/games/create
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+  Content-Type: application/json
+
+Request Body:
+  {
+    "game_name": "..."
+    "event_id": "..."
+    "course_id": "..."
+    "game_type": "..."
+    "tee_time": "..."
+    "total_teams": "..."
+    "skode_pool_prize": "..."
+    "junk_pool_prize": "..."
+    "point_per_hole_win": "..."
+    "bonus_point_per_game_win": "..."
+    "points_per_match_win": "..."
+    "teesheet_id": "..."
+    "score_edit_policy": "..."
+    "is_auto_newt_twofer_enabled": "..."
+    "mail_to_proshop": "..."
+    "handicap_percentage": "..."
+    "prizing_pool": "..."
+    "is_skin_game_enabled": "..."
+    "is_greenie_game_enabled": "..."
+    "skin_pool": "..."
+    "greenie_pool": "..."
+    "tee_position": "..."
+    "is_greenie_game_enabled": "..."
+    "skin_pool": "..."
+    "greenie_pool": "..."
+    "greenie_type": "..."
+    "carry_skin": "..."
+    "is_places_paid": "..."
+    "places_paid": "..."
+    "places_paid_percentages": "..."
+    "Is_skins_paid": "..."
+    "bet_per_game": "..."
+    "is_with_handicap": "..."
+    "total_players": "..."
+    "play_type": "..."
+    "player_ids": "..."
+    "total_players": "..."
+    "play_type": "..."
+    "player_ids": "..."
+    "is_ultravegas": "..."
+    "play_type": "..."
+    "play_type": "..."
+    "play_type": "..."
+    "team_hcp_preference": "..."
+    "play_type": "..."
+    "amount_per_point": "..."
+    "team_hcp_preference": "..."
+    "play_type": "..."
+    "point_per_hole_win": "..."
+    "point_for_challenged": "..."
+    "max_wolf_points": "..."
+    "play_type": "..."
+    "is_modified_stableford": "..."
+    "amount_per_point": "..."
+    "selected_game_team_id": "..."
+    "total_players": "..."
+    "play_type": "..."
+    "play_type": "..."
+    "selected_group_id": "..."
+    "selected_group_id": "..."
+  }
+
+Response (GamCreateModel):
+  {
+    "error":   false,
+    "message": "..."
+  }
+`);
+
+  add("cgslide-2", "apis", "getCourseTeesPositions", `
+// GET {{baseUrl}}/api/course/${courseId}/tee/list
+// Controller: create_game_controller.dart → apiService.getCourseTeesPositions()
+
+Dart Method:
+  apiService.getCourseTeesPositions({
+    courseId: String
+  }) → Future&lt;TeePositionModel&gt;
+
+HTTP Request:
+  GET {{baseUrl}}/api/course/${courseId}/tee/list
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+
+Response (TeePositionModel):
+  {
+    "error":   false,
+    "message": "..."
+  }
+`);
+
+  add("cgslide-2", "apis", "getTeeList", `
+// GET {{baseUrl}}/api/v2/teesheet/groups/list
+// Controller: create_game_controller.dart → apiService.getTeeList()
+
+Dart Method:
+  apiService.getTeeList(()) → Future&lt;NewTeeSheetModel&gt;
+
+HTTP Request:
+  GET {{baseUrl}}/api/v2/teesheet/groups/list
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+
+Response (NewTeeSheetModel):
+  {
+    "error":   false,
+    "message": "..."
+  }
+`);
+
+  add("cgslide-2", "apis", "minimizeEventList", `
+// GET {{baseUrl}}/api/event/list/mini
+// Controller: create_game_controller.dart → apiService.minimizeEventList()
+
+Dart Method:
+  apiService.minimizeEventList(()) → Future&lt;EventListModel&gt;
+
+HTTP Request:
+  GET {{baseUrl}}/api/event/list/mini
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+
+Response (EventListModel):
+  {
+    "error":   false,
+    "message": "..."
+  }
+`);
+
+  add("cgslide-2", "apis", "validateGameName", `
+// POST {{baseUrl}}/api/games/name/validate
+// Controller: create_game_controller.dart → apiService.validateGameName()
+
+Dart Method:
+  apiService.validateGameName({
+    name: String
+  }) → Future&lt;GameNameValidateModel&gt;
+
+HTTP Request:
+  POST {{baseUrl}}/api/games/name/validate
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+  Content-Type: application/json
+
+Request Body:
+  {
+    "name": "..."
+  }
+
+Response (GameNameValidateModel):
+  {
+    "error":   false,
+    "message": "..."
+  }
+`);
+
+  add("cgslide-3", "apis", "createGame", `
+// POST {{baseUrl}}/${StaticData.apiUrl}api/games/create
+// Controller: create_game_controller.dart → apiService.createGame()
+
+Dart Method:
+  apiService.createGame({
+    gameName: String,
+    eventId: String?,
+    courseId: num,
+    gameType: String,
+    playType: String,
+    type: String,
+    teaTime: String,
+    betPerGame: String,
+    totalTeams: String,
+    skodePoolPrize: String,
+    junkPoolPrize: String,
+    pointPerHoleWin: String,
+    bonusPointPerGameWin: int,
+    amountPerPoint: String,
+    isUltraVegas: int,
+    isModifiedStableFord: int,
+    pointPerMatchWin: String,
+    pointForUnchallenged: String,
+    pointForChallenged: String,
+    maxWolfPoints: String,
+    List<String> holePerMatch,
+    isWithHandicap: String,
+    isPlayerRestrict: int,
+    List<MatchConfigModel> playerList,
+    List<TeesheetGroupData>? groupList,
+    List<TeamListItem>? courseTeamList,
+    totalPlayers: String,
+    logo: Uint8List?,
+    logoName: String?,
+    teeSheetId: String?,
+    calcuttaPlayerId: String?,
+    teamHcpPreference: String?,
+    hcpPercentage: String?,
+    skinPool: String?,
+    greeniePool: String?,
+    prizingPool: String?,
+    teePosition: String?,
+    isProshopeEmail: int?,
+    isSkinsGame: int?,
+    isGreenieGame: int?,
+    greenieType: String?,
+    isSkinsCarry: int?,
+    IsSkinsPaid: int?,
+    isPlacedPaid: int?,
+    placesPaid: String?,
+    List<String>? placesPaidPercentages
+  }) → Future&lt;GamCreateModel&gt;
+
+HTTP Request:
+  POST {{baseUrl}}/${StaticData.apiUrl}api/games/create
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+  Content-Type: application/json
+
+Request Body:
+  {
+    "game_name": "..."
+    "event_id": "..."
+    "course_id": "..."
+    "game_type": "..."
+    "tee_time": "..."
+    "total_teams": "..."
+    "skode_pool_prize": "..."
+    "junk_pool_prize": "..."
+    "point_per_hole_win": "..."
+    "bonus_point_per_game_win": "..."
+    "points_per_match_win": "..."
+    "teesheet_id": "..."
+    "score_edit_policy": "..."
+    "is_auto_newt_twofer_enabled": "..."
+    "mail_to_proshop": "..."
+    "handicap_percentage": "..."
+    "prizing_pool": "..."
+    "is_skin_game_enabled": "..."
+    "is_greenie_game_enabled": "..."
+    "skin_pool": "..."
+    "greenie_pool": "..."
+    "tee_position": "..."
+    "is_greenie_game_enabled": "..."
+    "skin_pool": "..."
+    "greenie_pool": "..."
+    "greenie_type": "..."
+    "carry_skin": "..."
+    "is_places_paid": "..."
+    "places_paid": "..."
+    "places_paid_percentages": "..."
+    "Is_skins_paid": "..."
+    "bet_per_game": "..."
+    "is_with_handicap": "..."
+    "total_players": "..."
+    "play_type": "..."
+    "player_ids": "..."
+    "total_players": "..."
+    "play_type": "..."
+    "player_ids": "..."
+    "is_ultravegas": "..."
+    "play_type": "..."
+    "play_type": "..."
+    "play_type": "..."
+    "team_hcp_preference": "..."
+    "play_type": "..."
+    "amount_per_point": "..."
+    "team_hcp_preference": "..."
+    "play_type": "..."
+    "point_per_hole_win": "..."
+    "point_for_challenged": "..."
+    "max_wolf_points": "..."
+    "play_type": "..."
+    "is_modified_stableford": "..."
+    "amount_per_point": "..."
+    "selected_game_team_id": "..."
+    "total_players": "..."
+    "play_type": "..."
+    "play_type": "..."
+    "selected_group_id": "..."
+    "selected_group_id": "..."
+  }
+
+Response (GamCreateModel):
+  {
+    "error":   false,
+    "message": "..."
+  }
+`);
+
+  add("cgslide-3", "apis", "getCourseTeesPositions", `
+// GET {{baseUrl}}/api/course/${courseId}/tee/list
+// Controller: create_game_controller.dart → apiService.getCourseTeesPositions()
+
+Dart Method:
+  apiService.getCourseTeesPositions({
+    courseId: String
+  }) → Future&lt;TeePositionModel&gt;
+
+HTTP Request:
+  GET {{baseUrl}}/api/course/${courseId}/tee/list
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+
+Response (TeePositionModel):
+  {
+    "error":   false,
+    "message": "..."
+  }
+`);
+
+  add("cgslide-3", "apis", "getTeeList", `
+// GET {{baseUrl}}/api/v2/teesheet/groups/list
+// Controller: create_game_controller.dart → apiService.getTeeList()
+
+Dart Method:
+  apiService.getTeeList(()) → Future&lt;NewTeeSheetModel&gt;
+
+HTTP Request:
+  GET {{baseUrl}}/api/v2/teesheet/groups/list
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+
+Response (NewTeeSheetModel):
+  {
+    "error":   false,
+    "message": "..."
+  }
+`);
+
+  add("cgslide-3", "apis", "minimizeEventList", `
+// GET {{baseUrl}}/api/event/list/mini
+// Controller: create_game_controller.dart → apiService.minimizeEventList()
+
+Dart Method:
+  apiService.minimizeEventList(()) → Future&lt;EventListModel&gt;
+
+HTTP Request:
+  GET {{baseUrl}}/api/event/list/mini
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+
+Response (EventListModel):
+  {
+    "error":   false,
+    "message": "..."
+  }
+`);
+
+  add("cgslide-3", "apis", "validateGameName", `
+// POST {{baseUrl}}/api/games/name/validate
+// Controller: create_game_controller.dart → apiService.validateGameName()
+
+Dart Method:
+  apiService.validateGameName({
+    name: String
+  }) → Future&lt;GameNameValidateModel&gt;
+
+HTTP Request:
+  POST {{baseUrl}}/api/games/name/validate
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+  Content-Type: application/json
+
+Request Body:
+  {
+    "name": "..."
+  }
+
+Response (GameNameValidateModel):
+  {
+    "error":   false,
+    "message": "..."
+  }
+`);
+
+  add("cgslide-4", "apis", "createGame", `
+// POST {{baseUrl}}/${StaticData.apiUrl}api/games/create
+// Controller: create_game_controller.dart → apiService.createGame()
+
+Dart Method:
+  apiService.createGame({
+    gameName: String,
+    eventId: String?,
+    courseId: num,
+    gameType: String,
+    playType: String,
+    type: String,
+    teaTime: String,
+    betPerGame: String,
+    totalTeams: String,
+    skodePoolPrize: String,
+    junkPoolPrize: String,
+    pointPerHoleWin: String,
+    bonusPointPerGameWin: int,
+    amountPerPoint: String,
+    isUltraVegas: int,
+    isModifiedStableFord: int,
+    pointPerMatchWin: String,
+    pointForUnchallenged: String,
+    pointForChallenged: String,
+    maxWolfPoints: String,
+    List<String> holePerMatch,
+    isWithHandicap: String,
+    isPlayerRestrict: int,
+    List<MatchConfigModel> playerList,
+    List<TeesheetGroupData>? groupList,
+    List<TeamListItem>? courseTeamList,
+    totalPlayers: String,
+    logo: Uint8List?,
+    logoName: String?,
+    teeSheetId: String?,
+    calcuttaPlayerId: String?,
+    teamHcpPreference: String?,
+    hcpPercentage: String?,
+    skinPool: String?,
+    greeniePool: String?,
+    prizingPool: String?,
+    teePosition: String?,
+    isProshopeEmail: int?,
+    isSkinsGame: int?,
+    isGreenieGame: int?,
+    greenieType: String?,
+    isSkinsCarry: int?,
+    IsSkinsPaid: int?,
+    isPlacedPaid: int?,
+    placesPaid: String?,
+    List<String>? placesPaidPercentages
+  }) → Future&lt;GamCreateModel&gt;
+
+HTTP Request:
+  POST {{baseUrl}}/${StaticData.apiUrl}api/games/create
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+  Content-Type: application/json
+
+Request Body:
+  {
+    "game_name": "..."
+    "event_id": "..."
+    "course_id": "..."
+    "game_type": "..."
+    "tee_time": "..."
+    "total_teams": "..."
+    "skode_pool_prize": "..."
+    "junk_pool_prize": "..."
+    "point_per_hole_win": "..."
+    "bonus_point_per_game_win": "..."
+    "points_per_match_win": "..."
+    "teesheet_id": "..."
+    "score_edit_policy": "..."
+    "is_auto_newt_twofer_enabled": "..."
+    "mail_to_proshop": "..."
+    "handicap_percentage": "..."
+    "prizing_pool": "..."
+    "is_skin_game_enabled": "..."
+    "is_greenie_game_enabled": "..."
+    "skin_pool": "..."
+    "greenie_pool": "..."
+    "tee_position": "..."
+    "is_greenie_game_enabled": "..."
+    "skin_pool": "..."
+    "greenie_pool": "..."
+    "greenie_type": "..."
+    "carry_skin": "..."
+    "is_places_paid": "..."
+    "places_paid": "..."
+    "places_paid_percentages": "..."
+    "Is_skins_paid": "..."
+    "bet_per_game": "..."
+    "is_with_handicap": "..."
+    "total_players": "..."
+    "play_type": "..."
+    "player_ids": "..."
+    "total_players": "..."
+    "play_type": "..."
+    "player_ids": "..."
+    "is_ultravegas": "..."
+    "play_type": "..."
+    "play_type": "..."
+    "play_type": "..."
+    "team_hcp_preference": "..."
+    "play_type": "..."
+    "amount_per_point": "..."
+    "team_hcp_preference": "..."
+    "play_type": "..."
+    "point_per_hole_win": "..."
+    "point_for_challenged": "..."
+    "max_wolf_points": "..."
+    "play_type": "..."
+    "is_modified_stableford": "..."
+    "amount_per_point": "..."
+    "selected_game_team_id": "..."
+    "total_players": "..."
+    "play_type": "..."
+    "play_type": "..."
+    "selected_group_id": "..."
+    "selected_group_id": "..."
+  }
+
+Response (GamCreateModel):
+  {
+    "error":   false,
+    "message": "..."
+  }
+`);
+
+  add("cgslide-4", "apis", "getCourseTeesPositions", `
+// GET {{baseUrl}}/api/course/${courseId}/tee/list
+// Controller: create_game_controller.dart → apiService.getCourseTeesPositions()
+
+Dart Method:
+  apiService.getCourseTeesPositions({
+    courseId: String
+  }) → Future&lt;TeePositionModel&gt;
+
+HTTP Request:
+  GET {{baseUrl}}/api/course/${courseId}/tee/list
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+
+Response (TeePositionModel):
+  {
+    "error":   false,
+    "message": "..."
+  }
+`);
+
+  add("cgslide-4", "apis", "getTeeList", `
+// GET {{baseUrl}}/api/v2/teesheet/groups/list
+// Controller: create_game_controller.dart → apiService.getTeeList()
+
+Dart Method:
+  apiService.getTeeList(()) → Future&lt;NewTeeSheetModel&gt;
+
+HTTP Request:
+  GET {{baseUrl}}/api/v2/teesheet/groups/list
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+
+Response (NewTeeSheetModel):
+  {
+    "error":   false,
+    "message": "..."
+  }
+`);
+
+  add("cgslide-4", "apis", "minimizeEventList", `
+// GET {{baseUrl}}/api/event/list/mini
+// Controller: create_game_controller.dart → apiService.minimizeEventList()
+
+Dart Method:
+  apiService.minimizeEventList(()) → Future&lt;EventListModel&gt;
+
+HTTP Request:
+  GET {{baseUrl}}/api/event/list/mini
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+
+Response (EventListModel):
+  {
+    "error":   false,
+    "message": "..."
+  }
+`);
+
+  add("cgslide-4", "apis", "validateGameName", `
+// POST {{baseUrl}}/api/games/name/validate
+// Controller: create_game_controller.dart → apiService.validateGameName()
+
+Dart Method:
+  apiService.validateGameName({
+    name: String
+  }) → Future&lt;GameNameValidateModel&gt;
+
+HTTP Request:
+  POST {{baseUrl}}/api/games/name/validate
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+  Content-Type: application/json
+
+Request Body:
+  {
+    "name": "..."
+  }
+
+Response (GameNameValidateModel):
+  {
+    "error":   false,
+    "message": "..."
+  }
+`);
+
+  add("cgslide-5", "apis", "createGame", `
+// POST {{baseUrl}}/${StaticData.apiUrl}api/games/create
+// Controller: create_game_controller.dart → apiService.createGame()
+
+Dart Method:
+  apiService.createGame({
+    gameName: String,
+    eventId: String?,
+    courseId: num,
+    gameType: String,
+    playType: String,
+    type: String,
+    teaTime: String,
+    betPerGame: String,
+    totalTeams: String,
+    skodePoolPrize: String,
+    junkPoolPrize: String,
+    pointPerHoleWin: String,
+    bonusPointPerGameWin: int,
+    amountPerPoint: String,
+    isUltraVegas: int,
+    isModifiedStableFord: int,
+    pointPerMatchWin: String,
+    pointForUnchallenged: String,
+    pointForChallenged: String,
+    maxWolfPoints: String,
+    List<String> holePerMatch,
+    isWithHandicap: String,
+    isPlayerRestrict: int,
+    List<MatchConfigModel> playerList,
+    List<TeesheetGroupData>? groupList,
+    List<TeamListItem>? courseTeamList,
+    totalPlayers: String,
+    logo: Uint8List?,
+    logoName: String?,
+    teeSheetId: String?,
+    calcuttaPlayerId: String?,
+    teamHcpPreference: String?,
+    hcpPercentage: String?,
+    skinPool: String?,
+    greeniePool: String?,
+    prizingPool: String?,
+    teePosition: String?,
+    isProshopeEmail: int?,
+    isSkinsGame: int?,
+    isGreenieGame: int?,
+    greenieType: String?,
+    isSkinsCarry: int?,
+    IsSkinsPaid: int?,
+    isPlacedPaid: int?,
+    placesPaid: String?,
+    List<String>? placesPaidPercentages
+  }) → Future&lt;GamCreateModel&gt;
+
+HTTP Request:
+  POST {{baseUrl}}/${StaticData.apiUrl}api/games/create
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+  Content-Type: application/json
+
+Request Body:
+  {
+    "game_name": "..."
+    "event_id": "..."
+    "course_id": "..."
+    "game_type": "..."
+    "tee_time": "..."
+    "total_teams": "..."
+    "skode_pool_prize": "..."
+    "junk_pool_prize": "..."
+    "point_per_hole_win": "..."
+    "bonus_point_per_game_win": "..."
+    "points_per_match_win": "..."
+    "teesheet_id": "..."
+    "score_edit_policy": "..."
+    "is_auto_newt_twofer_enabled": "..."
+    "mail_to_proshop": "..."
+    "handicap_percentage": "..."
+    "prizing_pool": "..."
+    "is_skin_game_enabled": "..."
+    "is_greenie_game_enabled": "..."
+    "skin_pool": "..."
+    "greenie_pool": "..."
+    "tee_position": "..."
+    "is_greenie_game_enabled": "..."
+    "skin_pool": "..."
+    "greenie_pool": "..."
+    "greenie_type": "..."
+    "carry_skin": "..."
+    "is_places_paid": "..."
+    "places_paid": "..."
+    "places_paid_percentages": "..."
+    "Is_skins_paid": "..."
+    "bet_per_game": "..."
+    "is_with_handicap": "..."
+    "total_players": "..."
+    "play_type": "..."
+    "player_ids": "..."
+    "total_players": "..."
+    "play_type": "..."
+    "player_ids": "..."
+    "is_ultravegas": "..."
+    "play_type": "..."
+    "play_type": "..."
+    "play_type": "..."
+    "team_hcp_preference": "..."
+    "play_type": "..."
+    "amount_per_point": "..."
+    "team_hcp_preference": "..."
+    "play_type": "..."
+    "point_per_hole_win": "..."
+    "point_for_challenged": "..."
+    "max_wolf_points": "..."
+    "play_type": "..."
+    "is_modified_stableford": "..."
+    "amount_per_point": "..."
+    "selected_game_team_id": "..."
+    "total_players": "..."
+    "play_type": "..."
+    "play_type": "..."
+    "selected_group_id": "..."
+    "selected_group_id": "..."
+  }
+
+Response (GamCreateModel):
+  {
+    "error":   false,
+    "message": "..."
+  }
+`);
+
+  add("cgslide-5", "apis", "getCourseTeesPositions", `
+// GET {{baseUrl}}/api/course/${courseId}/tee/list
+// Controller: create_game_controller.dart → apiService.getCourseTeesPositions()
+
+Dart Method:
+  apiService.getCourseTeesPositions({
+    courseId: String
+  }) → Future&lt;TeePositionModel&gt;
+
+HTTP Request:
+  GET {{baseUrl}}/api/course/${courseId}/tee/list
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+
+Response (TeePositionModel):
+  {
+    "error":   false,
+    "message": "..."
+  }
+`);
+
+  add("cgslide-5", "apis", "getTeeList", `
+// GET {{baseUrl}}/api/v2/teesheet/groups/list
+// Controller: create_game_controller.dart → apiService.getTeeList()
+
+Dart Method:
+  apiService.getTeeList(()) → Future&lt;NewTeeSheetModel&gt;
+
+HTTP Request:
+  GET {{baseUrl}}/api/v2/teesheet/groups/list
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+
+Response (NewTeeSheetModel):
+  {
+    "error":   false,
+    "message": "..."
+  }
+`);
+
+  add("cgslide-5", "apis", "minimizeEventList", `
+// GET {{baseUrl}}/api/event/list/mini
+// Controller: create_game_controller.dart → apiService.minimizeEventList()
+
+Dart Method:
+  apiService.minimizeEventList(()) → Future&lt;EventListModel&gt;
+
+HTTP Request:
+  GET {{baseUrl}}/api/event/list/mini
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+
+Response (EventListModel):
+  {
+    "error":   false,
+    "message": "..."
+  }
+`);
+
+  add("cgslide-5", "apis", "validateGameName", `
+// POST {{baseUrl}}/api/games/name/validate
+// Controller: create_game_controller.dart → apiService.validateGameName()
+
+Dart Method:
+  apiService.validateGameName({
+    name: String
+  }) → Future&lt;GameNameValidateModel&gt;
+
+HTTP Request:
+  POST {{baseUrl}}/api/games/name/validate
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+  Content-Type: application/json
+
+Request Body:
+  {
+    "name": "..."
+  }
+
+Response (GameNameValidateModel):
+  {
+    "error":   false,
+    "message": "..."
+  }
+`);
+
+  add("cgslide-6", "apis", "createGame", `
+// POST {{baseUrl}}/${StaticData.apiUrl}api/games/create
+// Controller: create_game_controller.dart → apiService.createGame()
+
+Dart Method:
+  apiService.createGame({
+    gameName: String,
+    eventId: String?,
+    courseId: num,
+    gameType: String,
+    playType: String,
+    type: String,
+    teaTime: String,
+    betPerGame: String,
+    totalTeams: String,
+    skodePoolPrize: String,
+    junkPoolPrize: String,
+    pointPerHoleWin: String,
+    bonusPointPerGameWin: int,
+    amountPerPoint: String,
+    isUltraVegas: int,
+    isModifiedStableFord: int,
+    pointPerMatchWin: String,
+    pointForUnchallenged: String,
+    pointForChallenged: String,
+    maxWolfPoints: String,
+    List<String> holePerMatch,
+    isWithHandicap: String,
+    isPlayerRestrict: int,
+    List<MatchConfigModel> playerList,
+    List<TeesheetGroupData>? groupList,
+    List<TeamListItem>? courseTeamList,
+    totalPlayers: String,
+    logo: Uint8List?,
+    logoName: String?,
+    teeSheetId: String?,
+    calcuttaPlayerId: String?,
+    teamHcpPreference: String?,
+    hcpPercentage: String?,
+    skinPool: String?,
+    greeniePool: String?,
+    prizingPool: String?,
+    teePosition: String?,
+    isProshopeEmail: int?,
+    isSkinsGame: int?,
+    isGreenieGame: int?,
+    greenieType: String?,
+    isSkinsCarry: int?,
+    IsSkinsPaid: int?,
+    isPlacedPaid: int?,
+    placesPaid: String?,
+    List<String>? placesPaidPercentages
+  }) → Future&lt;GamCreateModel&gt;
+
+HTTP Request:
+  POST {{baseUrl}}/${StaticData.apiUrl}api/games/create
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+  Content-Type: application/json
+
+Request Body:
+  {
+    "game_name": "..."
+    "event_id": "..."
+    "course_id": "..."
+    "game_type": "..."
+    "tee_time": "..."
+    "total_teams": "..."
+    "skode_pool_prize": "..."
+    "junk_pool_prize": "..."
+    "point_per_hole_win": "..."
+    "bonus_point_per_game_win": "..."
+    "points_per_match_win": "..."
+    "teesheet_id": "..."
+    "score_edit_policy": "..."
+    "is_auto_newt_twofer_enabled": "..."
+    "mail_to_proshop": "..."
+    "handicap_percentage": "..."
+    "prizing_pool": "..."
+    "is_skin_game_enabled": "..."
+    "is_greenie_game_enabled": "..."
+    "skin_pool": "..."
+    "greenie_pool": "..."
+    "tee_position": "..."
+    "is_greenie_game_enabled": "..."
+    "skin_pool": "..."
+    "greenie_pool": "..."
+    "greenie_type": "..."
+    "carry_skin": "..."
+    "is_places_paid": "..."
+    "places_paid": "..."
+    "places_paid_percentages": "..."
+    "Is_skins_paid": "..."
+    "bet_per_game": "..."
+    "is_with_handicap": "..."
+    "total_players": "..."
+    "play_type": "..."
+    "player_ids": "..."
+    "total_players": "..."
+    "play_type": "..."
+    "player_ids": "..."
+    "is_ultravegas": "..."
+    "play_type": "..."
+    "play_type": "..."
+    "play_type": "..."
+    "team_hcp_preference": "..."
+    "play_type": "..."
+    "amount_per_point": "..."
+    "team_hcp_preference": "..."
+    "play_type": "..."
+    "point_per_hole_win": "..."
+    "point_for_challenged": "..."
+    "max_wolf_points": "..."
+    "play_type": "..."
+    "is_modified_stableford": "..."
+    "amount_per_point": "..."
+    "selected_game_team_id": "..."
+    "total_players": "..."
+    "play_type": "..."
+    "play_type": "..."
+    "selected_group_id": "..."
+    "selected_group_id": "..."
+  }
+
+Response (GamCreateModel):
+  {
+    "error":   false,
+    "message": "..."
+  }
+`);
+
+  add("cgslide-6", "apis", "getCourseTeesPositions", `
+// GET {{baseUrl}}/api/course/${courseId}/tee/list
+// Controller: create_game_controller.dart → apiService.getCourseTeesPositions()
+
+Dart Method:
+  apiService.getCourseTeesPositions({
+    courseId: String
+  }) → Future&lt;TeePositionModel&gt;
+
+HTTP Request:
+  GET {{baseUrl}}/api/course/${courseId}/tee/list
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+
+Response (TeePositionModel):
+  {
+    "error":   false,
+    "message": "..."
+  }
+`);
+
+  add("cgslide-6", "apis", "getTeeList", `
+// GET {{baseUrl}}/api/v2/teesheet/groups/list
+// Controller: create_game_controller.dart → apiService.getTeeList()
+
+Dart Method:
+  apiService.getTeeList(()) → Future&lt;NewTeeSheetModel&gt;
+
+HTTP Request:
+  GET {{baseUrl}}/api/v2/teesheet/groups/list
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+
+Response (NewTeeSheetModel):
+  {
+    "error":   false,
+    "message": "..."
+  }
+`);
+
+  add("cgslide-6", "apis", "minimizeEventList", `
+// GET {{baseUrl}}/api/event/list/mini
+// Controller: create_game_controller.dart → apiService.minimizeEventList()
+
+Dart Method:
+  apiService.minimizeEventList(()) → Future&lt;EventListModel&gt;
+
+HTTP Request:
+  GET {{baseUrl}}/api/event/list/mini
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+
+Response (EventListModel):
+  {
+    "error":   false,
+    "message": "..."
+  }
+`);
+
+  add("cgslide-6", "apis", "validateGameName", `
+// POST {{baseUrl}}/api/games/name/validate
+// Controller: create_game_controller.dart → apiService.validateGameName()
+
+Dart Method:
+  apiService.validateGameName({
+    name: String
+  }) → Future&lt;GameNameValidateModel&gt;
+
+HTTP Request:
+  POST {{baseUrl}}/api/games/name/validate
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+  Content-Type: application/json
+
+Request Body:
+  {
+    "name": "..."
+  }
+
+Response (GameNameValidateModel):
+  {
+    "error":   false,
+    "message": "..."
+  }
+`);
+
+  add("cgslide-7", "apis", "createGame", `
+// POST {{baseUrl}}/${StaticData.apiUrl}api/games/create
+// Controller: create_game_controller.dart → apiService.createGame()
+
+Dart Method:
+  apiService.createGame({
+    gameName: String,
+    eventId: String?,
+    courseId: num,
+    gameType: String,
+    playType: String,
+    type: String,
+    teaTime: String,
+    betPerGame: String,
+    totalTeams: String,
+    skodePoolPrize: String,
+    junkPoolPrize: String,
+    pointPerHoleWin: String,
+    bonusPointPerGameWin: int,
+    amountPerPoint: String,
+    isUltraVegas: int,
+    isModifiedStableFord: int,
+    pointPerMatchWin: String,
+    pointForUnchallenged: String,
+    pointForChallenged: String,
+    maxWolfPoints: String,
+    List<String> holePerMatch,
+    isWithHandicap: String,
+    isPlayerRestrict: int,
+    List<MatchConfigModel> playerList,
+    List<TeesheetGroupData>? groupList,
+    List<TeamListItem>? courseTeamList,
+    totalPlayers: String,
+    logo: Uint8List?,
+    logoName: String?,
+    teeSheetId: String?,
+    calcuttaPlayerId: String?,
+    teamHcpPreference: String?,
+    hcpPercentage: String?,
+    skinPool: String?,
+    greeniePool: String?,
+    prizingPool: String?,
+    teePosition: String?,
+    isProshopeEmail: int?,
+    isSkinsGame: int?,
+    isGreenieGame: int?,
+    greenieType: String?,
+    isSkinsCarry: int?,
+    IsSkinsPaid: int?,
+    isPlacedPaid: int?,
+    placesPaid: String?,
+    List<String>? placesPaidPercentages
+  }) → Future&lt;GamCreateModel&gt;
+
+HTTP Request:
+  POST {{baseUrl}}/${StaticData.apiUrl}api/games/create
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+  Content-Type: application/json
+
+Request Body:
+  {
+    "game_name": "..."
+    "event_id": "..."
+    "course_id": "..."
+    "game_type": "..."
+    "tee_time": "..."
+    "total_teams": "..."
+    "skode_pool_prize": "..."
+    "junk_pool_prize": "..."
+    "point_per_hole_win": "..."
+    "bonus_point_per_game_win": "..."
+    "points_per_match_win": "..."
+    "teesheet_id": "..."
+    "score_edit_policy": "..."
+    "is_auto_newt_twofer_enabled": "..."
+    "mail_to_proshop": "..."
+    "handicap_percentage": "..."
+    "prizing_pool": "..."
+    "is_skin_game_enabled": "..."
+    "is_greenie_game_enabled": "..."
+    "skin_pool": "..."
+    "greenie_pool": "..."
+    "tee_position": "..."
+    "is_greenie_game_enabled": "..."
+    "skin_pool": "..."
+    "greenie_pool": "..."
+    "greenie_type": "..."
+    "carry_skin": "..."
+    "is_places_paid": "..."
+    "places_paid": "..."
+    "places_paid_percentages": "..."
+    "Is_skins_paid": "..."
+    "bet_per_game": "..."
+    "is_with_handicap": "..."
+    "total_players": "..."
+    "play_type": "..."
+    "player_ids": "..."
+    "total_players": "..."
+    "play_type": "..."
+    "player_ids": "..."
+    "is_ultravegas": "..."
+    "play_type": "..."
+    "play_type": "..."
+    "play_type": "..."
+    "team_hcp_preference": "..."
+    "play_type": "..."
+    "amount_per_point": "..."
+    "team_hcp_preference": "..."
+    "play_type": "..."
+    "point_per_hole_win": "..."
+    "point_for_challenged": "..."
+    "max_wolf_points": "..."
+    "play_type": "..."
+    "is_modified_stableford": "..."
+    "amount_per_point": "..."
+    "selected_game_team_id": "..."
+    "total_players": "..."
+    "play_type": "..."
+    "play_type": "..."
+    "selected_group_id": "..."
+    "selected_group_id": "..."
+  }
+
+Response (GamCreateModel):
+  {
+    "error":   false,
+    "message": "..."
+  }
+`);
+
+  add("cgslide-7", "apis", "getCourseTeesPositions", `
+// GET {{baseUrl}}/api/course/${courseId}/tee/list
+// Controller: create_game_controller.dart → apiService.getCourseTeesPositions()
+
+Dart Method:
+  apiService.getCourseTeesPositions({
+    courseId: String
+  }) → Future&lt;TeePositionModel&gt;
+
+HTTP Request:
+  GET {{baseUrl}}/api/course/${courseId}/tee/list
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+
+Response (TeePositionModel):
+  {
+    "error":   false,
+    "message": "..."
+  }
+`);
+
+  add("cgslide-7", "apis", "getTeeList", `
+// GET {{baseUrl}}/api/v2/teesheet/groups/list
+// Controller: create_game_controller.dart → apiService.getTeeList()
+
+Dart Method:
+  apiService.getTeeList(()) → Future&lt;NewTeeSheetModel&gt;
+
+HTTP Request:
+  GET {{baseUrl}}/api/v2/teesheet/groups/list
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+
+Response (NewTeeSheetModel):
+  {
+    "error":   false,
+    "message": "..."
+  }
+`);
+
+  add("cgslide-7", "apis", "minimizeEventList", `
+// GET {{baseUrl}}/api/event/list/mini
+// Controller: create_game_controller.dart → apiService.minimizeEventList()
+
+Dart Method:
+  apiService.minimizeEventList(()) → Future&lt;EventListModel&gt;
+
+HTTP Request:
+  GET {{baseUrl}}/api/event/list/mini
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+
+Response (EventListModel):
+  {
+    "error":   false,
+    "message": "..."
+  }
+`);
+
+  add("cgslide-7", "apis", "validateGameName", `
+// POST {{baseUrl}}/api/games/name/validate
+// Controller: create_game_controller.dart → apiService.validateGameName()
+
+Dart Method:
+  apiService.validateGameName({
+    name: String
+  }) → Future&lt;GameNameValidateModel&gt;
+
+HTTP Request:
+  POST {{baseUrl}}/api/games/name/validate
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+  Content-Type: application/json
+
+Request Body:
+  {
+    "name": "..."
+  }
+
+Response (GameNameValidateModel):
+  {
+    "error":   false,
+    "message": "..."
+  }
+`);
+
+  add("cgslide-8", "apis", "createGame", `
+// POST {{baseUrl}}/${StaticData.apiUrl}api/games/create
+// Controller: create_game_controller.dart → apiService.createGame()
+
+Dart Method:
+  apiService.createGame({
+    gameName: String,
+    eventId: String?,
+    courseId: num,
+    gameType: String,
+    playType: String,
+    type: String,
+    teaTime: String,
+    betPerGame: String,
+    totalTeams: String,
+    skodePoolPrize: String,
+    junkPoolPrize: String,
+    pointPerHoleWin: String,
+    bonusPointPerGameWin: int,
+    amountPerPoint: String,
+    isUltraVegas: int,
+    isModifiedStableFord: int,
+    pointPerMatchWin: String,
+    pointForUnchallenged: String,
+    pointForChallenged: String,
+    maxWolfPoints: String,
+    List<String> holePerMatch,
+    isWithHandicap: String,
+    isPlayerRestrict: int,
+    List<MatchConfigModel> playerList,
+    List<TeesheetGroupData>? groupList,
+    List<TeamListItem>? courseTeamList,
+    totalPlayers: String,
+    logo: Uint8List?,
+    logoName: String?,
+    teeSheetId: String?,
+    calcuttaPlayerId: String?,
+    teamHcpPreference: String?,
+    hcpPercentage: String?,
+    skinPool: String?,
+    greeniePool: String?,
+    prizingPool: String?,
+    teePosition: String?,
+    isProshopeEmail: int?,
+    isSkinsGame: int?,
+    isGreenieGame: int?,
+    greenieType: String?,
+    isSkinsCarry: int?,
+    IsSkinsPaid: int?,
+    isPlacedPaid: int?,
+    placesPaid: String?,
+    List<String>? placesPaidPercentages
+  }) → Future&lt;GamCreateModel&gt;
+
+HTTP Request:
+  POST {{baseUrl}}/${StaticData.apiUrl}api/games/create
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+  Content-Type: application/json
+
+Request Body:
+  {
+    "game_name": "..."
+    "event_id": "..."
+    "course_id": "..."
+    "game_type": "..."
+    "tee_time": "..."
+    "total_teams": "..."
+    "skode_pool_prize": "..."
+    "junk_pool_prize": "..."
+    "point_per_hole_win": "..."
+    "bonus_point_per_game_win": "..."
+    "points_per_match_win": "..."
+    "teesheet_id": "..."
+    "score_edit_policy": "..."
+    "is_auto_newt_twofer_enabled": "..."
+    "mail_to_proshop": "..."
+    "handicap_percentage": "..."
+    "prizing_pool": "..."
+    "is_skin_game_enabled": "..."
+    "is_greenie_game_enabled": "..."
+    "skin_pool": "..."
+    "greenie_pool": "..."
+    "tee_position": "..."
+    "is_greenie_game_enabled": "..."
+    "skin_pool": "..."
+    "greenie_pool": "..."
+    "greenie_type": "..."
+    "carry_skin": "..."
+    "is_places_paid": "..."
+    "places_paid": "..."
+    "places_paid_percentages": "..."
+    "Is_skins_paid": "..."
+    "bet_per_game": "..."
+    "is_with_handicap": "..."
+    "total_players": "..."
+    "play_type": "..."
+    "player_ids": "..."
+    "total_players": "..."
+    "play_type": "..."
+    "player_ids": "..."
+    "is_ultravegas": "..."
+    "play_type": "..."
+    "play_type": "..."
+    "play_type": "..."
+    "team_hcp_preference": "..."
+    "play_type": "..."
+    "amount_per_point": "..."
+    "team_hcp_preference": "..."
+    "play_type": "..."
+    "point_per_hole_win": "..."
+    "point_for_challenged": "..."
+    "max_wolf_points": "..."
+    "play_type": "..."
+    "is_modified_stableford": "..."
+    "amount_per_point": "..."
+    "selected_game_team_id": "..."
+    "total_players": "..."
+    "play_type": "..."
+    "play_type": "..."
+    "selected_group_id": "..."
+    "selected_group_id": "..."
+  }
+
+Response (GamCreateModel):
+  {
+    "error":   false,
+    "message": "..."
+  }
+`);
+
+  add("cgslide-8", "apis", "getCourseTeesPositions", `
+// GET {{baseUrl}}/api/course/${courseId}/tee/list
+// Controller: create_game_controller.dart → apiService.getCourseTeesPositions()
+
+Dart Method:
+  apiService.getCourseTeesPositions({
+    courseId: String
+  }) → Future&lt;TeePositionModel&gt;
+
+HTTP Request:
+  GET {{baseUrl}}/api/course/${courseId}/tee/list
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+
+Response (TeePositionModel):
+  {
+    "error":   false,
+    "message": "..."
+  }
+`);
+
+  add("cgslide-8", "apis", "getTeeList", `
+// GET {{baseUrl}}/api/v2/teesheet/groups/list
+// Controller: create_game_controller.dart → apiService.getTeeList()
+
+Dart Method:
+  apiService.getTeeList(()) → Future&lt;NewTeeSheetModel&gt;
+
+HTTP Request:
+  GET {{baseUrl}}/api/v2/teesheet/groups/list
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+
+Response (NewTeeSheetModel):
+  {
+    "error":   false,
+    "message": "..."
+  }
+`);
+
+  add("cgslide-8", "apis", "minimizeEventList", `
+// GET {{baseUrl}}/api/event/list/mini
+// Controller: create_game_controller.dart → apiService.minimizeEventList()
+
+Dart Method:
+  apiService.minimizeEventList(()) → Future&lt;EventListModel&gt;
+
+HTTP Request:
+  GET {{baseUrl}}/api/event/list/mini
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+
+Response (EventListModel):
+  {
+    "error":   false,
+    "message": "..."
+  }
+`);
+
+  add("cgslide-8", "apis", "validateGameName", `
+// POST {{baseUrl}}/api/games/name/validate
+// Controller: create_game_controller.dart → apiService.validateGameName()
+
+Dart Method:
+  apiService.validateGameName({
+    name: String
+  }) → Future&lt;GameNameValidateModel&gt;
+
+HTTP Request:
+  POST {{baseUrl}}/api/games/name/validate
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+  Content-Type: application/json
+
+Request Body:
+  {
+    "name": "..."
+  }
+
+Response (GameNameValidateModel):
+  {
+    "error":   false,
+    "message": "..."
+  }
+`);
+
+  add("cgslide-9", "apis", "getCourseTeesPositions", `
+// GET {{baseUrl}}/api/course/${courseId}/tee/list
+// Controller: create_game_controller.dart → apiService.getCourseTeesPositions()
+
+Dart Method:
+  apiService.getCourseTeesPositions({
+    courseId: String
+  }) → Future&lt;TeePositionModel&gt;
+
+HTTP Request:
+  GET {{baseUrl}}/api/course/${courseId}/tee/list
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+
+Response (TeePositionModel):
+  {
+    "error":   false,
+    "message": "..."
+  }
+`);
+
+  add("cgslide-9", "apis", "getTeeList", `
+// GET {{baseUrl}}/api/v2/teesheet/groups/list
+// Controller: create_game_controller.dart → apiService.getTeeList()
+
+Dart Method:
+  apiService.getTeeList(()) → Future&lt;NewTeeSheetModel&gt;
+
+HTTP Request:
+  GET {{baseUrl}}/api/v2/teesheet/groups/list
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+
+Response (NewTeeSheetModel):
+  {
+    "error":   false,
+    "message": "..."
+  }
+`);
+
+  add("cgslide-9", "apis", "minimizeEventList", `
+// GET {{baseUrl}}/api/event/list/mini
+// Controller: create_game_controller.dart → apiService.minimizeEventList()
+
+Dart Method:
+  apiService.minimizeEventList(()) → Future&lt;EventListModel&gt;
+
+HTTP Request:
+  GET {{baseUrl}}/api/event/list/mini
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+
+Response (EventListModel):
+  {
+    "error":   false,
+    "message": "..."
+  }
+`);
+
+  add("cgslide-9", "apis", "validateGameName", `
+// POST {{baseUrl}}/api/games/name/validate
+// Controller: create_game_controller.dart → apiService.validateGameName()
+
+Dart Method:
+  apiService.validateGameName({
+    name: String
+  }) → Future&lt;GameNameValidateModel&gt;
+
+HTTP Request:
+  POST {{baseUrl}}/api/games/name/validate
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+  Content-Type: application/json
+
+Request Body:
+  {
+    "name": "..."
+  }
+
+Response (GameNameValidateModel):
+  {
+    "error":   false,
+    "message": "..."
+  }
+`);
 })();

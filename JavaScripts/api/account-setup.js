@@ -10,8 +10,9 @@ window.CODE_DATA = window.CODE_DATA || {};
     window.CODE_DATA[k][s].push({ name: n, code: c });
   }
 
-  add("sslide-0", "apis", "userRegister", `// POST {{baseUrl}}/api/register
-// Controller: signup_controller.dart â†’ apiService.userRegister()
+  add("sslide-0", "apis", "userRegister", `
+// POST {{baseUrl}}/api/register
+// Controller: signup_controller.dart → apiService.userRegister()
 
 Dart Method:
   apiService.userRegister({
@@ -20,7 +21,7 @@ Dart Method:
     password: String,
     role: String,
     phone: String
-  }) â†’ Future&lt;DefaultModel&gt;
+  }) → Future&lt;DefaultModel&gt;
 
 HTTP Request:
   POST {{baseUrl}}/api/register
@@ -39,7 +40,8 @@ Response (DefaultModel):
   {
     "error":   false,
     "message": "..."
-  }`);
+  }
+`);
 
   add("sslide-0", "apis", "createPassword", `// POST {{baseUrl}}/api/password/create
 // Controller: signup_controller.dart â†’ apiService.createPassword()
@@ -67,14 +69,15 @@ Response (DefaultModel):
     "message": "..."
   }`);
 
-  add("sslide-1", "apis", "verifyEmail", `// POST {{baseUrl}}/api/email_verify
-// Controller: otp_controller.dart â†’ apiService.verifyEmail()
+  add("sslide-1", "apis", "verifyEmail", `
+// POST {{baseUrl}}/api/email_verify
+// Controller: otp_controller.dart → apiService.verifyEmail()
 
 Dart Method:
   apiService.verifyEmail({
     email: String,
     otp: String
-  }) â†’ Future&lt;DefaultModel&gt;
+  }) → Future&lt;DefaultModel&gt;
 
 HTTP Request:
   POST {{baseUrl}}/api/email_verify
@@ -90,15 +93,17 @@ Response (DefaultModel):
   {
     "error":   false,
     "message": "..."
-  }`);
+  }
+`);
 
-  add("sslide-1", "apis", "resendOtp", `// POST {{baseUrl}}/api/email_verify/resend
-// Controller: otp_controller.dart â†’ apiService.resendOtp()
+  add("sslide-1", "apis", "resendOtp", `
+// POST {{baseUrl}}/api/email_verify/resend
+// Controller: otp_controller.dart → apiService.resendOtp()
 
 Dart Method:
   apiService.resendOtp({
     email: String
-  }) â†’ Future&lt;DefaultModel&gt;
+  }) → Future&lt;DefaultModel&gt;
 
 HTTP Request:
   POST {{baseUrl}}/api/email_verify/resend
@@ -113,16 +118,18 @@ Response (DefaultModel):
   {
     "error":   false,
     "message": "..."
-  }`);
+  }
+`);
 
-  add("sslide-2", "apis", "createPassword", `// POST {{baseUrl}}/api/password/create
-// Controller: change_password_controller.dart â†’ apiService.createPassword()
+  add("sslide-2", "apis", "createPassword", `
+// POST {{baseUrl}}/api/password/create
+// Controller: change_password_controller.dart → apiService.createPassword()
 
 Dart Method:
   apiService.createPassword({
     email: String,
     password: String
-  }) â†’ Future&lt;DefaultModel&gt;
+  }) → Future&lt;DefaultModel&gt;
 
 HTTP Request:
   POST {{baseUrl}}/api/password/create
@@ -139,19 +146,21 @@ Response (DefaultModel):
   {
     "error":   false,
     "message": "..."
-  }`);
+  }
+`);
 
-  add("sslide-2", "apis", "loginUser", `// POST {{baseUrl}}/\${StaticData.apiLoginUrl}/realms/users/protocol/openid-connect/token
-// Controller: change_password_controller.dart â†’ apiService.loginUser()
+  add("sslide-2", "apis", "loginUser", `
+// POST {{baseUrl}}/${StaticData.apiLoginUrl}/realms/users/protocol/openid-connect/token
+// Controller: change_password_controller.dart → apiService.loginUser()
 
 Dart Method:
   apiService.loginUser({
     email: String,
     password: String
-  }) â†’ Future&lt;LoginModel?&gt;
+  }) → Future&lt;LoginModel?&gt;
 
 HTTP Request:
-  POST {{baseUrl}}/\${StaticData.apiLoginUrl}/realms/users/protocol/openid-connect/token
+  POST {{baseUrl}}/${StaticData.apiLoginUrl}/realms/users/protocol/openid-connect/token
   Content-Type: application/json
 
 Request Body:
@@ -166,13 +175,15 @@ Response (LoginModel?):
   {
     "error":   false,
     "message": "..."
-  }`);
+  }
+`);
 
-  add("sslide-2", "apis", "getUserProfile", `// GET {{baseUrl}}/api/profile
-// Controller: change_password_controller.dart â†’ apiService.getUserProfile()
+  add("sslide-2", "apis", "getUserProfile", `
+// GET {{baseUrl}}/api/profile
+// Controller: change_password_controller.dart → apiService.getUserProfile()
 
 Dart Method:
-  apiService.getUserProfile(()) â†’ Future&lt;ProfileData&gt;
+  apiService.getUserProfile(()) → Future&lt;ProfileData&gt;
 
 HTTP Request:
   GET {{baseUrl}}/api/profile
@@ -183,13 +194,15 @@ Response (ProfileData):
   {
     "error":   false,
     "message": "..."
-  }`);
+  }
+`);
 
-  add("sslide-2", "apis", "getBio", `// GET {{baseUrl}}/api/profile/bio
-// Controller: change_password_controller.dart â†’ apiService.getBio()
+  add("sslide-2", "apis", "getBio", `
+// GET {{baseUrl}}/api/profile/bio
+// Controller: change_password_controller.dart → apiService.getBio()
 
 Dart Method:
-  apiService.getBio(()) â†’ Future&lt;GetBioModel&gt;
+  apiService.getBio(()) → Future&lt;GetBioModel&gt;
 
 HTTP Request:
   GET {{baseUrl}}/api/profile/bio
@@ -200,13 +213,15 @@ Response (GetBioModel):
   {
     "error":   false,
     "message": "..."
-  }`);
+  }
+`);
 
-  add("sslide-3", "apis", "getCourseList", `// GET {{baseUrl}}/api/course
-// Controller: course_controller.dart â†’ apiService.getCourseList()
+  add("sslide-3", "apis", "getCourseList", `
+// GET {{baseUrl}}/api/course
+// Controller: course_controller.dart → apiService.getCourseList()
 
 Dart Method:
-  apiService.getCourseList(()) â†’ Future&lt;CourseListModel&gt;
+  apiService.getCourseList(()) → Future&lt;CourseListModel&gt;
 
 HTTP Request:
   GET {{baseUrl}}/api/course
@@ -217,15 +232,17 @@ Response (CourseListModel):
   {
     "error":   false,
     "message": "..."
-  }`);
+  }
+`);
 
-  add("sslide-3", "apis", "addPlayerCourse", `// POST {{baseUrl}}/api/new-user/create/ecg
-// Controller: course_controller.dart â†’ apiService.addPlayerCourse()
+  add("sslide-3", "apis", "addPlayerCourse", `
+// POST {{baseUrl}}/api/new-user/create/ecg
+// Controller: course_controller.dart → apiService.addPlayerCourse()
 
 Dart Method:
   apiService.addPlayerCourse({
     courseId: String
-  }) â†’ Future&lt;DefaultModel&gt;
+  }) → Future&lt;DefaultModel&gt;
 
 HTTP Request:
   POST {{baseUrl}}/api/new-user/create/ecg
@@ -244,10 +261,12 @@ Response (DefaultModel):
   {
     "error":   false,
     "message": "..."
-  }`);
+  }
+`);
 
-  add("sslide-3", "apis", "courseProShopDetails", `// POST {{baseUrl}}/api/course/contact-details/update
-// Controller: course_controller.dart â†’ apiService.courseProShopDetails()
+  add("sslide-3", "apis", "courseProShopDetails", `
+// POST {{baseUrl}}/api/course/contact-details/update
+// Controller: course_controller.dart → apiService.courseProShopDetails()
 
 Dart Method:
   apiService.courseProShopDetails({
@@ -256,7 +275,7 @@ Dart Method:
     headPro: String?,
     golfCoach: String?,
     proShoeEmail: String?
-  }) â†’ Future&lt;DefaultModel&gt;
+  }) → Future&lt;DefaultModel&gt;
 
 HTTP Request:
   POST {{baseUrl}}/api/course/contact-details/update
@@ -277,15 +296,17 @@ Response (DefaultModel):
   {
     "error":   false,
     "message": "..."
-  }`);
+  }
+`);
 
-  add("sslide-3", "apis", "deleteCourse", `// DELETE {{baseUrl}}/api/course/$id/delete
-// Controller: course_controller.dart â†’ apiService.deleteCourse()
+  add("sslide-3", "apis", "deleteCourse", `
+// DELETE {{baseUrl}}/api/course/$id/delete
+// Controller: course_controller.dart → apiService.deleteCourse()
 
 Dart Method:
   apiService.deleteCourse({
     id: String
-  }) â†’ Future&lt;DefaultModel&gt;
+  }) → Future&lt;DefaultModel&gt;
 
 HTTP Request:
   DELETE {{baseUrl}}/api/course/$id/delete
@@ -296,17 +317,19 @@ Response (DefaultModel):
   {
     "error":   false,
     "message": "..."
-  }`);
+  }
+`);
 
-  add("sslide-3", "apis", "getFilterCourseList", `// GET {{baseUrl}}/api/course?city=$city&state=$state&country=$countryCode
-// Controller: course_controller.dart â†’ apiService.getFilterCourseList()
+  add("sslide-3", "apis", "getFilterCourseList", `
+// GET {{baseUrl}}/api/course?city=$city&state=$state&country=$countryCode
+// Controller: course_controller.dart → apiService.getFilterCourseList()
 
 Dart Method:
   apiService.getFilterCourseList({
     city: String,
     state: String,
     countryCode: String
-  }) â†’ Future&lt;CourseListModel&gt;
+  }) → Future&lt;CourseListModel&gt;
 
 HTTP Request:
   GET {{baseUrl}}/api/course?city=$city&state=$state&country=$countryCode
@@ -317,5 +340,6 @@ Response (CourseListModel):
   {
     "error":   false,
     "message": "..."
-  }`);
+  }
+`);
 })();

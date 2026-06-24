@@ -10,14 +10,15 @@ window.CODE_DATA = window.CODE_DATA || {};
     window.CODE_DATA[k][s].push({ name: n, code: c });
   }
 
-  add("agenda-detail", "apis", "deleteEvent", `// DELETE {{baseUrl}}/api/event/$id/delete
-// Controller: home_controller.dart â†’ apiService.deleteEvent()
+  add("agenda-detail", "apis", "deleteEvent", `
+// DELETE {{baseUrl}}/api/event/$id/delete
+// Controller: home_controller.dart → apiService.deleteEvent()
 
 Dart Method:
   apiService.deleteEvent({
     id: String,
     organizationId: String
-  }) â†’ Future&lt;DefaultModel&gt;
+  }) → Future&lt;DefaultModel&gt;
 
 HTTP Request:
   DELETE {{baseUrl}}/api/event/$id/delete
@@ -28,16 +29,18 @@ Response (DefaultModel):
   {
     "error":   false,
     "message": "..."
-  }`);
+  }
+`);
 
-  add("agenda-detail", "apis", "deleteGame", `// DELETE {{baseUrl}}/api/games/$id/delete
-// Controller: home_controller.dart â†’ apiService.deleteGame()
+  add("agenda-detail", "apis", "deleteGame", `
+// DELETE {{baseUrl}}/api/games/$id/delete
+// Controller: home_controller.dart → apiService.deleteGame()
 
 Dart Method:
   apiService.deleteGame({
     id: String,
     organizationId: String
-  }) â†’ Future&lt;DefaultModel&gt;
+  }) → Future&lt;DefaultModel&gt;
 
 HTTP Request:
   DELETE {{baseUrl}}/api/games/$id/delete
@@ -48,13 +51,15 @@ Response (DefaultModel):
   {
     "error":   false,
     "message": "..."
-  }`);
+  }
+`);
 
-  add("agenda-detail", "apis", "eventList", `// GET {{baseUrl}}/api/v2/event/list
-// Controller: home_controller.dart â†’ apiService.eventList()
+  add("agenda-detail", "apis", "eventList", `
+// GET {{baseUrl}}/api/v2/event/list
+// Controller: home_controller.dart → apiService.eventList()
 
 Dart Method:
-  apiService.eventList(()) â†’ Future&lt;EventListModel&gt;
+  apiService.eventList(()) → Future&lt;EventListModel&gt;
 
 HTTP Request:
   GET {{baseUrl}}/api/v2/event/list
@@ -65,13 +70,15 @@ Response (EventListModel):
   {
     "error":   false,
     "message": "..."
-  }`);
+  }
+`);
 
-  add("agenda-detail", "apis", "getMyEventList", `// GET {{baseUrl}}/api/v2/event/joined/list
-// Controller: home_controller.dart â†’ apiService.getMyEventList()
+  add("agenda-detail", "apis", "getMyEventList", `
+// GET {{baseUrl}}/api/v2/event/joined/list
+// Controller: home_controller.dart → apiService.getMyEventList()
 
 Dart Method:
-  apiService.getMyEventList(()) â†’ Future&lt;MyEventList&gt;
+  apiService.getMyEventList(()) → Future&lt;MyEventList&gt;
 
 HTTP Request:
   GET {{baseUrl}}/api/v2/event/joined/list
@@ -82,13 +89,15 @@ Response (MyEventList):
   {
     "error":   false,
     "message": "..."
-  }`);
+  }
+`);
 
-  add("agenda-detail", "apis", "getMyGameList", `// GET {{baseUrl}}/api/v2/games/my
-// Controller: home_controller.dart â†’ apiService.getMyGameList()
+  add("agenda-detail", "apis", "getMyGameList", `
+// GET {{baseUrl}}/api/v2/games/my
+// Controller: home_controller.dart → apiService.getMyGameList()
 
 Dart Method:
-  apiService.getMyGameList(()) â†’ Future&lt;UpcomingAndPastModel&gt;
+  apiService.getMyGameList(()) → Future&lt;UpcomingAndPastModel&gt;
 
 HTTP Request:
   GET {{baseUrl}}/api/v2/games/my
@@ -99,13 +108,15 @@ Response (UpcomingAndPastModel):
   {
     "error":   false,
     "message": "..."
-  }`);
+  }
+`);
 
-  add("agenda-detail", "apis", "getPreference", `// GET {{baseUrl}}/api/setting/preferences
-// Controller: home_controller.dart â†’ apiService.getPreference()
+  add("agenda-detail", "apis", "getPreference", `
+// GET {{baseUrl}}/api/setting/preferences
+// Controller: home_controller.dart → apiService.getPreference()
 
 Dart Method:
-  apiService.getPreference(()) â†’ Future&lt;GetPreferenceModel&gt;
+  apiService.getPreference(()) → Future&lt;GetPreferenceModel&gt;
 
 HTTP Request:
   GET {{baseUrl}}/api/setting/preferences
@@ -116,13 +127,15 @@ Response (GetPreferenceModel):
   {
     "error":   false,
     "message": "..."
-  }`);
+  }
+`);
 
-  add("agenda-detail", "apis", "getUpcomingAgenda", `// GET {{baseUrl}}/api/v2/agenda/my/list/saas
-// Controller: home_controller.dart â†’ apiService.getUpcomingAgenda()
+  add("agenda-detail", "apis", "getUpcomingAgenda", `
+// GET {{baseUrl}}/api/v2/agenda/my/list/saas
+// Controller: home_controller.dart → apiService.getUpcomingAgenda()
 
 Dart Method:
-  apiService.getUpcomingAgenda(()) â†’ Future&lt;MyAgenda&gt;
+  apiService.getUpcomingAgenda(()) → Future&lt;MyAgenda&gt;
 
 HTTP Request:
   GET {{baseUrl}}/api/v2/agenda/my/list/saas
@@ -133,13 +146,15 @@ Response (MyAgenda):
   {
     "error":   false,
     "message": "..."
-  }`);
+  }
+`);
 
-  add("agenda-detail", "apis", "getUpcomingGameList", `// GET {{baseUrl}}/api/v2/games/upcoming
-// Controller: home_controller.dart â†’ apiService.getUpcomingGameList()
+  add("agenda-detail", "apis", "getUpcomingGameList", `
+// GET {{baseUrl}}/api/v2/games/upcoming
+// Controller: home_controller.dart → apiService.getUpcomingGameList()
 
 Dart Method:
-  apiService.getUpcomingGameList(()) â†’ Future&lt;UpcomingAndPastModel&gt;
+  apiService.getUpcomingGameList(()) → Future&lt;UpcomingAndPastModel&gt;
 
 HTTP Request:
   GET {{baseUrl}}/api/v2/games/upcoming
@@ -150,13 +165,15 @@ Response (UpcomingAndPastModel):
   {
     "error":   false,
     "message": "..."
-  }`);
+  }
+`);
 
-  add("agenda-detail", "apis", "upcomingEventList", `// GET {{baseUrl}}/api/v2/event/upcoming/list
-// Controller: home_controller.dart â†’ apiService.upcomingEventList()
+  add("agenda-detail", "apis", "upcomingEventList", `
+// GET {{baseUrl}}/api/v2/event/upcoming/list
+// Controller: home_controller.dart → apiService.upcomingEventList()
 
 Dart Method:
-  apiService.upcomingEventList(()) â†’ Future&lt;UpcomingPastEventModel&gt;
+  apiService.upcomingEventList(()) → Future&lt;UpcomingPastEventModel&gt;
 
 HTTP Request:
   GET {{baseUrl}}/api/v2/event/upcoming/list
@@ -167,5 +184,6 @@ Response (UpcomingPastEventModel):
   {
     "error":   false,
     "message": "..."
-  }`);
+  }
+`);
 })();

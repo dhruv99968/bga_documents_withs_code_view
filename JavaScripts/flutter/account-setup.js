@@ -10,7 +10,10 @@ window.CODE_DATA = window.CODE_DATA || {};
     window.CODE_DATA[k][s].push({ name: n, code: c });
   }
 
-  add("sslide-0", "flutter", "signup_screen.dart", `import 'package:flutter/material.dart';
+  add("sslide-0", "flutter", "signup_screen.dart", `
+dhruv
+import 'package:flutter/material.dart';
+
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -116,7 +119,7 @@ class SignUpScreen extends GetView<SignUpController> {
                         ),
                         Obx(()=> IntlPhoneField(
                           key: ValueKey(
-                              '\${controller.initialCountryCode.value}_\${controller.initialPhoneNumber.value}'),
+                              '${controller.initialCountryCode.value}_${controller.initialPhoneNumber.value}'),
                           initialValue: controller.initialPhoneNumber.value,
                           initialCountryCode: controller.initialCountryCode.value,
                           controller: controller.phoneController,
@@ -172,16 +175,16 @@ class SignUpScreen extends GetView<SignUpController> {
                           onChanged: (phone) {
                             // fires when number text changes
                             controller.fullPhoneNumber = phone.completeNumber;
-                            debugPrint('completeNumber: \${phone.completeNumber}');
+                            debugPrint('completeNumber: ${phone.completeNumber}');
                           },
                           onCountryChanged: (country) {
                             // fires when user picks a different country flag
-                            debugPrint('country changed: \${country.dialCode}'); // e.g. 91
-                            debugPrint('country iso: \${country.code}');          // e.g. IN
+                            debugPrint('country changed: ${country.dialCode}'); // e.g. 91
+                            debugPrint('country iso: ${country.code}');          // e.g. IN
 
                             // rebuild fullPhoneNumber with new dial code + existing number
-                            controller.fullPhoneNumber = '+\${country.dialCode}\${controller.phoneController.value}';
-                            debugPrint('new fullPhoneNumber: \${controller.fullPhoneNumber}');
+                            controller.fullPhoneNumber = '+${country.dialCode}${controller.phoneController.value}';
+                            debugPrint('new fullPhoneNumber: ${controller.fullPhoneNumber}');
                           },
 
                         )),
@@ -229,7 +232,7 @@ class SignUpScreen extends GetView<SignUpController> {
                 child: RichText(
                     textAlign: TextAlign.center,
                     text: TextSpan(children: [
-                      TextSpan(text: "Â© \${DateTime.now().year} Dasinfomedia. All rights reserved", style: CustomStyle.paragraph3LightStyle),
+                      TextSpan(text: "© ${DateTime.now().year} Dasinfomedia. All rights reserved", style: CustomStyle.paragraph3LightStyle),
                     ])),
               ),
               SizedBox(
@@ -241,9 +244,11 @@ class SignUpScreen extends GetView<SignUpController> {
       ),
     );
   }
-}`);
+}
+`);
 
-  add("sslide-0", "flutter", "signup_controller.dart", `import 'package:bga_flutter_app/apis/api_services.dart';
+  add("sslide-0", "flutter", "signup_controller.dart", `
+import 'package:bga_flutter_app/apis/api_services.dart';
 import 'package:bga_flutter_app/utils/show_progress_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
@@ -357,55 +362,11 @@ class SignUpController extends GetxController {
     super.onClose();
   }
 
-
-
-
-
-  void changePassword() async{
-    if(formStateKey.currentState!.validate()){
-
-      // var loginEmail=GetStorageManager.getValue(prefLoginEmail, "");
-
-      try {
-        showProgressDialog.show();
-        var response = await apiService.createPassword(email: email,password: confirmPasswordController.text.trim(),);
-
-        // Debug prints
-        print("response => $response");
-        print("response.error => \${response.error}");
-        print("response.error.runtimeType => \${response.error.runtimeType}");
-        if (response.error == false) {
-
-
-          await login();
-
-          ToastMessage.success(message: response.message);
-
-
-
-          // forgotEmailController.clear();
-          // Get.back();
-        } else {
-          showProgressDialog.hide();
-
-          ToastMessage.error(message: response.message);
-          // Get.back();
-
-        }
-      } catch (error) {
-
-        showProgressDialog.hide();
-        print("error   => $error ");
-
-        ToastMessage.error(message: "$error");
-      }
-
-
-    }
-  }
-}`);
+}
+`);
 
   add("sslide-1", "flutter", "otp_screen.dart", `
+
 import 'package:bga_flutter_app/resources/ripple_click.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -423,8 +384,8 @@ class OtpScreen extends GetView<OtpController>  {
   const OtpScreen({super.key});
   @override
   Widget build(BuildContext context) {
-    print("email ====> \${GetStorageManager.getValue(prefLoginEmail, "")}");
-    print("email => \${controller.email}");
+    print("email ====> ${GetStorageManager.getValue(prefLoginEmail, "")}");
+    print("email => ${controller.email}");
 
 
     var width = MediaQuery.of(context).size.width;
@@ -488,7 +449,7 @@ class OtpScreen extends GetView<OtpController>  {
                         onChanged: (value){
                           controller.code=value;
 
-                          debugPrint("pin--\${controller.pinController.text}");
+                          debugPrint("pin--${controller.pinController.text}");
                         },
                         // cursor: Column(
                         //   mainAxisAlignment: MainAxisAlignment.end,
@@ -536,7 +497,7 @@ class OtpScreen extends GetView<OtpController>  {
                 padding: const EdgeInsets.only(top: 15),
                 width: width,
                 alignment: Alignment.center,
-                child: const Text("Didnâ€™t Receive the Code",
+                child: const Text("Didn’t Receive the Code",
                 style: TextStyle(
                     fontSize: 13,color: ColorCode.paragraphLightColor,fontWeight: FontWeight.w400
                 ),
@@ -571,9 +532,11 @@ class OtpScreen extends GetView<OtpController>  {
       ),
     );
   }
-}`);
+}
+`);
 
-  add("sslide-1", "flutter", "otp_controller.dart", `import 'package:bga_flutter_app/utils/toast_message.dart';
+  add("sslide-1", "flutter", "otp_controller.dart", `
+import 'package:bga_flutter_app/utils/toast_message.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
@@ -601,7 +564,7 @@ class OtpController extends GetxController {
     // TODO: implement onInit
     super.onInit();
     var argument = Get.arguments ?? {};
-    print("argument : \${argument}");
+    print("argument : ${argument}");
     if(argument!=null && argument["viewType"]=="forgotPassword" ){
       viewType=argument["viewType"] ??"";
       // isPlayerCourse.value=true;
@@ -643,7 +606,7 @@ class OtpController extends GetxController {
         }
       } else {
         ToastMessage.error(message: response.message);
-        print("error msg => \${response.message}");
+        print("error msg => ${response.message}");
       }
     }
   }
@@ -659,9 +622,11 @@ class OtpController extends GetxController {
         ToastMessage.error(message: response.message);
       }
     }
-}`);
+}
+`);
 
-  add("sslide-2", "flutter", "change_password_screen.dart", `import 'package:bga_flutter_app/resources/ripple_click.dart';
+  add("sslide-2", "flutter", "change_password_screen.dart", `
+import 'package:bga_flutter_app/resources/ripple_click.dart';
 import 'package:bga_flutter_app/utils/validation_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -681,7 +646,7 @@ class ChangePasswordScreen extends GetView<ChangePasswordController> {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
 
-    print("email ==> \${controller.email}");
+    print("email ==> ${controller.email}");
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -807,7 +772,7 @@ class ChangePasswordScreen extends GetView<ChangePasswordController> {
                 //   child: RichText(
                 //       textAlign: TextAlign.center,
                 //       text: TextSpan(children: [
-                //         TextSpan(text: "Â© \${GetStorageManager.getValue(prefYear, 2023)} Dasinfomedia. All rights reserved", style: CustomStyle.signUpSmallText),
+                //         TextSpan(text: "© ${GetStorageManager.getValue(prefYear, 2023)} Dasinfomedia. All rights reserved", style: CustomStyle.signUpSmallText),
                 //         TextSpan(text: " Terms & Conditions", style: CustomStyle.signUpSmallColor),
                 //         TextSpan(text: " and ", style: CustomStyle.signUpSmallText),
                 //         TextSpan(text: "Privacy Policy", style: CustomStyle.signUpSmallColor),
@@ -823,9 +788,11 @@ class ChangePasswordScreen extends GetView<ChangePasswordController> {
       ),
     );
   }
-}`);
+}
+`);
 
-  add("sslide-2", "flutter", "change_password_controller.dart", `import 'dart:convert';
+  add("sslide-2", "flutter", "change_password_controller.dart", `
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -859,7 +826,7 @@ class ChangePasswordController extends GetxController{
     super.onInit();
 
     var argument = Get.arguments ?? {};
-    print("argument : \${argument}");
+    print("argument : ${argument}");
     if(argument!=null && argument["viewType"]=="forgotPassword" ){
       viewType=argument["viewType"] ??"";
       // isPlayerCourse.value=true;
@@ -898,8 +865,8 @@ class ChangePasswordController extends GetxController{
 
           // Debug prints
           print("response => $response");
-          print("response.error => \${response.error}");
-          print("response.error.runtimeType => \${response.error.runtimeType}");
+          print("response.error => ${response.error}");
+          print("response.error.runtimeType => ${response.error.runtimeType}");
           if (response.error == false) {
 
 
@@ -940,8 +907,8 @@ class ChangePasswordController extends GetxController{
 
 
         // isWrong.value = false;
-        // debugPrint("email--\${emailController.text.toString()}");
-        // debugPrint("password-\${passwordController.text.toString()}");
+        // debugPrint("email--${emailController.text.toString()}");
+        // debugPrint("password-${passwordController.text.toString()}");
 
     // var loginEmail=GetStorageManager.getValue(prefLoginEmail, "");
 
@@ -961,7 +928,7 @@ class ChangePasswordController extends GetxController{
           final payload = _decodeBase64(parts[1]);
           final decodedPayload = json.decode(payload);
           debugPrint('Decoded Payload: $decodedPayload');
-          print("user verified ==> \${decodedPayload['user_verified']}");
+          print("user verified ==> ${decodedPayload['user_verified']}");
 
           var verified = decodedPayload.containsKey('user_verified') ? decodedPayload['user_verified'] == "true" : true;
           print("user  ==> $verified");
@@ -982,9 +949,9 @@ class ChangePasswordController extends GetxController{
               GetStorageManager.setValue(prefLoginEmail, email);
               GetStorageManager.setValue(prefLoginPassword, confirmPasswordController.text);
 
-              print("email => \${GetStorageManager.getValue(prefLoginEmail, "")}");
-              print("password => \${GetStorageManager.getValue(prefLoginPassword, "")}");
-              print("is remember => \${GetStorageManager.getValue(prefIsRemember, false)}");
+              print("email => ${GetStorageManager.getValue(prefLoginEmail, "")}");
+              print("password => ${GetStorageManager.getValue(prefLoginPassword, "")}");
+              print("is remember => ${GetStorageManager.getValue(prefIsRemember, false)}");
             }
             else{
               GetStorageManager.setValue(prefIsRemember,false);
@@ -1055,9 +1022,9 @@ class ChangePasswordController extends GetxController{
         GetStorageManager.setValue(prefRookieOfTheYear, getBio.data?.rookieOfTheYear ?? "");
         GetStorageManager.setValue(prefRank, getBio.data?.rank ?? "");
 
-        debugPrint("get user role : \${getData.data?.role}");
-        debugPrint("dimg==\${getData.data?.email}");
-        // print("name--\${profileData?.data?.email}");
+        debugPrint("get user role : ${getData.data?.role}");
+        debugPrint("dimg==${getData.data?.email}");
+        // print("name--${profileData?.data?.email}");
       } else {
         ToastMessage.error(message: getData.message);
         // ToastMessage.error(message: getData.message);
@@ -1073,9 +1040,11 @@ class ChangePasswordController extends GetxController{
     }
   }
 
-}`);
+}
+`);
 
-  add("sslide-3", "flutter", "course_screen.dart", `import 'package:bga_flutter_app/controllers/course_controller/course_controller.dart';
+  add("sslide-3", "flutter", "course_screen.dart", `
+import 'package:bga_flutter_app/controllers/course_controller/course_controller.dart';
 import 'package:bga_flutter_app/views/course/course_list_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -1201,7 +1170,7 @@ class CoursesScreen extends GetView<CourseController> {
                                             CourseListItem(
                                                 courseList: controller.coursesList[index],
                                                 proshopTap: () {
-                                                  controller.showProShopContactBottomSheet(Get.width*0.9,controller.coursesList[index].id.toString());
+                                                  controller.showProShopContactBottomSheet(Get.width*0.9,controller.coursesList[index]);
                                                 }):
                                                 Obx(()=>FilterCourseList(
                                                   courseList: controller.coursesList[index],
@@ -1305,7 +1274,7 @@ class CoursesScreen extends GetView<CourseController> {
                 // Obx(() => BottomNavigationView(changeTabIndex: controller.changeTabIndex, changeTabIndexValue: controller.tabIndex.value)),
                 drawer:  Obx(() {
                   if (controller.isPlayerCourse.value) {
-                    return const SizedBox.shrink(); // ðŸ‘ˆ EMPTY widget
+                    return const SizedBox.shrink(); // 👈 EMPTY widget
                   }
                   return DrawerScreen();
                 }),
@@ -1318,9 +1287,11 @@ class CoursesScreen extends GetView<CourseController> {
       ],
     );
   }
-}`);
+}
+`);
 
-  add("sslide-3", "flutter", "course_controller.dart", `import 'dart:math';
+  add("sslide-3", "flutter", "course_controller.dart", `
+import 'dart:math';
 
 import 'package:bga_flutter_app/model/course/course_list_model.dart';
 import 'package:bga_flutter_app/utils/toast_message.dart';
@@ -1434,7 +1405,7 @@ class CourseController extends GetxController {
       onConfirm: () async {
         await Geolocator.openLocationSettings();
 
-        // ðŸ” Wait and re-check when user comes back
+        // 🔁 Wait and re-check when user comes back
         _waitForLocationEnable();
       },
     );
@@ -1519,10 +1490,10 @@ class CourseController extends GetxController {
       return false;
     }
 
-    debugPrint("City: \${locationData['city']}");
-    debugPrint("State: \${locationData['state']}");
-    debugPrint("Country: \${locationData['country']}");
-    debugPrint("countryCode: \${locationData['countryCode']}");
+    debugPrint("City: ${locationData['city']}");
+    debugPrint("State: ${locationData['state']}");
+    debugPrint("Country: ${locationData['country']}");
+    debugPrint("countryCode: ${locationData['countryCode']}");
     city=locationData['city']!;
     state=locationData['state']!;
     // city=locationData['country']!;
@@ -1539,7 +1510,7 @@ class CourseController extends GetxController {
   //
   //   Get.dialog(
   //     WillPopScope(
-  //       onWillPop: () async => false, // ðŸš« disable back button
+  //       onWillPop: () async => false, // 🚫 disable back button
   //       child: AlertDialog(
   //         title: const Text("Location Required"),
   //         content: const Text(
@@ -1556,7 +1527,7 @@ class CourseController extends GetxController {
   //         ],
   //       ),
   //     ),
-  //     barrierDismissible: false, // ðŸš« disable outside tap
+  //     barrierDismissible: false, // 🚫 disable outside tap
   //   );
   // }
 
@@ -1594,7 +1565,7 @@ class CourseController extends GetxController {
         }
       } else {
         // ToastMessage.error(message: response.message);
-        debugPrint("getMyEvents : \${response.message}");
+        debugPrint("getMyEvents : ${response.message}");
         if (showProgress) {
           progressDialog.hide();
         }
@@ -1618,7 +1589,7 @@ class CourseController extends GetxController {
         Get.offAllNamed(RoutsNames.mainScreen);
       } else {
         // ToastMessage.error(message: response.message);
-        debugPrint("error : \${response.message}");
+        debugPrint("error : ${response.message}");
         if (showProgress) {
           progressDialog.hide();
         }
@@ -1648,7 +1619,7 @@ class CourseController extends GetxController {
         }
       } else {
         // ToastMessage.error(message: response.message);
-        debugPrint("getMyEvents : \${response.message}");
+        debugPrint("getMyEvents : ${response.message}");
         if (showProgress) {
           progressDialog.hide();
         }
@@ -1684,6 +1655,7 @@ class CourseController extends GetxController {
       // ToastMessage.error(message: "$error");
     }
   }
+
   Future<void> courseProShopDetails({required String courseId,
     String? directorOfGolf,
     String? headPro,
@@ -1726,11 +1698,11 @@ class CourseController extends GetxController {
   }
 
 
-  showProShopContactBottomSheet(double width, String courseId) {
-    final directorController = TextEditingController();
-    final headProController = TextEditingController();
-    final golfCoachController = TextEditingController();
-    final proShopEmailController = TextEditingController();
+  showProShopContactBottomSheet(double width, CourseList courseList) {
+    final directorController = TextEditingController(text: courseList.directorOfGolf ?? '');
+    final headProController = TextEditingController(text: courseList.headPro ?? '');
+    final golfCoachController = TextEditingController(text: courseList.golfCoach ?? '');
+    final proShopEmailController = TextEditingController(text: courseList.proShopEmail ?? '');
     final formKey = GlobalKey<FormState>();
 
     final fieldWidth = isWebScreen() ? width * 0.50 : width;
@@ -1853,7 +1825,7 @@ class CourseController extends GetxController {
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
                       courseProShopDetails(
-                        courseId: courseId,
+                        courseId: courseList.id.toString(),
                         proShoeEmail: proShopEmailController.text,
                         headPro: headProController.text,
                         golfCoach: golfCoachController.text,
@@ -1868,5 +1840,7 @@ class CourseController extends GetxController {
         ),
       ),
     );
-  }}`);
+  }
+}
+`);
 })();

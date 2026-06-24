@@ -10,8 +10,9 @@ window.CODE_DATA = window.CODE_DATA || {};
     window.CODE_DATA[k][s].push({ name: n, code: c });
   }
 
-  add("addbets-detail", "apis", "addBet", `// POST {{baseUrl}}/api/bets/create
-// Controller: add_bet_bottom_sheet_controller.dart â†’ apiService.addBet()
+  add("addbets-detail", "apis", "addBet", `
+// POST {{baseUrl}}/api/bets/create
+// Controller: add_bet_bottom_sheet_controller.dart → apiService.addBet()
 
 Dart Method:
   apiService.addBet({
@@ -28,7 +29,7 @@ Dart Method:
     playerId: String?,
     thresholdLine: String?,
     teamNo: String?
-  }) â†’ Future&lt;DefaultModel&gt;
+  }) → Future&lt;DefaultModel&gt;
 
 HTTP Request:
   POST {{baseUrl}}/api/bets/create
@@ -56,15 +57,17 @@ Response (DefaultModel):
   {
     "error":   false,
     "message": "..."
-  }`);
+  }
+`);
 
-  add("addbets-detail", "apis", "getBetTeeSheetPlayer", `// GET {{baseUrl}}/api/teesheet/course/$courseId/groups/details?game_type=$gameType
-// Controller: add_bet_bottom_sheet_controller.dart â†’ apiService.getBetTeeSheetPlayer()
+  add("addbets-detail", "apis", "getBetTeeSheetPlayer", `
+// GET {{baseUrl}}/api/teesheet/course/$courseId/groups/details?game_type=$gameType
+// Controller: add_bet_bottom_sheet_controller.dart → apiService.getBetTeeSheetPlayer()
 
 Dart Method:
   apiService.getBetTeeSheetPlayer({
     teeSheetId: String?
-  }) â†’ Future&lt;BetsTeesheetPlayerListModel&gt;
+  }) → Future&lt;BetsTeesheetPlayerListModel&gt;
 
 HTTP Request:
   GET {{baseUrl}}/api/teesheet/course/$courseId/groups/details?game_type=$gameType
@@ -75,16 +78,18 @@ Response (BetsTeesheetPlayerListModel):
   {
     "error":   false,
     "message": "..."
-  }`);
+  }
+`);
 
-  add("addbets-detail", "apis", "getGameDetails", `// GET {{baseUrl}}/api/games/$gameId/details
-// Controller: add_bet_bottom_sheet_controller.dart â†’ apiService.getGameDetails()
+  add("addbets-detail", "apis", "getGameDetails", `
+// GET {{baseUrl}}/api/games/$gameId/details
+// Controller: add_bet_bottom_sheet_controller.dart → apiService.getGameDetails()
 
 Dart Method:
   apiService.getGameDetails({
     gameId: int,
     organizationId: String?
-  }) â†’ Future&lt;GameDetails&gt;
+  }) → Future&lt;GameDetails&gt;
 
 HTTP Request:
   GET {{baseUrl}}/api/games/$gameId/details
@@ -95,13 +100,15 @@ Response (GameDetails):
   {
     "error":   false,
     "message": "..."
-  }`);
+  }
+`);
 
-  add("addbets-detail", "apis", "notStartedGameList", `// GET {{baseUrl}}/api/games/not-started
-// Controller: add_bet_bottom_sheet_controller.dart â†’ apiService.notStartedGameList()
+  add("addbets-detail", "apis", "notStartedGameList", `
+// GET {{baseUrl}}/api/games/not-started
+// Controller: add_bet_bottom_sheet_controller.dart → apiService.notStartedGameList()
 
 Dart Method:
-  apiService.notStartedGameList(()) â†’ Future&lt;NotStartedGameModel&gt;
+  apiService.notStartedGameList(()) → Future&lt;NotStartedGameModel&gt;
 
 HTTP Request:
   GET {{baseUrl}}/api/games/not-started
@@ -112,5 +119,6 @@ Response (NotStartedGameModel):
   {
     "error":   false,
     "message": "..."
-  }`);
+  }
+`);
 })();

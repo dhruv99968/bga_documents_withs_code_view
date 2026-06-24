@@ -231,7 +231,7 @@ class CalcuttaRoundSelectPlayerBottomSheetController extends GetxController {
     sharedNote("add_score_controller.dart", "asslide-0"));
 
   // ── Step 5 — Player Selection ──────────────────────────────
-  add("asslide-calcutta-5", "flutter", "calcutta_select_player_bottom_sheet.dart", `import 'package:bga_flutter_app/controllers/add_score/calcutta_player_select_bottom_controller.dart';
+  add("asslide-calcutta-5", "flutter", "caluctta_select_player_bottom_sheet.dart", `import 'package:bga_flutter_app/controllers/add_score/calcutta_player_select_bottom_controller.dart';
 import 'package:bga_flutter_app/resources/custom_button.dart';
 import 'package:bga_flutter_app/resources/custom_style.dart';
 import 'package:flutter/material.dart';
@@ -464,7 +464,7 @@ class CalcuttaFoursomeMatchConfigBottomSheetController extends GetxController {
 `);
 
   // ── Step 8 — Generate Matches ─────────────────────────────
-  add("asslide-calcutta-8", "flutter", "calcutta_generate_match_config_bottom_sheet.dart", `import 'package:bga_flutter_app/controllers/add_score/calcutta_generate_match_config_bottom_controller.dart';
+  add("asslide-calcutta-8", "flutter", "calcutta_genrate_match_config_bottom_sheet.dart", `import 'package:bga_flutter_app/controllers/add_score/calcutta_generate_match_config_bottom_controller.dart';
 import 'package:bga_flutter_app/resources/custom_button.dart';
 import 'package:bga_flutter_app/resources/custom_style.dart';
 import 'package:flutter/material.dart';
