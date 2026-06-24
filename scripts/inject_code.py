@@ -326,6 +326,11 @@ FILE_MAP = [
 # ──────────────────────────────────────────────────────────────────────────
 
 EXTERNAL_JS_TARGETS = {
+    # ── Account Setup (sslide-0 … sslide-3) ──
+    "sslide-0": {"flutter": "JavaScripts/flutter/account-setup.js", "apis": "JavaScripts/api/account-setup.js"},
+    "sslide-1": {"flutter": "JavaScripts/flutter/account-setup.js", "apis": "JavaScripts/api/account-setup.js"},
+    "sslide-2": {"flutter": "JavaScripts/flutter/account-setup.js", "apis": "JavaScripts/api/account-setup.js"},
+    "sslide-3": {"flutter": "JavaScripts/flutter/account-setup.js", "apis": "JavaScripts/api/account-setup.js"},
     # ── Quick Start Wizard (wslide-0 … wslide-9) ──
     "wslide-0":  {"flutter": "JavaScripts/flutter/quick-start-wizard.js", "apis": "JavaScripts/api/quick-start-wizard.js"},
     "wslide-1":  {"flutter": "JavaScripts/flutter/quick-start-wizard.js", "apis": "JavaScripts/api/quick-start-wizard.js"},
@@ -350,6 +355,23 @@ EXTERNAL_JS_TARGETS = {
     "asslide-9":  {"flutter": "JavaScripts/flutter/add-score.js", "apis": "JavaScripts/api/add-score-common.js"},
     "asslide-10": {"flutter": "JavaScripts/flutter/add-score.js", "apis": "JavaScripts/api/add-score-common.js"},
     "asslide-11": {"flutter": "JavaScripts/flutter/add-score.js", "apis": "JavaScripts/api/add-score-common.js"},
+    # ── Create Game Wizard (cgslide-0 … cgslide-9) ──
+    "cgslide-0": {"flutter": "JavaScripts/flutter/create-game-wizard.js", "apis": "JavaScripts/api/create-game-wizard.js"},
+    "cgslide-1": {"flutter": "JavaScripts/flutter/create-game-wizard.js", "apis": "JavaScripts/api/create-game-wizard.js"},
+    "cgslide-2": {"flutter": "JavaScripts/flutter/create-game-wizard.js", "apis": "JavaScripts/api/create-game-wizard.js"},
+    "cgslide-3": {"flutter": "JavaScripts/flutter/create-game-wizard.js", "apis": "JavaScripts/api/create-game-wizard.js"},
+    "cgslide-4": {"flutter": "JavaScripts/flutter/create-game-wizard.js", "apis": "JavaScripts/api/create-game-wizard.js"},
+    "cgslide-5": {"flutter": "JavaScripts/flutter/create-game-wizard.js", "apis": "JavaScripts/api/create-game-wizard.js"},
+    "cgslide-6": {"flutter": "JavaScripts/flutter/create-game-wizard.js", "apis": "JavaScripts/api/create-game-wizard.js"},
+    "cgslide-7": {"flutter": "JavaScripts/flutter/create-game-wizard.js", "apis": "JavaScripts/api/create-game-wizard.js"},
+    "cgslide-8": {"flutter": "JavaScripts/flutter/create-game-wizard.js", "apis": "JavaScripts/api/create-game-wizard.js"},
+    "cgslide-9": {"flutter": "JavaScripts/flutter/create-game-wizard.js", "apis": "JavaScripts/api/create-game-wizard.js"},
+    # ── Detail screens ──
+    "home-detail":     {"flutter": "JavaScripts/flutter/home-detail.js",     "apis": "JavaScripts/api/home-detail.js"},
+    "agenda-detail":   {"flutter": "JavaScripts/flutter/agenda-detail.js",   "apis": "JavaScripts/api/agenda-detail.js"},
+    "viewgame-detail": {"flutter": "JavaScripts/flutter/viewgame-detail.js", "apis": "JavaScripts/api/viewgame-detail.js"},
+    "addbets-detail":  {"flutter": "JavaScripts/flutter/addbets-detail.js",  "apis": "JavaScripts/api/addbets-detail.js"},
+    "welcome-detail":  {"flutter": "JavaScripts/flutter/welcome-detail.js",  "apis": "JavaScripts/api/welcome-detail.js"},
     # ── View Results (vrslide-0 … vrslide-3) ──
     "vrslide-0": {"flutter": "JavaScripts/flutter/view-results.js", "apis": "JavaScripts/api/view-results.js"},
     "vrslide-1": {"flutter": "JavaScripts/flutter/view-results.js", "apis": "JavaScripts/api/view-results.js"},

@@ -1,5 +1,5 @@
 // ============================================================
-// API Docs — Quick Start Wizard (wslide-0 … wslide-9)
+// API Docs — Welcome Detail (welcome-detail)
 // ============================================================
 
 window.CODE_DATA = window.CODE_DATA || {};
