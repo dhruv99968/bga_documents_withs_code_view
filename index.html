@@ -841,9 +841,13 @@
                                 <div class="wsi-num">01</div>
                                 <div class="wsi-body">
                                     <div class="wsi-title">Create or Select Event</div>
+                                    <div class="wsi-desc">Choose an existing event from the list or tap <strong>Create Event</strong> to set up a new one. Events group multiple games together under one umbrella.</div>
                                 </div>
                                 <div class="wsi-icon"><i class="bi bi-calendar-event"></i></div>
                             </div>
+<!--                            <div class="wizard-slide-img"><div class="image-placeholder">-->
+<!--                                <img src="images/selectEvent.png" alt="Create or Select Event" class="app-image" />-->
+<!--                            </div></div>-->
                             <div class="code-preview-mount" data-key="cgslide-0"></div>
                             <div class="wizard-nav">
                                 <div class="wizard-progress-dots" id="cgdots-0"></div>
@@ -856,9 +860,13 @@
                                 <div class="wsi-num">02</div>
                                 <div class="wsi-body">
                                     <div class="wsi-title">Create or Select Tee Sheet</div>
+                                    <div class="wsi-desc">Select an existing tee sheet or tap <strong>Create Tee Sheet</strong> to build a new one. The tee sheet defines the players and foursomes for the game.</div>
                                 </div>
                                 <div class="wsi-icon"><i class="bi bi-table"></i></div>
                             </div>
+<!--                            <div class="wizard-slide-img"><div class="image-placeholder">-->
+<!--                                <img src="images/selectNewTeeSheetImg.png" alt="Create or Select Tee Sheet" class="app-image" />-->
+<!--                            </div></div>-->
                             <div class="code-preview-mount" data-key="cgslide-1"></div>
                             <div class="wizard-nav">
                                 <button class="wizard-nav-btn" onclick="cgGoTo(0)"><i class="bi bi-arrow-left"></i> Back</button>
@@ -978,11 +986,76 @@
                                 <div class="wsi-num">04</div>
                                 <div class="wsi-body">
                                     <div class="wsi-title">Set Match Details</div>
+                                    <div class="wsi-desc">
+                                        Configure match-related settings such as handicap preferences and play type.
+
+                                        <div style="display:flex;flex-direction:column;gap:10px;margin-top:12px">
+
+                                            <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 14px">
+                                                <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+                                                    <span style="background:var(--brand);color:#fff;font-size:.65rem;font-weight:700;padding:2px 8px;border-radius:4px;letter-spacing:.04em;text-transform:uppercase">Required</span>
+                                                    <span style="font-size:.88rem;font-weight:700;color:var(--ink)">Handicap</span>
+                                                </div>
+                                                <p style="font-size:.8rem;color:var(--ink-muted);line-height:1.6;margin:0">Choose whether to play <strong>with</strong> or <strong>without</strong> a handicap. The default selection is <strong>With Handicap</strong>.</p>
+                                            </div>
+
+                                            <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 14px">
+                                                <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+                                                    <span style="background:var(--brand);color:#fff;font-size:.65rem;font-weight:700;padding:2px 8px;border-radius:4px;letter-spacing:.04em;text-transform:uppercase">Required</span>
+                                                    <span style="font-size:.88rem;font-weight:700;color:var(--ink)">Scoring by Scorekeeper Only</span>
+                                                </div>
+                                                <p style="font-size:.8rem;color:var(--ink-muted);line-height:1.6;margin:0">
+                                                    Enable this option to allow only the <strong>Organizer/Scorekeeper</strong> to enter scores during the game.
+                                                    When disabled, <strong>all players</strong> can enter their own scores.
+                                                    The default setting is <strong>On</strong>.
+                                                </p>
+                                            </div>
+
+                                            <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 14px">
+                                                <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+                                                    <span style="background:var(--brand);color:#fff;font-size:.65rem;font-weight:700;padding:2px 8px;border-radius:4px;letter-spacing:.04em;text-transform:uppercase">Required</span>
+                                                    <span style="font-size:.88rem;font-weight:700;color:var(--ink)">Play Type</span>
+                                                </div>
+                                                <p style="font-size:.8rem;color:var(--ink-muted);line-height:1.6;margin:0 0 8px">Select the play format. Available play types <strong>depend on the selected game type</strong> and will vary accordingly.</p>
+                                                <div id="cgPlayTypeBadges" style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px">
+                                                    <span style="background:#dcfce7;color:#15803d;font-size:.68rem;font-weight:700;padding:3px 9px;border-radius:4px">COD ✓</span>
+                                                    <span style="background:#f1f5f2;color:var(--ink-muted);font-size:.68rem;font-weight:600;padding:3px 9px;border-radius:4px">2v2</span>
+                                                    <span style="background:#f1f5f2;color:var(--ink-muted);font-size:.68rem;font-weight:600;padding:3px 9px;border-radius:4px">Random</span>
+                                                    <span style="background:#f1f5f2;color:var(--ink-faint);font-size:.68rem;font-weight:500;padding:3px 9px;border-radius:4px;opacity:.45">4v4</span>
+                                                    <span style="background:#f1f5f2;color:var(--ink-faint);font-size:.68rem;font-weight:500;padding:3px 9px;border-radius:4px;opacity:.45">Cards</span>
+                                                    <span style="background:#f1f5f2;color:var(--ink-faint);font-size:.68rem;font-weight:500;padding:3px 9px;border-radius:4px;opacity:.45">Ultra Vegas</span>
+                                                    <span style="background:#f1f5f2;color:var(--ink-faint);font-size:.68rem;font-weight:500;padding:3px 9px;border-radius:4px;opacity:.45">1v1</span>
+                                                    <span style="background:#f1f5f2;color:var(--ink-faint);font-size:.68rem;font-weight:500;padding:3px 9px;border-radius:4px;opacity:.45">Individual</span>
+                                                    <span style="background:#f1f5f2;color:var(--ink-faint);font-size:.68rem;font-weight:500;padding:3px 9px;border-radius:4px;opacity:.45">Modified Stableford</span>
+                                                </div>
+                                                <div id="cgPlayTypeNote" style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:8px 10px;font-size:.75rem;color:#1e40af;line-height:1.5">
+                                                    <strong>321 Milo</strong> — available play types: <strong>COD</strong>, <strong>2v2</strong>, <strong>Random</strong>. Currently selected: <strong>COD</strong>.
+                                                    <br/><span style="font-size:.7rem;opacity:.8">Greyed-out options are not available for this game type.</span>
+                                                </div>
+                                            </div>
+
+                                            <!-- Ultra Vegas Switch -->
+                                            <div id="ultraVegasSwitch">
+                                                <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 14px">
+                                                    <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+                                                        <span style="background:var(--brand);color:#fff;font-size:.65rem;font-weight:700;padding:2px 8px;border-radius:4px;letter-spacing:.04em;text-transform:uppercase">Required</span>
+                                                        <span style="font-size:.88rem;font-weight:700;color:var(--ink)">Ultra Vegas</span>
+                                                    </div>
+                                                    <p style="font-size:.8rem;color:var(--ink-muted);line-height:1.6;margin:0">
+                                                        The default setting is <strong>On</strong>. When enabled, the game will be created as
+                                                        <strong>Ultra Vegas</strong>, and both <strong>Score</strong> and <strong>Putts</strong>
+                                                        fields will be available during score entry. When disabled, the game will be created as
+                                                        <strong>Vegas</strong>, and only the <strong>Score</strong> field will be available.
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="wsi-icon"><i class="bi bi-sliders"></i></div>
                             </div>
 <!--                            <div class="wizard-slide-img"><div class="image-placeholder">-->
-<!--                                &lt;!&ndash;          <img src="images/setMatchDetails.png" alt="Set Match Details" class="app-image" />&ndash;&gt;-->
 <!--                                <img id="setMatchDetailsImg" src="${setMatchDetailsImage}" alt="Set Match Details" class="app-image" />-->
 <!--                            </div></div>-->
                             <div class="code-preview-mount" data-key="cgslide-3"></div>
@@ -998,9 +1071,13 @@
                                 <div class="wsi-num">05</div>
                                 <div class="wsi-body">
                                     <div class="wsi-title">Select Start Date &amp; Time</div>
+                                    <div class="wsi-desc">Pick the <strong>date</strong> and <strong>start time</strong> for the game using the date/time picker. This will appear in the game listing and notifications.</div>
                                 </div>
                                 <div class="wsi-icon"><i class="bi bi-calendar-date"></i></div>
                             </div>
+<!--                            <div class="wizard-slide-img"><div class="image-placeholder">-->
+<!--                                <img src="images/selectStartDateTime.png" alt="Select Start Date &amp; Time" class="app-image" />-->
+<!--                            </div></div>-->
                             <div class="code-preview-mount" data-key="cgslide-4"></div>
                             <div class="wizard-nav">
                                 <button class="wizard-nav-btn" onclick="cgGoTo(3)"><i class="bi bi-arrow-left"></i> Back</button>
@@ -1014,12 +1091,17 @@
                                 <div class="wsi-num">06</div>
                                 <div class="wsi-body">
                                     <div class="wsi-title">Set Per Match Holes</div>
+                                    <div class="wsi-desc">
+                                        <div id="wolfTitleChanges">
+                                            Define how many holes will be played per match. The course is divided into three sections — you can select which section to play, and the default is already pre-selected.
+                                        </div>
+                                        <div style="display:flex;flex-direction:column;gap:10px;margin-top:12px" id="cg-desc-5"></div>
+                                    </div>
                                 </div>
                                 <div class="wsi-icon"><i class="bi bi-flag"></i></div>
                             </div>
 <!--                            <div class="wizard-slide-img"><div class="image-placeholder">-->
-<!--                                &lt;!&ndash;          <img src="images/setPerMatchHoles.png" alt="Set Per Match Holes" class="app-image" />&ndash;&gt;-->
-<!--                                <img id = "setPerMatchHolesImg" src="${setPerMatchHolesImage}" alt="Set Per Match Holes" class="app-image" />-->
+<!--                                <img id="setPerMatchHolesImg" src="${setPerMatchHolesImage}" alt="Set Per Match Holes" class="app-image" />-->
 <!--                            </div></div>-->
                             <div class="code-preview-mount" data-key="cgslide-5"></div>
                             <div class="wizard-nav">
@@ -1034,12 +1116,15 @@
                                 <div class="wsi-num">07</div>
                                 <div class="wsi-body">
                                     <div class="wsi-title">Set Amount for Each</div>
+                                    <div class="wsi-desc">
+                                        Set the dollar values for each betting pool. Default amounts are pre-filled — you can keep them or adjust as needed. All values feed automatically into the Ledger and bet calculations.
+                                        <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px" id="cg-desc-6"></div>
+                                    </div>
                                 </div>
                                 <div class="wsi-icon"><i class="bi bi-cash-coin"></i></div>
                             </div>
 <!--                            <div class="wizard-slide-img"><div class="image-placeholder">-->
-<!--                                &lt;!&ndash;          <img src="images/setAmountforEach.png" alt="Set Amount for Each" class="app-image" />&ndash;&gt;-->
-<!--                                <img id="setAmountforEachImg" src="${setAmountforEachImage" alt="Set Amount for Each" class="app-image" />-->
+<!--                                <img id="setAmountforEachImg" src="${setAmountforEachImage}" alt="Set Amount for Each" class="app-image" />-->
 <!--                            </div></div>-->
                             <div class="code-preview-mount" data-key="cgslide-6"></div>
                             <div class="wizard-nav">
@@ -1054,11 +1139,14 @@
                                 <div class="wsi-num">08</div>
                                 <div class="wsi-body">
                                     <div class="wsi-title">Set Points</div>
+                                    <div class="wsi-desc">
+                                        Configure the points awarded for winning. The field(s) are <strong>pre-filled with default value(s)</strong>.
+                                        <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px" id="cg-desc-7"></div>
+                                    </div>
                                 </div>
                                 <div class="wsi-icon"><i class="bi bi-trophy"></i></div>
                             </div>
 <!--                            <div class="wizard-slide-img"><div class="image-placeholder">-->
-<!--                                &lt;!&ndash;          <img src="images/setPoints.png" alt="Set Points" class="app-image" />&ndash;&gt;-->
 <!--                                <img id="setPointsImg" src="images/321MiloSetPoints.png" alt="Set Points" class="app-image" />-->
 <!--                            </div></div>-->
                             <div class="code-preview-mount" data-key="cgslide-7"></div>
@@ -1074,9 +1162,13 @@
                                 <div class="wsi-num">09</div>
                                 <div class="wsi-body">
                                     <div class="wsi-title">Choose Game Thumbnail</div>
+                                    <div class="wsi-desc">Select a thumbnail image to represent the game in the games list. Tap <strong>Save Game</strong> to finalise and create the game.</div>
                                 </div>
                                 <div class="wsi-icon"><i class="bi bi-image"></i></div>
                             </div>
+<!--                            <div class="wizard-slide-img"><div class="image-placeholder">-->
+<!--                                <img src="images/chooseGameThumbnail.png" alt="Choose Game Thumbnail" class="app-image" />-->
+<!--                            </div></div>-->
                             <div class="code-preview-mount" data-key="cgslide-8"></div>
                             <div class="wizard-nav">
                                 <button class="wizard-nav-btn" onclick="cgGoTo(7)"><i class="bi bi-arrow-left"></i> Back</button>
@@ -1090,9 +1182,13 @@
                                 <div class="wsi-num">10</div>
                                 <div class="wsi-body">
                                     <div class="wsi-title">Game Created Successfully</div>
+                                    <div class="wsi-desc" id="cg-desc-9"></div>
                                 </div>
                                 <div class="wsi-icon"><i class="bi bi-check-circle"></i></div>
                             </div>
+<!--                            <div class="wizard-slide-img"><div class="image-placeholder">-->
+<!--                                <img id="gameCreatedSuccessImg" src="${gameCreatedSuccessImage}" alt="Game Created Successfully" class="app-image" />-->
+<!--                            </div></div>-->
                             <div class="code-preview-mount" data-key="cgslide-9"></div>
                             <div class="wizard-nav">
                                 <button class="wizard-nav-btn" onclick="cgGoTo(8)"><i class="bi bi-arrow-left"></i> Back</button>
@@ -1100,6 +1196,7 @@
                                 <span style="font-size:.8rem;color:var(--ink-faint)">&#10003; Game Setup Complete!</span>
                             </div>
                             <div class="success-message"><i class="bi bi-check-circle-fill"></i><span>Game created successfully!</span></div>
+                            <div id="cg-desc-9.1"></div>
                         </div>
                     </div>
                     <!--<div class="steps-container">
