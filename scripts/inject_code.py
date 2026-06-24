@@ -320,6 +320,105 @@ FILE_MAP = [
 
 
 # ──────────────────────────────────────────────────────────────────────────
+# External JS file targets
+# Keys listed here are stored in separate JS files (not index.html blocks).
+# inject_code.py updates the add() calls inside those JS files directly.
+# ──────────────────────────────────────────────────────────────────────────
+
+EXTERNAL_JS_TARGETS = {
+    "vrslide-0": {"flutter": "JavaScripts/flutter/view-results.js", "apis": "JavaScripts/api/view-results.js"},
+    "vrslide-1": {"flutter": "JavaScripts/flutter/view-results.js", "apis": "JavaScripts/api/view-results.js"},
+    "vrslide-2": {"flutter": "JavaScripts/flutter/view-results.js", "apis": "JavaScripts/api/view-results.js"},
+    "vrslide-3": {"flutter": "JavaScripts/flutter/view-results.js", "apis": "JavaScripts/api/view-results.js"},
+    "vlslide-0": {"flutter": "JavaScripts/flutter/view-ledger.js", "apis": "JavaScripts/api/view-ledger.js"},
+    "vlslide-1": {"flutter": "JavaScripts/flutter/view-ledger.js", "apis": "JavaScripts/api/view-ledger.js"},
+    "vlslide-2": {"flutter": "JavaScripts/flutter/view-ledger.js", "apis": "JavaScripts/api/view-ledger.js"},
+    "vlslide-3": {"flutter": "JavaScripts/flutter/view-ledger.js", "apis": "JavaScripts/api/view-ledger.js"},
+    "vlslide-4": {"flutter": "JavaScripts/flutter/view-ledger.js", "apis": "JavaScripts/api/view-ledger.js"},
+}
+
+# In-memory cache for external JS files — read once, write once at the end.
+_external_js_cache = {}
+
+
+def _load_external_js(path):
+    if path not in _external_js_cache:
+        if os.path.isfile(path):
+            with open(path, "r", encoding="utf-8") as f:
+                _external_js_cache[path] = f.read()
+        else:
+            _external_js_cache[path] = None
+    return _external_js_cache[path]
+
+
+def _save_external_js_files():
+    """Write all modified external JS files back to disk."""
+    for path, content in _external_js_cache.items():
+        if content is not None:
+            with open(path, "w", encoding="utf-8") as f:
+                f.write(content)
+
+
+def inject_into_external_js(key, stack, filename, code):
+    """Replace the body of an add(key, stack, filename, `...`) call in the external JS file."""
+    target = EXTERNAL_JS_TARGETS.get(key, {}).get(stack)
+    if not target:
+        return False
+    content = _load_external_js(target)
+    if content is None:
+        print(f"  SKIP  External JS file not found: {target}")
+        return False
+
+    pat = re.compile(
+        r'(add\("' + re.escape(key) + r'",\s*"' + re.escape(stack) + r'",\s*"' +
+        re.escape(filename) + r'",\s*`)([\s\S]*?)(`\s*\))',
+        re.S
+    )
+    match = pat.search(content)
+    if not match:
+        print(f"  SKIP  No add() call in {target} for {key}/{stack}/{filename}")
+        return False
+
+    new_content = content[:match.end(1)] + "\n" + code + match.group(3) + content[match.end():]
+    _external_js_cache[target] = new_content
+    return True
+
+
+def inject_api_into_external_js(key, method_name, doc):
+    """Update or insert an API add() call in an external API JS file."""
+    target = EXTERNAL_JS_TARGETS.get(key, {}).get("apis")
+    if not target:
+        return False
+    content = _load_external_js(target)
+    if content is None:
+        print(f"  SKIP  External JS API file not found: {target}")
+        return False
+
+    # Try to update an existing add() call for this method
+    pat = re.compile(
+        r'(add\("' + re.escape(key) + r'",\s*"apis",\s*"' + re.escape(method_name) +
+        r'",\s*`)([\s\S]*?)(`\s*\))',
+        re.S
+    )
+    match = pat.search(content)
+    if match:
+        new_content = content[:match.end(1)] + "\n" + doc + match.group(3) + content[match.end():]
+        _external_js_cache[target] = new_content
+        return True
+
+    # No existing call — insert a new one before the closing })();
+    insert_marker = "})();"
+    pos = content.rfind(insert_marker)
+    if pos == -1:
+        print(f"  SKIP  Cannot find closing }})(); in {target}")
+        return False
+
+    new_add = f'\n  add("{key}", "apis", "{method_name}", `\n{doc}`);\n'
+    _external_js_cache[target] = content[:pos] + new_add + content[pos:]
+    return True
+
+
+# ──────────────────────────────────────────────────────────────────────────
 # Helpers
 # ──────────────────────────────────────────────────────────────────────────
 
@@ -682,6 +781,15 @@ def process_api_controllers(html, api_code):
 
             doc = generate_api_doc(method_name, def_info, ctrl_filename)
 
+            # Route keys that live in external JS files
+            if key in EXTERNAL_JS_TARGETS and "apis" in EXTERNAL_JS_TARGETS[key]:
+                if inject_api_into_external_js(key, method_name, doc):
+                    updated += 1
+                    print(f"  API {key} / {method_name}  ({len(doc)} chars) \u2192 external JS")
+                else:
+                    print(f"  SKIP  API {key} / {method_name}  \u2014 external JS update failed")
+                continue
+
             pattern = build_block_regex(key, "apis", method_name)
             match = pattern.search(html)
 
@@ -729,6 +837,15 @@ def main():
             skipped += 1
             continue
 
+        # Route keys that live in external JS files
+        if key in EXTERNAL_JS_TARGETS and stack in EXTERNAL_JS_TARGETS[key]:
+            if inject_into_external_js(key, stack, file, code):
+                updated += 1
+                print(f"  Injected {key} / {stack} / {file}  ({len(code)} chars) → external JS")
+            else:
+                skipped += 1
+            continue
+
         pattern = build_block_regex(key, stack, file)
         match = pattern.search(html)
         if not match:
@@ -751,6 +868,9 @@ def main():
 
     with open(DOCS_HTML_PATH, "w", encoding="utf-8") as f:
         f.write(html)
+
+    # Write external JS files that were modified
+    _save_external_js_files()
 
     total = updated + api_updated
     print(f"\nDone. {total} block(s) updated total.")
