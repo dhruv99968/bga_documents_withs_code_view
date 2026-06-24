@@ -484,8 +484,13 @@ def _save_external_js_files():
                 f.write(content)
 
 
-def inject_into_external_js(key, stack, filename, code):
-    """Replace the body of an add(key, stack, filename, `...`) call in the external JS file."""
+_dedup_cache = {}  # src_path -> JS variable name, for deduplication across add() calls
+
+def inject_into_external_js(key, stack, filename, code, src_path=None):
+    """Replace the body of an add(key, stack, filename, `...`) call in the external JS file.
+    Uses a dedup cache so the same file content is stored once as a JS variable and
+    referenced by all add() calls that need it — keeps the generated file small.
+    """
     target = EXTERNAL_JS_TARGETS.get(key, {}).get(stack)
     if not target:
         return False
@@ -507,8 +512,23 @@ def inject_into_external_js(key, stack, filename, code):
         print(f"  SKIP  No add() call in {target} for {key}/{stack}/{filename}")
         return False
 
-    escaped = code.replace("\\", "\\\\").replace("`", "\\`").replace("$", "\\$")
-    new_content = content[:match.end(1)] + "\n" + escaped + match.group(3) + content[match.end():]
+    dedup_key = src_path or filename
+    if dedup_key in _dedup_cache:
+        # File already stored — replace the add() body with a reference to the variable
+        var_name = _dedup_cache[dedup_key]
+        new_content = (
+            content[:match.start()] +
+            f'add("{key}", "{stack}", "{filename}", {var_name})' +
+            content[match.end():]
+        )
+    else:
+        # First time this file is seen — store content in a var and reference it
+        escaped = code.replace("\\", "\\\\").replace("`", "\\`").replace("$", "\\$")
+        var_name = "_c" + str(len(_dedup_cache))
+        _dedup_cache[dedup_key] = var_name
+        var_decl = f'  var {var_name} = `\n{escaped}`;\n  '
+        new_content = content[:match.start()] + var_decl + f'add("{key}", "{stack}", "{filename}", {var_name})' + content[match.end():]
+
     _external_js_cache[target] = new_content
     return True
 
@@ -1139,7 +1159,7 @@ def main():
 
         # Route keys that live in external JS files
         if key in EXTERNAL_JS_TARGETS and stack in EXTERNAL_JS_TARGETS[key]:
-            if inject_into_external_js(key, stack, file, code):
+            if inject_into_external_js(key, stack, file, code, src_path=entry.get("src")):
                 updated += 1
                 print(f"  Injected {key} / {stack} / {file}  ({len(code)} chars) → external JS")
             else:

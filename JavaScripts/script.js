@@ -494,27 +494,13 @@
           fname.textContent = f.name;
           var lang = LANG[state.stack] || 'clike';
           codeEl.className = 'language-' + lang;
-
-          function applyCode(src) {
-            codeEl.textContent = src;
-            if(window.Prism && Prism.languages && Prism.languages[lang] && Prism.highlightElement){
-              try { Prism.highlightElement(codeEl); } catch(e){}
-            }
-            copyBtn.classList.remove('copied');
-            if(copyLbl) copyLbl.innerHTML = '<i class="bi bi-clipboard"></i> Copy';
+          codeEl.textContent = f.code;     // textContent = safe, exact code
+          // Android-Studio-style highlighting via Prism (graceful fallback to plain text)
+          if(window.Prism && Prism.languages && Prism.languages[lang] && Prism.highlightElement){
+            try { Prism.highlightElement(codeEl); } catch(e){}
           }
-
-          if(f.code !== null && f.code !== undefined) {
-            applyCode(f.code);
-          } else if(f.url) {
-            codeEl.textContent = 'Loading...';
-            fetch(f.url)
-              .then(function(r){ return r.ok ? r.text() : Promise.reject(r.status); })
-              .then(function(src){ f.code = src; applyCode(src); })
-              .catch(function(){ codeEl.textContent = 'Could not load file from GitHub.'; });
-          } else {
-            applyCode(f.code || '');
-          }
+          copyBtn.classList.remove('copied');
+          if(copyLbl) copyLbl.innerHTML = '<i class="bi bi-clipboard"></i> Copy';
         }
         function renderTitle(){
           var type = state.view === 'design'
