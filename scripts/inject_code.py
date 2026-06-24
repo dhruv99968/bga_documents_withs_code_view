@@ -489,6 +489,9 @@ def inject_into_external_js(key, stack, filename, code):
     target = EXTERNAL_JS_TARGETS.get(key, {}).get(stack)
     if not target:
         return False
+    # All flutter stack entries are merged into code-data-flutter.js
+    if stack == "flutter":
+        target = "JavaScripts/code-data-flutter.js"
     content = _load_external_js(target)
     if content is None:
         print(f"  SKIP  External JS file not found: {target}")
@@ -511,10 +514,12 @@ def inject_into_external_js(key, stack, filename, code):
 
 
 def inject_api_into_external_js(key, method_name, doc):
-    """Update or insert an API add() call in an external API JS file."""
+    """Update or insert an API add() call in the unified code-data-apis.js."""
     target = EXTERNAL_JS_TARGETS.get(key, {}).get("apis")
     if not target:
         return False
+    # All API entries are merged into code-data-apis.js
+    target = "JavaScripts/code-data-apis.js"
     content = _load_external_js(target)
     if content is None:
         print(f"  SKIP  External JS API file not found: {target}")
@@ -949,7 +954,170 @@ def process_api_controllers(html, api_code):
 # Main
 # ──────────────────────────────────────────────────────────────────────────
 
+# ──────────────────────────────────────────────────────────────────────────
+# Extract mode (reverse of merge) — split unified code-data files back
+# into separate flutter/, laravel/, api/ files.
+# ──────────────────────────────────────────────────────────────────────────
+
+BT = chr(96)
+
+EXTRACT_SECTIONS = [
+    {"name": "account-setup",      "keys": ["sslide-0", "sslide-1", "sslide-2", "sslide-3"]},
+    {"name": "quick-start-wizard", "keys": ["wslide-" + str(i) for i in range(10)]},
+    {"name": "create-game-wizard", "keys": ["cgslide-" + str(i) for i in range(10)]},
+    {"name": "home-detail",        "keys": ["home-detail"]},
+    {"name": "agenda-detail",      "keys": ["agenda-detail"]},
+    {"name": "viewgame-detail",    "keys": ["viewgame-detail"]},
+    {"name": "addbets-detail",     "keys": ["addbets-detail"]},
+    {"name": "welcome-detail",     "keys": ["welcome-detail"]},
+    {"name": "add-score",          "keys": ["asslide-" + str(i) for i in range(12)]},
+    {"name": "add-score-calcutta", "keys": ["asslide-calcutta-" + str(i) for i in range(18)]},
+    {"name": "add-score-ryder-cup","keys": ["asslide-ryder_cup-" + str(i) for i in range(10)]},
+    {"name": "add-score-horse-race","keys": ["asslide-horse_race-" + str(i) for i in range(4)]},
+    {"name": "view-results",       "keys": ["vrslide-" + str(i) for i in range(4)]},
+    {"name": "view-ledger",        "keys": ["vlslide-" + str(i) for i in range(5)]},
+]
+
+
+def _extract_header(title):
+    return (
+        "// ============================================================\n"
+        f"// {title}\n"
+        "// ============================================================\n\n"
+        "window.CODE_DATA = window.CODE_DATA || {};\n"
+        "(function () {\n"
+        "  function add(k, s, n, c) {\n"
+        "    window.CODE_DATA[k] = window.CODE_DATA[k] || {};\n"
+        "    window.CODE_DATA[k][s] = window.CODE_DATA[k][s] || [];\n"
+        "    window.CODE_DATA[k][s].push({ name: n, code: c });\n"
+        "  }\n\n"
+    )
+
+
+def _extract_add_calls(content, target_keys):
+    results = {}
+    pos = 0
+    pattern = re.compile(r'\badd\("([^"]+)"')
+    while pos < len(content):
+        m = pattern.search(content, pos)
+        if not m:
+            break
+        key = m.group(1)
+        call_start = m.start()
+        if key not in target_keys:
+            pos = m.end()
+            continue
+        bt_s = content.find(BT, call_start)
+        if bt_s == -1:
+            pos = m.end(); continue
+        bt_e = content.find(BT, bt_s + 1)
+        if bt_e == -1:
+            pos = m.end(); continue
+        close = bt_e + 1
+        if close < len(content) and content[close] == ")":
+            close += 1
+        if close < len(content) and content[close] == ";":
+            close += 1
+        results.setdefault(key, []).append(content[call_start:close])
+        pos = close
+    return results
+
+
+def cmd_extract():
+    js_dir = os.path.join(os.path.dirname(DOCS_HTML_PATH), "JavaScripts")
+    files = {
+        "flutter": os.path.join(js_dir, "code-data-flutter.js"),
+        "laravel": os.path.join(js_dir, "code-data-laravel.js"),
+        "apis":    os.path.join(js_dir, "code-data-apis.js"),
+    }
+
+    contents = {}
+    for stack, path in files.items():
+        if os.path.isfile(path):
+            with open(path, "r", encoding="utf-8") as f:
+                contents[stack] = f.read()
+        else:
+            print(f"  SKIP  {path} not found")
+            contents[stack] = ""
+
+    all_keys = set()
+
+    for sec in EXTRACT_SECTIONS:
+        name = sec["name"]
+        keys = sec["keys"]
+        all_keys.update(keys)
+        print(f"\nExtracting {name} ({len(keys)} keys)...")
+
+        for stack in ("flutter", "laravel", "apis"):
+            calls = _extract_add_calls(contents[stack], keys)
+            if calls:
+                body_lines = []
+                for key in keys:
+                    for call in calls.get(key, []):
+                        body_lines.append("  " + call)
+                body = "\n\n".join(body_lines)
+                title = f"{stack.title()} — {name}"
+                out_dir = os.path.join(js_dir, stack)
+                os.makedirs(out_dir, exist_ok=True)
+                out_path = os.path.join(out_dir, name + ".js")
+                with open(out_path, "w", encoding="utf-8") as f:
+                    f.write(_extract_header(title) + body + "\n\n})();\n")
+                print(f"  Wrote  {stack}/{name}.js")
+
+    # Remove extracted keys from source files, replace with redirect comment
+    for stack, content in contents.items():
+        if not content:
+            continue
+        out_lines = []
+        pos = 0
+        inserted = False
+        pattern = re.compile(r'\badd\("([^"]+)"')
+        while pos < len(content):
+            m = pattern.search(content, pos)
+            if not m:
+                out_lines.append(content[pos:])
+                break
+            key = m.group(1)
+            if key not in all_keys:
+                out_lines.append(content[pos:m.end()])
+                pos = m.end()
+                continue
+            # Skip the add() call
+            pre = content[pos:m.start()]
+            out_lines.append(pre)
+            if not inserted:
+                out_lines.append(f"\n  // These are now in separate files under JavaScripts/{stack}/\n")
+                inserted = True
+            bt_s = content.find(BT, m.start())
+            if bt_s == -1:
+                pos = m.end(); continue
+            bt_e = content.find(BT, bt_s + 1)
+            if bt_e == -1:
+                pos = m.end(); continue
+            close = bt_e + 1
+            if close < len(content) and content[close] == ")":
+                close += 1
+            if close < len(content) and content[close] == ";":
+                close += 1
+            if close < len(content) and content[close] == "\n":
+                close += 1
+            pos = close
+        with open(files[stack], "w", encoding="utf-8") as f:
+            f.write("".join(out_lines))
+        print(f"  Updated {os.path.basename(files[stack])} — removed {stack} keys")
+
+    print("\nExtract done.")
+
+
+# ──────────────────────────────────────────────────────────────────────────
+# Main
+# ──────────────────────────────────────────────────────────────────────────
+
 def main():
+    if "--extract" in sys.argv:
+        cmd_extract()
+        return
+
     if not os.path.isfile(DOCS_HTML_PATH):
         print(f"Could not find {DOCS_HTML_PATH}")
         sys.exit(1)
@@ -963,10 +1131,6 @@ def main():
 
     for entry in FILE_MAP:
         key, stack, file = entry["key"], entry["stack"], entry["file"]
-
-        if stack == "flutter":
-            skipped += 1
-            continue
 
         code = read_source(entry)
         if code is None:
