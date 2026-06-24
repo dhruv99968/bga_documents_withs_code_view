@@ -17,6 +17,8 @@ permissions:
 jobs:
   inject:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
 
     steps:
       - name: Checkout DOCS repo
