@@ -255,7 +255,13 @@
         'asslide-6':  { src:'images/321_milo_image/321Milo-18-HoleScoreGrid.png', alt:'18-Hole Score Grid' },
         'asslide-7':  { src:'images/scoreEntryScreen.png', alt:'Scorecard — Enter & Save Score' },
         'asslide-8':  { src:'images/skode&JunkRewards.png', alt:'Skode & Junk Rewards' },
-        'asslide-9':  { src:'images/leaderboard.png', alt:'Leaderboard' },
+        'asslide-9':  { src:'images/leaderboard.png', alt:'Leaderboard', shots:[
+          { src:'images/leaderboard.png',  alt:'Leaderboard 1' },
+          { src:'images/scoreEntryScreen.png', alt:'Leaderboard 2' },
+          { src:'images/viewWinningAmount.png', alt:'Leaderboard 3' },
+          { src:'images/payViaPayPal.png', alt:'Leaderboard 4' },
+          { src:'images/payConfirmed.png', alt:'Leaderboard 5' }
+        ] },
         'asslide-10': { src:'images/viewAddScoreResultsTab.png', alt:'View Results Tab' },
         'asslide-11': { src:'images/allHolesScoreAdded.png', alt:'All Holes Score Added' },
         'vrslide-0': { src:'images/321_milo_image/321MiloAllPlayersResult.png', alt:'All Players Result' },
@@ -325,6 +331,57 @@
         }
         return null;
       }
+
+      // Renders a single img or an inline carousel depending on whether shot.shots exists
+      var _cpCarouselIdx = {};
+      function buildShotHTML(shot, cpId) {
+        if (!shot.shots || shot.shots.length < 2) {
+          return shot.src
+            ? '<div class="image-placeholder"><img src="' + shot.src + '" alt="' + (shot.alt||'') + '" class="app-image" /></div>'
+            : '<div class="cp-details-empty">No screenshot</div>';
+        }
+        var id = 'cpcar-' + cpId;
+        var imgs = shot.shots.map(function(s, i) {
+          return '<div class="cpcar-item' + (i===0?' active':'') + '">' +
+            '<div class="image-placeholder"><img src="' + s.src + '" alt="' + s.alt + '" class="app-image" /></div>' +
+            '</div>';
+        }).join('');
+        var dots = shot.shots.map(function(_, i) {
+          return '<span class="cpcar-dot' + (i===0?' active':'') + '" data-i="' + i + '"></span>';
+        }).join('');
+        return '<div class="cpcar" id="' + id + '">' +
+          '<button class="cpcar-btn cpcar-prev" data-id="' + id + '"><i class="bi bi-chevron-left"></i></button>' +
+          '<div class="cpcar-track">' + imgs + '</div>' +
+          '<button class="cpcar-btn cpcar-next" data-id="' + id + '"><i class="bi bi-chevron-right"></i></button>' +
+          '<div class="cpcar-dots">' + dots + '</div>' +
+          '</div>';
+      }
+      document.addEventListener('click', function(e) {
+        var btn = e.target.closest('.cpcar-btn');
+        if (!btn) return;
+        var id = btn.getAttribute('data-id');
+        var car = document.getElementById(id);
+        if (!car) return;
+        var items = car.querySelectorAll('.cpcar-item');
+        var dotsEls = car.querySelectorAll('.cpcar-dot');
+        var cur = Array.from(items).findIndex(function(el){ return el.classList.contains('active'); });
+        var dir = btn.classList.contains('cpcar-next') ? 1 : -1;
+        var next = (cur + dir + items.length) % items.length;
+        items[cur].classList.remove('active'); items[next].classList.add('active');
+        dotsEls[cur].classList.remove('active'); dotsEls[next].classList.add('active');
+      });
+      document.addEventListener('click', function(e) {
+        var dot = e.target.closest('.cpcar-dot');
+        if (!dot) return;
+        var car = dot.closest('.cpcar');
+        if (!car) return;
+        var items = car.querySelectorAll('.cpcar-item');
+        var dotsEls = car.querySelectorAll('.cpcar-dot');
+        var next = parseInt(dot.getAttribute('data-i'), 10);
+        var cur = Array.from(items).findIndex(function(el){ return el.classList.contains('active'); });
+        items[cur].classList.remove('active'); items[next].classList.add('active');
+        dotsEls[cur].classList.remove('active'); dotsEls[next].classList.add('active');
+      });
 
       function build(mount){
         var key = mount.getAttribute('data-key');
@@ -419,11 +476,7 @@
         var hasDetails = !!detailsHtml;
         design.innerHTML =
           '<div class="cp-screen-row' + (hasDetails ? '' : ' cp-screen-row--no-details') + '">' +
-            '<div class="cp-shot">' +
-              (shot.src
-                ? '<div class="image-placeholder"><img src="' + shot.src + '" alt="' + (shot.alt||'') + '" class="app-image" /></div>'
-                : '<div class="cp-details-empty">No screenshot</div>') +
-            '</div>' +
+            '<div class="cp-shot">' + buildShotHTML(shot, key + '-design') + '</div>' +
             (hasDetails ? '<div class="cp-details">' + detailsHtml + '</div>' : '') +
           '</div>';
         body.appendChild(design);
@@ -437,9 +490,7 @@
 
         var codeShot = document.createElement('div');
         codeShot.className = 'cp-code-shot';
-        codeShot.innerHTML = shot.src
-          ? '<div class="image-placeholder"><img src="' + shot.src + '" alt="' + (shot.alt||'') + '" class="app-image" /></div>'
-          : '<div class="cp-details-empty">No screenshot</div>';
+        codeShot.innerHTML = buildShotHTML(shot, key + '-code');
         codeRow.appendChild(codeShot);
 
         var codeMain = document.createElement('div');
