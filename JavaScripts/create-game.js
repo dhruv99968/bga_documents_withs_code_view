@@ -467,8 +467,38 @@
                                              <div class="wsi-num">10</div>
                                              <div class="wsi-body">
                                                <div class="wsi-title">Leaderboard</div>
-                                               <div class="wsi-desc">The <strong>Leaderboard</strong> displays the final standings for all foursomes in the game — including net scores, Skode &amp; Junk rewards, and overall rankings. All bet outcomes are reflected in the <strong>Results Tab</strong>.</div>
-                                             </div>
+                                               <div class="wsi-desc">
+                                                                                           The <strong>Leaderboard</strong> gives you three ways to see how the round stands — tap a tab to switch between them.
+                                                                                           <div style="margin-top:12px;display:flex;flex-direction:column;gap:8px">
+
+                                                                                               <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 14px">
+                                                                                                   <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+                                                                                                       <span style="font-size:1rem;line-height:1">🏆</span>
+                                                                                                       <span style="font-size:.88rem;font-weight:700;color:var(--ink)">Overall</span>
+                                                                                                   </div>
+                                                                                                   <p style="font-size:.8rem;color:var(--ink-muted);line-height:1.6;margin:0">Ranks every player with their <strong>Gross</strong> and <strong>Net</strong> score through the current hole, plus a running count of each player's <strong>Skode</strong>, <strong>Junk</strong>, <strong>CTP</strong>, and <strong>LD</strong> events.</p>
+                                                                                               </div>
+
+                                                                                               <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 14px">
+                                                                                                   <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+                                                                                                       <span style="font-size:1rem;line-height:1">🎯</span>
+                                                                                                       <span style="font-size:.88rem;font-weight:700;color:var(--ink)">Side Games</span>
+                                                                                                   </div>
+                                                                                                   <p style="font-size:.8rem;color:var(--ink-muted);line-height:1.6;margin:0">Toggle between <strong>Skins</strong> (dollar amount won and skin count per player) and <strong>Greenies</strong> (greenie count per player).</p>
+                                                                                               </div>
+
+                                                                                               <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 14px">
+                                                                                                   <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+                                                                                                       <span style="font-size:1rem;line-height:1">📍</span>
+                                                                                                       <span style="font-size:.88rem;font-weight:700;color:var(--ink)">LD/CTP</span>
+                                                                                                   </div>
+                                                                                                   <p style="font-size:.8rem;color:var(--ink-muted);line-height:1.6;margin:0">Toggle between <strong>Closest to Pin</strong> standings (distance to the pin per player, by hole) and <strong>Longest Drive</strong> standings on each designated LD hole (yardage per player).</p>
+                                                                                               </div>
+
+                                                                                           </div>
+                                                                                           All bet outcomes shown here are reflected in the <strong>Results Tab</strong>.
+                                                                                       </div>
+                                               </div>
                                              <div class="wsi-icon"><i class="bi bi-trophy"></i></div>
                                            </div>
                                            <div class="wizard-slide-img"><div class="image-placeholder">
@@ -1532,7 +1562,37 @@
                                                                                     <div class="wsi-num">25</div>
                                                                                     <div class="wsi-body">
                                                                                       <div class="wsi-title">Leaderboard</div>
-                                                                                      <div class="wsi-desc">The <strong>Leaderboard</strong> displays the final standings for all foursomes in the game — including net scores, Skode &amp; Junk rewards, and overall rankings. All bet outcomes are reflected in the <strong>Results Tab</strong>.</div>
+                                                                                      <div class="wsi-desc">
+                                                                                                                                  The <strong>Leaderboard</strong> gives you three ways to see how the round stands — tap a tab to switch between them.
+                                                                                                                                  <div style="margin-top:12px;display:flex;flex-direction:column;gap:8px">
+
+                                                                                                                                      <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 14px">
+                                                                                                                                          <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+                                                                                                                                              <span style="font-size:1rem;line-height:1">🏆</span>
+                                                                                                                                              <span style="font-size:.88rem;font-weight:700;color:var(--ink)">Overall</span>
+                                                                                                                                          </div>
+                                                                                                                                          <p style="font-size:.8rem;color:var(--ink-muted);line-height:1.6;margin:0">Ranks every player with their <strong>Gross</strong> and <strong>Net</strong> score through the current hole, plus a running count of each player's <strong>Skode</strong>, <strong>Junk</strong>, <strong>CTP</strong>, and <strong>LD</strong> events.</p>
+                                                                                                                                      </div>
+
+                                                                                                                                      <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 14px">
+                                                                                                                                          <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+                                                                                                                                              <span style="font-size:1rem;line-height:1">🎯</span>
+                                                                                                                                              <span style="font-size:.88rem;font-weight:700;color:var(--ink)">Side Games</span>
+                                                                                                                                          </div>
+                                                                                                                                          <p style="font-size:.8rem;color:var(--ink-muted);line-height:1.6;margin:0">Toggle between <strong>Skins</strong> (dollar amount won and skin count per player) and <strong>Greenies</strong> (greenie count per player).</p>
+                                                                                                                                      </div>
+
+                                                                                                                                      <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 14px">
+                                                                                                                                          <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+                                                                                                                                              <span style="font-size:1rem;line-height:1">📍</span>
+                                                                                                                                              <span style="font-size:.88rem;font-weight:700;color:var(--ink)">LD/CTP</span>
+                                                                                                                                          </div>
+                                                                                                                                          <p style="font-size:.8rem;color:var(--ink-muted);line-height:1.6;margin:0">Toggle between <strong>Closest to Pin</strong> standings (distance to the pin per player, by hole) and <strong>Longest Drive</strong> standings on each designated LD hole (yardage per player).</p>
+                                                                                                                                      </div>
+
+                                                                                                                                  </div>
+                                                                                                                                  All bet outcomes shown here are reflected in the <strong>Results Tab</strong>.
+                                                                                                                              </div>
                                                                                     </div>
                                                                                     <div class="wsi-icon"><i class="bi bi-trophy"></i></div>
                                                                                   </div>
@@ -1946,7 +2006,37 @@
                                                    <div class="wsi-num">07</div>
                                                    <div class="wsi-body">
                                                      <div class="wsi-title">Leaderboard</div>
-                                                     <div class="wsi-desc">The <strong>Leaderboard</strong> displays the final standings for all foursomes in the game — including net scores, Skode &amp; Junk rewards, and overall rankings. All bet outcomes are reflected in the <strong>Results Tab</strong>.</div>
+                                                     <div class="wsi-desc">
+                                                                                                 The <strong>Leaderboard</strong> gives you three ways to see how the round stands — tap a tab to switch between them.
+                                                                                                 <div style="margin-top:12px;display:flex;flex-direction:column;gap:8px">
+
+                                                                                                     <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 14px">
+                                                                                                         <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+                                                                                                             <span style="font-size:1rem;line-height:1">🏆</span>
+                                                                                                             <span style="font-size:.88rem;font-weight:700;color:var(--ink)">Overall</span>
+                                                                                                         </div>
+                                                                                                         <p style="font-size:.8rem;color:var(--ink-muted);line-height:1.6;margin:0">Ranks every player with their <strong>Gross</strong> and <strong>Net</strong> score through the current hole, plus a running count of each player's <strong>Skode</strong>, <strong>Junk</strong>, <strong>CTP</strong>, and <strong>LD</strong> events.</p>
+                                                                                                     </div>
+
+                                                                                                     <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 14px">
+                                                                                                         <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+                                                                                                             <span style="font-size:1rem;line-height:1">🎯</span>
+                                                                                                             <span style="font-size:.88rem;font-weight:700;color:var(--ink)">Side Games</span>
+                                                                                                         </div>
+                                                                                                         <p style="font-size:.8rem;color:var(--ink-muted);line-height:1.6;margin:0">Toggle between <strong>Skins</strong> (dollar amount won and skin count per player) and <strong>Greenies</strong> (greenie count per player).</p>
+                                                                                                     </div>
+
+                                                                                                     <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 14px">
+                                                                                                         <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+                                                                                                             <span style="font-size:1rem;line-height:1">📍</span>
+                                                                                                             <span style="font-size:.88rem;font-weight:700;color:var(--ink)">LD/CTP</span>
+                                                                                                         </div>
+                                                                                                         <p style="font-size:.8rem;color:var(--ink-muted);line-height:1.6;margin:0">Toggle between <strong>Closest to Pin</strong> standings (distance to the pin per player, by hole) and <strong>Longest Drive</strong> standings on each designated LD hole (yardage per player).</p>
+                                                                                                     </div>
+
+                                                                                                 </div>
+                                                                                                 All bet outcomes shown here are reflected in the <strong>Results Tab</strong>.
+                                                                                             </div>
                                                    </div>
                                                    <div class="wsi-icon"><i class="bi bi-trophy"></i></div>
                                                  </div>
@@ -2360,7 +2450,37 @@
                                                    <div class="wsi-num">07</div>
                                                    <div class="wsi-body">
                                                      <div class="wsi-title">Leaderboard</div>
-                                                     <div class="wsi-desc">The <strong>Leaderboard</strong> displays the final standings for all foursomes in the game — including net scores, Skode &amp; Junk rewards, and overall rankings. All bet outcomes are reflected in the <strong>Results Tab</strong>.</div>
+                                                     <div class="wsi-desc">
+                                                                                                 The <strong>Leaderboard</strong> gives you three ways to see how the round stands — tap a tab to switch between them.
+                                                                                                 <div style="margin-top:12px;display:flex;flex-direction:column;gap:8px">
+
+                                                                                                     <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 14px">
+                                                                                                         <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+                                                                                                             <span style="font-size:1rem;line-height:1">🏆</span>
+                                                                                                             <span style="font-size:.88rem;font-weight:700;color:var(--ink)">Overall</span>
+                                                                                                         </div>
+                                                                                                         <p style="font-size:.8rem;color:var(--ink-muted);line-height:1.6;margin:0">Ranks every player with their <strong>Gross</strong> and <strong>Net</strong> score through the current hole, plus a running count of each player's <strong>Skode</strong>, <strong>Junk</strong>, <strong>CTP</strong>, and <strong>LD</strong> events.</p>
+                                                                                                     </div>
+
+                                                                                                     <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 14px">
+                                                                                                         <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+                                                                                                             <span style="font-size:1rem;line-height:1">🎯</span>
+                                                                                                             <span style="font-size:.88rem;font-weight:700;color:var(--ink)">Side Games</span>
+                                                                                                         </div>
+                                                                                                         <p style="font-size:.8rem;color:var(--ink-muted);line-height:1.6;margin:0">Toggle between <strong>Skins</strong> (dollar amount won and skin count per player) and <strong>Greenies</strong> (greenie count per player).</p>
+                                                                                                     </div>
+
+                                                                                                     <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 14px">
+                                                                                                         <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+                                                                                                             <span style="font-size:1rem;line-height:1">📍</span>
+                                                                                                             <span style="font-size:.88rem;font-weight:700;color:var(--ink)">LD/CTP</span>
+                                                                                                         </div>
+                                                                                                         <p style="font-size:.8rem;color:var(--ink-muted);line-height:1.6;margin:0">Toggle between <strong>Closest to Pin</strong> standings (distance to the pin per player, by hole) and <strong>Longest Drive</strong> standings on each designated LD hole (yardage per player).</p>
+                                                                                                     </div>
+
+                                                                                                 </div>
+                                                                                                 All bet outcomes shown here are reflected in the <strong>Results Tab</strong>.
+                                                                                             </div>
                                                    </div>
                                                    <div class="wsi-icon"><i class="bi bi-trophy"></i></div>
                                                  </div>
@@ -2890,7 +3010,37 @@
                                                    <div class="wsi-num">10</div>
                                                    <div class="wsi-body">
                                                      <div class="wsi-title">Leaderboard</div>
-                                                     <div class="wsi-desc">The <strong>Leaderboard</strong> displays the final standings for all foursomes in the game — including net scores, Skode &amp; Junk rewards, and overall rankings. All bet outcomes are reflected in the <strong>Results Tab</strong>.</div>
+                                                     <div class="wsi-desc">
+                                                                                                 The <strong>Leaderboard</strong> gives you three ways to see how the round stands — tap a tab to switch between them.
+                                                                                                 <div style="margin-top:12px;display:flex;flex-direction:column;gap:8px">
+
+                                                                                                     <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 14px">
+                                                                                                         <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+                                                                                                             <span style="font-size:1rem;line-height:1">🏆</span>
+                                                                                                             <span style="font-size:.88rem;font-weight:700;color:var(--ink)">Overall</span>
+                                                                                                         </div>
+                                                                                                         <p style="font-size:.8rem;color:var(--ink-muted);line-height:1.6;margin:0">Ranks every player with their <strong>Gross</strong> and <strong>Net</strong> score through the current hole, plus a running count of each player's <strong>Skode</strong>, <strong>Junk</strong>, <strong>CTP</strong>, and <strong>LD</strong> events.</p>
+                                                                                                     </div>
+
+                                                                                                     <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 14px">
+                                                                                                         <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+                                                                                                             <span style="font-size:1rem;line-height:1">🎯</span>
+                                                                                                             <span style="font-size:.88rem;font-weight:700;color:var(--ink)">Side Games</span>
+                                                                                                         </div>
+                                                                                                         <p style="font-size:.8rem;color:var(--ink-muted);line-height:1.6;margin:0">Toggle between <strong>Skins</strong> (dollar amount won and skin count per player) and <strong>Greenies</strong> (greenie count per player).</p>
+                                                                                                     </div>
+
+                                                                                                     <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 14px">
+                                                                                                         <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+                                                                                                             <span style="font-size:1rem;line-height:1">📍</span>
+                                                                                                             <span style="font-size:.88rem;font-weight:700;color:var(--ink)">LD/CTP</span>
+                                                                                                         </div>
+                                                                                                         <p style="font-size:.8rem;color:var(--ink-muted);line-height:1.6;margin:0">Toggle between <strong>Closest to Pin</strong> standings (distance to the pin per player, by hole) and <strong>Longest Drive</strong> standings on each designated LD hole (yardage per player).</p>
+                                                                                                     </div>
+
+                                                                                                 </div>
+                                                                                                 All bet outcomes shown here are reflected in the <strong>Results Tab</strong>.
+                                                                                             </div>
                                                    </div>
                                                    <div class="wsi-icon"><i class="bi bi-trophy"></i></div>
                                                  </div>
@@ -3302,7 +3452,37 @@
                                                    <div class="wsi-num">07</div>
                                                    <div class="wsi-body">
                                                      <div class="wsi-title">Leaderboard</div>
-                                                     <div class="wsi-desc">The <strong>Leaderboard</strong> displays the final standings for all foursomes in the game — including net scores, Skode &amp; Junk rewards, and overall rankings. All bet outcomes are reflected in the <strong>Results Tab</strong>.</div>
+                                                     <div class="wsi-desc">
+                                                                                                 The <strong>Leaderboard</strong> gives you three ways to see how the round stands — tap a tab to switch between them.
+                                                                                                 <div style="margin-top:12px;display:flex;flex-direction:column;gap:8px">
+
+                                                                                                     <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 14px">
+                                                                                                         <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+                                                                                                             <span style="font-size:1rem;line-height:1">🏆</span>
+                                                                                                             <span style="font-size:.88rem;font-weight:700;color:var(--ink)">Overall</span>
+                                                                                                         </div>
+                                                                                                         <p style="font-size:.8rem;color:var(--ink-muted);line-height:1.6;margin:0">Ranks every player with their <strong>Gross</strong> and <strong>Net</strong> score through the current hole, plus a running count of each player's <strong>Skode</strong>, <strong>Junk</strong>, <strong>CTP</strong>, and <strong>LD</strong> events.</p>
+                                                                                                     </div>
+
+                                                                                                     <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 14px">
+                                                                                                         <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+                                                                                                             <span style="font-size:1rem;line-height:1">🎯</span>
+                                                                                                             <span style="font-size:.88rem;font-weight:700;color:var(--ink)">Side Games</span>
+                                                                                                         </div>
+                                                                                                         <p style="font-size:.8rem;color:var(--ink-muted);line-height:1.6;margin:0">Toggle between <strong>Skins</strong> (dollar amount won and skin count per player) and <strong>Greenies</strong> (greenie count per player).</p>
+                                                                                                     </div>
+
+                                                                                                     <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 14px">
+                                                                                                         <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+                                                                                                             <span style="font-size:1rem;line-height:1">📍</span>
+                                                                                                             <span style="font-size:.88rem;font-weight:700;color:var(--ink)">LD/CTP</span>
+                                                                                                         </div>
+                                                                                                         <p style="font-size:.8rem;color:var(--ink-muted);line-height:1.6;margin:0">Toggle between <strong>Closest to Pin</strong> standings (distance to the pin per player, by hole) and <strong>Longest Drive</strong> standings on each designated LD hole (yardage per player).</p>
+                                                                                                     </div>
+
+                                                                                                 </div>
+                                                                                                 All bet outcomes shown here are reflected in the <strong>Results Tab</strong>.
+                                                                                             </div>
                                                    </div>
                                                    <div class="wsi-icon"><i class="bi bi-trophy"></i></div>
                                                  </div>
@@ -3714,7 +3894,37 @@
                                                    <div class="wsi-num">07</div>
                                                    <div class="wsi-body">
                                                      <div class="wsi-title">Leaderboard</div>
-                                                     <div class="wsi-desc">The <strong>Leaderboard</strong> displays the final standings for all foursomes in the game — including net scores, Skode &amp; Junk rewards, and overall rankings. All bet outcomes are reflected in the <strong>Results Tab</strong>.</div>
+                                                     <div class="wsi-desc">
+                                                                                                 The <strong>Leaderboard</strong> gives you three ways to see how the round stands — tap a tab to switch between them.
+                                                                                                 <div style="margin-top:12px;display:flex;flex-direction:column;gap:8px">
+
+                                                                                                     <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 14px">
+                                                                                                         <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+                                                                                                             <span style="font-size:1rem;line-height:1">🏆</span>
+                                                                                                             <span style="font-size:.88rem;font-weight:700;color:var(--ink)">Overall</span>
+                                                                                                         </div>
+                                                                                                         <p style="font-size:.8rem;color:var(--ink-muted);line-height:1.6;margin:0">Ranks every player with their <strong>Gross</strong> and <strong>Net</strong> score through the current hole, plus a running count of each player's <strong>Skode</strong>, <strong>Junk</strong>, <strong>CTP</strong>, and <strong>LD</strong> events.</p>
+                                                                                                     </div>
+
+                                                                                                     <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 14px">
+                                                                                                         <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+                                                                                                             <span style="font-size:1rem;line-height:1">🎯</span>
+                                                                                                             <span style="font-size:.88rem;font-weight:700;color:var(--ink)">Side Games</span>
+                                                                                                         </div>
+                                                                                                         <p style="font-size:.8rem;color:var(--ink-muted);line-height:1.6;margin:0">Toggle between <strong>Skins</strong> (dollar amount won and skin count per player) and <strong>Greenies</strong> (greenie count per player).</p>
+                                                                                                     </div>
+
+                                                                                                     <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 14px">
+                                                                                                         <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+                                                                                                             <span style="font-size:1rem;line-height:1">📍</span>
+                                                                                                             <span style="font-size:.88rem;font-weight:700;color:var(--ink)">LD/CTP</span>
+                                                                                                         </div>
+                                                                                                         <p style="font-size:.8rem;color:var(--ink-muted);line-height:1.6;margin:0">Toggle between <strong>Closest to Pin</strong> standings (distance to the pin per player, by hole) and <strong>Longest Drive</strong> standings on each designated LD hole (yardage per player).</p>
+                                                                                                     </div>
+
+                                                                                                 </div>
+                                                                                                 All bet outcomes shown here are reflected in the <strong>Results Tab</strong>.
+                                                                                             </div>
                                                    </div>
                                                    <div class="wsi-icon"><i class="bi bi-trophy"></i></div>
                                                  </div>
@@ -4175,7 +4385,37 @@
                                                    <div class="wsi-num">07</div>
                                                    <div class="wsi-body">
                                                      <div class="wsi-title">Leaderboard</div>
-                                                     <div class="wsi-desc">The <strong>Leaderboard</strong> displays the final standings for all foursomes in the game — including net scores, Skode &amp; Junk rewards, and overall rankings. All bet outcomes are reflected in the <strong>Results Tab</strong>.</div>
+                                                     <div class="wsi-desc">
+                                                                                                 The <strong>Leaderboard</strong> gives you three ways to see how the round stands — tap a tab to switch between them.
+                                                                                                 <div style="margin-top:12px;display:flex;flex-direction:column;gap:8px">
+
+                                                                                                     <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 14px">
+                                                                                                         <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+                                                                                                             <span style="font-size:1rem;line-height:1">🏆</span>
+                                                                                                             <span style="font-size:.88rem;font-weight:700;color:var(--ink)">Overall</span>
+                                                                                                         </div>
+                                                                                                         <p style="font-size:.8rem;color:var(--ink-muted);line-height:1.6;margin:0">Ranks every player with their <strong>Gross</strong> and <strong>Net</strong> score through the current hole, plus a running count of each player's <strong>Skode</strong>, <strong>Junk</strong>, <strong>CTP</strong>, and <strong>LD</strong> events.</p>
+                                                                                                     </div>
+
+                                                                                                     <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 14px">
+                                                                                                         <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+                                                                                                             <span style="font-size:1rem;line-height:1">🎯</span>
+                                                                                                             <span style="font-size:.88rem;font-weight:700;color:var(--ink)">Side Games</span>
+                                                                                                         </div>
+                                                                                                         <p style="font-size:.8rem;color:var(--ink-muted);line-height:1.6;margin:0">Toggle between <strong>Skins</strong> (dollar amount won and skin count per player) and <strong>Greenies</strong> (greenie count per player).</p>
+                                                                                                     </div>
+
+                                                                                                     <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 14px">
+                                                                                                         <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+                                                                                                             <span style="font-size:1rem;line-height:1">📍</span>
+                                                                                                             <span style="font-size:.88rem;font-weight:700;color:var(--ink)">LD/CTP</span>
+                                                                                                         </div>
+                                                                                                         <p style="font-size:.8rem;color:var(--ink-muted);line-height:1.6;margin:0">Toggle between <strong>Closest to Pin</strong> standings (distance to the pin per player, by hole) and <strong>Longest Drive</strong> standings on each designated LD hole (yardage per player).</p>
+                                                                                                     </div>
+
+                                                                                                 </div>
+                                                                                                 All bet outcomes shown here are reflected in the <strong>Results Tab</strong>.
+                                                                                             </div>
                                                    </div>
                                                    <div class="wsi-icon"><i class="bi bi-trophy"></i></div>
                                                  </div>
@@ -4696,7 +4936,37 @@
                                                                                           <div class="wsi-num">10</div>
                                                                                           <div class="wsi-body">
                                                                                             <div class="wsi-title">Leaderboard</div>
-                                                                                            <div class="wsi-desc">The <strong>Leaderboard</strong> displays the final standings for all foursomes in the game — including net scores, Skode &amp; Junk rewards, and overall rankings. All bet outcomes are reflected in the <strong>Results Tab</strong>.</div>
+                                                                                            <div class="wsi-desc">
+                                                                                                                                        The <strong>Leaderboard</strong> gives you three ways to see how the round stands — tap a tab to switch between them.
+                                                                                                                                        <div style="margin-top:12px;display:flex;flex-direction:column;gap:8px">
+
+                                                                                                                                            <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 14px">
+                                                                                                                                                <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+                                                                                                                                                    <span style="font-size:1rem;line-height:1">🏆</span>
+                                                                                                                                                    <span style="font-size:.88rem;font-weight:700;color:var(--ink)">Overall</span>
+                                                                                                                                                </div>
+                                                                                                                                                <p style="font-size:.8rem;color:var(--ink-muted);line-height:1.6;margin:0">Ranks every player with their <strong>Gross</strong> and <strong>Net</strong> score through the current hole, plus a running count of each player's <strong>Skode</strong>, <strong>Junk</strong>, <strong>CTP</strong>, and <strong>LD</strong> events.</p>
+                                                                                                                                            </div>
+
+                                                                                                                                            <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 14px">
+                                                                                                                                                <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+                                                                                                                                                    <span style="font-size:1rem;line-height:1">🎯</span>
+                                                                                                                                                    <span style="font-size:.88rem;font-weight:700;color:var(--ink)">Side Games</span>
+                                                                                                                                                </div>
+                                                                                                                                                <p style="font-size:.8rem;color:var(--ink-muted);line-height:1.6;margin:0">Toggle between <strong>Skins</strong> (dollar amount won and skin count per player) and <strong>Greenies</strong> (greenie count per player).</p>
+                                                                                                                                            </div>
+
+                                                                                                                                            <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 14px">
+                                                                                                                                                <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+                                                                                                                                                    <span style="font-size:1rem;line-height:1">📍</span>
+                                                                                                                                                    <span style="font-size:.88rem;font-weight:700;color:var(--ink)">LD/CTP</span>
+                                                                                                                                                </div>
+                                                                                                                                                <p style="font-size:.8rem;color:var(--ink-muted);line-height:1.6;margin:0">Toggle between <strong>Closest to Pin</strong> standings (distance to the pin per player, by hole) and <strong>Longest Drive</strong> standings on each designated LD hole (yardage per player).</p>
+                                                                                                                                            </div>
+
+                                                                                                                                        </div>
+                                                                                                                                        All bet outcomes shown here are reflected in the <strong>Results Tab</strong>.
+                                                                                                                                    </div>
                                                                                           </div>
                                                                                           <div class="wsi-icon"><i class="bi bi-trophy"></i></div>
                                                                                         </div>
@@ -5486,7 +5756,37 @@
                                                    <div class="wsi-num">17</div>
                                                    <div class="wsi-body">
                                                      <div class="wsi-title">Leaderboard</div>
-                                                     <div class="wsi-desc">The <strong>Leaderboard</strong> displays the final standings for all foursomes in the game — including net scores, Skode &amp; Junk rewards, and overall rankings. All bet outcomes are reflected in the <strong>Results Tab</strong>.</div>
+                                                     <div class="wsi-desc">
+                                                                                                 The <strong>Leaderboard</strong> gives you three ways to see how the round stands — tap a tab to switch between them.
+                                                                                                 <div style="margin-top:12px;display:flex;flex-direction:column;gap:8px">
+
+                                                                                                     <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 14px">
+                                                                                                         <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+                                                                                                             <span style="font-size:1rem;line-height:1">🏆</span>
+                                                                                                             <span style="font-size:.88rem;font-weight:700;color:var(--ink)">Overall</span>
+                                                                                                         </div>
+                                                                                                         <p style="font-size:.8rem;color:var(--ink-muted);line-height:1.6;margin:0">Ranks every player with their <strong>Gross</strong> and <strong>Net</strong> score through the current hole, plus a running count of each player's <strong>Skode</strong>, <strong>Junk</strong>, <strong>CTP</strong>, and <strong>LD</strong> events.</p>
+                                                                                                     </div>
+
+                                                                                                     <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 14px">
+                                                                                                         <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+                                                                                                             <span style="font-size:1rem;line-height:1">🎯</span>
+                                                                                                             <span style="font-size:.88rem;font-weight:700;color:var(--ink)">Side Games</span>
+                                                                                                         </div>
+                                                                                                         <p style="font-size:.8rem;color:var(--ink-muted);line-height:1.6;margin:0">Toggle between <strong>Skins</strong> (dollar amount won and skin count per player) and <strong>Greenies</strong> (greenie count per player).</p>
+                                                                                                     </div>
+
+                                                                                                     <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 14px">
+                                                                                                         <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+                                                                                                             <span style="font-size:1rem;line-height:1">📍</span>
+                                                                                                             <span style="font-size:.88rem;font-weight:700;color:var(--ink)">LD/CTP</span>
+                                                                                                         </div>
+                                                                                                         <p style="font-size:.8rem;color:var(--ink-muted);line-height:1.6;margin:0">Toggle between <strong>Closest to Pin</strong> standings (distance to the pin per player, by hole) and <strong>Longest Drive</strong> standings on each designated LD hole (yardage per player).</p>
+                                                                                                     </div>
+
+                                                                                                 </div>
+                                                                                                 All bet outcomes shown here are reflected in the <strong>Results Tab</strong>.
+                                                                                             </div>
                                                    </div>
                                                    <div class="wsi-icon"><i class="bi bi-trophy"></i></div>
                                                  </div>
@@ -6003,7 +6303,37 @@
                                                          <div class="wsi-num">11</div>
                                                          <div class="wsi-body">
                                                            <div class="wsi-title">Leaderboard</div>
-                                                           <div class="wsi-desc">The <strong>Leaderboard</strong> displays the final standings for all foursomes in the game — including net scores, Skode &amp; Junk rewards, and overall rankings. All bet outcomes are reflected in the <strong>Results Tab</strong>.</div>
+                                                           <div class="wsi-desc">
+                                                                                                       The <strong>Leaderboard</strong> gives you three ways to see how the round stands — tap a tab to switch between them.
+                                                                                                       <div style="margin-top:12px;display:flex;flex-direction:column;gap:8px">
+
+                                                                                                           <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 14px">
+                                                                                                               <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+                                                                                                                   <span style="font-size:1rem;line-height:1">🏆</span>
+                                                                                                                   <span style="font-size:.88rem;font-weight:700;color:var(--ink)">Overall</span>
+                                                                                                               </div>
+                                                                                                               <p style="font-size:.8rem;color:var(--ink-muted);line-height:1.6;margin:0">Ranks every player with their <strong>Gross</strong> and <strong>Net</strong> score through the current hole, plus a running count of each player's <strong>Skode</strong>, <strong>Junk</strong>, <strong>CTP</strong>, and <strong>LD</strong> events.</p>
+                                                                                                           </div>
+
+                                                                                                           <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 14px">
+                                                                                                               <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+                                                                                                                   <span style="font-size:1rem;line-height:1">🎯</span>
+                                                                                                                   <span style="font-size:.88rem;font-weight:700;color:var(--ink)">Side Games</span>
+                                                                                                               </div>
+                                                                                                               <p style="font-size:.8rem;color:var(--ink-muted);line-height:1.6;margin:0">Toggle between <strong>Skins</strong> (dollar amount won and skin count per player) and <strong>Greenies</strong> (greenie count per player).</p>
+                                                                                                           </div>
+
+                                                                                                           <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 14px">
+                                                                                                               <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+                                                                                                                   <span style="font-size:1rem;line-height:1">📍</span>
+                                                                                                                   <span style="font-size:.88rem;font-weight:700;color:var(--ink)">LD/CTP</span>
+                                                                                                               </div>
+                                                                                                               <p style="font-size:.8rem;color:var(--ink-muted);line-height:1.6;margin:0">Toggle between <strong>Closest to Pin</strong> standings (distance to the pin per player, by hole) and <strong>Longest Drive</strong> standings on each designated LD hole (yardage per player).</p>
+                                                                                                           </div>
+
+                                                                                                       </div>
+                                                                                                       All bet outcomes shown here are reflected in the <strong>Results Tab</strong>.
+                                                                                                   </div>
                                                          </div>
                                                          <div class="wsi-icon"><i class="bi bi-trophy"></i></div>
                                                        </div>
