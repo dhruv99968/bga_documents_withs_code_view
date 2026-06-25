@@ -18835,4 +18835,80 @@ Response (DefaultModel):
     "message": "..."
   }
 `);
+
+  // ── Leaderboard screens — all game types ──
+  var _leaderboardLive = `
+// GET {{baseUrl}}/api/leaderboard/game/\${gameId}/foursome/\${foursomeId}
+// Controller: leader_board_screen_controller.dart → ApiServices().liveLeaderboard()
+
+Dart Method:
+  ApiServices().liveLeaderboard({
+    gameId: String,
+    foursomeId: String,
+    organizationId: String
+  }) → Future&lt;LiveLeaderBoardModel&gt;
+
+HTTP Request:
+  GET {{baseUrl}}/api/leaderboard/game/\${gameId}/foursome/\${foursomeId}
+  X-Organization-Id: \${organizationId}
+  Authorization: Bearer {{accessToken}}
+
+Response (LiveLeaderBoardModel):
+  {
+    "error":   false,
+    "message": "...",
+    "allover_leaderboard": [...],
+    "foursome_leaderboard": [...],
+    "skin_leaderboard": [...],
+    "greenie_leaderboard": [...],
+    "ld_leaderboard": [...],
+    "ctp_leaderboard": [...]
+  }
+`;
+  var _leaderboardAcross = `
+// GET {{baseUrl}}/api/leaderboard/game/\${gameId}/across
+// Controller: leader_board_screen_controller.dart → ApiServices().getAcrossLeadrboard()
+
+Dart Method:
+  ApiServices().getAcrossLeadrboard({
+    gameId: String
+  }) → Future&lt;AcrossLeaderboardModel&gt;
+
+HTTP Request:
+  GET {{baseUrl}}/api/leaderboard/game/\${gameId}/across
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+
+Response (AcrossLeaderboardModel):
+  {
+    "error":   false,
+    "message": "...",
+    "across_leaderboard": [...]
+  }
+`;
+  add("asslide-9", "apis", "liveLeaderboard", _leaderboardLive);
+  add("asslide-9", "apis", "getAcrossLeadrboard", _leaderboardAcross);
+  add("asslide-321milo-9", "apis", "liveLeaderboard", _leaderboardLive);
+  add("asslide-321milo-9", "apis", "getAcrossLeadrboard", _leaderboardAcross);
+  add("asslide-vegas-9", "apis", "liveLeaderboard", _leaderboardLive);
+  add("asslide-vegas-9", "apis", "getAcrossLeadrboard", _leaderboardAcross);
+  add("asslide-scramble-9", "apis", "liveLeaderboard", _leaderboardLive);
+  add("asslide-scramble-9", "apis", "getAcrossLeadrboard", _leaderboardAcross);
+  add("asslide-progskins-6", "apis", "liveLeaderboard", _leaderboardLive);
+  add("asslide-progskins-6", "apis", "getAcrossLeadrboard", _leaderboardAcross);
+  add("asslide-regular_skins-6", "apis", "liveLeaderboard", _leaderboardLive);
+  add("asslide-regular_skins-6", "apis", "getAcrossLeadrboard", _leaderboardAcross);
+  add("asslide-stroke_play-6", "apis", "liveLeaderboard", _leaderboardLive);
+  add("asslide-stroke_play-6", "apis", "getAcrossLeadrboard", _leaderboardAcross);
+  add("asslide-stableford-6", "apis", "liveLeaderboard", _leaderboardLive);
+  add("asslide-stableford-6", "apis", "getAcrossLeadrboard", _leaderboardAcross);
+  add("asslide-wolf-6", "apis", "liveLeaderboard", _leaderboardLive);
+  add("asslide-wolf-6", "apis", "getAcrossLeadrboard", _leaderboardAcross);
+  add("asslide-horse_race-10", "apis", "liveLeaderboard", _leaderboardLive);
+  add("asslide-horse_race-10", "apis", "getAcrossLeadrboard", _leaderboardAcross);
+  add("asslide-ryder_cup-16", "apis", "liveLeaderboard", _leaderboardLive);
+  add("asslide-ryder_cup-16", "apis", "getAcrossLeadrboard", _leaderboardAcross);
+  add("asslide-calcutta-24", "apis", "liveLeaderboard", _leaderboardLive);
+  add("asslide-calcutta-24", "apis", "getAcrossLeadrboard", _leaderboardAcross);
+
 })();
