@@ -18886,29 +18886,10 @@ Response (AcrossLeaderboardModel):
     "across_leaderboard": [...]
   }
 `;
+  // asslide-9 is the base key; all game-type-specific leaderboard keys
+  // (asslide-321milo-9, asslide-vegas-9, etc.) fall back to this entry
+  // via asslideBaseKey() in script.js when they have no entries of their own.
   add("asslide-9", "apis", "liveLeaderboard", _leaderboardLive);
   add("asslide-9", "apis", "getAcrossLeadrboard", _leaderboardAcross);
-  add("asslide-321milo-9", "apis", "liveLeaderboard", _leaderboardLive);
-  add("asslide-321milo-9", "apis", "getAcrossLeadrboard", _leaderboardAcross);
-  add("asslide-vegas-9", "apis", "liveLeaderboard", _leaderboardLive);
-  add("asslide-vegas-9", "apis", "getAcrossLeadrboard", _leaderboardAcross);
-  add("asslide-scramble-9", "apis", "liveLeaderboard", _leaderboardLive);
-  add("asslide-scramble-9", "apis", "getAcrossLeadrboard", _leaderboardAcross);
-  add("asslide-progskins-6", "apis", "liveLeaderboard", _leaderboardLive);
-  add("asslide-progskins-6", "apis", "getAcrossLeadrboard", _leaderboardAcross);
-  add("asslide-regular_skins-6", "apis", "liveLeaderboard", _leaderboardLive);
-  add("asslide-regular_skins-6", "apis", "getAcrossLeadrboard", _leaderboardAcross);
-  add("asslide-stroke_play-6", "apis", "liveLeaderboard", _leaderboardLive);
-  add("asslide-stroke_play-6", "apis", "getAcrossLeadrboard", _leaderboardAcross);
-  add("asslide-stableford-6", "apis", "liveLeaderboard", _leaderboardLive);
-  add("asslide-stableford-6", "apis", "getAcrossLeadrboard", _leaderboardAcross);
-  add("asslide-wolf-6", "apis", "liveLeaderboard", _leaderboardLive);
-  add("asslide-wolf-6", "apis", "getAcrossLeadrboard", _leaderboardAcross);
-  add("asslide-horse_race-10", "apis", "liveLeaderboard", _leaderboardLive);
-  add("asslide-horse_race-10", "apis", "getAcrossLeadrboard", _leaderboardAcross);
-  add("asslide-ryder_cup-16", "apis", "liveLeaderboard", _leaderboardLive);
-  add("asslide-ryder_cup-16", "apis", "getAcrossLeadrboard", _leaderboardAcross);
-  add("asslide-calcutta-24", "apis", "liveLeaderboard", _leaderboardLive);
-  add("asslide-calcutta-24", "apis", "getAcrossLeadrboard", _leaderboardAcross);
 
 })();
