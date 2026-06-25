@@ -18835,4 +18835,119 @@ Response (DefaultModel):
     "message": "..."
   }
 `);
+
+  add("asslide-9", "apis", "getAllPlayersResult", `
+// GET {{baseUrl}}/api/result/game/\${gameId}/all-foursome
+// Controller: game_details_controller.dart → apiService.getAllPlayersResult()
+
+Dart Method:
+  apiService.getAllPlayersResult({
+    gameId: int,
+    organizationId: String
+  }) → Future&lt;GameResultModel&gt;
+
+HTTP Request:
+  GET {{baseUrl}}/api/result/game/\${gameId}/all-foursome
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+
+Response (GameResultModel):
+  {
+    "error":   false,
+    "message": "..."
+  }
+`);
+
+  add("asslide-9", "apis", "getResult", `
+// GET {{baseUrl}}/api/result/game/\$gameId?foursome_id=\$foursomeId
+// Controller: game_details_controller.dart → apiService.getResult()
+
+Dart Method:
+  apiService.getResult({
+    gameId: int,
+    foursomeId: int,
+    organizationId: String
+  }) → Future&lt;GameResultModel&gt;
+
+HTTP Request:
+  GET {{baseUrl}}/api/result/game/\$gameId?foursome_id=\$foursomeId
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+
+Response (GameResultModel):
+  {
+    "error":   false,
+    "message": "..."
+  }
+`);
+
+  add("asslide-9", "apis", "getIndividualSummary", `
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/individual
+// Controller: game_details_controller.dart → apiService.getIndividualSummary()
+
+Dart Method:
+  apiService.getIndividualSummary({
+    gameId: int,
+    foursomeId: int,
+    organizationId: String
+  }) → Future&lt;IndividualSummaryModel&gt;
+
+HTTP Request:
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/individual
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+
+Response (IndividualSummaryModel):
+  {
+    "error":   false,
+    "message": "..."
+  }
+`);
+
+  add("asslide-9", "apis", "getSkodeSummary", `
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/skode
+// Controller: game_details_controller.dart → apiService.getSkodeSummary()
+
+Dart Method:
+  apiService.getSkodeSummary({
+    gameId: int,
+    foursomeId: int,
+    organizationId: String
+  }) → Future&lt;SkodeSummaryModel&gt;
+
+HTTP Request:
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/skode
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+
+Response (SkodeSummaryModel):
+  {
+    "error":   false,
+    "message": "..."
+  }
+`);
+
+  add("asslide-9", "apis", "getCalcuttaSummary", `
+// GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/calcutta
+// Controller: game_details_controller.dart → apiService.getCalcuttaSummary()
+
+Dart Method:
+  apiService.getCalcuttaSummary({
+    gameId: int,
+    foursomeId: int,
+    organizationId: String
+  }) → Future&lt;CalcuttaSummaryModel&gt;
+
+HTTP Request:
+  GET {{baseUrl}}/api/summary/game/\$gameId/foursome/\$foursomeId/calcutta
+  X-Organization-Id: all
+  Authorization: Bearer {{accessToken}}
+
+Response (CalcuttaSummaryModel):
+  {
+    "error":   false,
+    "message": "..."
+  }
+`);
+
 })();
