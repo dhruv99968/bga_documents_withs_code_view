@@ -291,6 +291,30 @@ FILE_MAP = [
     dict(key="asslide-9", stack="flutter", file="leader_board_screen_controller.dart",
          src="lib/controllers/leaderboard_controller/leader_board_screen_controller.dart"),
 
+    # ── Leaderboard — game-type-specific keys (all share leader_board_screen_controller) ──
+    dict(key="asslide-321milo-9", stack="flutter", file="leader_board_screen_controller.dart",
+         src="lib/controllers/leaderboard_controller/leader_board_screen_controller.dart"),
+    dict(key="asslide-vegas-9", stack="flutter", file="leader_board_screen_controller.dart",
+         src="lib/controllers/leaderboard_controller/leader_board_screen_controller.dart"),
+    dict(key="asslide-scramble-9", stack="flutter", file="leader_board_screen_controller.dart",
+         src="lib/controllers/leaderboard_controller/leader_board_screen_controller.dart"),
+    dict(key="asslide-progskins-6", stack="flutter", file="leader_board_screen_controller.dart",
+         src="lib/controllers/leaderboard_controller/leader_board_screen_controller.dart"),
+    dict(key="asslide-regular_skins-6", stack="flutter", file="leader_board_screen_controller.dart",
+         src="lib/controllers/leaderboard_controller/leader_board_screen_controller.dart"),
+    dict(key="asslide-stroke_play-6", stack="flutter", file="leader_board_screen_controller.dart",
+         src="lib/controllers/leaderboard_controller/leader_board_screen_controller.dart"),
+    dict(key="asslide-stableford-6", stack="flutter", file="leader_board_screen_controller.dart",
+         src="lib/controllers/leaderboard_controller/leader_board_screen_controller.dart"),
+    dict(key="asslide-wolf-6", stack="flutter", file="leader_board_screen_controller.dart",
+         src="lib/controllers/leaderboard_controller/leader_board_screen_controller.dart"),
+    dict(key="asslide-horse_race-10", stack="flutter", file="leader_board_screen_controller.dart",
+         src="lib/controllers/leaderboard_controller/leader_board_screen_controller.dart"),
+    dict(key="asslide-ryder_cup-16", stack="flutter", file="leader_board_screen_controller.dart",
+         src="lib/controllers/leaderboard_controller/leader_board_screen_controller.dart"),
+    dict(key="asslide-calcutta-24", stack="flutter", file="leader_board_screen_controller.dart",
+         src="lib/controllers/leaderboard_controller/leader_board_screen_controller.dart"),
+
     dict(key="asslide-10", stack="flutter", file="add_score.dart",
          src="lib/views/score/add_score.dart"),
     dict(key="asslide-10", stack="flutter", file="add_score_controller.dart",
@@ -460,6 +484,18 @@ EXTERNAL_JS_TARGETS = {
     "asslide-horse_race-1": {"flutter": "JavaScripts/flutter/add-score-horse-race.js", "apis": "JavaScripts/code-data-apis.js"},
     "asslide-horse_race-2": {"flutter": "JavaScripts/flutter/add-score-horse-race.js", "apis": "JavaScripts/code-data-apis.js"},
     "asslide-horse_race-3": {"flutter": "JavaScripts/flutter/add-score-horse-race.js", "apis": "JavaScripts/code-data-apis.js"},
+    # ── Leaderboard — game-type-specific keys ──
+    "asslide-321milo-9":      {"apis": "JavaScripts/code-data-apis.js"},
+    "asslide-vegas-9":        {"apis": "JavaScripts/code-data-apis.js"},
+    "asslide-scramble-9":     {"apis": "JavaScripts/code-data-apis.js"},
+    "asslide-progskins-6":    {"apis": "JavaScripts/code-data-apis.js"},
+    "asslide-regular_skins-6":{"apis": "JavaScripts/code-data-apis.js"},
+    "asslide-stroke_play-6":  {"apis": "JavaScripts/code-data-apis.js"},
+    "asslide-stableford-6":   {"apis": "JavaScripts/code-data-apis.js"},
+    "asslide-wolf-6":         {"apis": "JavaScripts/code-data-apis.js"},
+    "asslide-horse_race-10":  {"apis": "JavaScripts/code-data-apis.js"},
+    "asslide-ryder_cup-16":   {"apis": "JavaScripts/code-data-apis.js"},
+    "asslide-calcutta-24":    {"apis": "JavaScripts/code-data-apis.js"},
 }
 
 # In-memory cache for external JS files — read once, write once at the end.
@@ -878,6 +914,12 @@ ALWAYS_OPT_IN_KEYS = {
     # Add Score — Horse Race unique steps
     "asslide-horse_race-0", "asslide-horse_race-1",
     "asslide-horse_race-2", "asslide-horse_race-3",
+    # Leaderboard — game-type-specific keys
+    "asslide-9",
+    "asslide-321milo-9", "asslide-vegas-9", "asslide-scramble-9",
+    "asslide-progskins-6", "asslide-regular_skins-6", "asslide-stroke_play-6",
+    "asslide-stableford-6", "asslide-wolf-6",
+    "asslide-horse_race-10", "asslide-ryder_cup-16", "asslide-calcutta-24",
 }
 
 
@@ -921,7 +963,7 @@ def process_api_controllers(html, api_code):
             ctrl_code = f.read()
 
         api_calls = sorted(set(
-            m for m in re.findall(r'apiService\.(\w+)\s*\(', ctrl_code)
+            m for m in re.findall(r'(?:apiService|ApiServices\(\))\.(\w+)\s*\(', ctrl_code)
         ))
 
         if not api_calls:
