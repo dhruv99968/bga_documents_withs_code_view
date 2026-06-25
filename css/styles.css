@@ -267,6 +267,19 @@
         .image-placeholder{height:200px;background:var(--bg);border:1px dashed var(--border);border-radius:var(--radius);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--ink-faint)}
         .image-placeholder i{font-size:32px}
         .image-placeholder span{font-size:.8rem}
+        /* ── cp-shot inline carousel ── */
+        .cpcar{position:relative;width:100%}
+        .cpcar-track{width:100%}
+        .cpcar-item{display:none}
+        .cpcar-item.active{display:block}
+        .cpcar-btn{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:28px;height:28px;border-radius:50%;border:1px solid var(--border);background:var(--bg);color:var(--ink-muted);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.8rem;transition:all .15s;padding:0;line-height:1}
+        .cpcar-btn:hover{background:var(--brand);color:#fff;border-color:var(--brand)}
+        .cpcar-prev{left:4px}
+        .cpcar-next{right:4px}
+        .cpcar-dots{display:flex;justify-content:center;gap:5px;margin-top:6px}
+        .cpcar-dot{width:6px;height:6px;border-radius:50%;background:var(--border);cursor:pointer;transition:all .2s;display:inline-block}
+        .cpcar-dot.active{background:var(--brand);width:16px;border-radius:3px}
+        /* ── end cp-shot inline carousel ── */
         .wizard-nav{display:flex;align-items:center;justify-content:space-between;margin-top:16px;gap:10px}
         .wizard-nav-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border-radius:var(--radius-sm);font-size:.84rem;font-weight:600;cursor:pointer;border:1px solid var(--border);background:var(--bg);color:var(--ink-muted);transition:all .2s;font-family:var(--font)}
         .wizard-nav-btn:hover{background:var(--border)}

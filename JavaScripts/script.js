@@ -115,7 +115,7 @@
         'asslide-321milo-6':  { src:'images/321_milo_image/321Milo-18-HoleScoreGrid.png', alt:'18-Hole Score Grid' },
         'asslide-321milo-7':  { src:'images/scoreEntryScreen.png', alt:'Scorecard' },
         'asslide-321milo-8':  { src:'images/skode&JunkRewards.png', alt:'Skode & Junk Rewards' },
-        'asslide-321milo-9':  { src:'images/leaderboard.png', alt:'Leaderboard' },
+        'asslide-321milo-9':  { src:'images/leaderboard.png', alt:'Leaderboard', shots:[{src:'images/leaderboard.png',alt:'Leaderboard 1'},{src:'images/leaderboard2.png',alt:'Leaderboard 2'},{src:'images/leaderboard3.png',alt:'Leaderboard 3'},{src:'images/leaderboard4.png',alt:'Leaderboard 4'},{src:'images/leaderboard5.png',alt:'Leaderboard 5'}] },
         'asslide-321milo-10': { src:'images/viewAddScoreResultsTab.png', alt:'View Results Tab' },
         'asslide-321milo-11': { src:'images/allHolesScoreAdded.png', alt:'All Holes Score Added' },
         'asslide-vegas-0':  { src:'images/vegas_image/selectFoursome.png', alt:'Select Foursome' },
@@ -127,7 +127,7 @@
         'asslide-vegas-6':  { src:'images/vegas_image/18-HoleScoreGrid.png', alt:'18-Hole Score Grid' },
         'asslide-vegas-7':  { src:'images/vegas_image/scoreEntryScreen.png', alt:'Scorecard' },
         'asslide-vegas-8':  { src:'images/skode&JunkRewards.png', alt:'Skode & Junk Rewards' },
-        'asslide-vegas-9':  { src:'images/vegas_image/leaderboard.png', alt:'Leaderboard' },
+        'asslide-vegas-9':  { src:'images/vegas_image/leaderboard.png', alt:'Leaderboard', shots:[{src:'images/vegas_image/leaderboard.png',alt:'Leaderboard 1'},{src:'images/vegas_image/leaderboard2.png',alt:'Leaderboard 2'},{src:'images/vegas_image/leaderboard3.png',alt:'Leaderboard 3'},{src:'images/vegas_image/leaderboard4.png',alt:'Leaderboard 4'},{src:'images/vegas_image/leaderboard5.png',alt:'Leaderboard 5'}] },
         'asslide-vegas-10': { src:'images/vegas_image/viewAddScoreResultsTab.png', alt:'View Results Tab' },
         'asslide-vegas-11': { src:'images/vegas_image/allHolesScoreAdded.png', alt:'All Holes Score Added' },
         'asslide-scramble-0':  { src:'images/vegas_image/selectFoursome.png', alt:'Select Foursome' },
@@ -139,7 +139,7 @@
         'asslide-scramble-6':  { src:'images/vegas_image/18-HoleScoreGrid.png', alt:'18-Hole Score Grid' },
         'asslide-scramble-7':  { src:'images/scramble_image/scoreEntryScreen.png', alt:'Scorecard' },
         'asslide-scramble-8':  { src:'images/skode&JunkRewards.png', alt:'Skode & Junk Rewards' },
-        'asslide-scramble-9':  { src:'images/vegas_image/leaderboard.png', alt:'Leaderboard' },
+        'asslide-scramble-9':  { src:'images/vegas_image/leaderboard.png', alt:'Leaderboard', shots:[{src:'images/vegas_image/leaderboard.png',alt:'Leaderboard 1'},{src:'images/vegas_image/leaderboard2.png',alt:'Leaderboard 2'},{src:'images/vegas_image/leaderboard3.png',alt:'Leaderboard 3'},{src:'images/vegas_image/leaderboard4.png',alt:'Leaderboard 4'},{src:'images/vegas_image/leaderboard5.png',alt:'Leaderboard 5'}] },
         'asslide-scramble-10': { src:'images/scramble_image/viewAddScoreResultsTab.png', alt:'View Results Tab' },
         'asslide-scramble-11': { src:'images/vegas_image/allHolesScoreAdded.png', alt:'All Holes Score Added' },
         'asslide-progskins-0':  { src:'images/progressive_skins_image/selectFoursome.png', alt:'Select Foursome' },
@@ -148,7 +148,7 @@
         'asslide-progskins-3':  { src:'images/progressive_skins_image/18-HoleScoreGrid.png', alt:'18-Hole Score Grid' },
         'asslide-progskins-4':  { src:'images/scoreEntryScreen.png', alt:'Scorecard' },
         'asslide-progskins-5':  { src:'images/skode&JunkRewards.png', alt:'Skode & Junk Rewards' },
-        'asslide-progskins-6':  { src:'images/leaderboard.png', alt:'Leaderboard' },
+        'asslide-progskins-6':  { src:'images/leaderboard.png', alt:'Leaderboard', shots:[{src:'images/leaderboard.png',alt:'Leaderboard 1'},{src:'images/leaderboard2.png',alt:'Leaderboard 2'},{src:'images/leaderboard3.png',alt:'Leaderboard 3'},{src:'images/leaderboard4.png',alt:'Leaderboard 4'},{src:'images/leaderboard5.png',alt:'Leaderboard 5'}] },
         'asslide-progskins-7':  { src:'images/viewAddScoreResultsTab.png', alt:'View Results Tab' },
         'asslide-progskins-8':  { src:'images/allHolesScoreAdded.png', alt:'All Holes Score Added' },
         'asslide-regular_skins-0':  { src:'images/regular_skins_image/selectFoursome.png', alt:'Select Foursome' },
@@ -157,7 +157,7 @@
         'asslide-regular_skins-3':  { src:'images/regular_skins_image/18-HoleScoreGrid.png', alt:'18-Hole Score Grid' },
         'asslide-regular_skins-4':  { src:'images/regular_skins_image/scoreEntryScreen.png', alt:'Scorecard' },
         'asslide-regular_skins-5':  { src:'images/skode&JunkRewards.png', alt:'Skode & Junk Rewards' },
-        'asslide-regular_skins-6':  { src:'images/regular_skins_image/leaderboard.png', alt:'Leaderboard' },
+        'asslide-regular_skins-6':  { src:'images/regular_skins_image/leaderboard.png', alt:'Leaderboard', shots:[{src:'images/regular_skins_image/leaderboard.png',alt:'Leaderboard 1'},{src:'images/regular_skins_image/leaderboard2.png',alt:'Leaderboard 2'},{src:'images/regular_skins_image/leaderboard3.png',alt:'Leaderboard 3'},{src:'images/regular_skins_image/leaderboard4.png',alt:'Leaderboard 4'},{src:'images/regular_skins_image/leaderboard5.png',alt:'Leaderboard 5'}] },
         'asslide-regular_skins-7':  { src:'images/regular_skins_image/viewAddScoreResultsTab.png', alt:'View Results Tab' },
         'asslide-regular_skins-8':  { src:'images/regular_skins_image/allHolesScoreAdded.png', alt:'All Holes Score Added' },
         'asslide-stroke_play-0':  { src:'images/regular_skins_image/selectFoursome.png', alt:'Select Foursome' },
@@ -166,7 +166,7 @@
         'asslide-stroke_play-3':  { src:'images/regular_skins_image/18-HoleScoreGrid.png', alt:'18-Hole Score Grid' },
         'asslide-stroke_play-4':  { src:'images/stroke_play_image/scoreEntryScreen.png', alt:'Scorecard' },
         'asslide-stroke_play-5':  { src:'images/skode&JunkRewards.png', alt:'Skode & Junk Rewards' },
-        'asslide-stroke_play-6':  { src:'images/regular_skins_image/leaderboard.png', alt:'Leaderboard' },
+        'asslide-stroke_play-6':  { src:'images/regular_skins_image/leaderboard.png', alt:'Leaderboard', shots:[{src:'images/regular_skins_image/leaderboard.png',alt:'Leaderboard 1'},{src:'images/regular_skins_image/leaderboard2.png',alt:'Leaderboard 2'},{src:'images/regular_skins_image/leaderboard3.png',alt:'Leaderboard 3'},{src:'images/regular_skins_image/leaderboard4.png',alt:'Leaderboard 4'},{src:'images/regular_skins_image/leaderboard5.png',alt:'Leaderboard 5'}] },
         'asslide-stroke_play-7':  { src:'images/stroke_play_image/viewAddScoreResultsTab.png', alt:'View Results Tab' },
         'asslide-stroke_play-8':  { src:'images/regular_skins_image/allHolesScoreAdded.png', alt:'All Holes Score Added' },
         'asslide-stableford-0':  { src:'images/regular_skins_image/selectFoursome.png', alt:'Select Foursome' },
@@ -175,7 +175,7 @@
         'asslide-stableford-3':  { src:'images/regular_skins_image/18-HoleScoreGrid.png', alt:'18-Hole Score Grid' },
         'asslide-stableford-4':  { src:'images/stableford_image/scoreEntryScreen.png', alt:'Scorecard' },
         'asslide-stableford-5':  { src:'images/skode&JunkRewards.png', alt:'Skode & Junk Rewards' },
-        'asslide-stableford-6':  { src:'images/regular_skins_image/leaderboard.png', alt:'Leaderboard' },
+        'asslide-stableford-6':  { src:'images/regular_skins_image/leaderboard.png', alt:'Leaderboard', shots:[{src:'images/regular_skins_image/leaderboard.png',alt:'Leaderboard 1'},{src:'images/regular_skins_image/leaderboard2.png',alt:'Leaderboard 2'},{src:'images/regular_skins_image/leaderboard3.png',alt:'Leaderboard 3'},{src:'images/regular_skins_image/leaderboard4.png',alt:'Leaderboard 4'},{src:'images/regular_skins_image/leaderboard5.png',alt:'Leaderboard 5'}] },
         'asslide-stableford-7':  { src:'images/stableford_image/viewAddScoreResultsTab.png', alt:'View Results Tab' },
         'asslide-stableford-8':  { src:'images/regular_skins_image/allHolesScoreAdded.png', alt:'All Holes Score Added' },
         'asslide-wolf-0':  { src:'images/regular_skins_image/selectFoursome.png', alt:'Select Foursome' },
@@ -184,7 +184,7 @@
         'asslide-wolf-3':  { src:'images/regular_skins_image/18-HoleScoreGrid.png', alt:'18-Hole Score Grid' },
         'asslide-wolf-4':  { src:'images/wolf_image/scoreEntryScreen.png', alt:'Scorecard' },
         'asslide-wolf-5':  { src:'images/skode&JunkRewards.png', alt:'Skode & Junk Rewards' },
-        'asslide-wolf-6':  { src:'images/regular_skins_image/leaderboard.png', alt:'Leaderboard' },
+        'asslide-wolf-6':  { src:'images/regular_skins_image/leaderboard.png', alt:'Leaderboard', shots:[{src:'images/regular_skins_image/leaderboard.png',alt:'Leaderboard 1'},{src:'images/regular_skins_image/leaderboard2.png',alt:'Leaderboard 2'},{src:'images/regular_skins_image/leaderboard3.png',alt:'Leaderboard 3'},{src:'images/regular_skins_image/leaderboard4.png',alt:'Leaderboard 4'},{src:'images/regular_skins_image/leaderboard5.png',alt:'Leaderboard 5'}] },
         'asslide-wolf-7':  { src:'images/wolf_image/viewAddScoreResultsTab.png', alt:'View Results Tab' },
         'asslide-wolf-8':  { src:'images/regular_skins_image/allHolesScoreAdded.png', alt:'All Holes Score Added' },
         'asslide-horse_race-0':  { src:'images/horse_race_image/hrGameSetupSteps.png', alt:'Game Setup' },
@@ -197,7 +197,7 @@
         'asslide-horse_race-7':  { src:'images/horse_race_image/18-HoleScoreGrid.png', alt:'18-Hole Score Grid' },
         'asslide-horse_race-8':  { src:'images/horse_race_image/scoreEntryScreen.png', alt:'Scorecard' },
         'asslide-horse_race-9':  { src:'images/skode&JunkRewards.png', alt:'Skode & Junk Rewards' },
-        'asslide-horse_race-10': { src:'images/horse_race_image/leaderboard.png', alt:'Leaderboard' },
+        'asslide-horse_race-10': { src:'images/horse_race_image/leaderboard.png', alt:'Leaderboard', shots:[{src:'images/horse_race_image/leaderboard.png',alt:'Leaderboard 1'},{src:'images/horse_race_image/leaderboard2.png',alt:'Leaderboard 2'},{src:'images/horse_race_image/leaderboard3.png',alt:'Leaderboard 3'},{src:'images/horse_race_image/leaderboard4.png',alt:'Leaderboard 4'},{src:'images/horse_race_image/leaderboard5.png',alt:'Leaderboard 5'}] },
         'asslide-horse_race-11': { src:'images/horse_race_image/viewAddScoreResultsTab.png', alt:'View Results Tab' },
         'asslide-horse_race-12': { src:'images/horse_race_image/allHolesScoreAdded.png', alt:'All Holes Score Added' },
         'asslide-ryder_cup-0':  { src:'images/ryder_cup_image/ryderCupCaptainSelected.png', alt:'Captain Selection' },
@@ -216,7 +216,7 @@
         'asslide-ryder_cup-13': { src:'images/ryder_cup_image/18-HoleScoreGrid.png', alt:'18-Hole Score Grid' },
         'asslide-ryder_cup-14': { src:'images/ryder_cup_image/scoreEntryScreen.png', alt:'Scorecard' },
         'asslide-ryder_cup-15': { src:'images/skode&JunkRewards.png', alt:'Skode & Junk Rewards' },
-        'asslide-ryder_cup-16': { src:'images/ryder_cup_image/leaderboard.png', alt:'Leaderboard' },
+        'asslide-ryder_cup-16': { src:'images/ryder_cup_image/leaderboard.png', alt:'Leaderboard', shots:[{src:'images/ryder_cup_image/leaderboard.png',alt:'Leaderboard 1'},{src:'images/ryder_cup_image/leaderboard2.png',alt:'Leaderboard 2'},{src:'images/ryder_cup_image/leaderboard3.png',alt:'Leaderboard 3'},{src:'images/ryder_cup_image/leaderboard4.png',alt:'Leaderboard 4'},{src:'images/ryder_cup_image/leaderboard5.png',alt:'Leaderboard 5'}] },
         'asslide-ryder_cup-17': { src:'images/ryder_cup_image/viewAddScoreResultsTab.png', alt:'View Results Tab' },
         'asslide-ryder_cup-18': { src:'images/ryder_cup_image/allHolesScoreAdded.png', alt:'All Holes Score Added' },
         'asslide-calcutta-0':  { src:'images/calcutta_image/round1PlayerSelection.png', alt:'Round-1 Select' },
@@ -243,7 +243,7 @@
         'asslide-calcutta-21': { src:'images/calcutta_image/18-HoleScoreGrid.png', alt:'18-Hole Score Grid' },
         'asslide-calcutta-22': { src:'images/calcutta_image/scoreEntryScreen.png', alt:'Scorecard' },
         'asslide-calcutta-23': { src:'images/skode&JunkRewards.png', alt:'Skode & Junk Rewards' },
-        'asslide-calcutta-24': { src:'images/calcutta_image/leaderboard.png', alt:'Leaderboard' },
+        'asslide-calcutta-24': { src:'images/calcutta_image/leaderboard.png', alt:'Leaderboard', shots:[{src:'images/calcutta_image/leaderboard.png',alt:'Leaderboard 1'},{src:'images/calcutta_image/leaderboard2.png',alt:'Leaderboard 2'},{src:'images/calcutta_image/leaderboard3.png',alt:'Leaderboard 3'},{src:'images/calcutta_image/leaderboard4.png',alt:'Leaderboard 4'},{src:'images/calcutta_image/leaderboard5.png',alt:'Leaderboard 5'}] },
         'asslide-calcutta-25': { src:'images/calcutta_image/viewAddScoreResultsTab.png', alt:'View Results Tab' },
         'asslide-calcutta-26': { src:'images/calcutta_image/allHolesScoreAdded.png', alt:'All Holes Score Added' },
         'asslide-0':  { src:'images/321MiloSelectFoursome.png', alt:'Select Foursome' },
@@ -255,7 +255,7 @@
         'asslide-6':  { src:'images/321_milo_image/321Milo-18-HoleScoreGrid.png', alt:'18-Hole Score Grid' },
         'asslide-7':  { src:'images/scoreEntryScreen.png', alt:'Scorecard — Enter & Save Score' },
         'asslide-8':  { src:'images/skode&JunkRewards.png', alt:'Skode & Junk Rewards' },
-        'asslide-9':  { src:'images/leaderboard.png', alt:'Leaderboard' },
+        'asslide-9':  { src:'images/leaderboard.png', alt:'Leaderboard', shots:[{src:'images/leaderboard.png',alt:'Leaderboard 1'},{src:'images/leaderboard2.png',alt:'Leaderboard 2'},{src:'images/leaderboard3.png',alt:'Leaderboard 3'},{src:'images/leaderboard4.png',alt:'Leaderboard 4'},{src:'images/leaderboard5.png',alt:'Leaderboard 5'}] },
         'asslide-10': { src:'images/viewAddScoreResultsTab.png', alt:'View Results Tab' },
         'asslide-11': { src:'images/allHolesScoreAdded.png', alt:'All Holes Score Added' },
         'vrslide-0': { src:'images/321_milo_image/321MiloAllPlayersResult.png', alt:'All Players Result' },
@@ -325,6 +325,60 @@
         }
         return null;
       }
+
+      // ── inline carousel for shots[] entries ──
+      function buildShotHTML(shot, cpId) {
+        if (!shot.shots || shot.shots.length < 2) {
+          return shot.src
+            ? '<div class="image-placeholder"><img src="' + shot.src + '" alt="' + (shot.alt||'') + '" class="app-image" /></div>'
+            : '<div class="cp-details-empty">No screenshot</div>';
+        }
+        var id = 'cpcar-' + cpId;
+        var imgs = shot.shots.map(function(s, i) {
+          return '<div class="cpcar-item' + (i===0?' active':'') + '">' +
+            '<div class="image-placeholder"><img src="' + s.src + '" alt="' + s.alt + '" class="app-image" /></div>' +
+            '</div>';
+        }).join('');
+        var dots = shot.shots.map(function(_, i) {
+          return '<span class="cpcar-dot' + (i===0?' active':'') + '" data-i="' + i + '"></span>';
+        }).join('');
+        return '<div class="cpcar" id="' + id + '">' +
+          '<button class="cpcar-btn cpcar-prev" data-id="' + id + '"><i class="bi bi-chevron-left"></i></button>' +
+          '<div class="cpcar-track">' + imgs + '</div>' +
+          '<button class="cpcar-btn cpcar-next" data-id="' + id + '"><i class="bi bi-chevron-right"></i></button>' +
+          '<div class="cpcar-dots">' + dots + '</div>' +
+          '</div>';
+      }
+      document.addEventListener('click', function(e) {
+        var btn = e.target.closest ? e.target.closest('.cpcar-btn') : null;
+        if (!btn) return;
+        var id = btn.getAttribute('data-id');
+        var car = document.getElementById(id);
+        if (!car) return;
+        var items = car.querySelectorAll('.cpcar-item');
+        var dotsEls = car.querySelectorAll('.cpcar-dot');
+        var cur = -1;
+        items.forEach(function(el, i){ if (el.classList.contains('active')) cur = i; });
+        var dir = btn.classList.contains('cpcar-next') ? 1 : -1;
+        var next = (cur + dir + items.length) % items.length;
+        items[cur].classList.remove('active'); items[next].classList.add('active');
+        dotsEls[cur].classList.remove('active'); dotsEls[next].classList.add('active');
+      });
+      document.addEventListener('click', function(e) {
+        var dot = e.target.closest ? e.target.closest('.cpcar-dot') : null;
+        if (!dot) return;
+        var car = dot.closest('.cpcar');
+        if (!car) return;
+        var items = car.querySelectorAll('.cpcar-item');
+        var dotsEls = car.querySelectorAll('.cpcar-dot');
+        var next = parseInt(dot.getAttribute('data-i'), 10);
+        var cur = -1;
+        items.forEach(function(el, i){ if (el.classList.contains('active')) cur = i; });
+        if (cur === -1) return;
+        items[cur].classList.remove('active'); items[next].classList.add('active');
+        dotsEls[cur].classList.remove('active'); dotsEls[next].classList.add('active');
+      });
+      // ── end inline carousel ──
 
       function build(mount){
         var key = mount.getAttribute('data-key');
@@ -419,11 +473,7 @@
         var hasDetails = !!detailsHtml;
         design.innerHTML =
           '<div class="cp-screen-row' + (hasDetails ? '' : ' cp-screen-row--no-details') + '">' +
-            '<div class="cp-shot">' +
-              (shot.src
-                ? '<div class="image-placeholder"><img src="' + shot.src + '" alt="' + (shot.alt||'') + '" class="app-image" /></div>'
-                : '<div class="cp-details-empty">No screenshot</div>') +
-            '</div>' +
+            '<div class="cp-shot">' + buildShotHTML(shot, key + '-design') + '</div>' +
             (hasDetails ? '<div class="cp-details">' + detailsHtml + '</div>' : '') +
           '</div>';
         body.appendChild(design);
@@ -437,9 +487,7 @@
 
         var codeShot = document.createElement('div');
         codeShot.className = 'cp-code-shot';
-        codeShot.innerHTML = shot.src
-          ? '<div class="image-placeholder"><img src="' + shot.src + '" alt="' + (shot.alt||'') + '" class="app-image" /></div>'
-          : '<div class="cp-details-empty">No screenshot</div>';
+        codeShot.innerHTML = buildShotHTML(shot, key + '-code');
         codeRow.appendChild(codeShot);
 
         var codeMain = document.createElement('div');
