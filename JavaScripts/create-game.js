@@ -1,34 +1,3 @@
-// ── Image Carousel ──
-window.carouselPrev = function(id) { carouselMove(id, -1); };
-window.carouselNext = function(id) { carouselMove(id,  1); };
-function carouselMove(id, dir) {
-  var el = document.getElementById(id);
-  if (!el) return;
-  var items = el.querySelectorAll('.carousel-item');
-  var idx = Array.from(items).findIndex(function(i){ return i.classList.contains('active'); });
-  items[idx].classList.remove('active');
-  var next = (idx + dir + items.length) % items.length;
-  items[next].classList.add('active');
-  var dots = el.querySelectorAll('.cdot');
-  dots.forEach(function(d,i){ d.classList.toggle('active', i === next); });
-}
-function initCarousel(id) {
-  var el = document.getElementById(id);
-  if (!el) return;
-  var items = el.querySelectorAll('.carousel-item');
-  var dotsEl = document.getElementById('carousel-dots-' + id);
-  if (!dotsEl) return;
-  dotsEl.innerHTML = '';
-  items.forEach(function(_, i) {
-    var d = document.createElement('span');
-    d.className = 'cdot' + (i === 0 ? ' active' : '');
-    d.onclick = function() { carouselMove(id, i - (Array.from(items).findIndex(function(x){ return x.classList.contains('active'); }))); };
-    dotsEl.appendChild(d);
-  });
-}
-document.addEventListener('DOMContentLoaded', function() { initCarousel('carousel-asslide-9'); });
-// ── End Image Carousel ──
-
 // ── CREATE GAME WIZARD (12 steps) ──
     var NUM_CG_SLIDES = 10;
     window.cgGoTo = function(n) {
